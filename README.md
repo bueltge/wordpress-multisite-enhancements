@@ -11,10 +11,15 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
 
 ### Screenshots
  1. [Blog ID on Sites](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/assets/screenshot-1.png)
+ ![Blog ID on Sites](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-1.png)
  2. [User ID on Users](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/assets/screenshot-2.png)
+ ![User ID on Users](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-2.png)
  3. [Add New link to install new plugin on each blog](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/assets/screenshot-3.png)
+ ![Add New link to install new plugin on each blog](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-3.png)
  4. [Manage Comments with Counter on Admin Bar](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/assets/screenshot-4.png)
+ ![Manage Comments with Counter on Admin Bar](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-4.png)
  5. [On which blog is the plugin active](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/assets/screenshot-5.png)
+ ![On which blog is the plugin active](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-5.png)
 
 ## Other Notes
 ### Bugs, technical hints or contribute
