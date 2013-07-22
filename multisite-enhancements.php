@@ -3,7 +3,7 @@
  * Plugin Name: Multisite Enhancements
  * Description: Enhance Multisite for Network Admins with different topics
  * Plugin URI:
- * Version:     0.0.1-alpha
+ * Version:     0.0.2
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de
  * License:     GPL

@@ -2,7 +2,7 @@
 /**
  * On the network theme page, show each blog next to its active theme
  * 
- * @since   07/19/2013
+ * @since   07/22/2013
  */
 
 add_action( 'init', array( 'Multisite_Add_Theme_List', 'init' ) );
@@ -18,7 +18,7 @@ class Multisite_Add_Theme_List {
 	/**
 	 * Init function to register all used hooks
 	 * 
-	 * @since   0.0.1
+	 * @since   0.0.2
 	 * @return  void
 	 */
 	public function __construct() {
@@ -33,7 +33,7 @@ class Multisite_Add_Theme_List {
 	/**
 	 * Add in a column header
 	 * 
-	 * @since   0.0.1
+	 * @since   0.0.2
 	 * @param   Array
 	 * @return  String
 	 */
@@ -47,10 +47,11 @@ class Multisite_Add_Theme_List {
 	/**
 	 * Get data for each row on each theme
 	 * 
-	 * @param  String
-	 * @param  String
-	 * @param  Array
-	 * @return String
+	 * @since   0.0.2
+	 * @param   String
+	 * @param   String
+	 * @param   Array
+	 * @return  String
 	 */
 	public function manage_themes_custom_column( $column_name, $theme_key, $theme_data ) {
 		
@@ -75,6 +76,15 @@ class Multisite_Add_Theme_List {
 		echo $output;
 	}
 	
+	/**
+	 * Is theme active in blogs
+	 * Return Array with vlaues to each theme
+	 * 
+	 * @since   0.0.2
+	 * @param   String
+	 * @param   Array
+	 * @return  Array
+	 */
 	public function is_theme_active_on_blogs( $theme_key, $theme_data ) {
 		
 		$blogs = get_blog_list( 0, 'all' );

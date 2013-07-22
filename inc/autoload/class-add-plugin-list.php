@@ -47,10 +47,11 @@ class Multisite_Add_Plugin_List {
 	/**
 	 * Get data for each row on each plugin
 	 * 
-	 * @param  String
-	 * @param  String
-	 * @param  Array
-	 * @return String
+	 * @since   0.0.1
+	 * @param   String
+	 * @param   String
+	 * @param   Array
+	 * @return  String
 	 */
 	public function manage_plugins_custom_column( $column_name, $plugin_file, $plugin_data ) {
 		
