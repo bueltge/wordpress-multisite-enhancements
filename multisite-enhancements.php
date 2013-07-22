@@ -57,7 +57,7 @@ class Multisite_Enhancements {
 		if ( ! is_super_admin() )
 			return NULL;
 		
-		$this->load_modules();
+		$this->load();
 	}
 	
 	/**
@@ -83,12 +83,15 @@ class Multisite_Enhancements {
 	 * @since   0.0.1
 	 * @return  void
 	 */
-	public static function load_modules() {
+	public static function load() {
 		
-		// load required classes
-		foreach( glob( dirname( __FILE__ ) . '/inc/*.php' ) as $path ) {
+		$file_base = dirname( __FILE__ ) . '/inc';
+		
+		$autoload_files = glob( "$file_base/autoload/*.php" );
+		
+		// load files
+		foreach( $autoload_files as $path )
 			require_once $path;
-		}
 	}
 	
 } // end class
