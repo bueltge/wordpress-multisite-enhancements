@@ -1,6 +1,6 @@
 <?php
 /**
- * On the network theme page, show each blog next to its active theme
+ * On the network theme page, show which blog have the theme active
  * 
  * @since   07/22/2013
  */

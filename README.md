@@ -8,6 +8,7 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
 * Enables an 'Add New' link under the Plugins menu for Network admins
 * Adds several useful items to the multisite 'Network Admin' admin bar
 * On the network plugins page, show which blogs have this plugin active
+* On the network theme page, show which blog have the theme active
 
 ### Screenshots
  1. [Blog ID on Sites](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/assets/screenshot-1.png)
@@ -20,6 +21,8 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
  ![Manage Comments with Counter on Admin Bar](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-4.png)
  5. [On which blog is the plugin active](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/assets/screenshot-5.png)
  ![On which blog is the plugin active](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-5.png)
+ 6. [On which blog is the theme active](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/assets/screenshot-6.png)
+ ![On which blog is the theme active](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-6.png)
 
 ## Other Notes
 ### Bugs, technical hints or contribute
