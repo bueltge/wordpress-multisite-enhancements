@@ -24,6 +24,9 @@ class Multisite_Add_Blog_Id {
 	 */
 	public function __construct() {
 		
+		if ( ! is_network_admin() )
+			return NULL;
+		
 		// add blog id
 		add_filter( 'wpmu_blogs_columns',           array( $this, 'get_id' ) );
 		add_action( 'manage_sites_custom_column',   array( $this, 'get_blog_id' ), 10, 2 );

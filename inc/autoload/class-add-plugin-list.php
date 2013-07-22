@@ -23,8 +23,11 @@ class Multisite_Add_Plugin_List {
 	 */
 	public function __construct() {
 		
-		add_filter( 'manage_plugins-network_columns', array( $this, 'add_plugins_column' ), 10, 1);
-		add_action( 'manage_plugins_custom_column', array( $this, 'manage_plugins_custom_column' ), 10, 3);
+		if ( ! is_network_admin() )
+			return NULL;
+		
+		add_filter( 'manage_plugins-network_columns', array( $this, 'add_plugins_column' ), 10, 1 );
+		add_action( 'manage_plugins_custom_column', array( $this, 'manage_plugins_custom_column' ), 10, 3 );
 	}
 	
 	/**
@@ -47,6 +50,7 @@ class Multisite_Add_Plugin_List {
 	 * @param  String
 	 * @param  String
 	 * @param  Array
+	 * @return String
 	 */
 	public function manage_plugins_custom_column( $column_name, $plugin_file, $plugin_data ) {
 		
@@ -57,7 +61,7 @@ class Multisite_Add_Plugin_List {
 		if ( ! function_exists( 'is_plugin_active_for_network' ) )
 			require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 		
-		$active_on_network = is_plugin_active_for_network( $plugin_file );
+		$active_on_network = is_plugin_active_for_network( $plugin_file, $plugin_data );
 		
 		$output = '';
 		
@@ -92,7 +96,7 @@ class Multisite_Add_Plugin_List {
 	 * @param   String
 	 * @return  Array which Blog ID and Name of Blog for each item in Array
 	 */
-	public function is_plugin_active_on_blogs( $plugin_file ) {
+	public function is_plugin_active_on_blogs( $plugin_file, $plugin_data = NULL ) {
 		
 		$blogs = get_blog_list( 0, 'all' );
 		
