@@ -6,7 +6,8 @@
  * Version:     0.0.1-alpha
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de
- * Licence:     GPL
+ * License:     GPL
+ * License URI: ./assets/license.txt
  * Text Domain: multisite_enhancements
  * Domain Path: /languages
  * Network:     true
@@ -18,10 +19,18 @@ add_filter( 'plugins_loaded', array( 'Multisite_Enhancements', 'get_object' ) );
 class Multisite_Enhancements {
 	
 	/**
+	 * Define folder, there have inside the autoload files
+	 * 
+	 * @since  0.0.1
+	 * @var    String
+	 */
+	static protected $file_base = '';
+	
+	/**
 	 * The class object
 	 * 
 	 * @since  0.0.1
-	 * @var    string
+	 * @var    String
 	 */
 	static protected $class_object = NULL;
 	
@@ -57,6 +66,8 @@ class Multisite_Enhancements {
 		if ( ! is_super_admin() )
 			return NULL;
 		
+		self::$file_base = dirname( __FILE__ ) . '/inc';
+		
 		$this->load();
 	}
 	
@@ -85,7 +96,7 @@ class Multisite_Enhancements {
 	 */
 	public static function load() {
 		
-		$file_base = dirname( __FILE__ ) . '/inc';
+		$file_base = self::$file_base;
 		
 		$autoload_files = glob( "$file_base/autoload/*.php" );
 		
