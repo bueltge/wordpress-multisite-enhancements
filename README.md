@@ -10,7 +10,7 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
 * On the network plugins page, show which blogs have this plugin active
 * On the network theme page, show which blog have the theme active
 * Change Admin footer text for Administratoren to view fast currently used RAM, SQL, RAM Version
-* Add Favicon from theme folder to the admin area to easier identify the blog
+* Add Favicon from theme folder to the admin area to easier identify the blog, use the `favicon.ico` file in the theme folder of the active theme in each blog
 * Remove also the 'W' logo and his sublinks in admin bar
 * Add Favicon to each blog on the Admin Bar Item 'My Sites'
 
@@ -37,9 +37,9 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
  7. [New Admin footer text](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/assets/screenshot-7.png)
  
  ![New Admin footer text](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-7.png)
- 8. [Favicon on Admin bar](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/assets/screenshot-7.png)
+ 8. [Favicon on Admin bar](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/assets/screenshot-8.png)
  
- ![Favicon on Admin bar](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-7.png)
+ ![Favicon on Admin bar](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-8.png)
  
 ## Other Notes
 ### Bugs, technical hints or contribute
