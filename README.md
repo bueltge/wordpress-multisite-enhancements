@@ -26,6 +26,7 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
  6. [On which blog is the theme active](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/assets/screenshot-6.png)
  ![On which blog is the theme active](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-6.png)
  7. [New Admin footer text](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/assets/screenshot-7.png)
+ 
  ![New Admin footer text](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-7.png)
 
 ## Other Notes
