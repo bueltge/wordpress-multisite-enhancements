@@ -88,8 +88,8 @@ class Multisite_Add_Admin_Favicon {
 		if ( file_exists( $stylesheet_dir . '/favicon.ico' ) ) {
 			$output  = '<link rel="shortcut icon" type="image/x-icon" href="' . $stylesheet_dir_uri . '/favicon.ico" />';
 			$output .= '<style>';
-			$output .= '#wp-admin-bar-site-name { background: url( "' 
-				. $stylesheet_dir_uri . '/favicon.ico" ) left center no-repeat !important; padding: 0 0 0 16px !important; }' . "\n";
+			$output .= 'li#wp-admin-bar-site-name a { background: url( "' 
+				. $stylesheet_dir_uri . '/favicon.ico" ) left center no-repeat !important; padding-left: 21px !important } li#wp-admin-bar-site-name { margin-left: 5px !important; } li#wp-admin-bar-site-name {} #wp-admin-bar-site-name div a { background: none !important; }' . "\n";
 			$output .= '</style>';
 		}
 		
