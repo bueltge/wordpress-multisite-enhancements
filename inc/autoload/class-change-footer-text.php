@@ -29,7 +29,7 @@ class Multisite_Change_Footer_Text {
 	static protected $capability = 'manage_options';
 	
 	/**
-	 *Filter to reset admin footer message
+	 * Filter to reset admin footer message
 	 * 
 	 * @since  0.0.2
 	 * @var    Boolean
