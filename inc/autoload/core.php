@@ -8,18 +8,20 @@
 if ( ! function_exists( 'get_blog_list' ) ) {
 	
 	/**
-	 * Returns an array of arrays containing information about each public blog hosted on this WPMU install.
+	 * Returns an array of arrays containing information about each public blog 
+	 * hosted on this WPMU install.
+	 * 
 	 * Only blogs marked as public and flagged as safe (mature flag off) are returned.
 	 * 
 	 * @param   Integer  The first blog to return in the array.
 	 * @param   Integer  The number of blogs to return in the array (thus the size of the array).
 	 *                   Setting this to string 'all' returns all blogs from $start
 	 * @param   Integer  Time until expiration in seconds, default 7200s
-	 * @return  Array    Returns an array of arrays each representing a blog hosted on this WPMU install. 
+	 * @return  Array    Returns an array of arrays each representing a blog. 
 	 *                   Details are represented in the following format:
-	 *                       blog_id   (integer)ID of blog detailed.
-	 *                       domain    (string) Domain used to access this blog.
-	 *                       path      (string) Path used to access this blog.
+	 *                       blog_id   (integer) ID of blog detailed.
+	 *                       domain    (string)  Domain used to access this blog.
+	 *                       path      (string)  Path used to access this blog.
 	 *                       postcount (integer) The number of posts in this blog.
 	 */
 	function get_blog_list( $start = 0, $num = 10, $expires = 7200 ) {
@@ -70,7 +72,7 @@ if ( ! function_exists( 'get_blog_list' ) ) {
 		unset( $blogs );
 		$blogs = $blog_list;
 		
-		if ( false == is_array( $blogs ) )
+		if ( FALSE == is_array( $blogs ) )
 			return array();
 		
 		if ( 'all' === $num )
