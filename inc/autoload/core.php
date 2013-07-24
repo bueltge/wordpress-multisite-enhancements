@@ -5,7 +5,7 @@
  * @since   07/24/2013
  */
 
-if ( ! function_exists( 'fb_get_blog_list' ) ) {
+if ( ! function_exists( 'get_blog_list' ) ) {
 	
 	/**
 	 * Returns an array of arrays containing information about each public blog 
@@ -24,7 +24,7 @@ if ( ! function_exists( 'fb_get_blog_list' ) ) {
 	 *                       path      (string)  Path used to access this blog.
 	 *                       postcount (integer) The number of posts in this blog.
 	 */
-	function fb_get_blog_list( $start = 0, $num = 10, $expires = 86400 ) {
+	function get_blog_list( $start = 0, $num = 10, $expires = 86400 ) {
 		
 		if ( ! is_multisite() )
 			return FALSE;
