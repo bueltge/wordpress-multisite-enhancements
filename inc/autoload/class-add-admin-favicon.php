@@ -107,8 +107,10 @@ class Multisite_Add_Admin_Favicon {
 	 * @return  String
 	 */
 	public function set_admin_bar_blog_icon() {
+		
 		// get all blogs in network
-		$blogs = get_blog_list( 0, 'all' );
+		// use alternative to core function get_blog_list()
+		$blogs = Multisite_Core::get_blog_list( 0, 'all' );
 		
 		$output = '';
 		foreach( (array) $blogs as $blog ) {

@@ -5,7 +5,7 @@
  * @since   07/24/2013
  */
 
-if ( ! function_exists( 'get_blog_list' ) ) {
+if ( ! function_exists( 'fb_get_blog_list' ) ) {
 	
 	/**
 	 * Returns an array of arrays containing information about each public blog 
@@ -16,7 +16,7 @@ if ( ! function_exists( 'get_blog_list' ) ) {
 	 * @param   Integer  The first blog to return in the array.
 	 * @param   Integer  The number of blogs to return in the array (thus the size of the array).
 	 *                   Setting this to string 'all' returns all blogs from $start
-	 * @param   Integer  Time until expiration in seconds, default 7200s
+	 * @param   Integer  Time until expiration in seconds, default 86400s (1day)
 	 * @return  Array    Returns an array of arrays each representing a blog. 
 	 *                   Details are represented in the following format:
 	 *                       blog_id   (integer) ID of blog detailed.
@@ -24,61 +24,17 @@ if ( ! function_exists( 'get_blog_list' ) ) {
 	 *                       path      (string)  Path used to access this blog.
 	 *                       postcount (integer) The number of posts in this blog.
 	 */
-	function get_blog_list( $start = 0, $num = 10, $expires = 7200 ) {
+	function fb_get_blog_list( $start = 0, $num = 10, $expires = 86400 ) {
 		
 		if ( ! is_multisite() )
 			return FALSE;
 		
-		// get blog list from cache
-		$blogs = get_site_transient( 'multisite_blog_list' );
-		
-		if ( FALSE === $blogs ) {
-			
-			global $wpdb;
-			$blogs = $wpdb->get_results(
-				$wpdb->prepare( "
-					SELECT blog_id, domain, path 
-					FROM $wpdb->blogs WHERE site_id = %d 
-					AND public = '1' 
-					AND archived = '0' 
-					AND mature = '0' 
-					AND spam = '0' 
-					AND deleted = '0' 
-					ORDER BY registered DESC
-				", $wpdb->siteid ), 
-			ARRAY_A );
-			
-			// Set the Transient cache
-			set_site_transient( 'multisite_blog_list', $blogs, $expires );
+		if ( ! class_exists( 'Multisite_Core' ) ) {
+			require_once 'class-core.php';
+			new Multisite_Core();
 		}
 		
-		$blog_list = get_site_transient( 'multisite_blog_list_details' );
-		
-		if ( FALSE === $blog_list ) {
-			
-			foreach ( (array) $blogs as $details ) {
-				$blog_list[ $details['blog_id'] ] = $details;
-				$blog_list[ $details['blog_id'] ]['postcount'] = $wpdb->get_var( "
-					SELECT COUNT(ID) 
-					FROM " . $wpdb->get_blog_prefix( $details['blog_id'] ). "posts 
-					WHERE post_status='publish' 
-					AND post_type='post'" 
-				);
-			}
-			
-			// Set the Transient cache
-			set_site_transient( 'multisite_blog_list_details', $blog_list, $expires );
-		}
-		unset( $blogs );
-		$blogs = $blog_list;
-		
-		if ( FALSE == is_array( $blogs ) )
-			return array();
-		
-		if ( 'all' === $num )
-			return array_slice( $blogs, $start, count( $blogs ) );
-		else
-			return array_slice( $blogs, $start, $num );
+		return Multisite_Core::get_blog_list( $start, $num, $expires );
 	}
 	
 } // end if fct exist

@@ -88,7 +88,8 @@ class Multisite_Add_Theme_List {
 	public function is_theme_active_on_blogs( $theme_key, $theme_data ) {
 		
 		// get all blogs in network
-		$blogs = get_blog_list( 0, 'all' );
+		// use alternative to core function get_blog_list()
+		$blogs = Multisite_Core::get_blog_list( 0, 'all' );
 		
 		$active_in_themes = array();
 		foreach( (array) $blogs as $blog ) {

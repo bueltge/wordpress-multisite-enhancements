@@ -99,7 +99,8 @@ class Multisite_Add_Plugin_List {
 	 */
 	public function is_plugin_active_on_blogs( $plugin_file, $plugin_data = NULL ) {
 		
-		$blogs = get_blog_list( 0, 'all' );
+		// use alternative to core function get_blog_list()
+		$blogs = Multisite_Core::get_blog_list( 0, 'all' );
 		
 		$active_in_plugins = array();
 		foreach( (array) $blogs as $blog ) {
