@@ -62,6 +62,7 @@ class Multisite_Core {
 		
 		if ( FALSE === $blog_list ) {
 			
+			global $wpdb;
 			foreach ( (array) $blogs as $details ) {
 				$blog_list[ $details['blog_id'] ] = $details;
 				$blog_list[ $details['blog_id'] ]['postcount'] = $wpdb->get_var( "
