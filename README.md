@@ -15,7 +15,7 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
 * Add Favicon to each blog on the Admin Bar Item 'My Sites'
 * Add functions to be used in your install
 	 * The function `get_blog_list()` is currently deprecated in the WP Core, but currently usable. The plugin check this and get a alternative in `inc/autoload/core.php`
-	 * If you will the alternative to this function on your development, then use the method `get_blog_list()` in class `Multisite_Core`. She use also caching. See more about the function on the function in `inc/autoload/class-core.php`.
+	 * If you will develop with the alternative to this function from my source, then use the method `get_blog_list()` in class `Multisite_Core`. She use also caching with the Transient API. See more about the function on the function in `inc/autoload/class-core.php`.
 
 
 ### Screenshots
