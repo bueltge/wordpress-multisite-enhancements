@@ -52,7 +52,7 @@ if ( ! function_exists( 'get_blog_list' ) ) {
 		if ( false == is_array( $blogs ) )
 			return array();
 		
-		if ( $num == 'all' )
+		if ( 'all' === $num )
 			return array_slice( $blogs, $start, count( $blogs ) );
 		else
 			return array_slice( $blogs, $start, $num );
