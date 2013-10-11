@@ -39,7 +39,9 @@ class Multisite_Add_Plugin_List {
 	 */
 	public function add_plugins_column( $columns ) {
 		
-		$columns['active_blogs'] = _x( '<nobr>Active in </nobr>', 'column name' );
+		// Not useful on dropin selection
+		if ( 'dropins' !== $_GET['plugin_status'] )
+			$columns['active_blogs'] = _x( '<nobr>Active in </nobr>', 'column name' );
 		
 		return $columns;
 	}
