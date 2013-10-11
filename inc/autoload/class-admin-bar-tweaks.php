@@ -40,6 +40,12 @@ class Multisite_Admin_Bar_Tweaks {
 		if ( count( $wp_admin_bar->user->blogs ) < 1 )
 			return NULL;
 		
+		// since WP version 3.7 is the plugin link in core.
+		// return, if is active 
+		$wp_admin_bar_nodes = $wp_admin_bar->get_nodes();
+		if ( isset( $wp_admin_bar_nodes['network-admin-p'] ) )
+			return NULL;
+		
 		// Add a link to the Network > Plugins page
 		$wp_admin_bar->add_node( array(
 			'parent' => 'network-admin',
