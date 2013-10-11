@@ -66,6 +66,7 @@ class Multisite_Admin_Bar_Tweaks {
 		global $wp_admin_bar;
 		
 		foreach ( (array) $wp_admin_bar->user->blogs as $blog ) {
+			
 			switch_to_blog( $blog->userblog_id );
 			
 			$menu_id  = 'blog-' . $blog->userblog_id;
@@ -76,17 +77,29 @@ class Multisite_Admin_Bar_Tweaks {
 				
 				$awaiting_mod = wp_count_comments();
 				$awaiting_mod = $awaiting_mod->moderated;
-				$count = '<span id="ab-awaiting-mod" class="ab-label awaiting-mod pending-count count-' . $awaiting_mod . '">' . number_format_i18n( $awaiting_mod ) . '</span>';
+				
+				$title = __( 'Manage Comments' )
+					. '<span id="ab-awaiting-mod" class="ab-label awaiting-mod pending-count count-' 
+					. $awaiting_mod . '">' . number_format_i18n( $awaiting_mod ) . '</span>';
+				
+				$awaiting_title = esc_attr( sprintf( _n(
+					'%s comment awaiting moderation',
+					'%s comments awaiting moderation',
+					$awaiting_mod
+				), number_format_i18n( $awaiting_mod ) ) );
 				
 				$wp_admin_bar->add_menu( array(
 					'parent' => $menu_id,
 					'id'     => $menu_id . '-comments',
-					'title'  => __( 'Manage Comments' ) . $count,
+					'title'  => $title,
 					'href'   => admin_url( 'edit-comments.php' ),
+					'meta'   => array( 'title' => $awaiting_title ),
 				) );
+				
 			}
 			
 			restore_current_blog();
+			
 		}
 	}
 	
