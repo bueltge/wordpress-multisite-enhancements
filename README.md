@@ -44,8 +44,12 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
  8. [Favicon on Admin bar](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/assets/screenshot-8.png)
  
  ![Favicon on Admin bar](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-8.png)
- 
+
 ## Other Notes
+
+### Made by [Inpsyde](http://inpsyde.com) &middot; We love WordPress
+Have a look at the premium plugins in our [market](http://marketpress.com).
+
 ### Bugs, technical hints or contribute
 Please give me feedback, contribute and file technical bugs on this 
 [GitHub Repo](https://github.com/bueltge/WordPress-Multisite-Enhancements/issues), use Issues.
