@@ -16,7 +16,8 @@
  *     - Hook: multisite_enhancements_remove_wp_admin_bar
  *     - Default is: TRUE
  * 
- * @since 07/23/2013
+ * @since    07/23/2013
+ * @version  10/27/2013
  */
 
 add_action( 'init', array( 'Multisite_Add_Admin_Favicon', 'init' ) );
@@ -108,9 +109,13 @@ class Multisite_Add_Admin_Favicon {
 	 */
 	public function set_admin_bar_blog_icon() {
 		
-		// get all blogs in network
-		// use alternative to core function get_blog_list()
-		$blogs = Multisite_Core::get_blog_list( 0, 'all' );
+		if ( function_exists( 'wp_get_sites' ) ) {
+			// Since 3.7 inside the Core
+			$blogs = wp_get_sites();
+		} else {
+			// use alternative to core function get_blog_list()
+			$blogs = Multisite_Core::get_blog_list( 0, 'all' );
+		}
 		
 		$output = '';
 		foreach( (array) $blogs as $blog ) {

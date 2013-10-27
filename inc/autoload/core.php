@@ -2,7 +2,11 @@
 /**
  * Core functions, there was missed in WP Core for use with Multisite
  * 
- * @since   07/24/2013
+ * Hint: Since WordPress version 3.7 use the function 'wp_get_sites()', 
+ * a alternative inside the core of WP
+ * 
+ * @since    07/24/2013
+ * @version  10/27/2013
  */
 
 if ( ! function_exists( 'get_blog_list' ) ) {

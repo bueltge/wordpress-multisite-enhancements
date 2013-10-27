@@ -2,7 +2,8 @@
 /**
  * On the network theme page, show which blog have the theme active
  * 
- * @since   07/22/2013
+ * @since    07/22/2013
+ * @version  10/27/2013
  */
 
 add_action( 'init', array( 'Multisite_Add_Theme_List', 'init' ) );
@@ -87,9 +88,13 @@ class Multisite_Add_Theme_List {
 	 */
 	public function is_theme_active_on_blogs( $theme_key, $theme_data ) {
 		
-		// get all blogs in network
-		// use alternative to core function get_blog_list()
-		$blogs = Multisite_Core::get_blog_list( 0, 'all' );
+		if ( function_exists( 'wp_get_sites' ) ) {
+			// Since 3.7 inside the Core
+			$blogs = wp_get_sites();
+		} else {
+			// use alternative to core function get_blog_list()
+			$blogs = Multisite_Core::get_blog_list( 0, 'all' );
+		}
 		
 		$active_in_themes = array();
 		foreach( (array) $blogs as $blog ) {
