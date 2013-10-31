@@ -24,7 +24,7 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
  * Add functions to be used in your install
 	 * The function `get_blog_list()` is currently deprecated in the WP Core, but currently usable. The plugin check this and get a alternative in [`inc/autoload/core.php`](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/inc/autoload/core.php)
 	 * If you will develop with the alternative to this function from my source, then use the method `get_blog_list()` in class `Multisite_Core`. She use also caching with the Transient API. See more about the function on the function in [`inc/autoload/class-core.php`](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/inc/autoload/class-core.php).
-	 * If you use WordPress version 3.7 and higher, then check the function `wp_get_sites()`, the new alternmative funciton inside the core to get all sides inside the network. The function accept a Array with arguments, see the [description](http://wpseek.com/wp_get_sites/).
+	 * If you use WordPress version 3.7 and higher, then check the function `wp_get_sites()`, the new alternative function inside the core to get all sides inside the network. The function accept a array with arguments, see the [description](http://wpseek.com/wp_get_sites/).
 
 **Made by [Inpsyde](http://inpsyde.com) &middot; We love WordPress**
 
