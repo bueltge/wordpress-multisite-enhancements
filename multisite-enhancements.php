@@ -6,7 +6,7 @@
  * Version:     1.0.0
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de
- * License:     GPL
+ * License:     GPLv2
  * License URI: ./assets/license.txt
  * Text Domain: multisite_enhancements
  * Domain Path: /languages
