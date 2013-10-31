@@ -46,13 +46,13 @@ Have a look at the premium plugins in our [market](http://marketpress.com).
 
 == Screenshots ==
  1. Blog ID on Sites
- 1. User ID on Users
- 1. Add New link to install new plugin on each blog
- 1. Manage Comments with Counter on Admin Bar
- 1. On which blog is the plugin active
- 1. On which blog is the theme active
- 1. New Admin footer text
- 1. Favicon on Admin bar
+ 2. User ID on Users
+ 3. Add New link to install new plugin on each blog
+ 4. Manage Comments with Counter on Admin Bar
+ 5. On which blog is the plugin active
+ 6. On which blog is the theme active
+ 7. New Admin footer text
+ 8. Favicon on Admin bar
 
 == Other Notes ==
 
@@ -85,3 +85,5 @@ So please be patient with me and let me know of typos or grammatical farts. Than
 == Changelog ==
 = 1.0.0 =
  * First release on wordpress.org after different installs with different users
+
+For more information about changes see the commits on the [working repository](https://github.com/bueltge/WordPress-Multisite-Enhancements/commits/master).
