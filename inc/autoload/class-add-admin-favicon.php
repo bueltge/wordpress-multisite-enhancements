@@ -17,7 +17,7 @@
  *     - Default is: TRUE
  * 
  * @since    07/23/2013
- * @version  10/27/2013
+ * @version  11/13/2013
  */
 
 add_action( 'init', array( 'Multisite_Add_Admin_Favicon', 'init' ) );
@@ -131,6 +131,7 @@ class Multisite_Add_Admin_Favicon {
 			$stylesheet_dir     = "$theme_root/$stylesheet";
 			
 			if ( file_exists( $stylesheet_dir . '/favicon.ico' ) ) {
+				$output .= '#wpadminbar .quicklinks li .blavatar { font-size: 0 !important; }';
 				$output .= '#wp-admin-bar-blog-' . $blog['blog_id'] . ' div.blavatar { background: url( "' 
 					. $stylesheet_dir_uri . '/favicon.ico" ) center center no-repeat !important; }' . "\n";
 			}

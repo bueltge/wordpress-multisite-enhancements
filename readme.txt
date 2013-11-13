@@ -83,7 +83,10 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical farts. Thanks
 
 == Changelog ==
-= 1.0.0 =
+= 1.0.1 (???) =
+ * Add CSS rule for new WP 3.8 back end design (mp6 plugin)
+
+= 1.0.0 (10/31/2013) =
  * First release on wordpress.org after different installs with different users
 
 For more information about changes see the commits on the [working repository](https://github.com/bueltge/WordPress-Multisite-Enhancements/commits/master).
