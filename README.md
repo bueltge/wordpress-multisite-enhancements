@@ -70,7 +70,7 @@ Please fork it, add an issue for ideas and bugs.
 
 ### Disclaimer
 I'm German and my English might be gruesome here and there. 
-So please be patient with me and let me know of typos or grammatical farts. Thanks
+So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 ***
 
