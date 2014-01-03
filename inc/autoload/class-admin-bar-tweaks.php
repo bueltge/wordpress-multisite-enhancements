@@ -66,7 +66,7 @@ class Multisite_Admin_Bar_Tweaks {
 		global $wp_admin_bar;
 		
 		foreach ( (array) $wp_admin_bar->user->blogs as $blog ) {
-			
+
 			switch_to_blog( $blog->userblog_id );
 			
 			$menu_id  = 'blog-' . $blog->userblog_id;
