@@ -2,7 +2,7 @@
 Contributors: Bueltge, inpsyde
 Tags: multisite, admininstration, admin bar, network, 
 Requires at least: 3.0.0
-Tested up to: 3.8-alpha
+Tested up to: 3.8.1-alpha
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -83,8 +83,10 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical farts. Thanks
 
 == Changelog ==
-= 1.0.1 (???) =
+= 1.0.1 (01/03/2014) =
  * Add CSS rule for new WP 3.8 back end design (mp6 plugin)
+ * Add more whitespace on the comment count in admin bar
+ * Enhance the filter to list active plugins [#1](https://github.com/bueltge/WordPress-Multisite-Enhancements/issues/1)
 
 = 1.0.0 (10/31/2013) =
  * First release on wordpress.org after different installs with different users
