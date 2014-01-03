@@ -3,6 +3,7 @@
  * Adds several useful items to the multisite 'Network Admin' admin bar
  * 
  * @since   07/19/2013
+ * @version 01/03/2014
  */
 
 add_action( 'init', array( 'Multisite_Admin_Bar_Tweaks', 'init' ) );
@@ -80,7 +81,7 @@ class Multisite_Admin_Bar_Tweaks {
 				
 				$title = __( 'Manage Comments' )
 					. '<span id="ab-awaiting-mod" class="ab-label awaiting-mod pending-count count-' 
-					. $awaiting_mod . '">' . number_format_i18n( $awaiting_mod ) . '</span>';
+					. $awaiting_mod . '" style="margin-left:.2em">' . number_format_i18n( $awaiting_mod ) . '</span>';
 				
 				$awaiting_title = esc_attr( sprintf( _n(
 					'%s comment awaiting moderation',

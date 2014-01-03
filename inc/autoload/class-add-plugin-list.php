@@ -3,11 +3,19 @@
  * On the network plugins page, show which blogs have this plugin active
  * 
  * @since    07/19/2013
- * @version  10/27/2013
+ * @version  01/03/2014
  */
 
 add_action( 'init', array( 'Multisite_Add_Plugin_List', 'init' ) );
 class Multisite_Add_Plugin_List {
+	
+	/**
+	 * On this plugin status will not show the not or activated status in the table of plugins
+	 * 
+	 * @since  01/03/2014
+	 * @var    Array
+	 */
+	static protected $excluded_plugin_status = array( 'dropins', 'mustuse' );
 	
 	public static function init() {
 		
@@ -40,8 +48,8 @@ class Multisite_Add_Plugin_List {
 	 */
 	public function add_plugins_column( $columns ) {
 		
-		// Not useful on dropin selection
-		if ( 'dropins' !== $_GET['plugin_status'] )
+		// Not useful on different selections
+		if ( ! in_array( esc_attr( $_GET['plugin_status'] ), self::$excluded_plugin_status ) )
 			$columns['active_blogs'] = _x( '<nobr>Active in </nobr>', 'column name' );
 		
 		return $columns;
