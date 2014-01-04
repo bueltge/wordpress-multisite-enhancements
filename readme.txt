@@ -1,6 +1,6 @@
 === Multisite Enhancements ===
 Contributors: Bueltge, inpsyde
-Tags: multisite, admininstration, admin bar, network, 
+Tags: multisite, administration, admin bar, network, 
 Requires at least: 3.0.0
 Tested up to: 3.9-alpha
 Stable tag: trunk
