@@ -83,6 +83,12 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.0.2 (02/03/2014) =
+ * Add Favicon in Admin Bar also in Front end
+ * Enhance style for favicon size
+ * Grammer fix in tags, readme
+ * Small changes for columns and 3.8 design
+ 
 = 1.0.1 (01/03/2014) =
  * Add CSS rule for new WP 3.8 back end design (mp6 plugin)
  * Add more whitespace on the comment count in admin bar
@@ -92,3 +98,4 @@ So please be patient with me and let me know of typos or grammatical parts. Than
  * First release on wordpress.org after different installs with different users
 
 For more information about changes see the commits on the [working repository](https://github.com/bueltge/WordPress-Multisite-Enhancements/commits/master).
+>>>>>>> 741bc4a281c61a1bfb9dc58e2364d6df02d68ab7

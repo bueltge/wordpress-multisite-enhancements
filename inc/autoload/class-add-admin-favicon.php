@@ -17,7 +17,7 @@
  *     - Default is: TRUE
  * 
  * @since    07/23/2013
- * @version  11/13/2013
+ * @version  02/03/2013
  */
 
 add_action( 'init', array( 'Multisite_Add_Admin_Favicon', 'init' ) );
@@ -30,7 +30,8 @@ class Multisite_Add_Admin_Favicon {
 	 * @var     Array
 	 */
 	static protected $favicon_hooks = array(
-		'admin_head'
+		'admin_head',
+		'wp_head'
 	);
 	
 	/**
@@ -62,11 +63,13 @@ class Multisite_Add_Admin_Favicon {
 		// hooks for add favicon markup
 		$hooks = apply_filters( 'multisite_enhancements_favicon', self::$favicon_hooks );
 		
-		foreach( $hooks as $hook )
+		foreach( $hooks as $hook ) {
 			add_action( esc_attr( $hook ), array( $this, 'set_favicon' ) );
 		
-		// add favicon from theme folder to each blog
-		add_action( 'admin_head',     array( $this, 'set_admin_bar_blog_icon' ) );
+			// add favicon from theme folder to each blog
+			add_action( esc_attr( $hook ), array( $this, 'set_admin_bar_blog_icon' ) );
+		}
+		
 		// remove admin bar item with "W" logo
 		add_action( 'admin_bar_menu', array( $this, 'change_admin_bar_menu' ), 25 );
 	}
@@ -91,7 +94,7 @@ class Multisite_Add_Admin_Favicon {
 			$output .= '<style>';
 			$output .= '#wpadminbar #wp-admin-bar-site-name>.ab-item:before { content: none !important;}';
 			$output .= 'li#wp-admin-bar-site-name a { background: url( "' 
-				. $stylesheet_dir_uri . '/favicon.ico" ) left center no-repeat !important; padding-left: 21px !important } li#wp-admin-bar-site-name { margin-left: 5px !important; } li#wp-admin-bar-site-name {} #wp-admin-bar-site-name div a { background: none !important; }' . "\n";
+				. $stylesheet_dir_uri . '/favicon.ico" ) left center/20px no-repeat !important; padding-left: 21px !important; background-size: 20px !important; } li#wp-admin-bar-site-name { margin-left: 5px !important; } li#wp-admin-bar-site-name {} #wp-admin-bar-site-name div a { background: none !important; }' . "\n";
 			$output .= '</style>';
 		}
 		
@@ -134,7 +137,7 @@ class Multisite_Add_Admin_Favicon {
 			if ( file_exists( $stylesheet_dir . '/favicon.ico' ) ) {
 				$output .= '#wpadminbar .quicklinks li .blavatar { font-size: 0 !important; }';
 				$output .= '#wp-admin-bar-blog-' . $blog['blog_id'] . ' div.blavatar { background: url( "' 
-					. $stylesheet_dir_uri . '/favicon.ico" ) center center no-repeat !important; }' . "\n";
+					. $stylesheet_dir_uri . '/favicon.ico" ) center center/16px no-repeat !important; background-size: 16px !important; }' . "\n";
 			}
 		}
 		
