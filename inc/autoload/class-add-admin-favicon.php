@@ -17,7 +17,7 @@
  *     - Default is: TRUE
  * 
  * @since    07/23/2013
- * @version  11/13/2013
+ * @version  02/03/2013
  */
 
 add_action( 'init', array( 'Multisite_Add_Admin_Favicon', 'init' ) );
@@ -30,7 +30,8 @@ class Multisite_Add_Admin_Favicon {
 	 * @var     Array
 	 */
 	static protected $favicon_hooks = array(
-		'admin_head'
+		'admin_head',
+		'wp_head'
 	);
 	
 	/**
@@ -62,11 +63,13 @@ class Multisite_Add_Admin_Favicon {
 		// hooks for add favicon markup
 		$hooks = apply_filters( 'multisite_enhancements_favicon', self::$favicon_hooks );
 		
-		foreach( $hooks as $hook )
+		foreach( $hooks as $hook ) {
 			add_action( esc_attr( $hook ), array( $this, 'set_favicon' ) );
 		
-		// add favicon from theme folder to each blog
-		add_action( 'admin_head',     array( $this, 'set_admin_bar_blog_icon' ) );
+			// add favicon from theme folder to each blog
+			add_action( esc_attr( $hook ), array( $this, 'set_admin_bar_blog_icon' ) );
+		}
+		
 		// remove admin bar item with "W" logo
 		add_action( 'admin_bar_menu', array( $this, 'change_admin_bar_menu' ), 25 );
 	}
