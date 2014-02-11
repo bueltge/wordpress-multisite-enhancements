@@ -76,6 +76,8 @@ class Multisite_Add_Plugin_List {
 		$active_on_network = is_plugin_active_for_network( $plugin_file, $plugin_data );
 		
 		$output = '';
+
+		if($plugin_data['Network']) $output .= __( '<em style="color: #E52B50;">*[network only]</em><br />');
 		
 		if ( $active_on_network ) {
 			// We don't need to check any further for network active plugins
