@@ -3,7 +3,7 @@
  * Plugin Name: Multisite Enhancements
  * Description: Enhance Multisite for Network Admins with different topics
  * Plugin URI:  https://github.com/bueltge/WordPress-Multisite-Enhancements
- * Version:     1.0.3-RC1
+ * Version:     1.0.3-RC2
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de
  * License:     GPLv2
@@ -62,9 +62,6 @@ class Multisite_Enhancements {
 			
 			return NULL;
 		}
-		
-		if ( ! is_super_admin() )
-			return NULL;
 		
 		self::$file_base = dirname( __FILE__ ) . '/inc';
 		
