@@ -83,6 +83,11 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.0.3 (03/07/2014) =
+* Remove Super Admin check, that works the enhancements also on other roles.
+* Add indicator for "Network Only" Plugins.
+* Add Favicon Indicator also in Admin Bar on Front end side.
+
 = 1.0.2 (02/03/2014) =
  * Add Favicon in Admin Bar also in Front end
  * Enhance style for favicon size
