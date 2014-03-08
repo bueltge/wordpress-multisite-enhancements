@@ -103,4 +103,3 @@ So please be patient with me and let me know of typos or grammatical parts. Than
  * First release on wordpress.org after different installs with different users
 
 For more information about changes see the commits on the [working repository](https://github.com/bueltge/WordPress-Multisite-Enhancements/commits/master).
->>>>>>> 741bc4a281c61a1bfb9dc58e2364d6df02d68ab7
