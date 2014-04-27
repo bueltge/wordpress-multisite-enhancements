@@ -3,7 +3,7 @@
  * Plugin Name: Multisite Enhancements
  * Description: Enhance Multisite for Network Admins with different topics
  * Plugin URI:  https://github.com/bueltge/WordPress-Multisite-Enhancements
- * Version:     1.0.3
+ * Version:     1.0.4
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de
  * License:     GPLv2+
@@ -33,12 +33,12 @@ class Multisite_Enhancements {
 	 * @var    String
 	 */
 	static protected $class_object = NULL;
-	
+
 	/**
 	 * Load the object and get the current state
 	 *
 	 * @since   0.0.1
-	 * @return  $class_object
+	 * @return String $class_object
 	 */
 	public static function get_object() {
 		
@@ -47,12 +47,12 @@ class Multisite_Enhancements {
 		
 		return self::$class_object;
 	}
-	
+
 	/**
 	 * Init function to register all used hooks
-	 * 
+	 *
 	 * @since   0.0.1
-	 * @return  void
+	 * @return \Multisite_Enhancements
 	 */
 	public function __construct() {
 		

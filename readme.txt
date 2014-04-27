@@ -2,7 +2,7 @@
 Contributors: Bueltge, inpsyde
 Tags: multisite, administration, admin bar, network, 
 Requires at least: 3.0.0
-Tested up to: 3.9
+Tested up to: 4.0-alpha
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -83,6 +83,9 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.0.4 (04/27/2014) =
+* Add break, if no plugin is active, fixed [Error in "Active In" column](http://wordpress.org/support/topic/error-in-active-in-column)
+
 = 1.0.3 (03/09/2014) =
 * Remove Super Admin check, that works the enhancements also on other roles.
 * Add indicator for "Network Only" Plugins.
