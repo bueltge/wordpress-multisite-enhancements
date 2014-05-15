@@ -91,12 +91,12 @@ class Multisite_Add_Admin_Favicon {
 		$stylesheet_dir     = get_stylesheet_directory();
 		$output             = '';
 
-		if ( file_exists( $stylesheet_dir . '/favicon.ico' ) ) {
-			$output = '<link rel="shortcut icon" type="image/x-icon" href="' . $stylesheet_dir_uri . '/favicon.ico" />';
+		if ( file_exists( $stylesheet_dir . $this->get_favicon_path() ) ) {
+			$output = '<link rel="shortcut icon" type="image/x-icon" href="' . esc_url( $stylesheet_dir_uri . $this->get_favicon_path() ) . '" />';
 			$output .= '<style>';
 			$output .= '#wpadminbar #wp-admin-bar-site-name>.ab-item:before { content: none !important;}';
 			$output .= 'li#wp-admin-bar-site-name a { background: url( "'
-			           . $stylesheet_dir_uri . '/favicon.ico" ) left center/20px no-repeat !important; padding-left: 21px !important; background-size: 20px !important; } li#wp-admin-bar-site-name { margin-left: 5px !important; } li#wp-admin-bar-site-name {} #wp-admin-bar-site-name div a { background: none !important; }' . "\n";
+			           . $stylesheet_dir_uri . $this->get_favicon_path() . '" ) left center/20px no-repeat !important; padding-left: 21px !important; background-size: 20px !important; } li#wp-admin-bar-site-name { margin-left: 5px !important; } li#wp-admin-bar-site-name {} #wp-admin-bar-site-name div a { background: none !important; }' . "\n";
 			$output .= '</style>';
 		}
 
@@ -136,10 +136,10 @@ class Multisite_Add_Admin_Favicon {
 			$theme_root     = get_theme_root( $stylesheet );
 			$stylesheet_dir = "$theme_root/$stylesheet";
 
-			if ( file_exists( $stylesheet_dir . '/favicon.ico' ) ) {
+			if ( file_exists( $stylesheet_dir . $this->get_favicon_path() ) ) {
 				$output .= '#wpadminbar .quicklinks li .blavatar { font-size: 0 !important; }';
 				$output .= '#wp-admin-bar-blog-' . $blog[ 'blog_id' ] . ' div.blavatar { background: url( "'
-				           . $stylesheet_dir_uri . '/favicon.ico" ) center center/16px no-repeat !important; background-size: 16px !important; }' . "\n";
+				           . $stylesheet_dir_uri . $this->get_favicon_path() . '" ) center center/16px no-repeat !important; background-size: 16px !important; }' . "\n";
 			}
 		}
 
@@ -174,6 +174,27 @@ class Multisite_Add_Admin_Favicon {
 		) {
 			$admin_bar->remove_node( 'wp-logo' );
 		}
+	}
+
+	/**
+	 * Get the path to the favicon file from the root of a theme.
+	 *
+	 * @since 1.0.5
+	 *
+	 * @return string File path to favicon file.
+	 */
+	protected function get_favicon_path() {
+		/**
+		 * Filter the file path to the favicon file.
+		 *
+		 * Default is '/favicon.ico' which assumes there's a .ico file in the theme root.
+		 * This filter allows that path, file name, and file extension to be changed.
+		 *
+		 * @since 1.0.5
+		 *
+		 * @param string $favicon_file_path Path to favicon file.
+		 */
+		return apply_filters( 'multisite_enhancements_favicon_path', '/favicon.ico' );
 	}
 
 } // end class
