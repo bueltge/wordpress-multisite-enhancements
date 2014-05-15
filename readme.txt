@@ -83,6 +83,9 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.0.5 (05/15/2014) =
+* Fix list of active plugin in plugin network view
+
 = 1.0.4 (04/27/2014) =
 * Add break, if no plugin is active, fixed [Error in "Active In" column](http://wordpress.org/support/topic/error-in-active-in-column)
 

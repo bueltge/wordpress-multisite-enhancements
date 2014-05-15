@@ -3,7 +3,7 @@
  * On the network plugins page, show which blogs have this plugin active
  *
  * @since    07/19/2013
- * @version  01/03/2014
+ * @version  05/15/2014
  */
 
 add_action( 'init', array( 'Multisite_Add_Plugin_List', 'init' ) );
@@ -92,15 +92,13 @@ class Multisite_Add_Plugin_List {
 			$output .= __( '<nobr>Network Activated</nobr>', 'multisite_enhancements' );
 
 			// list Blogs, there is activated
-		}
-		else {
+		} else {
 			// Is this plugin active on any blogs in this network
 			$active_on_blogs = $this->is_plugin_active_on_blogs( $plugin_file );
 
 			if ( empty( $active_on_blogs ) ) {
 				$output .= __( '<nobr>Not Activated</nobr>', 'multisite_enhancements' );
-			}
-			else {
+			} else {
 				$output .= '<ul>';
 
 				foreach ( $active_on_blogs as $key => $value ) {
@@ -114,8 +112,8 @@ class Multisite_Add_Plugin_List {
 		// Add indicator that the plugin is "Network Only".
 		if ( $plugin_data[ 'Network' ] ) {
 			$output .= '<br /><nobr class="submitbox"><span class="submitdelete">'
-					   . __( ' Network Only', 'multisite_enhancements' )
-					   . '</span></nobr>';
+			           . __( ' Network Only', 'multisite_enhancements' )
+			           . '</span></nobr>';
 		}
 
 		echo $output;
@@ -138,8 +136,7 @@ class Multisite_Add_Plugin_List {
 		if ( function_exists( 'wp_get_sites' ) ) {
 			// Since 3.7 inside the Core
 			$blogs = wp_get_sites();
-		}
-		else {
+		} else {
 			// use alternative to core function get_blog_list()
 			$blogs = Multisite_Core::get_blog_list( 0, 'all' );
 		}
@@ -149,13 +146,13 @@ class Multisite_Add_Plugin_List {
 
 			$active_plugins = get_blog_option( $blog[ 'blog_id' ], 'active_plugins' );
 			if ( empty( $active_plugins ) ) {
-				return NULL;
+				continue;
 			}
 
 			foreach ( $active_plugins as $active_plugin ) {
 				if ( $active_plugin === $plugin_file ) {
-					$blogname                                = get_blog_details( $blog[ 'blog_id' ] )->blogname;
 					$blogpath                                = get_blog_details( $blog[ 'blog_id' ] )->path;
+					$blogname                                = get_blog_details( $blog[ 'blog_id' ] )->blogname;
 					$active_in_plugins[ $blog[ 'blog_id' ] ] = array(
 						'name' => $blogname,
 						'path' => $blogpath

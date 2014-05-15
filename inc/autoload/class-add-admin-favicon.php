@@ -96,7 +96,7 @@ class Multisite_Add_Admin_Favicon {
 			$output .= '<style>';
 			$output .= '#wpadminbar #wp-admin-bar-site-name>.ab-item:before { content: none !important;}';
 			$output .= 'li#wp-admin-bar-site-name a { background: url( "'
-					   . $stylesheet_dir_uri . '/favicon.ico" ) left center/20px no-repeat !important; padding-left: 21px !important; background-size: 20px !important; } li#wp-admin-bar-site-name { margin-left: 5px !important; } li#wp-admin-bar-site-name {} #wp-admin-bar-site-name div a { background: none !important; }' . "\n";
+			           . $stylesheet_dir_uri . '/favicon.ico" ) left center/20px no-repeat !important; padding-left: 21px !important; background-size: 20px !important; } li#wp-admin-bar-site-name { margin-left: 5px !important; } li#wp-admin-bar-site-name {} #wp-admin-bar-site-name div a { background: none !important; }' . "\n";
 			$output .= '</style>';
 		}
 
@@ -118,8 +118,7 @@ class Multisite_Add_Admin_Favicon {
 		if ( function_exists( 'wp_get_sites' ) ) {
 			// Since 3.7 inside the Core
 			$blogs = wp_get_sites();
-		}
-		else {
+		} else {
 			// use alternative to core function get_blog_list()
 			$blogs = Multisite_Core::get_blog_list( 0, 'all' );
 		}
@@ -140,7 +139,7 @@ class Multisite_Add_Admin_Favicon {
 			if ( file_exists( $stylesheet_dir . '/favicon.ico' ) ) {
 				$output .= '#wpadminbar .quicklinks li .blavatar { font-size: 0 !important; }';
 				$output .= '#wp-admin-bar-blog-' . $blog[ 'blog_id' ] . ' div.blavatar { background: url( "'
-						   . $stylesheet_dir_uri . '/favicon.ico" ) center center/16px no-repeat !important; background-size: 16px !important; }' . "\n";
+				           . $stylesheet_dir_uri . '/favicon.ico" ) center center/16px no-repeat !important; background-size: 16px !important; }' . "\n";
 			}
 		}
 

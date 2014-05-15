@@ -3,7 +3,7 @@
  * On the network theme page, show which blog have the theme active
  *
  * @since    07/22/2013
- * @version  10/27/2013
+ * @version  05/15/2014
  */
 
 add_action( 'init', array( 'Multisite_Add_Theme_List', 'init' ) );
@@ -73,8 +73,7 @@ class Multisite_Add_Theme_List {
 
 		if ( empty( $active_on_blogs ) ) {
 			$output .= __( '<nobr>Not Activated</nobr>', 'multisite_enhancements' );
-		}
-		else {
+		} else {
 			$output .= '<ul>';
 
 			foreach ( $active_on_blogs as $key => $value ) {
@@ -103,8 +102,7 @@ class Multisite_Add_Theme_List {
 		if ( function_exists( 'wp_get_sites' ) ) {
 			// Since 3.7 inside the Core
 			$blogs = wp_get_sites();
-		}
-		else {
+		} else {
 			// use alternative to core function get_blog_list()
 			$blogs = Multisite_Core::get_blog_list( 0, 'all' );
 		}
@@ -113,6 +111,9 @@ class Multisite_Add_Theme_List {
 		foreach ( (array) $blogs as $blog ) {
 
 			$active_theme = get_blog_option( $blog[ 'blog_id' ], 'stylesheet' );
+			if ( empty( $active_theme ) ) {
+				continue;
+			}
 
 			if ( $active_theme === $theme_key ) {
 				$blogname                               = get_blog_details( $blog[ 'blog_id' ] )->blogname;
