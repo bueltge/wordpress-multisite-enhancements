@@ -1,8 +1,8 @@
 === Multisite Enhancements ===
 Contributors: Bueltge, inpsyde
-Tags: multisite, administration, admin bar, network, 
+Tags: multisite, administration, admin bar, network,
 Requires at least: 3.0.0
-Tested up to: 4.0-alpha
+Tested up to: 4.0
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -61,25 +61,25 @@ Have a look at the premium plugins in our [market](http://marketpress.com).
 Have a look at the premium plugins in our [market](http://marketpress.com).
 
 = Bugs, technical hints or contribute =
-Please give me feedback, contribute and file technical bugs on this 
+Please give me feedback, contribute and file technical bugs on this
 [GitHub Repo](https://github.com/bueltge/WordPress-Multisite-Enhancements/issues), use Issues.
 
 = License =
-Good news, this plugin is free for everyone! Since it's released under the GPL, 
-you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, 
-you can thank me and leave a 
-[small donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955 "Paypal Donate link") 
-for the time I've spent writing and supporting this plugin. 
+Good news, this plugin is free for everyone! Since it's released under the GPL,
+you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin,
+you can thank me and leave a
+[small donation](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6069955 "Paypal Donate link")
+for the time I've spent writing and supporting this plugin.
 And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 = Contact & Feedback =
 The plugin is designed and developed by me [Frank Bültge](http://bueltge.de), [G+ Page](https://plus.google.com/+FrankBültge/about?rel=author)
 
-Please let me know if you like the plugin or you hate it or whatever ... 
+Please let me know if you like the plugin or you hate it or whatever ...
 Please fork it, add an issue for ideas and bugs on the [Github Repository](https://github.com/bueltge/WordPress-Multisite-Enhancements).
 
 = Disclaimer =
-I'm German and my English might be gruesome here and there. 
+I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
@@ -100,7 +100,7 @@ So please be patient with me and let me know of typos or grammatical parts. Than
  * Enhance style for favicon size
  * Grammer fix in tags, readme
  * Small changes for columns and 3.8 design
- 
+
 = 1.0.1 (01/03/2014) =
  * Add CSS rule for new WP 3.8 back end design (mp6 plugin)
  * Add more whitespace on the comment count in admin bar
