@@ -2,8 +2,8 @@
 /**
  * On the network theme page, show which blog have the theme active
  *
- * @since    07/22/2013
- * @version  05/15/2014
+ * @since    2013-07-22
+ * @version  2014-09-13
  */
 
 add_action( 'init', array( 'Multisite_Add_Theme_List', 'init' ) );
@@ -69,15 +69,26 @@ class Multisite_Add_Theme_List {
 
 		$output = '';
 
-		$active_on_blogs = $this->is_theme_active_on_blogs( $theme_key, $theme_data );
+		$active_on_blogs = $this->is_theme_active_on_blogs( $theme_key );
+
+		// Check, if is a child theme and return parent
+		$child_context = '';
+		$is_child      = $this->is_child( $theme_data );
+		if ( $is_child ) {
+			$child_context .= sprintf( '<br>' . __( 'This is a child theme of <strong>%s</strong>', 'multisite_enhancements' ), $theme_data->parent()->Name );
+		}
 
 		if ( empty( $active_on_blogs ) ) {
 			$output .= __( '<nobr>Not Activated</nobr>', 'multisite_enhancements' );
+			$output .= $child_context;
 		} else {
 			$output .= '<ul>';
 
 			foreach ( $active_on_blogs as $key => $value ) {
-				$output .= '<li title="Blog ID: ' . $key . '"><nobr><a href="' . get_admin_url( $key ) . 'themes.php' . '">' . $value[ 'name' ] . '</a></nobr></li>';
+				$output .= '<li title="Blog ID: ' . $key . '">';
+				$output .= '<nobr><a href="' . get_admin_url( $key ) . 'themes.php' . '">' . $value[ 'name' ] . '</a></nobr>';
+				$output .= $child_context;
+				$output .= '</li>';
 			}
 
 			$output .= '</ul>';
@@ -88,7 +99,7 @@ class Multisite_Add_Theme_List {
 
 	/**
 	 * Is theme active in blogs
-	 * Return Array with vlaues to each theme
+	 * Return Array with values to each theme
 	 *
 	 * @since   0.0.2
 	 *
@@ -97,7 +108,7 @@ class Multisite_Add_Theme_List {
 	 *
 	 * @return  Array
 	 */
-	public function is_theme_active_on_blogs( $theme_key, $theme_data ) {
+	public function is_theme_active_on_blogs( $theme_key ) {
 
 		if ( function_exists( 'wp_get_sites' ) ) {
 			// Since 3.7 inside the Core
@@ -127,6 +138,20 @@ class Multisite_Add_Theme_List {
 		}
 
 		return $active_in_themes;
+	}
+
+	/**
+	 * Check, the current theme have a parent value and is a child theme
+	 *
+	 * @param $theme_data
+	 *
+	 * @return bool
+	 */
+	public function is_child( $theme_data ) {
+
+		if ( ! empty( $theme_data->parent() ) ) {
+			return TRUE;
+		}
 	}
 
 } // end class
