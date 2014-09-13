@@ -149,7 +149,10 @@ class Multisite_Add_Theme_List {
 	 */
 	public function is_child( $theme_data ) {
 
-		if ( ! empty( $theme_data->parent() ) ) {
+		// For limitation of empty() write in var
+		$parent = $theme_data->parent();
+
+		if ( ! empty( $parent ) ) {
 			return TRUE;
 		}
 	}
