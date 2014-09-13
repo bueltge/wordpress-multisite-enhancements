@@ -10,17 +10,17 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Enhance Multisite for Network Admins with different topics
 
 == Description ==
-When you work quite a bit with WordPress Multisites, sometimes you need more informations or menu items. This plugin enhance the network area for super admins with useful functions.
+When you work quite a bit with WordPress Multisites, sometimes you need more information or menu items. This plugin enhance the network area for super admins with useful functions.
 
 * Add Blog and User ID in network; read [more](http://wpengineer.com/2188/view-blog-id-in-wordpress-multisite/)
 * Enables an 'Add New' link under the Plugins menu for Network admins
 * Adds several useful items to the multisite 'Network Admin' admin bar
-* On the network plugins page, show which blogs have this plugin active
+* On the network plugins page, show which blog have this plugin active
 * On the network theme page, show which blog have the theme active
-* Change Admin footer text for Administratoren to view fast currently used RAM, SQL, RAM Version
+* Change Admin footer text for Administrator's to view fast currently used RAM, SQL, RAM Version
 * Add Favicon from theme folder to the admin area to easier identify the blog, use the `favicon.ico` file in the theme folder of the active theme in each blog
 * Add Favicon to each blog on the Admin Bar Item 'My Sites'. If you a like a custom path for each favicon, please see the [documentation](https://github.com/bueltge/WordPress-Multisite-Enhancements/wiki/Filter-Hook-for-Favicon-File-Path) for this feature.
-* Remove also the 'W' logo and his sublinks in admin bar
+* Remove also the 'W' logo and his sub-links in admin bar
 * Add functions to be used in your install
 	 * The function `get_blog_list()` is currently deprecated in the WP Core, but currently usable. The plugin check this and get a alternative in [`inc/autoload/core.php`](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/inc/autoload/core.php)
 	 * If you will develop with the alternative to this function from my source, then use the method `get_blog_list()` in class `Multisite_Core`. She use also caching with the Transient API. See more about the function on the function in [`inc/autoload/class-core.php`](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/inc/autoload/class-core.php).
@@ -83,6 +83,9 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.0.6 (09/13/2014) =
+* Add check for child theme, that you fast see, if is a child and what is the parent inside the network view of themes
+
 = 1.0.5 (05/15/2014) =
 * Fix list of active plugin in plugin network view
 * Add hook for custom favicon path, see [documentation](https://github.com/bueltge/WordPress-Multisite-Enhancements/wiki/Filter-Hook-for-Favicon-File-Path)
@@ -98,7 +101,7 @@ So please be patient with me and let me know of typos or grammatical parts. Than
 = 1.0.2 (02/03/2014) =
  * Add Favicon in Admin Bar also in Front end
  * Enhance style for favicon size
- * Grammer fix in tags, readme
+ * Grammar fix in tags, readme
  * Small changes for columns and 3.8 design
 
 = 1.0.1 (01/03/2014) =
