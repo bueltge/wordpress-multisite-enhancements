@@ -75,7 +75,11 @@ class Multisite_Add_Theme_List {
 		$child_context = '';
 		$is_child      = $this->is_child( $theme_data );
 		if ( $is_child ) {
-			$child_context .= sprintf( '<br>' . __( 'This is a child theme of <strong>%s</strong>', 'multisite_enhancements' ), $theme_data->parent()->Name );
+			$parent_name = $theme_data->parent()->Name;
+			$child_context .= sprintf(
+				'<br>' . __( 'This is a child theme of %s.' ),
+				'<strong>' . $parent_name . '</strong>'
+			);
 		}
 
 		if ( empty( $active_on_blogs ) ) {
