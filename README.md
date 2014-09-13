@@ -8,7 +8,7 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
 * Enables an 'Add New' link under the Plugins menu for Network admins
 * Adds several useful items to the multisite 'Network Admin' admin bar
 * On the network plugins page, show which blogs have this plugin active
-* On the network theme page, show which blog have the theme active
+* On the network theme page, show which blog have the theme active and is it a Child theme
 * Change Admin footer text for Administratoren to view fast currently used RAM, SQL, RAM Version
 * Add Favicon from theme folder to the admin area to easier identify the blog, use the `favicon.ico` file in the theme folder of the active theme in each blog
 * Add Favicon to each blog on the Admin Bar Item 'My Sites'. If you a like a custom path for each favicon, please see the [documentation](https://github.com/bueltge/WordPress-Multisite-Enhancements/wiki/Filter-Hook-for-Favicon-File-Path) for this feature.
