@@ -32,7 +32,7 @@ class Multisite_Add_Admin_Favicon {
 	 */
 	static protected $favicon_hooks = array(
 		'admin_head',
-		'wp_head'
+		'wp_head',
 	);
 
 	/**
@@ -92,11 +92,13 @@ class Multisite_Add_Admin_Favicon {
 		$output             = '';
 
 		if ( file_exists( $stylesheet_dir . $this->get_favicon_path() ) ) {
-			$output = '<link rel="shortcut icon" type="image/x-icon" href="' . esc_url( $stylesheet_dir_uri . $this->get_favicon_path() ) . '" />';
+			$output .= '<link rel="shortcut icon" type="image/x-icon" href="'
+				. esc_url( $stylesheet_dir_uri . $this->get_favicon_path() ) . '" />';
 			$output .= '<style>';
 			$output .= '#wpadminbar #wp-admin-bar-site-name>.ab-item:before { content: none !important;}';
 			$output .= 'li#wp-admin-bar-site-name a { background: url( "'
-			           . $stylesheet_dir_uri . $this->get_favicon_path() . '" ) left center/20px no-repeat !important; padding-left: 21px !important; background-size: 20px !important; } li#wp-admin-bar-site-name { margin-left: 5px !important; } li#wp-admin-bar-site-name {} #wp-admin-bar-site-name div a { background: none !important; }' . "\n";
+				. $stylesheet_dir_uri . $this->get_favicon_path(
+				) . '" ) left center/20px no-repeat !important; padding-left: 21px !important; background-size: 20px !important; } li#wp-admin-bar-site-name { margin-left: 5px !important; } li#wp-admin-bar-site-name {} #wp-admin-bar-site-name div a { background: none !important; }' . "\n";
 			$output .= '</style>';
 		}
 
@@ -139,7 +141,8 @@ class Multisite_Add_Admin_Favicon {
 			if ( file_exists( $stylesheet_dir . $this->get_favicon_path() ) ) {
 				$output .= '#wpadminbar .quicklinks li .blavatar { font-size: 0 !important; }';
 				$output .= '#wp-admin-bar-blog-' . $blog[ 'blog_id' ] . ' div.blavatar { background: url( "'
-				           . $stylesheet_dir_uri . $this->get_favicon_path() . '" ) center center/16px no-repeat !important; background-size: 16px !important; }' . "\n";
+					. $stylesheet_dir_uri . $this->get_favicon_path(
+					) . '" ) center center/16px no-repeat !important; background-size: 16px !important; }' . "\n";
 			}
 		}
 
@@ -184,6 +187,7 @@ class Multisite_Add_Admin_Favicon {
 	 * @return string File path to favicon file.
 	 */
 	protected function get_favicon_path() {
+
 		/**
 		 * Filter the file path to the favicon file.
 		 *

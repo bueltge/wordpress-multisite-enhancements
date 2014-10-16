@@ -2,14 +2,14 @@
 Enhance Multisite for Network Admins with different topics
 
 ## Description
-When you work quite a bit with WordPress Multisites, sometimes you need more informations or menu items. This plugin enhance the network area for super admins with useful functions.
+When you work quite a bit with WordPress Multisites, sometimes you need more information or menu items. This plugin enhance the network area for super admins with useful functions.
 
 * Add Blog and User ID in network view [more](http://wpengineer.com/2188/view-blog-id-in-wordpress-multisite/)
 * Enables an 'Add New' link under the Plugins menu for Network admins
 * Adds several useful items to the multisite 'Network Admin' admin bar
-* On the network plugins page, show which blogs have this plugin active
+* On the network plugins page, show which site have this plugin active
 * On the network theme page, show which blog have the theme active and is it a Child theme
-* Change Admin footer text for Administratoren to view fast currently used RAM, SQL, RAM Version
+* Change Admin footer text for Administrators to view fast currently used RAM, SQL, RAM Version
 * Add Favicon from theme folder to the admin area to easier identify the blog, use the `favicon.ico` file in the theme folder of the active theme in each blog
 * Add Favicon to each blog on the Admin Bar Item 'My Sites'. If you a like a custom path for each favicon, please see the [documentation](https://github.com/bueltge/WordPress-Multisite-Enhancements/wiki/Filter-Hook-for-Favicon-File-Path) for this feature.
 * Remove also the 'W' logo and his sublinks in admin bar
@@ -74,5 +74,3 @@ So please be patient with me and let me know of typos or grammatical parts. Than
 
 ***
 
-###### Bitdeli Badge for GitHub Analytics
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/bueltge/wordpress-multisite-enhancements/trend.png)](https://bitdeli.com/free "Bitdeli Badge")

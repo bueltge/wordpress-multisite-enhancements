@@ -37,6 +37,7 @@ class Multisite_Admin_Bar_Tweaks {
 	 * @return  void
 	 */
 	public function enhance_network_admin_bar() {
+
 		global $wp_admin_bar;
 
 		// Show only when the user has at least one site, or they're a super admin.
@@ -45,7 +46,7 @@ class Multisite_Admin_Bar_Tweaks {
 		}
 
 		// since WP version 3.7 is the plugin link in core.
-		// return, if is active 
+		// return, if is active
 		$wp_admin_bar_nodes = $wp_admin_bar->get_nodes();
 		if ( isset( $wp_admin_bar_nodes[ 'network-admin-p' ] ) ) {
 			return NULL;
@@ -70,6 +71,7 @@ class Multisite_Admin_Bar_Tweaks {
 	 * @return  void
 	 */
 	public function enhance_network_blog_admin_bar() {
+
 		global $wp_admin_bar;
 
 		foreach ( (array) $wp_admin_bar->user->blogs as $blog ) {
@@ -86,8 +88,8 @@ class Multisite_Admin_Bar_Tweaks {
 				$awaiting_mod = $awaiting_mod->moderated;
 
 				$title = __( 'Manage Comments' )
-						 . '<span id="ab-awaiting-mod" class="ab-label awaiting-mod pending-count count-'
-						 . $awaiting_mod . '" style="margin-left:.2em">' . number_format_i18n( $awaiting_mod ) . '</span>';
+					. '<span id="ab-awaiting-mod" class="ab-label awaiting-mod pending-count count-'
+					. intval( $awaiting_mod ) . '" style="margin-left:.2em">' . number_format_i18n( $awaiting_mod ) . '</span>';
 
 				$awaiting_title = esc_attr(
 					sprintf(

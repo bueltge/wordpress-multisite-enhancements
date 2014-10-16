@@ -63,7 +63,7 @@ class Multisite_Add_Theme_List {
 	 */
 	public function manage_themes_custom_column( $column_name, $theme_key, $theme_data ) {
 
-		if ( $column_name !== 'active_blogs' ) {
+		if ( 'active_blogs' !== $column_name ) {
 			return NULL;
 		}
 
@@ -78,7 +78,7 @@ class Multisite_Add_Theme_List {
 			$parent_name = $theme_data->parent()->Name;
 			$child_context .= sprintf(
 				'<br>' . __( 'This is a child theme of %s.' ),
-				'<strong>' . $parent_name . '</strong>'
+				'<strong>' . esc_attr( $parent_name ) . '</strong>'
 			);
 		}
 
@@ -90,7 +90,9 @@ class Multisite_Add_Theme_List {
 
 			foreach ( $active_on_blogs as $key => $value ) {
 				$output .= '<li title="Blog ID: ' . $key . '">';
-				$output .= '<nobr><a href="' . get_admin_url( $key ) . 'themes.php' . '">' . $value[ 'name' ] . '</a></nobr>';
+				$output .= '<nobr><a href="' . get_admin_url(
+						$key
+					) . 'themes.php' . '">' . $value[ 'name' ] . '</a></nobr>';
 				$output .= $child_context;
 				$output .= '</li>';
 			}
@@ -131,8 +133,8 @@ class Multisite_Add_Theme_List {
 			}
 
 			if ( $active_theme === $theme_key ) {
-				$blogname                               = get_blog_details( $blog[ 'blog_id' ] )->blogname;
-				$blogpath                               = get_blog_details( $blog[ 'blog_id' ] )->path;
+				$blogname = get_blog_details( $blog[ 'blog_id' ] )->blogname;
+				$blogpath = get_blog_details( $blog[ 'blog_id' ] )->path;
 				$active_in_themes[ $blog[ 'blog_id' ] ] = array(
 					'name' => $blogname,
 					'path' => $blogpath
@@ -159,6 +161,8 @@ class Multisite_Add_Theme_List {
 		if ( ! empty( $parent ) ) {
 			return TRUE;
 		}
+
+		return FALSE;
 	}
 
 } // end class

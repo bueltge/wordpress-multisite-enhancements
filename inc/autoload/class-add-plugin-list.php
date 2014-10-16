@@ -74,7 +74,7 @@ class Multisite_Add_Plugin_List {
 	 */
 	public function manage_plugins_custom_column( $column_name, $plugin_file, $plugin_data ) {
 
-		if ( $column_name !== 'active_blogs' ) {
+		if ( 'active_blogs' !== $column_name ) {
 			return NULL;
 		}
 
@@ -112,8 +112,8 @@ class Multisite_Add_Plugin_List {
 		// Add indicator that the plugin is "Network Only".
 		if ( $plugin_data[ 'Network' ] ) {
 			$output .= '<br /><nobr class="submitbox"><span class="submitdelete">'
-			           . __( ' Network Only', 'multisite_enhancements' )
-			           . '</span></nobr>';
+				. __( ' Network Only', 'multisite_enhancements' )
+				. '</span></nobr>';
 		}
 
 		echo $output;
@@ -155,7 +155,7 @@ class Multisite_Add_Plugin_List {
 					$blogname                                = get_blog_details( $blog[ 'blog_id' ] )->blogname;
 					$active_in_plugins[ $blog[ 'blog_id' ] ] = array(
 						'name' => $blogname,
-						'path' => $blogpath
+						'path' => $blogpath,
 					);
 				}
 			}

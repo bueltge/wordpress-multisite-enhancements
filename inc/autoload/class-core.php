@@ -53,8 +53,7 @@ class Multisite_Core {
 			// add limit for select
 			if ( 'all' === $num ) {
 				$limit = '';
-			}
-			else {
+			} else {
 				$limit = "LIMIT $start, $num";
 			}
 
@@ -96,9 +95,8 @@ class Multisite_Core {
 				foreach ( (array) $blogs as $details ) {
 					$blog_list[ $details[ 'blog_id' ] ]                = $details;
 					$blog_list[ $details[ 'blog_id' ] ][ 'postcount' ] = $wpdb->get_var(
-						"
-												SELECT COUNT(ID)
-												FROM " . $wpdb->get_blog_prefix( $details[ 'blog_id' ] ) . "posts
+						"SELECT COUNT(ID)
+						FROM " . $wpdb->get_blog_prefix( $details[ 'blog_id' ] ) . "posts
 						WHERE post_status='publish' 
 						AND post_type='post'"
 					);

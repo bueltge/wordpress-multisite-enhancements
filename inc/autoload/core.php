@@ -15,11 +15,11 @@ if ( ! function_exists( 'get_blog_list' ) ) {
 	 * Returns an array of arrays containing information about each public blog
 	 * hosted on this WPMU install.
 	 *
-	 * Only blogs marked as public and flagged as safe (mature flag off) are returned.
+	 * Only sites marked as public and flagged as safe (mature flag off) are returned.
 	 *
 	 * @param   Integer  The first blog to return in the array.
-	 * @param   Integer  The number of blogs to return in the array (thus the size of the array).
-	 *                   Setting this to string 'all' returns all blogs from $start
+	 * @param   Integer  The number of sites to return in the array (thus the size of the array).
+	 *                   Setting this to string 'all' returns all sites from $start
 	 * @param   Integer  Time until expiration in seconds, default 86400s (1day)
 	 *
 	 * @return  Array    Returns an array of arrays each representing a blog.
