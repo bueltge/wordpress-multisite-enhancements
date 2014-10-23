@@ -138,11 +138,14 @@ class Multisite_Add_Admin_Favicon {
 			$theme_root     = get_theme_root( $stylesheet );
 			$stylesheet_dir = "$theme_root/$stylesheet";
 
-			if ( file_exists( $stylesheet_dir . $this->get_favicon_path() ) ) {
-				$output .= '#wpadminbar .quicklinks li .blavatar { font-size: 0 !important; }';
+			// create favicon directory and directory url locations
+			$favicon_dir_uri = $this->get_favicon_path($blog[ 'blog_id' ], $stylesheet_dir_uri, 'url' );
+			$favicon_dir = $this->get_favicon_path($blog[ 'blog_id' ], $stylesheet_dir, 'dir' );
+			
+			if ( file_exists( $favicon_dir ) ) {
+				$output .= '#wpadminbar .quicklinks li#wp-admin-bar-blog-' . $blog[ 'blog_id' ] . ' .blavatar { font-size: 0 !important; }';
 				$output .= '#wp-admin-bar-blog-' . $blog[ 'blog_id' ] . ' div.blavatar { background: url( "'
-					. $stylesheet_dir_uri . $this->get_favicon_path(
-					) . '" ) center center/16px no-repeat !important; background-size: 16px !important; }' . "\n";
+				           . $favicon_dir_uri . '" ) left bottom/16px no-repeat !important; background-size: 16px !important; margin: 0 2px 0 -2px; }' . "\n";
 			}
 		}
 
@@ -186,7 +189,7 @@ class Multisite_Add_Admin_Favicon {
 	 *
 	 * @return string File path to favicon file.
 	 */
-	protected function get_favicon_path() {
+	protected function get_favicon_path($blog_id, $path, $path_type) {
 
 		/**
 		 * Filter the file path to the favicon file.
@@ -197,8 +200,17 @@ class Multisite_Add_Admin_Favicon {
 		 * @since 1.0.5
 		 *
 		 * @param string $favicon_file_path Path to favicon file.
+		 *
+		 * Optional parameters:
+		 *
+		 * When using a different directory than the stylesheet use the $blog_id and $path_type
+		 *
+		 * $path_type = 'url' -> use URL for the location as a URL
+		 * $path_type = 'dir' -> use URL for the location in the server, used to check if the file exists
+		 *
 		 */
-		return apply_filters( 'multisite_enhancements_favicon_path', '/favicon.ico' );
+		 
+		return apply_filters( 'multisite_enhancements_favicon_path', $path.'/favicon.ico', $blog_id, $path_type );
 	}
 
 } // end class
