@@ -2,7 +2,7 @@
 Contributors: Bueltge, inpsyde
 Tags: multisite, administration, admin bar, network,
 Requires at least: 3.0.0
-Tested up to: 4.0
+Tested up to: 4.1-alpha
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -83,6 +83,10 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.0.7 (09/23/2014) =
+* Coe maintenance
+* Add parameters for custom favicon, see [documentation](https://github.com/bueltge/WordPress-Multisite-Enhancements/wiki/Filter-Hook-for-Favicon-File-Path)
+
 = 1.0.6 (09/13/2014) =
 * Add check for child theme, that you fast see, if is a child and what is the parent inside the network view of themes
 
