@@ -143,9 +143,9 @@ class Multisite_Add_Admin_Favicon {
 			$favicon_dir = $this->get_favicon_path($blog[ 'blog_id' ], $stylesheet_dir, 'dir' );
 			
 			if ( file_exists( $favicon_dir ) ) {
-				$output .= '#wpadminbar .quicklinks li .blavatar { font-size: 0 !important; }';
+				$output .= '#wpadminbar .quicklinks li#wp-admin-bar-blog-' . $blog[ 'blog_id' ] . ' .blavatar { font-size: 0 !important; }';
 				$output .= '#wp-admin-bar-blog-' . $blog[ 'blog_id' ] . ' div.blavatar { background: url( "'
-					. $favicon_dir_uri . '" ) center center/16px no-repeat !important; background-size: 16px !important; }' . "\n";
+				           . $favicon_dir_uri . '" ) left bottom/16px no-repeat !important; background-size: 16px !important; margin: 0 2px 0 -2px; }' . "\n";
 			}
 		}
 
