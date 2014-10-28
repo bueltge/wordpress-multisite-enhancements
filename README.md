@@ -20,7 +20,7 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
 
 ### Installation
 #### Composer Package
-The plugin is available as Composer package and can be installed via Composer. The package is on [packagist](https://packagist.org/packages/bueltge/wordpress-multisite-enhancements) and the package name is `bueltge/wordpress-multisite-enhancements`.
+The plugin is available as Composer package and can be installed via Composer - `composer create-project bueltge/wordpress-multisite-enhancements --no-dev`. The package is on [packagist](https://packagist.org/packages/bueltge/wordpress-multisite-enhancements) and the package name is `bueltge/wordpress-multisite-enhancements`.
 
 #### WordPress backend
 Use the installer via back-end. Find via search and install.
