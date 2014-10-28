@@ -18,8 +18,17 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
 	 * If you will develop with the alternative to this function from my source, then use the method `get_blog_list()` in class `Multisite_Core`. She use also caching with the Transient API. See more about the function on the function in [`inc/autoload/class-core.php`](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/inc/autoload/class-core.php).
 	 * If you use WordPress version 3.7 and higher, then check the function `wp_get_sites()`, the new alternative function inside the core to get all sides inside the network. The function accept a array with arguments, see the [description](http://wpseek.com/wp_get_sites/).
 
-### Composer
+### Installation
+#### Composer Package
 The plugin is available as Composer package and can be installed via Composer. The package is on [packagist](https://packagist.org/packages/bueltge/wordpress-multisite-enhancements) and the package name is `bueltge/wordpress-multisite-enhancements`.
+
+#### WordPress backend
+Use the installer via back-end. Find via search and install.
+
+#### 
+1. Unpack the download-package.
+2. Upload the files to the `/wp-content/plugins/` directory.
+3. Activate the plugin through the **Network/Plugins** menu in WordPress and click **Network Activate**.
 
 ### Screenshots
  1. [Blog ID on Sites](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/assets/screenshot-1.png)
