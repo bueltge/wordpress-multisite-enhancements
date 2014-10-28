@@ -25,7 +25,7 @@ The plugin is available as Composer package and can be installed via Composer. T
 #### WordPress backend
 Use the installer via back-end. Find via search and install.
 
-#### 
+#### Manual mode, (s)FTP
 1. Unpack the download-package.
 2. Upload the files to the `/wp-content/plugins/` directory.
 3. Activate the plugin through the **Network/Plugins** menu in WordPress and click **Network Activate**.
