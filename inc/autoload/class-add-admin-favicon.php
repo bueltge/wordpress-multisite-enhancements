@@ -107,7 +107,7 @@ class Multisite_Add_Admin_Favicon {
 	}
 
 	/**
-	 * Add Favicon from each blog to Multsite Menu of "My Sites"
+	 * Add Favicon from each blog to Multisite Menu of "My Sites"
 	 *
 	 * Use the filter hook to change style
 	 *     Hook: multisite_enhancements_add_admin_bar_favicon
@@ -187,13 +187,17 @@ class Multisite_Add_Admin_Favicon {
 	/**
 	 * Get the path to the favicon file from the root of a theme.
 	 *
-	 * @since 1.0.5
+	 * @since    1.0.5
 	 *
-	 * @param  integer ID of blog in network
-	 * @param  string  Path to Favicon
-	 * @param  string  Path type 'url' or 'dir'
+	 * @param string $blog_id
+	 * @param string $path
+	 * @param string $path_type
 	 *
 	 * @return string File path to favicon file.
+	 * @internal param ID $integer of blog in network
+	 * @internal param Path $string to Favicon
+	 * @internal param Path $string type 'url' or 'dir'
+	 *
 	 */
 	protected function get_favicon_path( $blog_id = '', $path = '', $path_type = 'url' ) {
 

@@ -159,7 +159,6 @@ class Multisite_Add_Plugin_List {
 					);
 				}
 			}
-
 		}
 
 		return $active_in_plugins;

@@ -140,7 +140,6 @@ class Multisite_Add_Theme_List {
 					'path' => $blogpath
 				);
 			}
-
 		}
 
 		return $active_in_themes;
