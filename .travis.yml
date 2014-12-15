@@ -39,14 +39,13 @@ matrix:
 # Clones WordPress and configures our testing environment.
 before_script:
     - composer install
-    - export PLUGIN_SLUG=$(basename $(pwd))
-    - git clone --depth=50 --branch="$WP_VERSION" git://develop.git.wordpress.org/ /tmp/wordpress
-    - cd ..
-    - mv "$PLUGIN_SLUG" "/tmp/wordpress/src/wp-content/plugins/$PLUGIN_SLUG"
-    - cd /tmp/wordpress
-    - mysql -e "CREATE DATABASE wordpress_tests;" -uroot
-    - cp wp-tests-config-sample.php wp-tests-config.php
-    - sed -i "s/youremptytestdbnamehere/wordpress_tests/" wp-tests-config.php
-    - sed -i "s/yourusernamehere/travis/" wp-tests-config.php
-    - sed -i "s/yourpasswordhere//" wp-tests-config.php
-    - cd "/tmp/wordpress/src/wp-content/plugins/$PLUGIN_SLUG"
+    - wget https://raw.github.com/tierra/wordpress-plugin-tests/setup/setup.sh
+    - source setup.sh
+
+script: phpunit
+
+# wordpress-plugin-tests specific config
+# Tells Travis CI not to run unit tests against the setup branch
+branches:
+    except:
+        - setup
