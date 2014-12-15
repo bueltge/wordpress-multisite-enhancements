@@ -29,12 +29,12 @@ env:
 # This takes half as long to run while still providing adequate coverage.
 matrix:
   include:
-    - php: "54"
-      env: WP_VERSION=master
+    - php: "5.4"
+      env: WP_VERSION=4.0.0 WP_MULTISITE=1
     - php: "5.3"
-      env: WP_VERSION=4.0.0
+      env: WP_VERSION=4.0.0 WP_MULTISITE=1
     - php: "5.2"
-      env: WP_VERSION=4.0.0
+      env: WP_VERSION=4.0.0 WP_MULTISITE=1
 
 # Clones WordPress and configures our testing environment.
 before_script:
