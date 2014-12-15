@@ -1,0 +1,20 @@
+# Travis CI Configuration file for WordPress plugin test
+# https://github.com/bueltge/wordpress-multisite-enhancements
+
+# Tell Travis CI we're using PHP
+language:
+    - php
+
+# Versions of PHP to test against
+php:
+    - 5.2
+    - 5.3
+    - 5.4
+    - 5.5
+
+# Specify versions of WordPress to test against
+# WP_VERSION = WordPress version number (use "master" for SVN trunk)
+# WP_MULTISITE = whether to test multisite (use either "0" or "1")
+env:
+    - WP_VERSION=master WP_MULTISITE=0
+    - WP_VERSION=3.4.1 WP_MULTISITE=0
