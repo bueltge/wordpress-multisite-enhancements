@@ -38,7 +38,7 @@ matrix:
 
 # Clones WordPress and configures our testing environment.
 before_script:
-    - composer install
+#    - composer install
     - wget https://raw.githubusercontent.com/bueltge/wordpress-multisite-enhancements/setup/setup.sh
     - source setup.sh
 
