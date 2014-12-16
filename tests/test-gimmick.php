@@ -32,7 +32,7 @@ class Test_Gimmick extends \PHPUnit_Framework_TestCase {
  *
  * @package Multisite_Enhancements\Tests
  */
-class WP_Test_WordPress_Plugin_Tests extends \WP_UnitTestCase {
+class WP_Test_WordPress_Plugin_Tests extends WP_UnitTestCase {
 
 	/**
 	 * Run a simple test to ensure that the tests are running
