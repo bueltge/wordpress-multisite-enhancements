@@ -39,7 +39,7 @@ matrix:
 # Clones WordPress and configures our testing environment.
 before_script:
     - composer install
-    - wget https://raw.github.com/tierra/wordpress-plugin-tests/setup/setup.sh
+    - wget https://raw.githubusercontent.com/bueltge/wordpress-multisite-enhancements/setup/setup.sh
     - source setup.sh
 
 script: phpunit
