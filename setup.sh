@@ -17,7 +17,7 @@ mkdir -p $WP_CORE_DIR
 tar --strip-components=1 -zxmf /tmp/wordpress.tar.gz -C $WP_CORE_DIR
 
 # Grab testing framework and config file
-svn co --quiet --ignore-externals http://unit-tests.svn.wordpress.org/trunk/ $WP_TESTS_DIR
+svn co --quiet --ignore-externals http://develop.svn.wordpress.org/trunk/ $WP_TESTS_DIR
 
 wget -nv -O $WP_TESTS_DIR/wp-tests-config.php https://raw.githubusercontent.com/bueltge/wordpress-multisite-enhancements/setup/wp-tests-config.php
 
