@@ -14,7 +14,7 @@ class Test_Gimmick extends PHPUnit_Framework_TestCase {
 	/**
 	 * Validate string
 	 */
-	public function right_test_string() {
+	public function test_string() {
 
 		// @see https://phpunit.de/manual/current/en/appendixes.assertions.html#appendixes.assertions.assertEquals
 		$this->assertEquals( self::$expected, self::$actual );
@@ -23,7 +23,7 @@ class Test_Gimmick extends PHPUnit_Framework_TestCase {
 	/**
 	 * Validate string, Reports an error
 	 */
-	public function wrong_test_string() {
+	public function test_string_2() {
 
 		$actual = self::$actual . ' Now with error!';
 		$this->assertEquals( self::$expected, $actual );
