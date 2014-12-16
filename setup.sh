@@ -2,8 +2,9 @@
 
 # WordPress test setup script for Travis CI 
 #
-# Author: Benjamin J. Balter ( ben@balter.com | ben.balter.com )
-# License: GPL3
+# Author: Frank Bültge <f.bueltge@inpsyde.com>
+# Kudos to: Benjamin J. Balter <ben@balter.com>
+# License: GPL2+
 
 export WP_CORE_DIR=/tmp/wordpress
 export WP_TESTS_DIR=/tmp/wordpress-tests
@@ -16,9 +17,10 @@ wget -nv -O /tmp/wordpress.tar.gz https://github.com/WordPress/WordPress/tarball
 mkdir -p $WP_CORE_DIR
 tar --strip-components=1 -zxmf /tmp/wordpress.tar.gz -C $WP_CORE_DIR
 
-# Grab testing framework and config file
+# Grab via SVN testing framework
 svn co --quiet --ignore-externals http://develop.svn.wordpress.org/trunk/ $WP_TESTS_DIR
 
+# Grap custom WP test configuration
 wget -nv -O $WP_TESTS_DIR/wp-tests-config.php https://raw.githubusercontent.com/bueltge/wordpress-multisite-enhancements/setup/wp-tests-config.php
 
 # Put various components in proper folders
