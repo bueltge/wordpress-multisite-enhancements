@@ -21,7 +21,7 @@ class Test_Gimmick extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Reports an error identified by $string if the two variables $expected and $actual are not equal.
+	 * Validate string, Reports an error
 	 */
 	public function wrong_test_string() {
 
