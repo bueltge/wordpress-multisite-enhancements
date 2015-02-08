@@ -55,7 +55,7 @@ class Multisite_Add_Plugin_List {
 
 		// If not set, then no changes on output
 		if ( ! isset( $_GET[ 'plugin_status' ] ) ) {
-			return $columns;
+			$_GET[ 'plugin_status' ] = '';
 		}
 
 		// Not useful on different selections
