@@ -32,7 +32,7 @@ class Multisite_Jetpack_Support {
 		var_dump( get_option( 'jetpack_active_modules' ) );
 		// If the jetback plugin active
 		if ( ! class_exists( 'Jetpack' ) ) {
-			return NULLreadme.md;
+			return NULL;
 		}
 
 		// If the icon module active

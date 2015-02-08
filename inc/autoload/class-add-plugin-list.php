@@ -53,6 +53,11 @@ class Multisite_Add_Plugin_List {
 	 */
 	public function add_plugins_column( $columns ) {
 
+		// If not set, then no changes on output
+		if ( ! isset( $_GET[ 'plugin_status' ] ) ) {
+			return $columns;
+		}
+
 		// Not useful on different selections
 		if ( ! in_array( esc_attr( $_GET[ 'plugin_status' ] ), self::$excluded_plugin_status ) ) {
 			$columns[ 'active_blogs' ] = _x( '<nobr>Active in </nobr>', 'column name' );
