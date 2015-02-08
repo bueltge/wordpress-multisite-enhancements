@@ -2,8 +2,8 @@
 /**
  * On the network plugins page, show which blogs have this plugin active
  *
- * @since    07/19/2013
- * @version  05/15/2014
+ * @since    2013-07-19
+ * @version  2015-02-08
  */
 
 add_action( 'init', array( 'Multisite_Add_Plugin_List', 'init' ) );
