@@ -40,6 +40,9 @@ class Multisite_Add_Plugin_List {
 
 		add_filter( 'manage_plugins-network_columns', array( $this, 'add_plugins_column' ), 10, 1 );
 		add_action( 'manage_plugins_custom_column', array( $this, 'manage_plugins_custom_column' ), 10, 3 );
+
+		add_action( 'activated_plugin', array( $this, 'clear_plugins_site_transient'), 10, 2 );
+		add_action( 'deactivated_plugin', array( $this, 'clear_plugins_site_transient'), 10, 2 );
 	}
 
 	/**
@@ -185,6 +188,14 @@ class Multisite_Add_Plugin_List {
 		} else {
 			return dirname( $plugin_file );
 		}
+	}
+
+	/**
+	 * clears the $blogs_plugins site transient when any plugins are activated/deactivated
+	 */
+	public function clear_plugins_site_transient( $plugin, $network )
+	{
+		delete_site_transient( 'blogs_plugins' );
 	}
 
 } // end class
