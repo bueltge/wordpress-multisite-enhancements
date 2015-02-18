@@ -95,7 +95,7 @@ class Multisite_Add_Plugin_List {
 		} else {
 			// Is this plugin active on any blogs in this network
 			$active_on_blogs = $this->is_plugin_active_on_blogs( $plugin_file );
-
+			
 			if ( empty( $active_on_blogs ) ) {
 				$output .= __( '<nobr>Not Activated</nobr>', 'multisite_enhancements' );
 			} else {
@@ -133,36 +133,57 @@ class Multisite_Add_Plugin_List {
 	 */
 	public function is_plugin_active_on_blogs( $plugin_file, $plugin_data = NULL ) {
 
-		if ( function_exists( 'wp_get_sites' ) ) {
-			// Since 3.7 inside the Core
-			$blogs = wp_get_sites();
-		} else {
-			// use alternative to core function get_blog_list()
-			$blogs = Multisite_Core::get_blog_list( 0, 'all' );
+		// normalise plugin files to directories
+		$plugin = $this->get_plugin_identifier( $plugin_file );
+		delete_site_transient('blogs_plugins');
+		// see if the data is available in a transient
+		if ( false === ( $blogs_plugins = get_site_transient( 'blogs_plugins' ) ) ) {
+			$blogs_plugins = array();
+			if ( function_exists( 'wp_get_sites' ) ) {
+				// Since 3.7 inside the Core
+				$blogs = wp_get_sites();
+			} else {
+				// use alternative to core function get_blog_list()
+				$blogs = Multisite_Core::get_blog_list( 0, 'all' );
+			}
+			foreach ( (array) $blogs as $blog ) {
+				$blogs_plugins[ $blog['blog_id'] ] = $blog;
+				$blogs_plugins[ $blog['blog_id'] ]['active_plugins'] = array();
+				$plugins = get_blog_option( $blog[ 'blog_id' ], 'active_plugins' );
+				if ( $plugins ) {
+					foreach ( $plugins as $plugin_file ) {
+						$blogs_plugins[ $blog['blog_id'] ]['active_plugins'][] = $this->get_plugin_identifier( $plugin_file );
+					}
+				}
+			}
+			set_site_transient( 'blogs_plugins', $blogs_plugins );
 		}
 
 		$active_in_plugins = array();
-		foreach ( (array) $blogs as $blog ) {
 
-			$active_plugins = get_blog_option( $blog[ 'blog_id' ], 'active_plugins' );
-			if ( empty( $active_plugins ) ) {
-				continue;
+		foreach ( $blogs_plugins as $blog_id => $data ) {
+			if ( in_array( $plugin, $data['active_plugins'] ) ) {
+				$blogpath                                = get_blog_details( $blog_id )->path;
+				$blogname                                = get_blog_details( $blog_id )->blogname;
+				$active_in_plugins[ $blog_id ] = array(
+					'name' => $blogname,
+					'path' => $blogpath,
+				);
 			}
-
-			foreach ( $active_plugins as $active_plugin ) {
-				if ( $active_plugin === $plugin_file ) {
-					$blogpath                                = get_blog_details( $blog[ 'blog_id' ] )->path;
-					$blogname                                = get_blog_details( $blog[ 'blog_id' ] )->blogname;
-					$active_in_plugins[ $blog[ 'blog_id' ] ] = array(
-						'name' => $blogname,
-						'path' => $blogpath,
-					);
-				}
-			}
-
 		}
 
 		return $active_in_plugins;
+	}
+
+	/**
+	 * normalises plugin names to directories or filenames
+	 */
+	private function get_plugin_identifier( $plugin_file ) {
+		if ( dirname( $plugin_file ) === '' ) {
+			return $plugin_file;
+		} else {
+			return dirname( $plugin_file );
+		}
 	}
 
 } // end class
