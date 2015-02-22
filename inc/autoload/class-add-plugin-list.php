@@ -18,6 +18,14 @@ class Multisite_Add_Plugin_List {
 	 */
 	static protected $excluded_plugin_status = array( 'dropins', 'mustuse' );
 
+	/**
+	 * member variable to store data about active plugins for each blog
+	 *
+	 * @since	21/02/2015
+	 * @var     Array
+	 */
+	private $blogs_plugins;
+
 	public static function init() {
 
 		$class = __CLASS__;
@@ -136,39 +144,12 @@ class Multisite_Add_Plugin_List {
 	 */
 	public function is_plugin_active_on_blogs( $plugin_file, $plugin_data = NULL ) {
 
-		// normalise plugin files to directories
-		$plugin = $this->get_plugin_identifier( $plugin_file );
-
-		// see if the data is available in a transient
-		if ( false === ( $blogs_plugins = get_site_transient( 'blogs_plugins' ) ) ) {
-			
-			$blogs_plugins = array();
-			if ( function_exists( 'wp_get_sites' ) ) {
-				// Since 3.7 inside the Core
-				$blogs = wp_get_sites();
-			} else {
-				// use alternative to core function get_blog_list()
-				$blogs = Multisite_Core::get_blog_list( 0, 'all' );
-			}
-			foreach ( (array) $blogs as $blog ) {
-				$blogs_plugins[ $blog['blog_id'] ] = $blog;
-				$blogs_plugins[ $blog['blog_id'] ]['blogpath'] = get_blog_details( $blog['blog_id'] )->path;
-				$blogs_plugins[ $blog['blog_id'] ]['blogname'] = get_blog_details( $blog['blog_id'] )->blogname;
-				$blogs_plugins[ $blog['blog_id'] ]['active_plugins'] = array();
-				$plugins = get_blog_option( $blog[ 'blog_id' ], 'active_plugins' );
-				if ( $plugins ) {
-					foreach ( $plugins as $plugin_file ) {
-						$blogs_plugins[ $blog['blog_id'] ]['active_plugins'][] = $this->get_plugin_identifier( $plugin_file );
-					}
-				}
-			}
-			set_site_transient( 'blogs_plugins', $blogs_plugins );
-		}
+		$blogs_plugins = $this->get_blogs_plugins();
 
 		$active_in_plugins = array();
 
 		foreach ( $blogs_plugins as $blog_id => $data ) {
-			if ( in_array( $plugin, $data['active_plugins'] ) ) {
+			if ( in_array( $plugin_file, $data['active_plugins'] ) ) {
 				$active_in_plugins[ $blog_id ] = array(
 					'name' => $data['blogname'],
 					'path' => $data['blogpath'],
@@ -180,15 +161,52 @@ class Multisite_Add_Plugin_List {
 	}
 
 	/**
-	 * normalises plugin names to directories or filenames
+	 * gets an array of blog data including active plugins for each blog
+	 *
+	 * @since   21/02/2015
+	 *
+	 * @return  Array
 	 */
-	private function get_plugin_identifier( $plugin_file ) {
-		if ( dirname( $plugin_file ) === '' ) {
-			return $plugin_file;
-		} else {
-			return dirname( $plugin_file );
+	public function get_blogs_plugins() {
+
+		// see if the data is present in the variable first
+		if ( $this->blogs_plugins ) {
+			return $this->blogs_plugins;
+
+		// if not, see if we can load data from the transient
+		} else if ( false === ( $this->blogs_plugins = get_site_transient( 'blogs_plugins' ) ) ) {
+			
+			// cannot load data from transient, so load from DB and set transient
+			$this->blogs_plugins = array();
+
+			if ( function_exists( 'wp_get_sites' ) ) {
+				// Since 3.7 inside the Core
+				$blogs = wp_get_sites();
+			} else {
+				// use alternative to core function get_blog_list()
+				$blogs = Multisite_Core::get_blog_list( 0, 'all' );
+			}
+
+			foreach ( (array) $blogs as $blog ) {
+				$this->blogs_plugins[ $blog['blog_id'] ] = $blog;
+				$this->blogs_plugins[ $blog['blog_id'] ]['blogpath'] = get_blog_details( $blog['blog_id'] )->path;
+				$this->blogs_plugins[ $blog['blog_id'] ]['blogname'] = get_blog_details( $blog['blog_id'] )->blogname;
+				$this->blogs_plugins[ $blog['blog_id'] ]['active_plugins'] = array();
+				$plugins = get_blog_option( $blog[ 'blog_id' ], 'active_plugins' );
+				if ( $plugins ) {
+					foreach ( $plugins as $plugin_file ) {
+						$this->blogs_plugins[ $blog['blog_id'] ]['active_plugins'][] = $plugin_file;
+					}
+				}
+			}
+			set_site_transient( 'blogs_plugins', $this->blogs_plugins );
 		}
+
+		// data should be here, if loaded from transient or DB
+		return $this->blogs_plugins;
+
 	}
+
 
 	/**
 	 * clears the $blogs_plugins site transient when any plugins are activated/deactivated
