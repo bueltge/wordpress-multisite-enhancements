@@ -3,7 +3,7 @@
  * On the network theme page, show which blog have the theme active
  *
  * @since    2013-07-22
- * @version  2014-09-13
+ * @version  2015-02-25
  */
 
 add_action( 'init', array( 'Multisite_Add_Theme_List', 'init' ) );
@@ -13,18 +13,18 @@ class Multisite_Add_Theme_List {
 	/**
 	 * member variable to store data about active theme for each blog
 	 *
-	 * @since	21/02/2015
+	 * @since    21/02/2015
 	 * @var     Array
 	 */
 	private $blogs_themes;
 
 	/**
-	 * member variable to store data about all themes
+	 * String for the transient string, there save the blog themes
 	 *
-	 * @since	21/02/2015
-	 * @var     Array
+	 * @since  2015-02-21
+	 * @var    string
 	 */
-	private $all_themes;
+	static protected $site_transient_blogs_themes = 'blogs_themes';
 
 	public static function init() {
 
@@ -49,8 +49,8 @@ class Multisite_Add_Theme_List {
 		add_filter( 'manage_themes-network_columns', array( $this, 'add_themes_column' ), 10, 1 );
 		add_action( 'manage_themes_custom_column', array( $this, 'manage_themes_custom_column' ), 10, 3 );
 
-		add_action( 'switch_theme', array( $this, 'clear_themes_site_transient'), 10, 1 );
-		add_action( 'update_site_option_allowedthemes', array( $this, 'clear_themes_site_transient'), 10, 1 );
+		add_action( 'switch_theme', array( $this, 'clear_themes_site_transient' ), 10, 1 );
+		add_action( 'update_site_option_allowedthemes', array( $this, 'clear_themes_site_transient' ), 10, 1 );
 	}
 
 	/**
@@ -109,7 +109,6 @@ class Multisite_Add_Theme_List {
 			$parent_context .= implode( ", ", $used_as_parent );
 		}
 
-
 		if ( empty( $active_on_blogs ) ) {
 			$output .= __( '<nobr>Not Activated</nobr>', 'multisite_enhancements' );
 			$output .= $child_context;
@@ -147,15 +146,15 @@ class Multisite_Add_Theme_List {
 	public function is_theme_active_on_blogs( $theme_key ) {
 
 		$blogs_themes = $this->get_blogs_themes();
-		
+
 		$active_in_themes = array();
 
 		foreach ( (array) $blogs_themes as $blog_id => $data ) {
 
-			if ( $data["stylesheet"] === $theme_key ) {
+			if ( $data[ "stylesheet" ] === $theme_key ) {
 				$active_in_themes[ $blog_id ] = array(
-					'name' => $data['blogname'],
-					'path' => $data['blogpath']
+					'name' => $data[ 'blogname' ],
+					'path' => $data[ 'blogpath' ]
 				);
 			}
 		}
@@ -183,24 +182,27 @@ class Multisite_Add_Theme_List {
 	}
 
 	/**
-	 * gets an array of themes which have the selected one as parent
+	 * Gets an array of themes which have the selected one as parent
 	 *
-	 * @since   21/02/2015
+	 * @since  21/02/2015
 	 *
-	 * @return  Array
+	 * @param  $theme_key
+	 *
+	 * @return Array
 	 */
 	public function is_parent( $theme_key ) {
 
 		$blogs_themes = $this->get_blogs_themes();
-		$parent_of = array();
+		$parent_of    = array();
 
 		foreach ( (array) $blogs_themes as $blog_id => $data ) {
 
-			if ( isset($data["template"]) && $data["template"] !== $data["stylesheet"] && $data["template"] === $theme_key ) {
-				$theme = wp_get_theme( $data["stylesheet"] );
-				$parent_of[] = $theme->get( 'Name' );
+			if ( isset( $data[ "template" ] ) && $data[ "template" ] !== $data[ "stylesheet" ] && $data[ "template" ] === $theme_key ) {
+				$theme        = wp_get_theme( $data[ "stylesheet" ] );
+				$parent_of[ ] = $theme->get( 'Name' );
 			}
 		}
+
 		return $parent_of;
 
 	}
@@ -218,43 +220,57 @@ class Multisite_Add_Theme_List {
 		if ( $this->blogs_themes ) {
 			return $this->blogs_themes;
 
-		// if not, see if we can load data from the transient
-		} else if ( false === ( $this->blogs_themes = get_site_transient( 'blogs_themes' ) ) ) {
-			
+			// if not, see if we can load data from the transient
+		} else if ( FALSE === ( $this->blogs_themes = get_site_transient( self::$site_transient_blogs_themes ) ) ) {
+
 			// cannot load data from transient, so load from DB and set transient
 			$this->blogs_themes = array();
-			
+
 			if ( function_exists( 'wp_get_sites' ) ) {
 				// Since 3.7 inside the Core
-				$blogs = wp_get_sites( array(
-					'limit' => 9999
-				) );
+				$blogs = wp_get_sites(
+					array(
+						'limit' => 9999
+					)
+				);
 			} else {
 				// use alternative to core function get_blog_list()
 				$blogs = Multisite_Core::get_blog_list( 0, 'all' );
 			}
-			
+
 			foreach ( (array) $blogs as $blog ) {
-				$this->blogs_themes[ $blog['blog_id'] ] = $blog;
-				$this->blogs_themes[ $blog['blog_id'] ]['blogpath'] = get_blog_details( $blog['blog_id'] )->path;
-				$this->blogs_themes[ $blog['blog_id'] ]['blogname'] = get_blog_details( $blog['blog_id'] )->blogname;
-				$this->blogs_themes[ $blog['blog_id'] ]['template'] = get_blog_option( $blog[ 'blog_id' ], 'template' );
-				$this->blogs_themes[ $blog['blog_id'] ]['stylesheet'] = get_blog_option( $blog[ 'blog_id' ], 'stylesheet' );
+				$this->blogs_themes[ $blog[ 'blog_id' ] ]                 = $blog;
+				$this->blogs_themes[ $blog[ 'blog_id' ] ][ 'blogpath' ]   = get_blog_details(
+					$blog[ 'blog_id' ]
+				)->path;
+				$this->blogs_themes[ $blog[ 'blog_id' ] ][ 'blogname' ]   = get_blog_details(
+					$blog[ 'blog_id' ]
+				)->blogname;
+				$this->blogs_themes[ $blog[ 'blog_id' ] ][ 'template' ]   = get_blog_option(
+					$blog[ 'blog_id' ], 'template'
+				);
+				$this->blogs_themes[ $blog[ 'blog_id' ] ][ 'stylesheet' ] = get_blog_option(
+					$blog[ 'blog_id' ], 'stylesheet'
+				);
 			}
-			set_site_transient( 'blogs_themes', $this->blogs_themes );
-		
+			set_site_transient( self::$site_transient_blogs_themes, $this->blogs_themes );
+
 		}
+
 		// data should be here, if loaded from transient or DB
 		return $this->blogs_themes;
 	}
 
 	/**
-	 * clears the $blogs_themes site transient when any themes are activated/deactivated
+	 * Clears the $blogs_themes site transient when any themes are activated/deactivated
+	 *
+	 * @since 2015-02-21
+	 *
+	 * @param $theme
 	 */
-	public function clear_themes_site_transient( $theme )
-	{
-		delete_site_transient( 'blogs_themes' );
-	}
+	public function clear_themes_site_transient( $theme ) {
 
+		delete_site_transient( self::$site_transient_blogs_themes );
+	}
 
 } // end class
