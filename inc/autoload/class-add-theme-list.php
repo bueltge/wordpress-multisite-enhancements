@@ -227,7 +227,9 @@ class Multisite_Add_Theme_List {
 			
 			if ( function_exists( 'wp_get_sites' ) ) {
 				// Since 3.7 inside the Core
-				$blogs = wp_get_sites();
+				$blogs = wp_get_sites( array(
+					'limit' => 9999
+				) );
 			} else {
 				// use alternative to core function get_blog_list()
 				$blogs = Multisite_Core::get_blog_list( 0, 'all' );
