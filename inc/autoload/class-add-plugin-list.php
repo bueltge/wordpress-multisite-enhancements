@@ -28,6 +28,7 @@ class Multisite_Add_Plugin_List {
 
 	/**
 	 * String for the transient string, there save the blog plugins
+	 *
 	 * @since  2015-02-21
 	 * @var    string
 	 */
@@ -234,7 +235,8 @@ class Multisite_Add_Plugin_List {
 	 * Clears the $blogs_plugins site transient when any plugins are activated/deactivated
 	 *
 	 * @since  2015-02-25
-	 * @return void
+	 * @param  $plugin
+	 * @param  $network
 	 */
 	public function clear_plugins_site_transient( $plugin, $network ) {
 
