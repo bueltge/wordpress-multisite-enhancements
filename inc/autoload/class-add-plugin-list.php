@@ -24,7 +24,7 @@ class Multisite_Add_Plugin_List {
 	 * @since  01/03/2014
 	 * @var    Array
 	 */
-	static protected $excluded_plugin_status = array( 'dropins', 'mustuse' );
+	static protected $excluded_plugin_status = array( 'dropins', 'mustuse', );
 
 	/**
 	 * Member variable to store data about active plugins for each blog
@@ -257,7 +257,7 @@ class Multisite_Add_Plugin_List {
 	 * @param  $plugin
 	 * @param  $network
 	 */
-	public function clear_plugins_site_transient( $plugin, $network ) {
+	public function clear_plugins_site_transient() {
 
 		delete_site_transient( self::$site_transient_blogs_plugins );
 	}

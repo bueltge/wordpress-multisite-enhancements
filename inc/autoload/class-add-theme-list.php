@@ -60,6 +60,7 @@ class Multisite_Add_Theme_List {
 		/**
 		 * Filter to change the value for get sites inside the network
 		 *
+		 * @since 2015-02-26
 		 * @type integer
 		 */
 		$this->sites_limit = (int) apply_filters( 'multisite_enhancements_sites_limit', $this->sites_limit );
@@ -285,7 +286,7 @@ class Multisite_Add_Theme_List {
 	 *
 	 * @param $theme
 	 */
-	public function clear_themes_site_transient( $theme ) {
+	public function clear_themes_site_transient() {
 
 		delete_site_transient( self::$site_transient_blogs_themes );
 	}
