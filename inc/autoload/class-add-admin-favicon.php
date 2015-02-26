@@ -160,6 +160,10 @@ class Multisite_Add_Admin_Favicon {
 			// create favicon directory and directory url locations
 			$favicon_dir_uri = $this->get_favicon_path( $blog[ 'blog_id' ], $stylesheet_dir_uri, 'url' );
 			$favicon_dir     = $this->get_favicon_path( $blog[ 'blog_id' ], $stylesheet_dir, 'dir' );
+			var_dump($favicon_dir_uri);
+			if ( empty( $favicon_dir ) ) {
+				$favicon_dir = str_replace( WP_CONTENT_URL, '', $favicon_dir_uri );
+			}
 
 			if ( file_exists( $favicon_dir ) ) {
 				$output .= '#wpadminbar .quicklinks li#wp-admin-bar-blog-' . $blog[ 'blog_id' ]

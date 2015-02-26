@@ -1,6 +1,6 @@
 <?php
 
-//add_action( 'init', array( 'Multisite_Jetpack_Support', 'init' ) );
+add_action( 'init', array( 'Multisite_Jetpack_Support', 'init' ) );
 
 /**
  * Class Multisite_Jetpack_Support
@@ -41,9 +41,9 @@ class Multisite_Jetpack_Support {
 		}
 
 		$path = '';
-		if ( ! empty( $favicon_path ) && 'url' === $path_type ) {
+		if ( isset( $favicon_path ) && 'url' === $path_type ) {
 			$path = $favicon_path;
-		} elseif ( ! empty( $favicon_path ) && 'dir' === $path_type ) {
+		} elseif ( isset( $favicon_path ) && 'dir' === $path_type ) {
 			$path = WP_CONTENT_DIR . str_replace( WP_CONTENT_URL, '', $favicon_path );
 		} else {
 			$path = $default;
