@@ -3,7 +3,7 @@
  * On the network theme page, show which blog have the theme active
  *
  * @since    2013-07-22
- * @version  2015-02-25
+ * @version  2015-02-26
  */
 
 add_action( 'init', array( 'Multisite_Add_Theme_List', 'init' ) );
@@ -124,7 +124,7 @@ class Multisite_Add_Theme_List {
 		$used_as_parent = $this->is_parent( $theme_key );
 		if ( count( $used_as_parent ) ) {
 			$parent_context .= '<br>' . __( 'This is used as a parent theme by: ', 'multisite_enhancements' );
-			$parent_context .= implode( ", ", $used_as_parent );
+			$parent_context .= implode( ', ', $used_as_parent );
 		}
 
 		if ( empty( $active_on_blogs ) ) {
@@ -169,10 +169,10 @@ class Multisite_Add_Theme_List {
 
 		foreach ( (array) $blogs_themes as $blog_id => $data ) {
 
-			if ( $data[ "stylesheet" ] === $theme_key ) {
+			if ( $data[ 'stylesheet' ] === $theme_key ) {
 				$active_in_themes[ $blog_id ] = array(
 					'name' => $data[ 'blogname' ],
-					'path' => $data[ 'blogpath' ]
+					'path' => $data[ 'blogpath' ],
 				);
 			}
 		}
@@ -215,8 +215,8 @@ class Multisite_Add_Theme_List {
 
 		foreach ( (array) $blogs_themes as $blog_id => $data ) {
 
-			if ( isset( $data[ "template" ] ) && $data[ "template" ] !== $data[ "stylesheet" ] && $data[ "template" ] === $theme_key ) {
-				$theme        = wp_get_theme( $data[ "stylesheet" ] );
+			if ( isset( $data[ 'template' ] ) && $data[ 'template' ] !== $data[ 'stylesheet' ] && $data[ 'template' ] === $theme_key ) {
+				$theme        = wp_get_theme( $data[ 'stylesheet' ] );
 				$parent_of[ ] = $theme->get( 'Name' );
 			}
 		}

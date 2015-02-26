@@ -168,13 +168,12 @@ class Multisite_Add_Plugin_List {
 	 * @since    0.0.1
 	 *
 	 * @param      $plugin_file
-	 * @param null $plugin_data
 	 *
 	 * @internal param $String
 	 *
 	 * @return  Array which Blog ID and Name of Blog for each item in Array
 	 */
-	public function is_plugin_active_on_blogs( $plugin_file, $plugin_data = NULL ) {
+	public function is_plugin_active_on_blogs( $plugin_file ) {
 
 		$blogs_plugins = $this->get_blogs_plugins();
 
