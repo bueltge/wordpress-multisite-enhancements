@@ -11,6 +11,14 @@ add_action( 'init', array( 'Multisite_Add_Plugin_List', 'init' ) );
 class Multisite_Add_Plugin_List {
 
 	/**
+	 * Value to get sites in the Network
+	 *
+	 * @since 2015-02-26
+	 * @var int
+	 */
+	private $sites_limit = 9999;
+
+	/**
 	 * On this plugin status will not show the not or activated status in the table of plugins
 	 *
 	 * @since  01/03/2014
@@ -58,6 +66,13 @@ class Multisite_Add_Plugin_List {
 		if ( ! is_network_admin() ) {
 			return NULL;
 		}
+
+		/**
+		 * Filter to change the value for get sites inside the network
+		 *
+		 * @type integer
+		 */
+		$this->sites_limit = (int) apply_filters( 'multisite_enhancements_sites_limit', $this->sites_limit );
 
 		add_filter( 'manage_plugins-network_columns', array( $this, 'add_plugins_column' ), 10, 1 );
 		add_action( 'manage_plugins_custom_column', array( $this, 'manage_plugins_custom_column' ), 10, 3 );
@@ -200,7 +215,7 @@ class Multisite_Add_Plugin_List {
 				// Since 3.7 inside the Core
 				$blogs = wp_get_sites(
 					array(
-						'limit' => 9999
+						'limit' => $this->sites_limit,
 					)
 				);
 			} else {

@@ -11,7 +11,15 @@ add_action( 'init', array( 'Multisite_Add_Theme_List', 'init' ) );
 class Multisite_Add_Theme_List {
 
 	/**
-	 * member variable to store data about active theme for each blog
+	 * Value to get sites in the Network
+	 *
+	 * @since 2015-02-26
+	 * @var int
+	 */
+	private $sites_limit = 9999;
+
+	/**
+	 * Member variable to store data about active theme for each blog
 	 *
 	 * @since    21/02/2015
 	 * @var     Array
@@ -48,6 +56,13 @@ class Multisite_Add_Theme_List {
 		if ( ! is_network_admin() ) {
 			return NULL;
 		}
+
+		/**
+		 * Filter to change the value for get sites inside the network
+		 *
+		 * @type integer
+		 */
+		$this->sites_limit = (int) apply_filters( 'multisite_enhancements_sites_limit', $this->sites_limit );
 
 		add_filter( 'manage_themes-network_columns', array( $this, 'add_themes_column' ), 10, 1 );
 		add_action( 'manage_themes_custom_column', array( $this, 'manage_themes_custom_column' ), 10, 3 );
@@ -232,7 +247,7 @@ class Multisite_Add_Theme_List {
 				// Since 3.7 inside the Core
 				$blogs = wp_get_sites(
 					array(
-						'limit' => 9999
+						'limit' => $this->sites_limit,
 					)
 				);
 			} else {
