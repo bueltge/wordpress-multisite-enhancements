@@ -283,8 +283,6 @@ class Multisite_Add_Theme_List {
 	 * Clears the $blogs_themes site transient when any themes are activated/deactivated
 	 *
 	 * @since 2015-02-21
-	 *
-	 * @param $theme
 	 */
 	public function clear_themes_site_transient() {
 
