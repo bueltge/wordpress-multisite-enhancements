@@ -83,8 +83,11 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
-= 1.1.0 (2015-02-25) =
+= 1.1.0 (2015-02-26) =
 * Some modifications to plugin and theme admin columns for better performance and usage on Multisites with more as 100 blogs, plugins, themes [Issue #16](https://github.com/bueltge/wordpress-multisite-enhancements/pull/16)
+* Code inspections
+* Enhance the value to get sites inside the network form WordPress default 100 to 9999
+* Add hook `multisite_enhancements_sites_limit` to change this value, see [wiki page](https://github.com/bueltge/wordpress-multisite-enhancements/wiki/Large-Network-Problem)
 
 = 1.0.7 (09/23/2014) =
 * Code maintenance

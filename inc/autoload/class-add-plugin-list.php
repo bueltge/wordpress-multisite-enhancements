@@ -3,7 +3,7 @@
  * On the network plugins page, show which blogs have this plugin active
  *
  * @since    2013-07-19
- * @version  2015-02-25
+ * @version  2015-02-26
  */
 
 add_action( 'init', array( 'Multisite_Add_Plugin_List', 'init' ) );
