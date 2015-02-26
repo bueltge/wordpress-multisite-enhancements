@@ -1,6 +1,6 @@
 <?php
 
-add_action( 'init', array( 'Multisite_Jetpack_Support', 'init' ) );
+//add_action( 'init', array( 'Multisite_Jetpack_Support', 'init' ) );
 
 /**
  * Class Multisite_Jetpack_Support
