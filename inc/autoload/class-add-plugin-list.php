@@ -57,7 +57,9 @@ class Multisite_Add_Plugin_List {
 		add_filter( 'manage_plugins-network_columns', array( $this, 'add_plugins_column' ), 10, 1 );
 		add_action( 'manage_plugins_custom_column', array( $this, 'manage_plugins_custom_column' ), 10, 3 );
 
+		// Fires after a plugin has been activated; but not on silently activated, like update
 		add_action( 'activated_plugin', array( $this, 'clear_plugins_site_transient' ), 10, 2 );
+		// Fires before a plugin is deactivate; but not on silently activated, like update
 		add_action( 'deactivated_plugin', array( $this, 'clear_plugins_site_transient' ), 10, 2 );
 	}
 
