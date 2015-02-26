@@ -42,6 +42,9 @@ class Multisite_Add_Theme_List {
 	 */
 	public function __construct() {
 
+		// Fires after the theme is switched.
+		add_action( 'switch_theme', array( $this, 'clear_themes_site_transient' ), 10, 1 );
+
 		if ( ! is_network_admin() ) {
 			return NULL;
 		}
@@ -49,7 +52,6 @@ class Multisite_Add_Theme_List {
 		add_filter( 'manage_themes-network_columns', array( $this, 'add_themes_column' ), 10, 1 );
 		add_action( 'manage_themes_custom_column', array( $this, 'manage_themes_custom_column' ), 10, 3 );
 
-		add_action( 'switch_theme', array( $this, 'clear_themes_site_transient' ), 10, 1 );
 		add_action( 'update_site_option_allowedthemes', array( $this, 'clear_themes_site_transient' ), 10, 1 );
 	}
 
