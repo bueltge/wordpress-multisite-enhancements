@@ -1,11 +1,12 @@
 <?php
 
+//add_action( 'init', array( 'Multisite_Jetpack_Support', 'init' ) );
 /**
  * Class Multisite_Jetpack_Support
  * Support features from Jetpack for a feature from this plugin
  *
  * @since    2014-12-12
- * @version  2014-12-12
+ * @version  2015-02-26
  */
 class Multisite_Jetpack_Support {
 
@@ -22,12 +23,11 @@ class Multisite_Jetpack_Support {
 	 *
 	 */
 	public function __construct() {
+
+		$this->get_jetpack_icon();
 	}
 
-	/**
-	 * @return null
-	 */
-	protected function get_jetpack_icon() {
+	protected function get_jetpack_icon( $blog ) {
 
 		var_dump( get_option( 'jetpack_active_modules' ) );
 		// If the jetback plugin active
@@ -47,5 +47,6 @@ class Multisite_Jetpack_Support {
 
 		// get the icon, size 32px
 		$url_32 = jetpack_site_icon_url( NULL, 32 );
+		return $url_32;
 	}
 }

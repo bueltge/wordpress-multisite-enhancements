@@ -25,6 +25,14 @@ add_action( 'init', array( 'Multisite_Add_Admin_Favicon', 'init' ) );
 class Multisite_Add_Admin_Favicon {
 
 	/**
+	 * Value to get sites in the Network
+	 *
+	 * @since 2015-02-26
+	 * @var int
+	 */
+	private $sites_limit = 9999;
+
+	/**
 	 * Define Hooks for add the favicon markup
 	 *
 	 * @since   0.0.2
@@ -61,6 +69,13 @@ class Multisite_Add_Admin_Favicon {
 	 * @return \Multisite_Add_Admin_Favicon
 	 */
 	public function __construct() {
+
+		/**
+		 * Filter to change the value for get sites inside the network
+		 *
+		 * @type integer
+		 */
+		$this->sites_limit = (int) apply_filters( 'multisite_enhancements_sites_limit', $this->sites_limit );
 
 		// hooks for add favicon markup
 		$hooks = apply_filters( 'multisite_enhancements_favicon', self::$favicon_hooks );
@@ -119,7 +134,11 @@ class Multisite_Add_Admin_Favicon {
 
 		if ( function_exists( 'wp_get_sites' ) ) {
 			// Since 3.7 inside the Core
-			$blogs = wp_get_sites();
+			$blogs = wp_get_sites(
+				array(
+					'limit' => $this->sites_limit,
+				)
+			);
 		} else {
 			// use alternative to core function get_blog_list()
 			$blogs = Multisite_Core::get_blog_list( 0, 'all' );
