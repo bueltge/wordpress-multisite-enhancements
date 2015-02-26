@@ -232,15 +232,15 @@ class Multisite_Add_Admin_Favicon {
 		 *
 		 * @since 1.0.5
 		 *
-		 * @param string $favicon_file_path Path to favicon file.
+		 * @param string $path Path to favicon file.
 		 *
 		 * Optional parameters:
 		 *
 		 * When using a different directory than the stylesheet use the $blog_id and $path_type
+		 * integer $blog_id
 		 *
-		 * $path_type = 'url' -> use URL for the location as a URL
-		 * $path_type = 'dir' -> use URL for the location in the server, used to check if the file exists
-		 *
+		 * string $path_type = 'url' -> use URL for the location as a URL
+		 * string $path_type = 'dir' -> use URL for the location in the server, used to check if the file exists
 		 */
 
 		return apply_filters( 'multisite_enhancements_favicon_path', $path . '/favicon.ico', $blog_id, $path_type );
