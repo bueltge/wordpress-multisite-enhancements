@@ -10,6 +10,11 @@ add_action( 'init', array( 'Multisite_Admin_Bar_Tweaks', 'init' ) );
 
 class Multisite_Admin_Bar_Tweaks {
 
+	/**
+	 * Initialize this class
+	 *
+	 * @return  void
+	 */
 	public static function init() {
 
 		$class = __CLASS__;

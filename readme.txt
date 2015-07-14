@@ -2,7 +2,7 @@
 Contributors: Bueltge, inpsyde
 Tags: multisite, administration, admin bar, network,
 Requires at least: 3.0.0
-Tested up to: 4.0
+Tested up to: 4.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -26,9 +26,9 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
 	 * If you will develop with the alternative to this function from my source, then use the method `get_blog_list()` in class `Multisite_Core`. She use also caching with the Transient API. See more about the function on the function in [`inc/autoload/class-core.php`](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/inc/autoload/class-core.php).
 	 * If you use WordPress version 3.7 and higher, then check the function `wp_get_sites()`, the new alternative function inside the core to get all sides inside the network. The function accept a array with arguments, see the [description](http://wpseek.com/wp_get_sites/).
 
-**Made by [Inpsyde](http://inpsyde.com) &middot; We love WordPress**
+**Crafted by [Inpsyde](http://inpsyde.com) · Engineering the web since 2006.**
 
-Have a look at the premium plugins in our [market](http://marketpress.com).
+Yes, we also run that [marketplace for premium WordPress plugins and themes](http://marketpress.com).
 
 == Installation ==
 
@@ -56,9 +56,15 @@ Have a look at the premium plugins in our [market](http://marketpress.com).
 
 == Other Notes ==
 
-**Made by [Inpsyde](http://inpsyde.com) &middot; We love WordPress**
+**Crafted by [Inpsyde](http://inpsyde.com) · Engineering the web since 2006.**
 
-Have a look at the premium plugins in our [market](http://marketpress.com).
+Yes, we also run that [marketplace for premium WordPress plugins and themes](http://marketpress.com).
+
+= Hints, knowledge =
+See also for helpful hints on the [wiki page](https://github.com/bueltge/wordpress-multisite-enhancements/wiki).
+Especially the follow topics are interest:
+* [Filter Hook for Favicon File Path - Define your custom Favicon path](https://github.com/bueltge/WordPress-Multisite-Enhancements/wiki/Filter-Hook-for-Favicon-File-Path)
+* [Large Network Problem](https://github.com/bueltge/wordpress-multisite-enhancements/wiki/Large-Network-Problem)
 
 = Bugs, technical hints or contribute =
 Please give me feedback, contribute and file technical bugs on this
@@ -83,6 +89,16 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.1.0 (2015-02-26) =
+* Some modifications to plugin and theme admin columns for better performance and usage on Multisites with more as 100 blogs, plugins, themes [Issue #16](https://github.com/bueltge/wordpress-multisite-enhancements/pull/16)
+* Code inspections
+* Enhance the value to get sites inside the network form WordPress default 100 to 9999
+* Add hook `multisite_enhancements_sites_limit` to change this value, see [wiki page](https://github.com/bueltge/wordpress-multisite-enhancements/wiki/Large-Network-Problem)
+
+= 1.0.7 (09/23/2014) =
+* Code maintenance
+* Add parameters for custom favicon, see [documentation](https://github.com/bueltge/WordPress-Multisite-Enhancements/wiki/Filter-Hook-for-Favicon-File-Path)
+
 = 1.0.6 (09/13/2014) =
 * Add check for child theme, that you fast see, if is a child and what is the parent inside the network view of themes
 

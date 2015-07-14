@@ -1,25 +1,28 @@
 {
-	"name": "bueltge/WordPress-Multisite-Enhancements",
-	"description": "Enhance Multisite for Network Admins with different topics.",
-	"license": "GPL 2+",
-	"version": "1.0.6",
-	"type": "wordpress-plugin",
-	"authors": [
-		{
-			"name": "Inpsyde GmbH",
-			"homepage": "http://inpsyde.com",
-			"email": "info@inpsyde.com",
-			"role": "Company"
-		},
-		{
-			"name": "Frank Bültge",
-			"homepage": "http://bueltge.de",
-			"email": "frank@bueltge.de",
-			"role": "Developer"
-		}
-	],
-	"require": {
-		"php": ">5.2.4",
-		"composer/installers": "~1.0"
-	}
+  "name": "bueltge/wordpress-multisite-enhancements",
+  "description": "Enhance Multisite for Network Admins with different topics",
+  "keywords"   : ["wordpress", "multisite", "plugin"],
+  "license": "GPL 2+",
+  "version": "1.1.0",
+  "type": "wordpress-plugin",
+  "homepage": "https://github.com/bueltge/wordpress-multisite-enhancements/",
+  "authors": [
+    {
+      "name": "Frank Bültge",
+      "homepage": "http://bueltge.de",
+      "email": "frank@bueltge.de",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/bueltge/wordpress-multisite-enhancements/issues"
+  },
+  "require": {
+    "php": ">=5.3",
+    "composer/installers": "~1.0"
+  },
+  "require-dev": {
+    "phpmd/phpmd": "2.1.3",
+    "phpunit/phpunit": "4.3.*"
+  }
 }
