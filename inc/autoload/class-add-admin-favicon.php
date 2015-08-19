@@ -16,8 +16,8 @@
  *     - Hook: multisite_enhancements_remove_wp_admin_bar
  *     - Default is: TRUE
  *
- * @since    07/23/2013
- * @version  02/03/2013
+ * @since    2015-07-23
+ * @version  2015-08-18
  */
 
 add_action( 'init', array( 'Multisite_Add_Admin_Favicon', 'init' ) );
@@ -147,7 +147,9 @@ class Multisite_Add_Admin_Favicon {
 		$output = '';
 		foreach ( (array) $blogs as $blog ) {
 
-			$stylesheet = get_blog_option( $blog[ 'blog_id' ], 'stylesheet' );
+			// Validate, that we use nly int value.
+			$blog_id = (int) $blog[ 'blog_id' ];
+			$stylesheet = get_blog_option( $blog_id, 'stylesheet' );
 
 			// get stylesheet directory uri
 			$theme_root_uri     = get_theme_root_uri( $stylesheet );
@@ -158,8 +160,8 @@ class Multisite_Add_Admin_Favicon {
 			$stylesheet_dir = "$theme_root/$stylesheet";
 
 			// create favicon directory and directory url locations
-			$favicon_dir_uri = $this->get_favicon_path( $blog[ 'blog_id' ], $stylesheet_dir_uri, 'url' );
-			$favicon_dir     = $this->get_favicon_path( $blog[ 'blog_id' ], $stylesheet_dir, 'dir' );
+			$favicon_dir_uri = $this->get_favicon_path( $blog_id, $stylesheet_dir_uri, 'url' );
+			$favicon_dir     = $this->get_favicon_path( $blog_id, $stylesheet_dir, 'dir' );
 
 			if ( file_exists( $favicon_dir ) ) {
 				$output .= '#wpadminbar .quicklinks li#wp-admin-bar-blog-' . $blog[ 'blog_id' ]
@@ -170,7 +172,7 @@ class Multisite_Add_Admin_Favicon {
 			}
 		}
 
-		if ( ! empty( $output ) ) {
+		if ( '' !== $output ) {
 			// Use the filter hook to change style
 			echo apply_filters(
 				'multisite_enhancements_add_admin_bar_favicon',
@@ -208,19 +210,18 @@ class Multisite_Add_Admin_Favicon {
 	 *
 	 * @since    1.0.5
 	 *
-	 * @param string $blog_id
-	 * @param string $path
-	 * @param string $path_type
+	 * @param int        $blog_id
+	 * @param string     $path
+	 * @param string     $path_type
 	 *
 	 * @return string File path to favicon file.
 	 * @internal param ID $integer of blog in network
 	 * @internal param Path $string to Favicon
 	 * @internal param Path $string type 'url' or 'dir'
-	 *
 	 */
-	protected function get_favicon_path( $blog_id = '', $path = '', $path_type = 'url' ) {
+	protected function get_favicon_path( $blog_id = 0, $path = '', $path_type = 'url' ) {
 
-		if ( empty( $blog_id ) ) {
+		if ( 0 === $blog_id ) {
 			$blog_id = get_current_blog_id();
 		}
 

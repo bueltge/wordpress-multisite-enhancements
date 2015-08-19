@@ -3,7 +3,7 @@
  * Plugin Name: Multisite Enhancements
  * Description: Enhance Multisite for Network Admins with different topics
  * Plugin URI:  https://github.com/bueltge/WordPress-Multisite-Enhancements
- * Version:     1.1.0
+ * Version:     1.1.1-dev
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de
  * License:     GPLv2+
@@ -33,7 +33,7 @@ class Multisite_Enhancements {
 	 * @since  0.0.1
 	 * @var    String
 	 */
-	static protected $class_object = NULL;
+	static protected $class_object;
 
 	/**
 	 * Load the object and get the current state
@@ -43,7 +43,7 @@ class Multisite_Enhancements {
 	 */
 	public static function get_object() {
 
-		if ( NULL == self::$class_object ) {
+		if ( NULL === self::$class_object ) {
 			self::$class_object = new self;
 		}
 
@@ -61,13 +61,11 @@ class Multisite_Enhancements {
 		// This check prevents using this plugin not in a multisite
 		if ( function_exists( 'is_multisite' ) && ! is_multisite() ) {
 			add_filter( 'admin_notices', array( $this, 'error_msg_no_multisite' ) );
-
-			return NULL;
 		}
 
-		self::$file_base = dirname( __FILE__ ) . '/inc';
-
-		$this->load();
+		// Since 2015-08-18 only PHP 5.3, use now __DIR__ as equivalent to dirname(__FILE__)
+		self::$file_base = __DIR__ . '/inc';
+		self::load();
 	}
 
 	/**
@@ -90,7 +88,7 @@ class Multisite_Enhancements {
 				); ?>"><?php _e( 'WordPress Codex: Create a network', 'multisite_enhancements' ); ?></a>
 			</p>
 		</div>
-	<?php
+		<?php
 	}
 
 	/**
@@ -107,6 +105,7 @@ class Multisite_Enhancements {
 
 		// load files
 		foreach ( $autoload_files as $path ) {
+			/** @var string $path Path of each file, that we load */
 			require_once $path;
 		}
 	}
