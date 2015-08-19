@@ -146,28 +146,37 @@ class Multisite_Add_Admin_Favicon {
 
 		$output = '';
 		foreach ( (array) $blogs as $blog ) {
-
+			
+			$custom_icon = false;	
+			
 			// Validate, that we use nly int value.
 			$blog_id = (int) $blog[ 'blog_id' ];
 			$stylesheet = get_blog_option( $blog_id, 'stylesheet' );
-
+			
 			// get stylesheet directory uri
 			$theme_root_uri     = get_theme_root_uri( $stylesheet );
 			$stylesheet_dir_uri = "$theme_root_uri/$stylesheet";
-
+			
 			// get stylesheet directory
 			$theme_root     = get_theme_root( $stylesheet );
 			$stylesheet_dir = "$theme_root/$stylesheet";
-
+			
 			// create favicon directory and directory url locations
 			$favicon_dir_uri = $this->get_favicon_path( $blog_id, $stylesheet_dir_uri, 'url' );
 			$favicon_dir     = $this->get_favicon_path( $blog_id, $stylesheet_dir, 'dir' );
-
-			if ( file_exists( $favicon_dir ) ) {
+			
+			// Check if the user has manually added a site icon in WP (since WP 4.3)
+			if (function_exists('has_site_icon') && has_site_icon($blog_id)) {
+				$custom_icon = esc_url(get_site_icon_url( 32 , '', $blog_id ));
+			} else if ( file_exists( $favicon_dir ) ) {
+				$custom_icon = $favicon_dir_uri;
+			}
+			
+			if ($custom_icon != false) {
 				$output .= '#wpadminbar .quicklinks li#wp-admin-bar-blog-' . $blog[ 'blog_id' ]
 					. ' .blavatar { font-size: 0 !important; }';
 				$output .= '#wp-admin-bar-blog-' . $blog[ 'blog_id' ]
-					. ' div.blavatar { background: url( "' . $favicon_dir_uri
+					. ' div.blavatar { background: url( "' . $custom_icon
 					. '" ) left bottom/16px no-repeat !important; background-size: 16px !important; margin: 0 2px 0 -2px; }' . "\n";
 			}
 		}
