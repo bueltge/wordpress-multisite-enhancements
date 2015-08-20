@@ -234,7 +234,7 @@ class Multisite_Add_Theme_List {
 	}
 
 	/**
-	 * gets an array of blog data including active theme for each blog.
+	 * Gets an array of blog data including active theme for each blog.
 	 *
 	 * @since  21/02/2015
 	 *
