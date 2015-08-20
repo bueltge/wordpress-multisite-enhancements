@@ -1,17 +1,23 @@
 <?php
 /**
- * On the network theme page, show which blog have the theme active
+ * On the network theme page, show which blog have the theme active.
  *
- * @since    2013-07-22
- * @version  2015-02-26
+ * @since   2013-07-22
+ * @version 2015-08-20
+ * @package WordPress
  */
 
 add_action( 'init', array( 'Multisite_Add_Theme_List', 'init' ) );
 
+/**
+ * On the network theme page, show which blog have the theme active.
+ *
+ * Class Multisite_Add_Theme_List
+ */
 class Multisite_Add_Theme_List {
 
 	/**
-	 * Value to get sites in the Network
+	 * Value to get sites in the Network.
 	 *
 	 * @since 2015-02-26
 	 * @var int
@@ -19,7 +25,7 @@ class Multisite_Add_Theme_List {
 	private $sites_limit = 9999;
 
 	/**
-	 * Member variable to store data about active theme for each blog
+	 * Member variable to store data about active theme for each blog.
 	 *
 	 * @since    21/02/2015
 	 * @var     Array
@@ -27,13 +33,16 @@ class Multisite_Add_Theme_List {
 	private $blogs_themes;
 
 	/**
-	 * String for the transient string, there save the blog themes
+	 * String for the transient string, there save the blog themes.
 	 *
 	 * @since  2015-02-21
 	 * @var    string
 	 */
 	static protected $site_transient_blogs_themes = 'blogs_themes';
 
+	/**
+	 * Initialize the class.
+	 */
 	public static function init() {
 
 		$class = __CLASS__;
@@ -43,10 +52,9 @@ class Multisite_Add_Theme_List {
 	}
 
 	/**
-	 * Init function to register all used hooks
+	 * Init function to register all used hooks.
 	 *
 	 * @since   0.0.2
-	 * @return \Multisite_Add_Theme_List
 	 */
 	public function __construct() {
 
@@ -58,7 +66,7 @@ class Multisite_Add_Theme_List {
 		}
 
 		/**
-		 * Filter to change the value for get sites inside the network
+		 * Filter to change the value for get sites inside the network.
 		 *
 		 * @since 2015-02-26
 		 * @type integer
@@ -72,13 +80,13 @@ class Multisite_Add_Theme_List {
 	}
 
 	/**
-	 * Add in a column header
+	 * Add in a column header.
 	 *
 	 * @since   0.0.2
 	 *
-	 * @param   Array
+	 * @param array $columns An array of displayed site columns.
 	 *
-	 * @return  String
+	 * @return array
 	 */
 	public function add_themes_column( $columns ) {
 
@@ -88,15 +96,15 @@ class Multisite_Add_Theme_List {
 	}
 
 	/**
-	 * Get data for each row on each theme
+	 * Get data for each row on each theme.
 	 *
 	 * @since   0.0.2
 	 *
-	 * @param   String
-	 * @param   String
-	 * @param   Array
+	 * @param  String $column_name Name of the column.
+	 * @param  String $theme_key   Path to the theme file.
+	 * @param  Array  $theme_data  An array of theme data.
 	 *
-	 * @return  String
+	 * @return Array
 	 */
 	public function manage_themes_custom_column( $column_name, $theme_key, $theme_data ) {
 
@@ -108,7 +116,7 @@ class Multisite_Add_Theme_List {
 
 		$active_on_blogs = $this->is_theme_active_on_blogs( $theme_key );
 
-		// Check, if is a child theme and return parent
+		// Check, if is a child theme and return parent.
 		$child_context = '';
 		$is_child      = $this->is_child( $theme_data );
 		if ( $is_child ) {
@@ -119,7 +127,7 @@ class Multisite_Add_Theme_List {
 			);
 		}
 
-		// Check if used as a parent theme for a child
+		// Check if used as a parent theme for a child.
 		$parent_context = '';
 		$used_as_parent = $this->is_parent( $theme_key );
 		if ( count( $used_as_parent ) ) {
@@ -138,7 +146,7 @@ class Multisite_Add_Theme_List {
 				$output .= '<li title="Blog ID: ' . $key . '">';
 				$output .= '<nobr><a href="' . get_admin_url(
 						$key
-					) . 'themes.php' . '">' . $value[ 'name' ] . '</a></nobr>';
+					) . 'themes.php">' . $value[ 'name' ] . '</a></nobr>';
 				$output .= $child_context;
 				$output .= '</li>';
 			}
@@ -151,15 +159,15 @@ class Multisite_Add_Theme_List {
 	}
 
 	/**
-	 * Is theme active in blogs
+	 * Is theme active in blogs.
+	 *
 	 * Return Array with values to each theme
 	 *
 	 * @since   0.0.2
 	 *
-	 * @param   String
-	 * @param   Array
+	 * @param String $theme_key The key of each theme.
 	 *
-	 * @return  Array
+	 * @return Array
 	 */
 	public function is_theme_active_on_blogs( $theme_key ) {
 
@@ -181,15 +189,15 @@ class Multisite_Add_Theme_List {
 	}
 
 	/**
-	 * Check, the current theme have a parent value and is a child theme
+	 * Check, the current theme have a parent value and is a child theme.
 	 *
-	 * @param $theme_data
+	 * @param array $theme_data An array of theme data.
 	 *
 	 * @return bool
 	 */
 	public function is_child( $theme_data ) {
 
-		// For limitation of empty() write in var
+		// For limitation of empty() write in var.
 		$parent = $theme_data->parent();
 
 		if ( ! empty( $parent ) ) {
@@ -200,11 +208,11 @@ class Multisite_Add_Theme_List {
 	}
 
 	/**
-	 * Gets an array of themes which have the selected one as parent
+	 * Gets an array of themes which have the selected one as parent.
 	 *
 	 * @since  21/02/2015
 	 *
-	 * @param  $theme_key
+	 * @param String $theme_key The key of each theme.
 	 *
 	 * @return Array
 	 */
@@ -226,33 +234,33 @@ class Multisite_Add_Theme_List {
 	}
 
 	/**
-	 * gets an array of blog data including active theme for each blog
+	 * gets an array of blog data including active theme for each blog.
 	 *
-	 * @since   21/02/2015
+	 * @since  21/02/2015
 	 *
-	 * @return  Array
+	 * @return Array
 	 */
 	public function get_blogs_themes() {
 
-		// see if the data is present in the variable first
+		// See if the data is present in the variable first.
 		if ( $this->blogs_themes ) {
 			return $this->blogs_themes;
 
-			// if not, see if we can load data from the transient
+			// If not, see if we can load data from the transient.
 		} else if ( FALSE === ( $this->blogs_themes = get_site_transient( self::$site_transient_blogs_themes ) ) ) {
 
-			// cannot load data from transient, so load from DB and set transient
+			// Cannot load data from transient, so load from DB and set transient.
 			$this->blogs_themes = array();
 
 			if ( function_exists( 'wp_get_sites' ) ) {
-				// Since 3.7 inside the Core
+				// Since 3.7 inside the Core.
 				$blogs = wp_get_sites(
 					array(
 						'limit' => $this->sites_limit,
 					)
 				);
 			} else {
-				// use alternative to core function get_blog_list()
+				// Use alternative to core function get_blog_list().
 				$blogs = Multisite_Core::get_blog_list( 0, 'all' );
 			}
 
@@ -275,12 +283,12 @@ class Multisite_Add_Theme_List {
 
 		}
 
-		// data should be here, if loaded from transient or DB
+		// Data should be here, if loaded from transient or DB.
 		return $this->blogs_themes;
 	}
 
 	/**
-	 * Clears the $blogs_themes site transient when any themes are activated/deactivated
+	 * Clears the $blogs_themes site transient when any themes are activated/deactivated.
 	 *
 	 * @since 2015-02-21
 	 */

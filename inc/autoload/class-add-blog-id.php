@@ -1,17 +1,24 @@
 <?php
 /**
- * View Blog and User ID in WordPress Multisite
+ * View Blog and User ID in WordPress Multisite.
  *
  * @see     http://wpengineer.com/2188/view-blog-id-in-wordpress-multisite/
  * @since   07/19/2013
+ * @version 2015-08-20
+ * @package WordPress
  */
 
 add_action( 'init', array( 'Multisite_Add_Blog_Id', 'init' ) );
 
+/**
+ * View Blog and User ID in WordPress Multisite.
+ *
+ * Class Multisite_Add_Blog_Id
+ */
 class Multisite_Add_Blog_Id {
 
 	/**
-	 * Init the class
+	 * Init the class.
 	 */
 	public static function init() {
 
@@ -22,10 +29,9 @@ class Multisite_Add_Blog_Id {
 	}
 
 	/**
-	 * Init function to register all used hooks
+	 * Init function to register all used hooks.
 	 *
 	 * @since   0.0.1
-	 * @return \Multisite_Add_Blog_Id
 	 */
 	public function __construct() {
 
@@ -33,11 +39,11 @@ class Multisite_Add_Blog_Id {
 			return NULL;
 		}
 
-		// add blog id
+		// Add blog id.
 		add_filter( 'wpmu_blogs_columns', array( $this, 'get_id' ) );
 		add_action( 'manage_sites_custom_column', array( $this, 'get_blog_id' ), 10, 2 );
 
-		// add user id
+		// Add user id.
 		add_filter( 'manage_users-network_columns', array( $this, 'get_id' ) );
 		add_action( 'manage_users_custom_column', array( $this, 'get_user_id' ), 10, 3 );
 
@@ -46,10 +52,10 @@ class Multisite_Add_Blog_Id {
 	}
 
 	/**
-	 * Echo the site id of each site
+	 * Echo the site id of each site.
 	 *
-	 * @param $column_name
-	 * @param $blog_id
+	 * @param string  $column_name The name of the column.
+	 * @param integer $blog_id     The Id of the blog.
 	 *
 	 * @return mixed
 	 */
@@ -63,11 +69,11 @@ class Multisite_Add_Blog_Id {
 	}
 
 	/**
-	 * Echo the ID of each user
+	 * Echo the ID of each user.
 	 *
-	 * @param $value
-	 * @param $column_name
-	 * @param $user_id
+	 * @param string $value       Custom column output.
+	 * @param string $column_name The current column name.
+	 * @param int    $user_id     ID of the currently-listed user.
 	 */
 	public function get_user_id( $value, $column_name, $user_id ) {
 
@@ -77,9 +83,9 @@ class Multisite_Add_Blog_Id {
 	}
 
 	/**
-	 * Add in a column header
+	 * Add in a column header.
 	 *
-	 * @param $columns
+	 * @param array $columns An array of displayed site columns.
 	 *
 	 * @return mixed
 	 */
@@ -90,6 +96,9 @@ class Multisite_Add_Blog_Id {
 		return $columns;
 	}
 
+	/**
+	 * Add custom style.
+	 */
 	public function add_style() {
 
 		echo '<style>#object_id { width:7%; }</style>';

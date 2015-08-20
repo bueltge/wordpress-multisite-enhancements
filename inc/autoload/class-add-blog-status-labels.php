@@ -1,17 +1,31 @@
 <?php
 /**
- * Add status labels to blogs
+ * Add status labels to blogs.
  *
- * @since    2015-07-14
- * @version  2015-07-15
+ * @since   2015-07-14
+ * @version 2015-07-15
+ * @package WordPress
  */
 
 add_action( 'init', array( 'Multisite_Add_Blog_Status_labels', 'init' ) );
 
+/**
+ * Add status labels to blogs.
+ *
+ * Class Multisite_Add_Blog_Status_labels
+ */
 class Multisite_Add_Blog_Status_labels {
 
+	/**
+	 * Store for color scheme of the user.
+	 *
+	 * @var bool
+	 */
 	private $admin_color_scheme = FALSE;
 
+	/**
+	 * Initialize the class.
+	 */
 	public static function init() {
 
 		$class = __CLASS__;
@@ -21,10 +35,9 @@ class Multisite_Add_Blog_Status_labels {
 	}
 
 	/**
-	 * Init function to register all used hooks
+	 * Init function to register all used hooks.
 	 *
 	 * @since  2015-07-14
-	 * @return \Multisite_Add_Blog_Status_labels
 	 */
 	public function __construct() {
 
@@ -32,14 +45,14 @@ class Multisite_Add_Blog_Status_labels {
 	}
 
 	/**
-	 * Add status label from each blog to Multisite Menu of "My Sites"
+	 * Add status label from each blog to Multisite Menu of "My Sites".
 	 *
 	 * Use the filter hook to change style
 	 *     Hook: multisite_enhancements_add_admin_bar_favicon
 	 *
 	 * @since   2015-07-14
 	 *
-	 * @param $admin_bar
+	 * @param WP_Admin_Bar $admin_bar WP_Admin_Bar instance, passed by reference.
 	 *
 	 * @return void
 	 */
@@ -83,7 +96,6 @@ class Multisite_Add_Blog_Status_labels {
 				$blog->blogname                           = $prefix . $blog->blogname;
 				$admin_bar->user->blogs[ $key ]->blogname = $blog->blogname;
 			}
-
 		}
 
 	}
