@@ -79,31 +79,35 @@ class Multisite_Enhancements {
 		?>
 		<div class="error">
 			<p>
-				<?php _e(
+				<?php esc_html_e(
 					'The plugin only works in a multisite installation. See how to install a multisite network:',
 					'multisite_enhancements'
 				); ?>
-				<a href="http://codex.wordpress.org/Create_A_Network" title="<?php _e(
+				<a href="http://codex.wordpress.org/Create_A_Network" title="<?php esc_html_e(
 					'WordPress Codex: Create a network', 'multisite_enhancements'
-				); ?>"><?php _e( 'WordPress Codex: Create a network', 'multisite_enhancements' ); ?></a>
+				); ?>">
+					<?php esc_html_e( 'WordPress Codex: Create a network', 'multisite_enhancements' ); ?>
+				</a>
 			</p>
 		</div>
 		<?php
 	}
 
 	/**
-	 * Load all files in folder inc
+	 * Load all files in folder inc.
+	 *
+	 * Use the filter hook 'multisite_enhancements_autoload' to unset classes, there is not necessary for you.
 	 *
 	 * @since   0.0.1
-	 * @return  void
 	 */
 	public static function load() {
 
 		$file_base = self::$file_base;
 
 		$autoload_files = glob( "$file_base/autoload/*.php" );
+		$autoload_files = apply_filters( 'multisite_enhancements_autoload', $autoload_files );
 
-		// load files
+		// Load files.
 		foreach ( $autoload_files as $path ) {
 			/** @var string $path Path of each file, that we load */
 			require_once $path;

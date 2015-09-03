@@ -3,7 +3,7 @@
  * Add status labels to blogs.
  *
  * @since   2015-07-14
- * @version 2015-07-15
+ * @version 2015-09-03
  * @package WordPress
  */
 
@@ -15,13 +15,6 @@ add_action( 'init', array( 'Multisite_Add_Blog_Status_labels', 'init' ) );
  * Class Multisite_Add_Blog_Status_labels
  */
 class Multisite_Add_Blog_Status_labels {
-
-	/**
-	 * Store for color scheme of the user.
-	 *
-	 * @var bool
-	 */
-	private $admin_color_scheme = FALSE;
 
 	/**
 	 * Initialize the class.
@@ -41,63 +34,90 @@ class Multisite_Add_Blog_Status_labels {
 	 */
 	public function __construct() {
 
-		add_action( 'admin_bar_menu', array( $this, 'print_admin_bar_blog_status_labels' ) );
+		if ( ! current_user_can( 'manage_network' ) ) {
+			return;
+		}
+
+		add_action( 'admin_bar_menu', array( $this, 'add_status_label' ) );
+	}
+
+	/**
+	 * Check string, if is a external url.
+	 *
+	 * @param string $haystack The string to search in.
+	 * @param string $needle   The search string.
+	 *
+	 * @return bool
+	 */
+	public function check_external_url( $haystack, $needle ) {
+
+		if ( FALSE === strpos(
+				$haystack,
+				str_replace( array( 'http://', 'https://', '//' ), '', $needle )
+			)
+		) {
+			return TRUE;
+		}
+
+		return FALSE;
+	}
+
+	/**
+	 * Check, if the status of the site public.
+	 *
+	 * @param integer $site_id ID of the site.
+	 *
+	 * @return bool
+	 */
+	public function is_site_live( $site_id ) {
+
+		$site_id = (int) $site_id;
+		$is_live = (int) get_blog_option( $site_id, 'blog_public' );
+
+		if ( 1 === $is_live ) {
+			return TRUE;
+		}
+
+		return FALSE;
 	}
 
 	/**
 	 * Add status label from each blog to Multisite Menu of "My Sites".
 	 *
-	 * Use the filter hook to change style
-	 *     Hook: multisite_enhancements_add_admin_bar_favicon
+	 * Use the filter hook 'multisite_enhancements_status_label' to change style, dashicon, markup.
 	 *
-	 * @since   2015-07-14
+	 * @param WP_Admin_Bar $admin_bar All necessary admin bar items.
 	 *
-	 * @param WP_Admin_Bar $admin_bar WP_Admin_Bar instance, passed by reference.
-	 *
-	 * @return void
+	 * @return mixed
 	 */
-	public function print_admin_bar_blog_status_labels( $admin_bar ) {
+	public function add_status_label( $admin_bar ) {
 
-		if ( current_user_can( 'manage_network' ) ) {
+		foreach ( $admin_bar->user->blogs as $key => $blog ) {
 
-			global $_wp_admin_css_colors;
-			$this->admin_color_scheme = $_wp_admin_css_colors[ get_user_option( 'admin_color' ) ];
+			$url_hint  = '';
+			$live_hint = '';
 
-			foreach ( $admin_bar->user->blogs as $key => $blog ) {
-
-				$prefix = '';
-
-				$label  = 'ext-domain';
-				$color  = 'inherit';
-
-				if ( $this->admin_color_scheme->colors[ 3 ] ) {
-					$color = $this->admin_color_scheme->colors[ 3 ];
-				}
-
-				if ( strpos(
-						$blog->siteurl,
-						str_replace( array( 'http://', 'https://', '//' ), '', $admin_bar->user->domain )
-					) === FALSE
-				) {
-					$prefix .= '<span style="font-style: italic; font-weight: bold; line-height: 1; color: ' . $color . ';">[' . $label . ']</span> ';
-				}
-
-				$label = 'noindex';
-				$color = 'inherit';
-				if ( $this->admin_color_scheme->colors[ 2 ] ) {
-					$color = $this->admin_color_scheme->colors[ 2 ];
-				}
-
-				$is_live = (int) get_blog_option( $blog->userblog_id, 'blog_public' );
-				if ( 1 !== $is_live ) {
-					$prefix .= '<span style="font-style: italic; font-weight: bold; line-height: 1; color: ' . $color . ';">[' . $label . ']</span> ';
-				}
-
-				$blog->blogname                           = $prefix . $blog->blogname;
-				$admin_bar->user->blogs[ $key ]->blogname = $blog->blogname;
+			if ( $this->check_external_url( $blog->siteurl, $admin_bar->user->domain ) ) {
+				$title    = esc_attr__( 'external domain', 'multisite_enhancements' );
+				$class    = 'dashicons-before dashicons-external';
+				$url_hint = '<span title="' . $title . '" class="' . $class . '"></span>';
 			}
+
+			if ( ! $this->is_site_live( $blog->userblog_id ) ) {
+				$title     = esc_attr__( 'noindex', 'multisite_enhancements' );
+				$class     = 'dashicons-before dashicons-dismiss';
+				$live_hint = '<span title="' . $title . '" class="' . $class . '"></span>';
+			}
+
+			// Add span markup.
+			$blogname = $url_hint . $live_hint . $blog->blogname;
+
+			// Filter hook for custom style of the admin bar site string.
+			$blogname = apply_filters( 'multisite_enhancements_status_label', $blogname );
+
+			$admin_bar->user->blogs[ $key ]->blogname = $blogname;
 		}
 
+		return $admin_bar;
 	}
-
 } // end class
