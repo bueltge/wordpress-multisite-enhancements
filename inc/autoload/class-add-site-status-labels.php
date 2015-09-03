@@ -7,14 +7,14 @@
  * @package WordPress
  */
 
-add_action( 'init', array( 'Multisite_Add_Blog_Status_labels', 'init' ) );
+add_action( 'init', array( 'Multisite_Add_Site_Status_labels', 'init' ) );
 
 /**
  * Add status labels to sites.
  *
- * Class Multisite_Add_Blog_Status_labels
+ * Class Multisite_Add_Site_Status_labels
  */
-class Multisite_Add_Blog_Status_labels {
+class Multisite_Add_Site_Status_labels {
 
 	/**
 	 * Initialize the class.
