@@ -1,6 +1,6 @@
 <?php
 /**
- * Adds several useful items to the multisite 'Network Admin' admin bar
+ * Adds several useful items to the multisite 'Network Admin' admin bar.
  *
  * @since   07/19/2013
  * @version 01/03/2014
@@ -11,9 +11,8 @@ add_action( 'init', array( 'Multisite_Admin_Bar_Tweaks', 'init' ) );
 class Multisite_Admin_Bar_Tweaks {
 
 	/**
-	 * Initialize this class
+	 * Initialize this class.
 	 *
-	 * @return  void
 	 */
 	public static function init() {
 
@@ -24,10 +23,9 @@ class Multisite_Admin_Bar_Tweaks {
 	}
 
 	/**
-	 * Init function to register all used hooks
+	 * Init function to register all used hooks.
 	 *
 	 * @since   0.0.1
-	 * @return \Multisite_Admin_Bar_Tweaks
 	 */
 	public function __construct() {
 
@@ -36,10 +34,9 @@ class Multisite_Admin_Bar_Tweaks {
 	}
 
 	/**
-	 * Enhance network item
+	 * Enhance network item.
 	 *
 	 * @since   0.0.1
-	 * @return  void
 	 */
 	public function enhance_network_admin_bar() {
 
@@ -47,17 +44,17 @@ class Multisite_Admin_Bar_Tweaks {
 
 		// Show only when the user has at least one site, or they're a super admin.
 		if ( count( $wp_admin_bar->user->blogs ) < 1 ) {
-			return NULL;
+			return;
 		}
 
-		// since WP version 3.7 is the plugin link in core.
-		// return, if is active
+		// Since WP version 3.7 is the plugin link in core.
+		// Return, if is active.
 		$wp_admin_bar_nodes = $wp_admin_bar->get_nodes();
 		if ( isset( $wp_admin_bar_nodes[ 'network-admin-p' ] ) ) {
-			return NULL;
+			return;
 		}
 
-		// Add a link to the Network > Plugins page
+		// Add a link to the Network > Plugins page.
 		$wp_admin_bar->add_node(
 			array(
 				'parent' => 'network-admin',
@@ -69,11 +66,11 @@ class Multisite_Admin_Bar_Tweaks {
 	}
 
 	/**
-	 * Enhance each blog menu in network admin bar
+	 * Enhance each blog menu in network admin bar.
+	 *
 	 * Add new 'Manage Comment' Item with count of comments, there wait for moderate
 	 *
 	 * @since   0.0.1
-	 * @return  void
 	 */
 	public function enhance_network_blog_admin_bar() {
 

@@ -1,6 +1,7 @@
 <?php
 /**
  * Change/Enhance the admin footer text with RAM, SQL Queries and RAM version in Footer.
+ *
  * Only for Admins
  *
  * Use the follow filter hooks for different changes

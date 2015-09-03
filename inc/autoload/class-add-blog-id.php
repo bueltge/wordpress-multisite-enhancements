@@ -3,7 +3,7 @@
  * View Blog and User ID in WordPress Multisite.
  *
  * @see     http://wpengineer.com/2188/view-blog-id-in-wordpress-multisite/
- * @since   07/19/2013
+ * @since   2013-07-19
  * @version 2015-08-20
  * @package WordPress
  */
