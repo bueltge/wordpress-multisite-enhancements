@@ -3,7 +3,7 @@
  * Plugin Name: Multisite Enhancements
  * Description: Enhance Multisite for Network Admins with different topics
  * Plugin URI:  https://github.com/bueltge/WordPress-Multisite-Enhancements
- * Version:     1.1.1-dev
+ * Version:     1.2.0
  * Author:      Frank Bültge
  * Author URI:  http://bueltge.de
  * License:     GPLv2+
@@ -17,10 +17,16 @@
 
 add_filter( 'plugins_loaded', array( 'Multisite_Enhancements', 'get_object' ) );
 
+/**
+ * Class Multisite_Enhancements.
+ *
+ * Plugin wrapper to list as plugin in WordPress environment and load all necessary files.
+ * Use the filter hook 'multisite_enhancements_autoload' to unset classes, there is not necessary for you.
+ */
 class Multisite_Enhancements {
 
 	/**
-	 * Define folder, there have inside the autoload files
+	 * Define folder, there have inside the autoload files.
 	 *
 	 * @since  0.0.1
 	 * @var    String
@@ -28,7 +34,7 @@ class Multisite_Enhancements {
 	static protected $file_base = '';
 
 	/**
-	 * The class object
+	 * The class object.
 	 *
 	 * @since  0.0.1
 	 * @var    String
@@ -36,7 +42,7 @@ class Multisite_Enhancements {
 	static protected $class_object;
 
 	/**
-	 * Load the object and get the current state
+	 * Load the object and get the current state.
 	 *
 	 * @since   0.0.1
 	 * @return String $class_object
@@ -51,28 +57,26 @@ class Multisite_Enhancements {
 	}
 
 	/**
-	 * Init function to register all used hooks
+	 * Init function to register all used hooks.
 	 *
 	 * @since   0.0.1
-	 * @return \Multisite_Enhancements
 	 */
 	public function __construct() {
 
-		// This check prevents using this plugin not in a multisite
+		// This check prevents using this plugin not in a multisite.
 		if ( function_exists( 'is_multisite' ) && ! is_multisite() ) {
 			add_filter( 'admin_notices', array( $this, 'error_msg_no_multisite' ) );
 		}
 
-		// Since 2015-08-18 only PHP 5.3, use now __DIR__ as equivalent to dirname(__FILE__)
+		// Since 2015-08-18 only PHP 5.3, use now __DIR__ as equivalent to dirname(__FILE__).
 		self::$file_base = __DIR__ . '/inc';
 		self::load();
 	}
 
 	/**
-	 * Display an Admin Notice if multisite is not active
+	 * Display an Admin Notice if multisite is not active.
 	 *
 	 * @since   0.0.1
-	 * @return  void
 	 */
 	public function error_msg_no_multisite() {
 
