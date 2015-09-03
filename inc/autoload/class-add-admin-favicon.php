@@ -86,7 +86,11 @@ class Multisite_Add_Admin_Favicon {
 		 */
 		$this->sites_limit = (int) apply_filters( 'multisite_enhancements_sites_limit', $this->sites_limit );
 
-		// Hooks for add favicon markup.
+		/**
+		 * Hooks for add favicon markup.
+		 *
+		 * @type array
+		 */
 		$hooks = apply_filters( 'multisite_enhancements_favicon', self::$favicon_hooks );
 
 		foreach ( $hooks as $hook ) {
@@ -125,7 +129,11 @@ class Multisite_Add_Admin_Favicon {
 			$output .= '</style>';
 		}
 
-		// Use the filter hook to change style.
+		/**
+		 * Use the filter hook to change style.
+		 *
+		 * @type string
+		 */
 		echo apply_filters( 'multisite_enhancements_add_favicon', $output );
 	}
 
@@ -189,7 +197,11 @@ class Multisite_Add_Admin_Favicon {
 		}
 
 		if ( '' !== $output ) {
-			// Use the filter hook to change style.
+			/**
+			 * Use the filter hook to change style.
+			 *
+			 * @type string
+			 */
 			echo apply_filters(
 				'multisite_enhancements_add_admin_bar_favicon',
 				'<style>' . $output . '</style>' . "\n"
@@ -208,7 +220,11 @@ class Multisite_Add_Admin_Favicon {
 	 */
 	public function change_admin_bar_menu( $admin_bar ) {
 
-		// Use the filter hook to remove or not remove the first part in the admin bar.
+		/**
+		 * Use the filter hook to remove or not remove the first part in the admin bar.
+		 *
+		 * @type bool
+		 */
 		if ( apply_filters(
 			'multisite_enhancements_remove_wp_admin_bar',
 			self::$remove_wp_admin_bar

@@ -10,7 +10,7 @@
 add_action( 'init', array( 'Multisite_Add_Blog_Status_labels', 'init' ) );
 
 /**
- * Add status labels to blogs.
+ * Add status labels to sites.
  *
  * Class Multisite_Add_Blog_Status_labels
  */
