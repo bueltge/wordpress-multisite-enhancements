@@ -2,7 +2,7 @@
 Contributors: Bueltge, inpsyde
 Tags: multisite, administration, admin bar, network,
 Requires at least: 3.0.0
-Tested up to: 4.2
+Tested up to: 4.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -21,6 +21,7 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
 * Add Favicon from theme folder to the admin area to easier identify the blog, use the `favicon.ico` file in the theme folder of the active theme in each blog
 * Add Favicon to each blog on the Admin Bar Item 'My Sites'. If you a like a custom path for each favicon, please see the [documentation](https://github.com/bueltge/WordPress-Multisite-Enhancements/wiki/Filter-Hook-for-Favicon-File-Path) for this feature.
 * Remove also the 'W' logo and his sub-links in admin bar
+* Add status to each site in the admin bar to identifier fast if the site `noindex` status and external url.
 * Add functions to be used in your install
 	 * The function `get_blog_list()` is currently deprecated in the WP Core, but currently usable. The plugin check this and get a alternative in [`inc/autoload/core.php`](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/inc/autoload/core.php)
 	 * If you will develop with the alternative to this function from my source, then use the method `get_blog_list()` in class `Multisite_Core`. She use also caching with the Transient API. See more about the function on the function in [`inc/autoload/class-core.php`](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/inc/autoload/class-core.php).
@@ -34,7 +35,7 @@ Yes, we also run that [marketplace for premium WordPress plugins and themes](htt
 
 = Requirements =
 * WordPress Multisite 3.0+
-* PHP 5.2*, newer PHP versions will work faster.
+* PHP 5.3*, newer PHP versions will work faster.
 
 = Installation =
 * Use the installer via back-end of your install or ...
@@ -89,6 +90,12 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.2.0 (2015-09-03) =
+* Add support for Favicon feature `wp_site_icon` since WP 4.3
+* Add status label to each site in the admin bar
+* Codex changes
+* Add hook `multisite_enhancements_autoload` to unset files, there not necessary on autoload, see also the [Wiki](https://github.com/bueltge/wordpress-multisite-enhancements/wiki) for more information
+
 = 1.1.0 (2015-02-26) =
 * Some modifications to plugin and theme admin columns for better performance and usage on Multisites with more as 100 blogs, plugins, themes [Issue #16](https://github.com/bueltge/wordpress-multisite-enhancements/pull/16)
 * Code inspections
