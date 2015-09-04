@@ -91,8 +91,8 @@ So please be patient with me and let me know of typos or grammatical parts. Than
 
 == Changelog ==
 = 1.2.0 (2015-09-03) =
-* Add support for Favicon feature `wp_site_icon` since WP 4.3
-* Add status label to each site in the admin bar
+* Add support for Favicon feature `wp_site_icon` since WP 4.3, probs [JoryHogeveen](https://github.com/JoryHogeveen)
+* Add status label to each site in the admin bar, probs JoryHogeveen
 * Codex changes
 * Add hook `multisite_enhancements_autoload` to unset files, there not necessary on autoload, see also the [Wiki](https://github.com/bueltge/wordpress-multisite-enhancements/wiki) for more information
 
