@@ -181,8 +181,12 @@ class Multisite_Add_Admin_Favicon {
 			$favicon_dir     = $this->get_favicon_path( $blog_id, $stylesheet_dir, 'dir' );
 
 			// Check if the user has manually added a site icon in WP (since WP 4.3).
-			if ( function_exists( 'has_site_icon' ) && has_site_icon( $blog_id ) ) {
-				$custom_icon = esc_url( get_site_icon_url( 32, '', $blog_id ) );
+			if ( FALSE != get_blog_option( $blog_id, 'site_icon' ) ) {
+				$site_icon_id = get_blog_option( $blog_id, 'site_icon' );
+				switch_to_blog( $blog_id );
+				$url_data = wp_get_attachment_image_src( $site_icon_id, array( 32, 32 ) );
+				$custom_icon = esc_url( $url_data[0] );
+				restore_current_blog();
 			} else if ( file_exists( $favicon_dir ) ) {
 				$custom_icon = $favicon_dir_uri;
 			}
