@@ -147,6 +147,11 @@ class Multisite_Add_Admin_Favicon {
 	 */
 	public function set_admin_bar_blog_icon() {
 
+		// Only usable if the user is logged in and use the admin bar.
+		if ( ! is_user_logged_in() || ! is_admin_bar_showing() ) {
+			return;
+		}
+
 		if ( function_exists( 'wp_get_sites' ) ) {
 			// Since 3.7 inside the Core.
 			$blogs = wp_get_sites(
