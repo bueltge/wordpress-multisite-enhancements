@@ -204,7 +204,7 @@ class Multisite_Add_Admin_Favicon {
 			 */
 			echo apply_filters(
 				'multisite_enhancements_add_admin_bar_favicon',
-				'<style>' . $output . '</style>' . "\n"
+				"\n" . '<style>' . $output . '</style>' . "\n"
 			);
 		}
 	}
