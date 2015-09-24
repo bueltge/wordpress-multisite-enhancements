@@ -30,11 +30,11 @@ env:
 matrix:
   include:
     - php: "5.4"
-      env: WP_VERSION=4.0.0 WP_MULTISITE=1
+      env: WP_VERSION=4.3.0 WP_MULTISITE=1
     - php: "5.3"
-      env: WP_VERSION=4.0.0 WP_MULTISITE=1
+      env: WP_VERSION=4.3.0 WP_MULTISITE=1
     - php: "5.2"
-      env: WP_VERSION=4.0.0 WP_MULTISITE=1
+      env: WP_VERSION=4.3.0 WP_MULTISITE=1
 
 # Clones WordPress and configures our testing environment.
 before_script:
