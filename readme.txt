@@ -64,6 +64,7 @@ Yes, we also run that [marketplace for premium WordPress plugins and themes](htt
 = Hints, knowledge =
 See also for helpful hints on the [wiki page](https://github.com/bueltge/wordpress-multisite-enhancements/wiki).
 Especially the follow topics are interest:
+
 * [Filter Hook for Favicon File Path - Define your custom Favicon path](https://github.com/bueltge/WordPress-Multisite-Enhancements/wiki/Filter-Hook-for-Favicon-File-Path)
 * [Large Network Problem](https://github.com/bueltge/wordpress-multisite-enhancements/wiki/Large-Network-Problem)
 
