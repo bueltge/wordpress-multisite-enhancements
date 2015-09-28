@@ -91,6 +91,9 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.2.2 (???) =
+* Improve status label filter `multisite_enhancements_status_label`, now with the parameters `$blogname` and `$blog`.
+
 = 1.2.1 (2015-09-24) =
 * Bugfix: Correction for the site icon topic. The functions "has_site_icon" and "get_site_icon_url" aren't compatible with multisites. Icon only displayed when on that blog, in network or other blog the WP logo showed.
 * Enhancement: Check for active usage of admin bar before add favicon to Admin Bar.
