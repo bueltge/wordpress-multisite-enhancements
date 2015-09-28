@@ -113,7 +113,7 @@ class Multisite_Add_Site_Status_labels {
 			$blogname = $url_hint . $live_hint . $blog->blogname;
 
 			// Filter hook for custom style of the admin bar site string.
-			$blogname = apply_filters( 'multisite_enhancements_status_label', $blogname );
+			$blogname = apply_filters( 'multisite_enhancements_status_label', $blogname, $blog );
 
 			$admin_bar->user->blogs[ $key ]->blogname = $blogname;
 		}
