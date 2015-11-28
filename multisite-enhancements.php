@@ -107,6 +107,7 @@ class Multisite_Enhancements {
 	public static function load() {
 
 		$file_base = self::$file_base;
+		define( 'MULTISITE_ENHANCEMENT_BASE', $file_base );
 
 		$autoload_files = glob( "$file_base/autoload/*.php" );
 		$autoload_files = apply_filters( 'multisite_enhancements_autoload', $autoload_files );
