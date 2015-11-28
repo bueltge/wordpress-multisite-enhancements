@@ -95,6 +95,7 @@ So please be patient with me and let me know of typos or grammatical parts. Than
 == Changelog ==
 = 1.3.0 (2015-11-28) =
 * Add new functionality to filter plugin list live.
+* Improve status label filter `multisite_enhancements_status_label`, now with the parameters `$blogname` and `$blog`.
 
 = 1.2.1 (2015-09-24) =
 * Bugfix: Correction for the site icon topic. The functions "has_site_icon" and "get_site_icon_url" aren't compatible with multisites. Icon only displayed when on that blog, in network or other blog the WP logo showed.
