@@ -2,7 +2,7 @@
 Contributors: Bueltge, inpsyde
 Tags: multisite, administration, admin bar, network,
 Requires at least: 3.0.0
-Tested up to: 4.3
+Tested up to: 4.4
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -26,6 +26,7 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
 	 * The function `get_blog_list()` is currently deprecated in the WP Core, but currently usable. The plugin check this and get a alternative in [`inc/autoload/core.php`](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/inc/autoload/core.php)
 	 * If you will develop with the alternative to this function from my source, then use the method `get_blog_list()` in class `Multisite_Core`. She use also caching with the Transient API. See more about the function on the function in [`inc/autoload/class-core.php`](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/inc/autoload/class-core.php).
 	 * If you use WordPress version 3.7 and higher, then check the function `wp_get_sites()`, the new alternative function inside the core to get all sides inside the network. The function accept a array with arguments, see the [description](http://wpseek.com/wp_get_sites/).
+* Filter plugin list to find your goal fast. Works on single plugin page and also network plugin page.
 
 **Crafted by [Inpsyde](http://inpsyde.com) · Engineering the web since 2006.**
 
@@ -54,6 +55,7 @@ Yes, we also run that [marketplace for premium WordPress plugins and themes](htt
 6. On which blog is the theme active
 7. New Admin footer text
 8. Favicon on Admin bar
+9. Filter plugin list
 
 == Other Notes ==
 
@@ -91,6 +93,9 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.3.0 (2015-11-28) =
+* Add new functionality to filter plugin list live.
+
 = 1.2.1 (2015-09-24) =
 * Bugfix: Correction for the site icon topic. The functions "has_site_icon" and "get_site_icon_url" aren't compatible with multisites. Icon only displayed when on that blog, in network or other blog the WP logo showed.
 * Enhancement: Check for active usage of admin bar before add favicon to Admin Bar.
