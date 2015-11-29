@@ -1,27 +1,21 @@
-<?php
-
-$_tests_dir = getenv('WP_TESTS_DIR');
-if ( !$_tests_dir ) $_tests_dir = '/tmp/wordpress-tests-lib';
-
-require_once $_tests_dir . '/includes/functions.php';
-
-function _manually_load_plugin() {
-	require dirname( __FILE__ ) . '/../my-awesome-plugin.php';
-}
-tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
-
-require $_tests_dir . '/includes/bootstrap.php';
-
-class My_Awesome_Plugin_TestCase extends WP_UnitTestCase {
-	function plugin() {
-		return My_Awesome_Plugin_Plugin::get_instance();
-	}
-
-	function set_post( $key, $value ) {
-		$_POST[$key] = $_REQUEST[$key] = addslashes( $value );
-	}
-
-	function unset_post( $key ) {
-		unset( $_POST[$key], $_REQUEST[$key] );
-	}
+<?php # -*- coding: utf-8 -*-
+// Use default composer autoload for local test
+require_once dirname( __DIR__ ) . '/vendor/autoload.php';
+// Activates this plugin in WordPress so it can be tested.
+$GLOBALS[ 'wp_tests_options' ] = array(
+	'active_plugins' => array( 'wordpress-multisite-enhancements/multisite-enhancements.php' ),
+);
+/**
+ * If the wordpress-tests repo location has been customized (and specified
+ * with WP_TESTS_DIR), use that location. This will most commonly be the case
+ * when configured for use with Travis CI.
+ * Otherwise, we'll just assume that this plugin is installed in the WordPress
+ * SVN external checkout configured in the wordpress-tests repo.
+ *
+ * @see SVN URL: http://develop.svn.wordpress.org/trunk/
+ */
+if ( FALSE !== getenv( 'WP_TESTS_DIR' ) ) {
+	require getenv( 'WP_TESTS_DIR' ) . '/tests/phpunit/includes/bootstrap.php';
+} else {
+	require '../../../../tests/phpunit/includes/bootstrap.php';
 }

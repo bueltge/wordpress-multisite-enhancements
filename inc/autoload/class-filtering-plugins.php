@@ -2,7 +2,7 @@
 /**
  * Add simple javascript to filter the plugin list on network and single plugin page of WordPress back end.
  *
- * @since   2015-11-28
+ * @since   2015-11-29
  * @package WordPress
  */
 
