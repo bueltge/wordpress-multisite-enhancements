@@ -15,6 +15,12 @@ module.exports = function( grunt ) {
 			}
 		},
 
+		concat: {
+			options: {
+				separator: '\n'
+			}
+		},
+
 		imagemin: {
 			options: {
 				optimizationLevel: 7
