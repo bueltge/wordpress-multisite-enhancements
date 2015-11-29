@@ -43,7 +43,7 @@ class Filtering_Plugins {
 			'me_filtering_plugins',
 			plugins_url( '/inc/assets/js/filtering-plugins' . $suffix . '.js', MULTISITE_ENHANCEMENT_BASE ),
 			array( 'jquery' ),
-			2015 - 11 - 28,
+			'2015-11-29',
 			TRUE
 		);
 		wp_enqueue_script( 'me_filtering_plugins' );
