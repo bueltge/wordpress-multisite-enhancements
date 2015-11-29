@@ -2,6 +2,8 @@
 module.exports = function( grunt ) {
 	'use strict';
 
+	var _ = require( 'lodash' );
+
 	var configObject = {
 		config: {
 			assets: {
@@ -176,6 +178,29 @@ module.exports = function( grunt ) {
 			}
 		}
 	};
+
+	// Add development target for JSCS.
+	configObject.jscs.force = _.merge(
+		{},
+		configObject.jscs.scripts,
+		{
+			options: {
+				force: true
+			}
+		}
+	);
+
+	// Add development target for JSHint.
+	configObject.jshint.force = _.merge(
+		{},
+		configObject.jshint.scripts,
+		{
+			options: {
+				devel: true,
+				force: true
+			}
+		}
+	);
 
 	require( 'load-grunt-tasks' )( grunt );
 
