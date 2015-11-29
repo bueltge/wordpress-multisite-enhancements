@@ -45,7 +45,7 @@ class Filtering_Plugins {
 			array( 'jquery' ),
 			2015 - 11 - 28,
 			TRUE
-		);git
+		);
 		wp_enqueue_script( 'me_filtering_plugins' );
 	}
 }
