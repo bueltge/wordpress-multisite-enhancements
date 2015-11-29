@@ -1,0 +1,27 @@
+# General backup/log/swap files
+*~
+*.DS_Store
+*.log
+*.out
+*.so
+*.swp
+
+# Custom files
+*.map
+*.sass-cache*
+
+# Composer
+vendor
+
+# Node
+node_modules
+
+# PhpStorm
+.idea
+.project
+
+# PHPUnit
+phpunit.xml
+
+# This should stay at the bottom
+!.gitkeep
