@@ -1,0 +1,29 @@
+{
+  "name": "wordpress-multisite-enhancements",
+  "version": "1.3.0",
+  "description": "Enhance WordPress Multisite for Network Admins with different topics.",
+  "homepage": "https://github.com/bueltge/wordpress-multisite-enhancements",
+  "bugs": "https://github.com/bueltge/wordpress-multisite-enhancements/issues",
+  "license": "GPL-2.0+",
+  "author": {
+    "name": "Frank Bueltge",
+    "email": "frank@bueltge.de",
+    "url": "http://bueltge.de"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bueltge/wordpress-multisite-enhancements"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "jshint-stylish": "~2.1.0",
+    "grunt-contrib-uglify": "~0.11.0",
+    "grunt-jscs": "~2.3.0",
+    "grunt-jsonlint": "~1.0.6",
+    "grunt-jsvalidate": "~0.2.2",
+    "grunt-lineending": "~0.2.4",
+    "grunt-newer": "~1.1.1",
+    "load-grunt-tasks": "~3.3.0"
+  }
+}
