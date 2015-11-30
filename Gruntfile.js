@@ -49,7 +49,7 @@ module.exports = function( grunt ) {
 				src: [ 'Gruntfile.js' ]
 			},
 			scripts: {
-				src: [ '<%= config.scripts.src %>**/*.js' ]
+				src: [ '<%= config.scripts.src %>**/*.js', '!<%= config.scripts.src %>**/*.min.js' ]
 			}
 		},
 
