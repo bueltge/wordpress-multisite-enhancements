@@ -1,5 +1,5 @@
 {
   "preset": "wordpress",
-  "excludeFiles": [ "*.min.js" ],
+  "excludeFiles": [ "**/*.min.js" ],
   "fileExtensions": [ ".js" ]
 }
