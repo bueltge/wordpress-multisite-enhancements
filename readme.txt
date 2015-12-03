@@ -93,6 +93,9 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.3.1 (2015-12-03) =
+* Enhance the external domain check for more exactly check, that's also work on root domain of multisite. Props Matt [Thread](https://wordpress.org/support/topic/main-blog-being-tagged-as-external-domain)
+
 = 1.3.0 (2015-11-28) =
 * Add new functionality to filter plugin list live.
 * Improve status label filter `multisite_enhancements_status_label`, now with the parameters `$blogname` and `$blog`.

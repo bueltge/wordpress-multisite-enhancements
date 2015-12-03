@@ -3,7 +3,7 @@
  * Add status labels to blogs.
  *
  * @since   2015-07-14
- * @version 2015-09-03
+ * @version 2015-12-03
  * @package WordPress
  */
 
@@ -50,6 +50,9 @@ class Multisite_Add_Site_Status_labels {
 	 * @return bool
 	 */
 	public function check_external_url( $haystack, $needle ) {
+
+		// Remove last string for exactly check.
+		$needle = rtrim( $needle, '/' );
 
 		if ( FALSE === strpos(
 				$haystack,
