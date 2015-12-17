@@ -7,7 +7,14 @@ language:
 
 # Versions of PHP to test against
 php:
-    - 5.5
+  - 5.3.3
+  - 5.3
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
+  - hhvm
+  - nightly
 
 # Specify versions of WordPress to test against
 # WP_VERSION = WordPress version number (use "master" for SVN trunk)
@@ -28,13 +35,10 @@ env:
 # along with 2 versions of WordPress (which would build 8 configs otherwise).
 # This takes half as long to run while still providing adequate coverage.
 matrix:
-  include:
-    - php: "5.4"
-      env: WP_VERSION=4.3.0 WP_MULTISITE=1
-    - php: "5.3"
-      env: WP_VERSION=4.3.0 WP_MULTISITE=1
-    - php: "5.2"
-      env: WP_VERSION=4.3.0 WP_MULTISITE=1
+  fast_finish: true
+  allow_failures:
+    - php: hhvm
+    - php: nightly
 
 # Clones WordPress and configures our testing environment.
 before_script:
