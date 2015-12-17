@@ -25,7 +25,7 @@ class Test_Gimmick extends PHPUnit_Framework_TestCase {
 	 */
 	public function test_string_2() {
 
-		$actual = self::$actual . ' Now with error!';
+		$actual = self::$actual;// . ' Now with error!';
 		$this->assertEquals( self::$expected, $actual );
 	}
 }
