@@ -4,7 +4,7 @@
  *
  * @see     http://wpengineer.com/2188/view-blog-id-in-wordpress-multisite/
  * @since   2013-07-19
- * @version 2015-08-20
+ * @version 2016-01-15
  * @package WordPress
  */
 
@@ -36,7 +36,7 @@ class Multisite_Add_Blog_Id {
 	public function __construct() {
 
 		if ( ! is_network_admin() ) {
-			return NULL;
+			return;
 		}
 
 		// Add blog id.
