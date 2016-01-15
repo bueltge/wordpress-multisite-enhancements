@@ -78,8 +78,10 @@ class Multisite_Add_Blog_Id {
 	public function get_user_id( $value, $column_name, $user_id ) {
 
 		if ( 'object_id' === $column_name ) {
-			echo (int) $user_id;
+			return (int) $user_id;
 		}
+		
+		return $value;
 	}
 
 	/**
