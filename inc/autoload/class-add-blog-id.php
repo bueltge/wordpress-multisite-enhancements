@@ -45,7 +45,7 @@ class Multisite_Add_Blog_Id {
 
 		// Add user id.
 		add_filter( 'manage_users-network_columns', array( $this, 'get_id' ) );
-		add_action( 'manage_users_custom_column', array( $this, 'get_user_id' ), 10, 3 );
+		add_filter( 'manage_users_custom_column', array( $this, 'get_user_id' ), 10, 3 );
 
 		add_action( 'admin_print_styles-sites.php', array( $this, 'add_style' ) );
 		add_action( 'admin_print_styles-users.php', array( $this, 'add_style' ) );
@@ -74,6 +74,8 @@ class Multisite_Add_Blog_Id {
 	 * @param string $value       Custom column output.
 	 * @param string $column_name The current column name.
 	 * @param int    $user_id     ID of the currently-listed user.
+	 *
+	 * @return int|string
 	 */
 	public function get_user_id( $value, $column_name, $user_id ) {
 
