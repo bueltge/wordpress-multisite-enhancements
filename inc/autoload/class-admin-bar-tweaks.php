@@ -2,8 +2,8 @@
 /**
  * Adds several useful items to the multisite 'Network Admin' admin bar.
  *
- * @since   07/19/2013
- * @version 01/03/2014
+ * @since   2013-07-19
+ * @version 2016-01-15
  */
 
 add_action( 'init', array( 'Multisite_Admin_Bar_Tweaks', 'init' ) );
@@ -50,7 +50,7 @@ class Multisite_Admin_Bar_Tweaks {
 		// Since WP version 3.7 is the plugin link in core.
 		// Return, if is active.
 		$wp_admin_bar_nodes = $wp_admin_bar->get_nodes();
-		if ( isset( $wp_admin_bar_nodes[ 'network-admin-p' ] ) ) {
+		if ( array_key_exists( 'network-admin-p', $wp_admin_bar_nodes ) ) {
 			return;
 		}
 
@@ -91,7 +91,7 @@ class Multisite_Admin_Bar_Tweaks {
 
 				$title = __( 'Manage Comments' )
 					. '<span id="ab-awaiting-mod" class="ab-label awaiting-mod pending-count count-'
-					. intval( $awaiting_mod ) . '" style="margin-left:.2em">' . number_format_i18n( $awaiting_mod ) . '</span>';
+					. (int) $awaiting_mod . '" style="margin-left:.2em">' . number_format_i18n( $awaiting_mod ) . '</span>';
 
 				$awaiting_title = esc_attr(
 					sprintf(

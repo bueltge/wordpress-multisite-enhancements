@@ -3,7 +3,7 @@
  * On the network plugins page, show which blogs have this plugin active.
  *
  * @since   2013-07-19
- * @version 2015-08-20
+ * @version 2016-01-15
  * @package WordPress
  */
 
@@ -23,7 +23,7 @@ class Multisite_Add_Plugin_List {
 	 * On this plugin status will not show the not or activated status in the table of plugins.
 	 *
 	 * @since  01/03/2014
-	 * @var    Array
+	 * @var    array
 	 */
 	static protected $excluded_plugin_status = array( 'dropins', 'mustuse' );
 
@@ -31,7 +31,7 @@ class Multisite_Add_Plugin_List {
 	 * Member variable to store data about active plugins for each blog.
 	 *
 	 * @since   2015-02-21
-	 * @var     Array
+	 * @var     array
 	 */
 	private $blogs_plugins;
 
@@ -67,7 +67,7 @@ class Multisite_Add_Plugin_List {
 		add_action( 'deactivated_plugin', array( $this, 'clear_plugins_site_transient' ), 10, 2 );
 
 		if ( ! is_network_admin() ) {
-			return NULL;
+			return;
 		}
 
 		/**
@@ -93,12 +93,13 @@ class Multisite_Add_Plugin_List {
 	public function add_plugins_column( $columns ) {
 
 		// If not set, then no changes on output.
-		if ( ! isset( $_GET[ 'plugin_status' ] ) ) {
+		if ( ! array_key_exists( 'plugin_status', $_GET ) ) {
 			$_GET[ 'plugin_status' ] = '';
 		}
 
 		// Not useful on different selections.
-		if ( ! in_array( esc_attr( $_GET[ 'plugin_status' ] ), self::$excluded_plugin_status ) ) {
+		if ( ! in_array( esc_attr( $_GET[ 'plugin_status' ] ), self::$excluded_plugin_status, FALSE ) ) {
+			// Translators: Active in is the head of the table column on plugin list.
 			$columns[ 'active_blogs' ] = _x( '<nobr>Active in </nobr>', 'column name' );
 		}
 
@@ -112,7 +113,7 @@ class Multisite_Add_Plugin_List {
 	 *
 	 * @param  String $column_name Name of the column.
 	 * @param  String $plugin_file Path to the plugin file.
-	 * @param  Array  $plugin_data An array of plugin data.
+	 * @param  array  $plugin_data An array of plugin data.
 	 *
 	 * @return String
 	 */
@@ -127,12 +128,13 @@ class Multisite_Add_Plugin_List {
 			require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 		}
 
-		$active_on_network = is_plugin_active_for_network( $plugin_file, $plugin_data );
+		$active_on_network = is_plugin_active_for_network( $plugin_file );
 
 		$output = '';
 
 		if ( $active_on_network ) {
 			// We don't need to check any further for network active plugins.
+			// Translators: The plugin is network wide active, the string is for each plugin possible.
 			$output .= __( '<nobr>Network Activated</nobr>', 'multisite_enhancements' );
 
 			// List Blogs, there is activated.
@@ -140,7 +142,8 @@ class Multisite_Add_Plugin_List {
 			// Is this plugin active on any blogs in this network.
 			$active_on_blogs = $this->is_plugin_active_on_blogs( $plugin_file );
 
-			if ( empty( $active_on_blogs ) ) {
+			if ( ! $active_on_blogs ) {
+				// Translators: The plugin is not activated, the string is for each plugin possible.
 				$output .= __( '<nobr>Not Activated</nobr>', 'multisite_enhancements' );
 			} else {
 				$output .= '<ul>';
@@ -174,7 +177,7 @@ class Multisite_Add_Plugin_List {
 	 *
 	 * @internal param  $String
 	 *
-	 * @return Array $active_in_plugins Which Blog ID and Name of Blog for each item in Array.
+	 * @return array $active_in_plugins Which Blog ID and Name of Blog for each item in Array.
 	 */
 	public function is_plugin_active_on_blogs( $plugin_file ) {
 
@@ -183,7 +186,7 @@ class Multisite_Add_Plugin_List {
 		$active_in_plugins = array();
 
 		foreach ( $blogs_plugins as $blog_id => $data ) {
-			if ( in_array( $plugin_file, $data[ 'active_plugins' ] ) ) {
+			if ( in_array( $plugin_file, $data[ 'active_plugins' ], FALSE ) ) {
 				$active_in_plugins[ $blog_id ] = array(
 					'name' => $data[ 'blogname' ],
 					'path' => $data[ 'blogpath' ],
@@ -199,7 +202,7 @@ class Multisite_Add_Plugin_List {
 	 *
 	 * @since  21/02/2015
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	public function get_blogs_plugins() {
 
@@ -225,6 +228,7 @@ class Multisite_Add_Plugin_List {
 				$blogs = Multisite_Core::get_blog_list( 0, 'all' );
 			}
 
+			/** @var array $blog */
 			foreach ( (array) $blogs as $blog ) {
 				$this->blogs_plugins[ $blog[ 'blog_id' ] ]                     = $blog;
 				$this->blogs_plugins[ $blog[ 'blog_id' ] ][ 'blogpath' ]       = get_blog_details(

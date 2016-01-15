@@ -3,7 +3,7 @@
  * On the network theme page, show which blog have the theme active.
  *
  * @since   2013-07-22
- * @version 2015-08-20
+ * @version 2016-01-15
  * @package WordPress
  */
 
@@ -28,7 +28,7 @@ class Multisite_Add_Theme_List {
 	 * Member variable to store data about active theme for each blog.
 	 *
 	 * @since    21/02/2015
-	 * @var     Array
+	 * @var     array
 	 */
 	private $blogs_themes;
 
@@ -62,7 +62,7 @@ class Multisite_Add_Theme_List {
 		add_action( 'switch_theme', array( $this, 'clear_themes_site_transient' ), 10, 1 );
 
 		if ( ! is_network_admin() ) {
-			return NULL;
+			return;
 		}
 
 		/**
@@ -102,9 +102,9 @@ class Multisite_Add_Theme_List {
 	 *
 	 * @param  String $column_name Name of the column.
 	 * @param  String $theme_key   Path to the theme file.
-	 * @param  Array  $theme_data  An array of theme data.
+	 * @param  array  $theme_data  An array of theme data.
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	public function manage_themes_custom_column( $column_name, $theme_key, $theme_data ) {
 
@@ -131,11 +131,12 @@ class Multisite_Add_Theme_List {
 		$parent_context = '';
 		$used_as_parent = $this->is_parent( $theme_key );
 		if ( count( $used_as_parent ) ) {
-			$parent_context .= '<br>' . __( 'This is used as a parent theme by: ', 'multisite_enhancements' );
+			$parent_context .= '<br>' . __( 'This is used as a parent theme by:', 'multisite_enhancements' ) . ' ';
 			$parent_context .= implode( ', ', $used_as_parent );
 		}
 
-		if ( empty( $active_on_blogs ) ) {
+		if ( ! $active_on_blogs ) {
+			// Translators: The theme is not activated, the string is for each plugin possible.
 			$output .= __( '<nobr>Not Activated</nobr>', 'multisite_enhancements' );
 			$output .= $child_context;
 			$output .= $parent_context;
@@ -161,13 +162,13 @@ class Multisite_Add_Theme_List {
 	/**
 	 * Is theme active in blogs.
 	 *
-	 * Return Array with values to each theme
+	 * Return array with values to each theme
 	 *
 	 * @since   0.0.2
 	 *
 	 * @param String $theme_key The key of each theme.
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	public function is_theme_active_on_blogs( $theme_key ) {
 
@@ -197,14 +198,7 @@ class Multisite_Add_Theme_List {
 	 */
 	public function is_child( $theme_data ) {
 
-		// For limitation of empty() write in var.
-		$parent = $theme_data->parent();
-
-		if ( ! empty( $parent ) ) {
-			return TRUE;
-		}
-
-		return FALSE;
+		return (bool) $theme_data->parent();
 	}
 
 	/**
@@ -214,23 +208,28 @@ class Multisite_Add_Theme_List {
 	 *
 	 * @param String $theme_key The key of each theme.
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	public function is_parent( $theme_key ) {
 
 		$blogs_themes = $this->get_blogs_themes();
 		$parent_of    = array();
 
+		/** @var array $data */
 		foreach ( (array) $blogs_themes as $blog_id => $data ) {
 
-			if ( isset( $data[ 'template' ] ) && $data[ 'template' ] !== $data[ 'stylesheet' ] && $data[ 'template' ] === $theme_key ) {
-				$theme        = wp_get_theme( $data[ 'stylesheet' ] );
-				$parent_of[ ] = $theme->get( 'Name' );
+			$template = FALSE;
+			if ( array_key_exists( 'template', $data ) ) {
+				$template = $data[ 'template' ];
+			}
+
+			if ( $template !== $data[ 'stylesheet' ] && $template === $theme_key ) {
+				$theme       = wp_get_theme( $data[ 'stylesheet' ] );
+				$parent_of[] = $theme->get( 'Name' );
 			}
 		}
 
 		return $parent_of;
-
 	}
 
 	/**
@@ -238,7 +237,7 @@ class Multisite_Add_Theme_List {
 	 *
 	 * @since  21/02/2015
 	 *
-	 * @return Array
+	 * @return array
 	 */
 	public function get_blogs_themes() {
 
@@ -264,6 +263,7 @@ class Multisite_Add_Theme_List {
 				$blogs = Multisite_Core::get_blog_list( 0, 'all' );
 			}
 
+			/** @var array $blog */
 			foreach ( (array) $blogs as $blog ) {
 				$this->blogs_themes[ $blog[ 'blog_id' ] ]                 = $blog;
 				$this->blogs_themes[ $blog[ 'blog_id' ] ][ 'blogpath' ]   = get_blog_details(

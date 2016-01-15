@@ -19,3 +19,8 @@
 # Vendor (e.g. Composer)
 vendor/*
 !vendor/.gitkeep
+
+# IDE PhpStorm
+.idea/
+*.ipr
+*.iws

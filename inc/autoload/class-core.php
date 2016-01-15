@@ -2,7 +2,8 @@
 /**
  * Core methods, there will be used.
  *
- * @since   07/24/2013
+ * @since   2013-07-24
+ * @version 2016-01-15
  */
 
 add_action( 'init', array( 'Multisite_Core', 'init' ) );
@@ -31,7 +32,7 @@ class Multisite_Core {
 	 * @param  Boolean $details Get also Postcount for each blog, default is False for a better performance.
 	 * @param  Integer $expires Time until expiration in seconds, default 86400s (1day).
 	 *
-	 * @return Array   Returns an array of arrays each representing a blog.
+	 * @return array   Returns an array of arrays each representing a blog.
 	 *                  Details are represented in the following format:
 	 *                      blog_id   (integer) ID of blog detailed.
 	 *                      domain    (string)  Domain used to access this blog.
@@ -53,10 +54,9 @@ class Multisite_Core {
 			global $wpdb;
 
 			// Add limit for select.
+			$limit = "LIMIT $start, $num";
 			if ( 'all' === $num ) {
 				$limit = '';
-			} else {
-				$limit = "LIMIT $start, $num";
 			}
 
 			$blogs = $wpdb->get_results(
@@ -84,6 +84,7 @@ class Multisite_Core {
 		// Only if usable, set via var.
 		if ( TRUE === $details ) {
 
+			/** @var array $blog_list */
 			$blog_list = get_site_transient( 'multisite_blog_list_details' );
 
 			// For debugging purpose.

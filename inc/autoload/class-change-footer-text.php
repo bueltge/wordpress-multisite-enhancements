@@ -15,7 +15,8 @@
  *     - Hook: multisite_enhancements_admin_footer_text
  *     - default is: Blog-Name, RAM, SQL, RAM Version
  *
- * @since   07/23/2013
+ * @since   2013-07-23
+ * @version 2016-01-15
  */
 
 add_action( 'init', array( 'Multisite_Change_Footer_Text', 'init' ) );
@@ -112,7 +113,7 @@ class Multisite_Change_Footer_Text {
 
 		$footer_text .= wp_html_excerpt( $blogname, 40, '&hellip;' );
 		$footer_text .= ' &bull; <abbr title="Random-access memory">RAM</abbr> ' . number_format(
-				( memory_get_peak_usage( TRUE ) / 1024 / 1024 )
+				memory_get_peak_usage( TRUE ) / 1024 / 1024
 				, 1, ',', ''
 			) . '/' . WP_MEMORY_LIMIT;
 		$footer_text .= ' &bull; <abbr title="Structured Query Language">SQL</abbr> ' . $GLOBALS[ 'wpdb' ]->num_queries;

@@ -3,7 +3,7 @@
  * Add status labels to blogs.
  *
  * @since   2015-07-14
- * @version 2015-12-03
+ * @version 2016-01-15
  * @package WordPress
  */
 
@@ -75,13 +75,7 @@ class Multisite_Add_Site_Status_labels {
 	public function is_site_live( $site_id ) {
 
 		$site_id = (int) $site_id;
-		$is_live = (int) get_blog_option( $site_id, 'blog_public' );
-
-		if ( 1 === $is_live ) {
-			return TRUE;
-		}
-
-		return FALSE;
+		return (bool) get_blog_option( $site_id, 'blog_public' );
 	}
 
 	/**

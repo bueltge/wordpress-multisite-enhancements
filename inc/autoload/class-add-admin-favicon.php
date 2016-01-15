@@ -43,7 +43,7 @@ class Multisite_Add_Admin_Favicon {
 	 * Define Hooks for add the favicon markup.
 	 *
 	 * @since 0.0.2
-	 * @var   Array
+	 * @var   array
 	 */
 	static protected $favicon_hooks = array(
 		'admin_head',

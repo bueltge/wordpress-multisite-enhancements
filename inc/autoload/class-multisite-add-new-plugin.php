@@ -2,7 +2,8 @@
 /**
  * Enables an 'Add New' link under the Plugins menu for Network admins.
  *
- * @since   07/19/2013
+ * @since   2013-07-19
+ * @version 2016-01-15
  */
 
 add_action( 'init', array( 'Multisite_Add_New_Plugin', 'init' ) );
@@ -29,7 +30,7 @@ class Multisite_Add_New_Plugin {
 
 		// Only on each blog, not network admin.
 		if ( is_network_admin() ) {
-			return NULL;
+			return;
 		}
 
 		add_action( 'admin_menu', array( $this, 'add_plugins_page' ) );

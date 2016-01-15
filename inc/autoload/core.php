@@ -21,7 +21,7 @@ if ( ! function_exists( 'get_blog_list' ) ) {
 	 *                         Setting this to string 'all' returns all sites from $start.
 	 * @param Integer $expires Time until expiration in seconds, default 86400s (1day).
 	 *
-	 * @return Array   Returns an array of arrays each representing a blog.
+	 * @return array   Returns an array of arrays each representing a blog.
 	 *                   Details are represented in the following format:
 	 *                       blog_id   (integer) ID of blog detailed.
 	 *                       domain    (string)  Domain used to access this blog.
