@@ -1,14 +1,19 @@
 * text eol=lf
 
-.git                export-ignore
-.gitignore          export-ignore
-.gitattributes      export-ignore
-tests/              export-ignore
-assets/             export-ignore
-CONTRIBUTING.md     export-ignore
-Gruntfile.js        export-ignore
-README.md           export-ignore
-composer.json       export-ignore
-package.json        export-ignore
-phpunit.xml.dist    export-ignore
-.travis.yml         export-ignore
+.git                         export-ignore
+.gitignore                   export-ignore
+.gitattributes               export-ignore
+tests/                       export-ignore
+assets/                      export-ignore
+CONTRIBUTING.md              export-ignore
+Gruntfile.js                 export-ignore
+README.md                    export-ignore
+composer.json                export-ignore
+package.json                 export-ignore
+phpunit.xml.dist             export-ignore
+.travis.yml                  export-ignore
+.jscsrc                      export-ignore
+.jshintignore                export-ignore
+.jshintrc                    export-ignore
+.phpstorm.meta.php           export-ignore
+example-remove-features.php  export-ignore
