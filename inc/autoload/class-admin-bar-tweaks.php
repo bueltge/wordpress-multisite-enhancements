@@ -3,7 +3,7 @@
  * Adds several useful items to the multisite 'Network Admin' admin bar.
  *
  * @since   2013-07-19
- * @version 2016-01-15
+ * @version 2016-04-07
  */
 
 add_action( 'init', array( 'Multisite_Admin_Bar_Tweaks', 'init' ) );
@@ -49,7 +49,8 @@ class Multisite_Admin_Bar_Tweaks {
 
 		// Since WP version 3.7 is the plugin link in core.
 		// Return, if is active.
-		$wp_admin_bar_nodes = $wp_admin_bar->get_nodes();
+		/** @var WP_Admin_Bar $wp_admin_bar */
+		$wp_admin_bar_nodes = (array) $wp_admin_bar->get_nodes();
 		if ( array_key_exists( 'network-admin-p', $wp_admin_bar_nodes ) ) {
 			return;
 		}
@@ -74,6 +75,7 @@ class Multisite_Admin_Bar_Tweaks {
 	 */
 	public function enhance_network_blog_admin_bar() {
 
+		/** @var WP_Admin_Bar $wp_admin_bar */
 		global $wp_admin_bar;
 
 		foreach ( (array) $wp_admin_bar->user->blogs as $blog ) {
