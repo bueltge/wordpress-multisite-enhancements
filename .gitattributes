@@ -3,7 +3,7 @@
 .git                export-ignore
 .gitignore          export-ignore
 .gitattributes      export-ignore
-test/               export-ignore
+tests/               export-ignore
 CONTRIBUTING.md     export-ignore
 Gruntfile.js        export-ignore
 README.md           export-ignore
