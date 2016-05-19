@@ -66,6 +66,7 @@ class Multisite_Enhancements {
 		// This check prevents using this plugin not in a multisite.
 		if ( function_exists( 'is_multisite' ) && ! is_multisite() ) {
 			add_filter( 'admin_notices', array( $this, 'error_msg_no_multisite' ) );
+			return;
 		}
 
 		// Since 2015-08-18 only PHP 5.3, use now __DIR__ as equivalent to dirname(__FILE__).
@@ -80,6 +81,7 @@ class Multisite_Enhancements {
 	 */
 	public function error_msg_no_multisite() {
 
+		deactivate_plugins( plugin_basename( __FILE__ ) );
 		?>
 		<div class="error">
 			<p>
@@ -92,6 +94,11 @@ class Multisite_Enhancements {
 				); ?>">
 					<?php esc_html_e( 'WordPress Codex: Create a network', 'multisite_enhancements' ); ?>
 				</a>
+			</p>
+		</div>
+		<div class="updated notice">
+			<p>
+				<?php _e( 'Plugin <strong>deactivated</strong>.', 'multisite_enhancements' ); ?>
 			</p>
 		</div>
 		<?php
