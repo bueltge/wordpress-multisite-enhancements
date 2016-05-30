@@ -18,7 +18,7 @@
  *     - Default is: TRUE
  *
  * @since   2015-07-23
- * @version 2015-09-24
+ * @version 2016-05-30
  * @package WordPress
  */
 
