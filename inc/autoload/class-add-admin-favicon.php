@@ -152,25 +152,16 @@ class Multisite_Add_Admin_Favicon {
 			return;
 		}
 
-		if ( function_exists( 'wp_get_sites' ) ) {
-			// Since 3.7 inside the Core.
-			$blogs = wp_get_sites(
-				array(
-					'limit' => $this->sites_limit,
-				)
-			);
-		} else {
-			// Use alternative to core function get_blog_list().
-			$blogs = Multisite_Core::get_blog_list( 0, 'all' );
-		}
+		$user_id    = get_current_user_id();
+		$user_blogs = get_blogs_of_user( $user_id );
 
 		$output = '';
-		foreach ( (array) $blogs as $blog ) {
+		foreach ( (array) $user_blogs as $blog ) {
 
 			$custom_icon = FALSE;
 
 			// Validate, that we use nly int value.
-			$blog_id    = (int) $blog[ 'blog_id' ];
+			$blog_id    = (int) $blog->userblog_id;
 			$stylesheet = get_blog_option( $blog_id, 'stylesheet' );
 
 			// Get stylesheet directory uri.
@@ -197,9 +188,9 @@ class Multisite_Add_Admin_Favicon {
 			}
 
 			if ( FALSE !== $custom_icon ) {
-				$output .= '#wpadminbar .quicklinks li#wp-admin-bar-blog-' . $blog[ 'blog_id' ]
+				$output .= '#wpadminbar .quicklinks li#wp-admin-bar-blog-' . $blog_id
 					. ' .blavatar { font-size: 0 !important; }';
-				$output .= '#wp-admin-bar-blog-' . $blog[ 'blog_id' ]
+				$output .= '#wp-admin-bar-blog-' . $blog_id
 					. ' div.blavatar { background: url( "' . $custom_icon
 					. '" ) left bottom/16px no-repeat !important; background-size: 16px !important; margin: 0 2px 0 -2px; }' . "\n";
 			}
