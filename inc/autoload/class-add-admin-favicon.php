@@ -152,7 +152,15 @@ class Multisite_Add_Admin_Favicon {
 			return;
 		}
 
-		if ( function_exists( 'wp_get_sites' ) ) {
+		if ( function_exists( 'get_sites' ) ) {
+			// Since 4.6 inside the Core.
+			$blogs = get_sites(
+				array(
+					'offset' => $this->sites_limit,
+				)
+			);
+		}
+		else if ( function_exists( 'wp_get_sites' ) ) {
 			// Since 3.7 inside the Core.
 			$blogs = wp_get_sites(
 				array(
