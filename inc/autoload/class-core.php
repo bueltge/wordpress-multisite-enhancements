@@ -41,7 +41,7 @@ class Multisite_Core {
 	 */
 	public static function get_blog_list( $start = 0, $num = 10, $details = FALSE, $expires = 86400 ) {
 
-		// Since WP version 3.6.0 is a new function inside the core to get this value.
+		// Since WP version 4.6.0 is a new function inside the core to get this value.
 		if ( function_exists( 'get_sites' ) ) {
 			return get_sites(
 				array(
@@ -50,7 +50,7 @@ class Multisite_Core {
 			);
 		}
 
-		// FOr WordPress smaller version 3.6.0
+		// For WordPress smaller version 4.6.0, available since WordPress 3.7.
 		if ( function_exists( 'wp_get_sites' ) ) {
 			wp_get_sites(
 				array(
