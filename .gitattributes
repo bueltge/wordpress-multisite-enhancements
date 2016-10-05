@@ -1,4 +1,6 @@
 * text eol=lf
+*.jpg -text
+*.png -text
 
 .git                         export-ignore
 .gitignore                   export-ignore
