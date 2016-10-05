@@ -18,7 +18,7 @@
  *     - Default is: TRUE
  *
  * @since   2015-07-23
- * @version 2016-05-30
+ * @version 2016-10-05
  * @package WordPress
  */
 
@@ -91,7 +91,7 @@ class Multisite_Add_Admin_Favicon {
 		 *
 		 * @type array
 		 */
-		$hooks = (array) apply_filters( 'multisite_enhancements_favicon', self::$favicon_hooks );
+		$hooks = apply_filters( 'multisite_enhancements_favicon', self::$favicon_hooks );
 
 		foreach ( $hooks as $hook ) {
 			add_action( esc_attr( $hook ), array( $this, 'set_favicon' ) );

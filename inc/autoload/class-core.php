@@ -3,7 +3,7 @@
  * Core methods, there will be used.
  *
  * @since   2013-07-24
- * @version 2016-01-15
+ * @version 2016-10-05
  */
 
 add_action( 'init', array( 'Multisite_Core', 'init' ) );
@@ -40,6 +40,23 @@ class Multisite_Core {
 	 *                      postcount (integer) The number of posts in this blog.
 	 */
 	public static function get_blog_list( $start = 0, $num = 10, $details = FALSE, $expires = 86400 ) {
+
+		// Since WP version 3.6.0 is a new function inside the core to get this value.
+		if ( function_exists( 'get_sites' ) ) {
+			return get_sites(
+				array(
+					'offset' => $num,
+				)
+			);
+		}
+
+		if ( function_exists( 'get_sites' ) ) {
+			return wp_get_sites(
+				array(
+					'limit' => $num,
+				)
+			);
+		}
 
 		// Get blog list from cache.
 		$blogs = get_site_transient( 'multisite_blog_list' );

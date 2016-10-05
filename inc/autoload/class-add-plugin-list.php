@@ -3,7 +3,7 @@
  * On the network plugins page, show which blogs have this plugin active.
  *
  * @since   2013-07-19
- * @version 2016-01-15
+ * @version 2016-10-05
  * @package WordPress
  */
 
@@ -216,17 +216,7 @@ class Multisite_Add_Plugin_List {
 			// Cannot load data from transient, so load from DB and set transient.
 			$this->blogs_plugins = array();
 
-			if ( function_exists( 'wp_get_sites' ) ) {
-				// Since 3.7 inside the Core.
-				$blogs = wp_get_sites(
-					array(
-						'limit' => $this->sites_limit,
-					)
-				);
-			} else {
-				// Use alternative to core function get_blog_list().
-				$blogs = Multisite_Core::get_blog_list( 0, 'all' );
-			}
+			$blogs = Multisite_Core::get_blog_list( 0, $this->sites_limit );
 
 			/** @var array $blog */
 			foreach ( (array) $blogs as $blog ) {
