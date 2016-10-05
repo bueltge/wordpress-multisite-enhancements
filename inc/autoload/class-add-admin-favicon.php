@@ -91,7 +91,7 @@ class Multisite_Add_Admin_Favicon {
 		 *
 		 * @type array
 		 */
-		$hooks = apply_filters( 'multisite_enhancements_favicon', self::$favicon_hooks );
+		$hooks = (array) apply_filters( 'multisite_enhancements_favicon', self::$favicon_hooks );
 
 		foreach ( $hooks as $hook ) {
 			add_action( esc_attr( $hook ), array( $this, 'set_favicon' ) );

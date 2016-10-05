@@ -36,7 +36,7 @@ if ( ! function_exists( 'get_blog_list' ) ) {
 		}
 
 		if ( ! class_exists( 'Multisite_Core' ) ) {
-			require_once . __DIR__ . '/class-core.php';
+			require_once __DIR__ . '/class-core.php';
 			new Multisite_Core();
 		}
 
