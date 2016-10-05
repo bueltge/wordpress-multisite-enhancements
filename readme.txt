@@ -2,8 +2,13 @@
 Contributors: Bueltge, inpsyde
 Tags: multisite, administration, admin bar, network,
 Requires at least: 3.0.0
+<<<<<<< HEAD
 Tested up to: 4.5-alpha
 Stable tag: trunk
+=======
+Tested up to: 4.6-alpha
+Stable tag: 1.3.5
+>>>>>>> 4ce7af3d006b294509be8d658d3460fff68dd109
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -28,9 +33,11 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
 	 * If you use WordPress version 3.7 and higher, then check the function `wp_get_sites()`, the new alternative function inside the core to get all sides inside the network. The function accept a array with arguments, see the [description](http://wpseek.com/wp_get_sites/).
 * Filter plugin list to find fast your goal. Works on single plugin page and also network plugin page.
 
-**Crafted by [Inpsyde](http://inpsyde.com) · Engineering the web since 2006.**
+= Crafted by Inpsyde =
+The team at [Inpsyde](http://inpsyde.com/) is engineering the web and WordPress since 2006.
 
-Yes, we also run that [marketplace for premium WordPress plugins and themes](http://marketpress.com).
+= Donation? =
+You want to donate - we prefer a [positive review](https://wordpress.org/support/view/plugin-reviews/multisite-enhancements?rate=5#postform), not more.
 
 == Installation ==
 
@@ -60,8 +67,6 @@ Yes, we also run that [marketplace for premium WordPress plugins and themes](htt
 == Other Notes ==
 
 **Crafted by [Inpsyde](http://inpsyde.com) · Engineering the web since 2006.**
-
-Yes, we also run that [marketplace for premium WordPress plugins and themes](http://marketpress.com).
 
 = Hints, knowledge =
 See also for helpful hints on the [wiki page](https://github.com/bueltge/wordpress-multisite-enhancements/wiki).
@@ -93,6 +98,16 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.3.6 () =
+* Switch to new core function `get_sites`
+
+= 1.3.5 (2016-05-30) =
+* Performance: Change the function to get all sites of a user to set favicon. [#25](https://github.com/bueltge/wordpress-multisite-enhancements/issues/25)
+
+= 1.3.4 (2016-05-19) =
+* Fix value type for nodes from admin bar.
+* Enhance the Multisite requirements check.
+
 = 1.3.3 (2016-01-15) =
 * Fix Blog Id enhancement, change filter type.
 * Change different code topics for better performance and stability.
