@@ -108,6 +108,7 @@ class Multisite_Add_Plugin_List {
 
 	/**
 	 * Get data for each row on each plugin.
+	 * Echo the string.
 	 *
 	 * @since   0.0.1
 	 *
@@ -115,7 +116,7 @@ class Multisite_Add_Plugin_List {
 	 * @param  String $plugin_file Path to the plugin file.
 	 * @param  array  $plugin_data An array of plugin data.
 	 *
-	 * @return String
+	 * @return void
 	 */
 	public function manage_plugins_custom_column( $column_name, $plugin_file, $plugin_data ) {
 
@@ -125,7 +126,7 @@ class Multisite_Add_Plugin_List {
 
 		// Is this plugin network activated.
 		if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
-			require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+			require_once ABSPATH . '/wp-admin/includes/plugin.php';
 		}
 
 		$active_on_network = is_plugin_active_for_network( $plugin_file );
@@ -228,7 +229,7 @@ class Multisite_Add_Plugin_List {
 					$blog[ 'blog_id' ]
 				)->blogname;
 				$this->blogs_plugins[ $blog[ 'blog_id' ] ][ 'active_plugins' ] = array();
-				$plugins                                                       = get_blog_option(
+				$plugins                                                       = (array) get_blog_option(
 					$blog[ 'blog_id' ], 'active_plugins'
 				);
 				if ( $plugins ) {

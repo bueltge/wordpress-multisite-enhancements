@@ -3,7 +3,7 @@
  * Core methods, there will be used.
  *
  * @since   2013-07-24
- * @version 2016-10-05
+ * @version 2016-01-15
  */
 
 add_action( 'init', array( 'Multisite_Core', 'init' ) );
@@ -50,8 +50,9 @@ class Multisite_Core {
 			);
 		}
 
-		if ( function_exists( 'get_sites' ) ) {
-			return wp_get_sites(
+		// FOr WordPress smaller version 3.6.0
+		if ( function_exists( 'wp_get_sites' ) ) {
+			wp_get_sites(
 				array(
 					'limit' => $num,
 				)

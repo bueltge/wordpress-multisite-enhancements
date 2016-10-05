@@ -97,6 +97,7 @@ class Multisite_Add_Theme_List {
 
 	/**
 	 * Get data for each row on each theme.
+	 * Echo the string about the usage.
 	 *
 	 * @since   0.0.2
 	 *
@@ -104,7 +105,7 @@ class Multisite_Add_Theme_List {
 	 * @param  String $theme_key   Path to the theme file.
 	 * @param  array  $theme_data  An array of theme data.
 	 *
-	 * @return array
+	 * @return void
 	 */
 	public function manage_themes_custom_column( $column_name, $theme_key, $theme_data ) {
 
