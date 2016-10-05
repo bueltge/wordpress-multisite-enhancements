@@ -2,13 +2,8 @@
 Contributors: Bueltge, inpsyde
 Tags: multisite, administration, admin bar, network,
 Requires at least: 3.0.0
-<<<<<<< HEAD
-Tested up to: 4.5-alpha
-Stable tag: trunk
-=======
-Tested up to: 4.6-alpha
+Tested up to: 4.7
 Stable tag: 1.3.5
->>>>>>> 4ce7af3d006b294509be8d658d3460fff68dd109
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

@@ -96,14 +96,12 @@ class Multisite_Enhancements {
 				</a>
 			</p>
 		</div>
-<<<<<<< HEAD
-=======
+
 		<div class="updated notice">
 			<p>
 				<?php _e( 'Plugin <strong>deactivated</strong>.', 'multisite_enhancements' ); ?>
 			</p>
 		</div>
->>>>>>> 4ce7af3d006b294509be8d658d3460fff68dd109
 		<?php
 	}
 
