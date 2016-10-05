@@ -1,17 +1,17 @@
 <?php
 /**
- * Add simple javascript to filter the plugin list on network and single plugin page of WordPress back end.
+ * Add simple javascript to filter the theme list on network and single site theme page of WordPress back end.
  *
- * @since   2015-11-29
+ * @since   2016-10-05
  * @package WordPress
  */
 
-add_action( 'admin_init', array( 'Filtering_Plugins', 'init' ) );
+add_action( 'admin_init', array( 'Filtering_Themes', 'init' ) );
 
 /**
- * Class Filtering_Plugins
+ * Class Filtering_Themes
  */
-class Filtering_Plugins {
+class Filtering_Themes {
 
 	/**
 	 * Init the class.
@@ -29,7 +29,7 @@ class Filtering_Plugins {
 	 */
 	public function __construct() {
 
-		add_action( 'admin_print_scripts-plugins.php', array( $this, 'enqueue_script' ) );
+		add_action( 'admin_print_scripts-themes.php', array( $this, 'enqueue_script' ) );
 	}
 
 	/**
@@ -41,9 +41,9 @@ class Filtering_Plugins {
 
 		wp_register_script(
 			'me_filtering_plugins',
-			plugins_url( '/inc/assets/js/filtering-plugins' . $suffix . '.js', MULTISITE_ENHANCEMENT_BASE ),
+			plugins_url( '/inc/assets/js/filtering-themes' . $suffix . '.js', MULTISITE_ENHANCEMENT_BASE ),
 			array( 'jquery' ),
-			'2015-11-29',
+			'2016-10-05',
 			TRUE
 		);
 		wp_enqueue_script( 'me_filtering_plugins' );

@@ -31,7 +31,7 @@ add_filter( 'multisite_enhancements_autoload', function ( $files ) {
 	 *  5 => inc/autoload/class-admin-bar-tweaks.php'
 	 *  6 => inc/autoload/class-change-footer-text.php'
 	 *  7 => inc/autoload/class-core.php'
-	 *  8 => inc/autoload/class-filtering-plugins.php'
+	 *  8 => inc/autoload/class-filtering-themes.php'
 	 *  9 => inc/autoload/class-multisite-add-new-plugin.php'
 	 * 10 => inc/autoload/core.php'
 	 */

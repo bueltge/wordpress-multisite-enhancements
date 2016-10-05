@@ -12,13 +12,13 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
 * Change Admin footer text for Administrators to view fast currently used RAM, SQL, RAM Version
 * Add Favicon from theme folder to the admin area to easier identify the blog, use the `favicon.ico` file in the theme folder of the active theme in each blog
 * Add Favicon to each blog on the Admin Bar Item 'My Sites'. If you a like a custom path for each favicon, please see the [documentation](https://github.com/bueltge/WordPress-Multisite-Enhancements/wiki/Filter-Hook-for-Favicon-File-Path) for this feature.
-* Remove also the 'W' logo and his sublinks in admin bar
+* Remove also the 'W' logo and his sub-links in admin bar
 * Add status to each site in the admin bar to identifier fast if the site `noindex` status and external url.
 * Add functions to be used in your install
 	 * The function `get_blog_list()` is currently deprecated in the WP Core, but currently usable. The plugin check this and get a alternative in [`inc/autoload/core.php`](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/inc/autoload/core.php)
 	 * If you will develop with the alternative to this function from my source, then use the method `get_blog_list()` in class `Multisite_Core`. She use also caching with the Transient API. See more about the function on the function in [`inc/autoload/class-core.php`](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/inc/autoload/class-core.php).
 	 * If you use WordPress version 3.7 and higher, then check the function `wp_get_sites()`, the new alternative function inside the core to get all sides inside the network. The function accept a array with arguments, see the [description](http://wpseek.com/wp_get_sites/).
-* Filter plugin list to find fast your goal. Works on single plugin page and also network plugin page.
+* Filter theme list to find fast your goal. Works on single theme page and also network theme page.
 
 ### Installation
 #### Composer Package
@@ -60,9 +60,6 @@ Use the installer via back-end. Find via search and install.
  8. [Favicon on Admin bar](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/assets/screenshot-8.png)
  
  ![Favicon on Admin bar](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-8.png)
- 9. [Filter plugin list](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/assets/screenshot-9.gif)
- 
- ![Filter plugin list](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-9.gif)
 
 ## Other Notes
 ###Crafted by [Inpsyde](http://inpsyde.com) · Engineering the web since 2006.###

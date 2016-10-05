@@ -31,7 +31,7 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
 	 * The function `get_blog_list()` is currently deprecated in the WP Core, but currently usable. The plugin check this and get a alternative in [`inc/autoload/core.php`](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/inc/autoload/core.php)
 	 * If you will develop with the alternative to this function from my source, then use the method `get_blog_list()` in class `Multisite_Core`. She use also caching with the Transient API. See more about the function on the function in [`inc/autoload/class-core.php`](https://github.com/bueltge/WordPress-Multisite-Enhancements/blob/master/inc/autoload/class-core.php).
 	 * If you use WordPress version 3.7 and higher, then check the function `wp_get_sites()`, the new alternative function inside the core to get all sides inside the network. The function accept a array with arguments, see the [description](http://wpseek.com/wp_get_sites/).
-* Filter plugin list to find fast your goal. Works on single plugin page and also network plugin page.
+* Filter theme list to find fast your goal. Works on single theme page and also network theme page.
 
 = Crafted by Inpsyde =
 The team at [Inpsyde](http://inpsyde.com/) is engineering the web and WordPress since 2006.
@@ -62,7 +62,6 @@ You want to donate - we prefer a [positive review](https://wordpress.org/support
 6. On which blog is the theme active
 7. New Admin footer text
 8. Favicon on Admin bar
-9. Filter plugin list
 
 == Other Notes ==
 
@@ -100,6 +99,8 @@ So please be patient with me and let me know of typos or grammatical parts. Than
 == Changelog ==
 = 1.3.6 () =
 * Switch to new core function `get_sites`
+* Remove Plugin Search, now inside the core, since WP 3.6.0
+* Add Theme filter search to single and network theme page to find fast and simple the result.
 
 = 1.3.5 (2016-05-30) =
 * Performance: Change the function to get all sites of a user to set favicon. [#25](https://github.com/bueltge/wordpress-multisite-enhancements/issues/25)
