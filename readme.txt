@@ -3,7 +3,7 @@ Contributors: Bueltge, inpsyde
 Tags: multisite, administration, admin bar, network,
 Requires at least: 3.0.0
 Tested up to: 4.7
-Stable tag: 1.3.5
+Stable tag: 1.3.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,10 +57,11 @@ You want to donate - we prefer a [positive review](https://wordpress.org/support
 6. On which blog is the theme active
 7. New Admin footer text
 8. Favicon on Admin bar
+9. Filter Themes
 
 == Other Notes ==
 
-**Crafted by [Inpsyde](http://inpsyde.com) · Engineering the web since 2006.**
+**Crafted by [Inpsyde](http://inpsyde.com) · The team is engineering the Web since 2006.**
 
 = Hints, knowledge =
 See also for helpful hints on the [wiki page](https://github.com/bueltge/wordpress-multisite-enhancements/wiki).
@@ -92,7 +93,7 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
-= 1.3.6 () =
+= 1.3.6 (2016-10-07) =
 * Switch to new core function `get_sites`
 * Remove Plugin Search, now inside the core, since WP 3.6.0
 * Add Theme filter search to single and network theme page to find fast and simple the result.
