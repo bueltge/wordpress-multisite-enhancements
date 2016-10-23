@@ -69,9 +69,25 @@ class Multisite_Enhancements {
 			return;
 		}
 
+		$this->load_translation();
+
 		// Since 2015-08-18 only PHP 5.3, use now __DIR__ as equivalent to dirname(__FILE__).
 		self::$file_base = __DIR__ . '/inc';
 		self::load();
+	}
+
+	/**
+	 * Load translation file.
+	 *
+	 * @since 2016-10-23
+	 */
+	public function load_translation() {
+
+		load_plugin_textdomain(
+			'multisite_enhancements',
+			FALSE,
+			basename( __DIR__ ) . '/languages/'
+		);
 	}
 
 	/**
