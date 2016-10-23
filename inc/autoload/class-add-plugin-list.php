@@ -98,7 +98,7 @@ class Multisite_Add_Plugin_List {
 		add_action( 'network_admin_notices', array( $this, 'notice_about_clear_cache' ) );
 		$this->clear_plugins_site_transient();
 
-		return true;
+		return TRUE;
 	}
 
 	/**

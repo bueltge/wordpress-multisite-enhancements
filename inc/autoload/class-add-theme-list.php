@@ -58,6 +58,9 @@ class Multisite_Add_Theme_List {
 	 */
 	public function __construct() {
 
+		// Delete transient on themes page.
+		add_action( 'load-themes.php', array( $this, 'development_helper' ) );
+
 		// Fires after the theme is switched.
 		add_action( 'switch_theme', array( $this, 'clear_themes_site_transient' ), 10, 1 );
 
@@ -77,6 +80,36 @@ class Multisite_Add_Theme_List {
 		add_action( 'manage_themes_custom_column', array( $this, 'manage_themes_custom_column' ), 10, 3 );
 
 		add_action( 'update_site_option_allowedthemes', array( $this, 'clear_themes_site_transient' ), 10, 1 );
+	}
+
+	/**
+	 * Run helpers if the debug constant is true to help on development, debugging.
+	 *
+	 * @since 2016-10-23
+	 * @return bool
+	 */
+	public function development_helper() {
+
+		if ( ! defined( 'WP_DEBUG' ) || ! WP_DEBUG ) {
+			return FALSE;
+		}
+
+		add_action( 'network_admin_notices', array( $this, 'notice_about_clear_cache' ) );
+		$this->clear_themes_site_transient();
+
+		return TRUE;
+	}
+
+	/**
+	 * Print Network Admin Notices to inform, that the transient are deleted.
+	 *
+	 * @since 2016-10-23
+	 */
+	public function notice_about_clear_cache() {
+
+		$class = 'notice notice-info';
+		$message = esc_attr__( 'Delete site transients for the theme usage to help on development, debugging. The constant WP_DEBUG is true.', 'multisite_enhancements' );
+		printf( '<div class="%1$s"><p>%2$s</p></div>', $class, $message );
 	}
 
 	/**
@@ -107,7 +140,7 @@ class Multisite_Add_Theme_List {
 	 *
 	 * @return void
 	 */
-	public function manage_themes_custom_column( $column_name, $theme_key, $theme_data ) {
+	public function manage_themes_custom_column( $column_name, $theme_key, WP_Theme $theme_data ) {
 
 		if ( 'active_blogs' !== $column_name ) {
 			return NULL;
@@ -274,8 +307,10 @@ class Multisite_Add_Theme_List {
 					$blog[ 'blog_id' ], 'stylesheet'
 				);
 			}
-			set_site_transient( self::$site_transient_blogs_themes, $this->blogs_themes );
 
+			if ( ! $this->development_helper() ) {
+				set_site_transient( self::$site_transient_blogs_themes, $this->blogs_themes );
+			}
 		}
 
 		// Data should be here, if loaded from transient or DB.
