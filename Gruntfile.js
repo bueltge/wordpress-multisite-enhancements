@@ -122,6 +122,22 @@ module.exports = function( grunt ) {
 			}
 		},
 
+		makepot: {
+			target: {
+				options: {
+					include: [
+						'multisite-enhancements.php',
+						'inc/autoload/class-add-blog-id.php',
+						'inc/autoload/class-add-plugin-list.php',
+						'inc/autoload/class-add-theme-list.php',
+						'inc/autoload/class-admin-bar-tweaks.php',
+						'inc/autoload/class-multisite-add-new-plugin.php'
+					],
+					type: 'wp-plugin'
+				}
+			}
+		},
+
 		watch: {
 			options: {
 				dot: true,
@@ -178,6 +194,7 @@ module.exports = function( grunt ) {
 					'jsvalidate:dest'
 				]
 			}
+
 		}
 	};
 
@@ -246,6 +263,10 @@ module.exports = function( grunt ) {
 		'grunt',
 		'json',
 		'forcescripts'
+	] );
+
+	grunt.registerTask( 'grunt-wp-i18n', [
+		'makepot'
 	] );
 
 	// Delegation task for grunt-newer to check files different from the individual task's files.
