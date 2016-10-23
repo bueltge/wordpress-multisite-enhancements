@@ -52,7 +52,7 @@ class Multisite_Core {
 
 		// For WordPress smaller version 4.6.0, available since WordPress 3.7.
 		if ( function_exists( 'wp_get_sites' ) ) {
-			wp_get_sites(
+			return wp_get_sites(
 				array(
 					'limit' => $num,
 				)
