@@ -16,7 +16,7 @@
  *     - default is: Blog-Name, RAM, SQL, RAM Version
  *
  * @since   2013-07-23
- * @version 2016-01-15
+ * @version 2016-10-23
  */
 
 add_action( 'init', array( 'Multisite_Change_Footer_Text', 'init' ) );
