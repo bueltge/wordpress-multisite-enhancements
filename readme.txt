@@ -3,7 +3,7 @@ Contributors: Bueltge, inpsyde
 Tags: multisite, administration, admin bar, network,
 Requires at least: 3.0.0
 Tested up to: 4.7
-Stable tag: 1.3.6
+Stable tag: 1.3.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -93,6 +93,10 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.3.7 (TODO) =
+* Fix the usage of plugins for each site in the network on the plugin network view.
+* Add helpers to remove transient caching for development, debugging, if `WP_DEBUG` is true.
+
 = 1.3.6 (2016-10-07) =
 * Switch to new core function `get_sites`
 * Remove Plugin Search, now inside the core, since WP 3.6.0

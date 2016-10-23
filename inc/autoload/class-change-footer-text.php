@@ -21,6 +21,9 @@
 
 add_action( 'init', array( 'Multisite_Change_Footer_Text', 'init' ) );
 
+/**
+ * Class Multisite_Change_Footer_Text
+ */
 class Multisite_Change_Footer_Text {
 
 	/**
@@ -117,7 +120,7 @@ class Multisite_Change_Footer_Text {
 				, 1, ',', ''
 			) . '/' . WP_MEMORY_LIMIT;
 		$footer_text .= ' &bull; <abbr title="Structured Query Language">SQL</abbr> ' . $GLOBALS[ 'wpdb' ]->num_queries;
-		$footer_text .= ' &bull; <abbr title="Version of PHP (Hypertext Preprocessor)">PHPv ' . phpversion();
+		$footer_text .= ' &bull; <abbr title="Version of PHP (Hypertext Preprocessor)">PHPv</abbr> ' . phpversion();
 
 		/**
 		 * Filter for change content form other source.
