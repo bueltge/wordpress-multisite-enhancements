@@ -45,7 +45,7 @@ class Multisite_Core {
 		if ( function_exists( 'get_sites' ) ) {
 			return get_sites(
 				array(
-					'offset' => $num,
+					'number' => $num,
 				)
 			);
 		}

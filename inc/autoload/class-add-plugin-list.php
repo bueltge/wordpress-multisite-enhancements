@@ -61,6 +61,8 @@ class Multisite_Add_Plugin_List {
 	 */
 	public function __construct() {
 
+		add_action( 'load-plugins.php', array( $this, 'development_helper' ) );
+
 		// Fires after a plugin has been activated; but not on silently activated, like update.
 		add_action( 'activated_plugin', array( $this, 'clear_plugins_site_transient' ), 10, 2 );
 		// Fires before a plugin is deactivate; but not on silently activated, like update.
@@ -79,6 +81,36 @@ class Multisite_Add_Plugin_List {
 
 		add_filter( 'manage_plugins-network_columns', array( $this, 'add_plugins_column' ), 10, 1 );
 		add_action( 'manage_plugins_custom_column', array( $this, 'manage_plugins_custom_column' ), 10, 3 );
+	}
+
+	/**
+	 * Run helpers if the debug constant is true to help on development, debugging.
+	 *
+	 * @since 2016-10-23
+	 * @return bool
+	 */
+	public function development_helper() {
+
+		if ( ! defined( 'WP_DEBUG' ) || ! WP_DEBUG ) {
+			return FALSE;
+		}
+
+		add_action( 'network_admin_notices', array( $this, 'notice_about_clear_cache' ) );
+		$this->clear_plugins_site_transient();
+
+		return true;
+	}
+
+	/**
+	 * Print Network Admin Notices to inform, that the transient are deleted.
+	 *
+	 * @since 2016-10-23
+	 */
+	public function notice_about_clear_cache() {
+
+		$class = 'notice notice-info';
+		$message = esc_attr__( 'Delete site transients for the plugin usage to help on development, debugging. The constant WP_DEBUG is true.', 'multisite_enhancements' );
+		printf( '<div class="%1$s"><p>%2$s</p></div>', $class, $message );
 	}
 
 	/**
@@ -217,10 +249,12 @@ class Multisite_Add_Plugin_List {
 			// Cannot load data from transient, so load from DB and set transient.
 			$this->blogs_plugins = array();
 
-			$blogs = Multisite_Core::get_blog_list( 0, $this->sites_limit );
+			$blogs = (array) Multisite_Core::get_blog_list( 0, $this->sites_limit );
 
 			/** @var array $blog */
-			foreach ( (array) $blogs as $blog ) {
+			foreach ( $blogs as $blog ) {
+				// Convert object to array.
+				$blog = (array) $blog;
 				$this->blogs_plugins[ $blog[ 'blog_id' ] ]                     = $blog;
 				$this->blogs_plugins[ $blog[ 'blog_id' ] ][ 'blogpath' ]       = get_blog_details(
 					$blog[ 'blog_id' ]
@@ -239,7 +273,9 @@ class Multisite_Add_Plugin_List {
 				}
 			}
 
-			set_site_transient( self::$site_transient_blogs_plugins, $this->blogs_plugins );
+			if ( ! $this->development_helper() ) {
+				set_site_transient( self::$site_transient_blogs_plugins, $this->blogs_plugins );
+			}
 		}
 
 		// Data should be here, if loaded from transient or DB.

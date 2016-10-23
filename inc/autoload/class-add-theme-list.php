@@ -253,7 +253,7 @@ class Multisite_Add_Theme_List {
 			$this->blogs_themes = array();
 
 			$blogs = Multisite_Core::get_blog_list( 0, $this->sites_limit );
-
+			pre_print($blogs);
 			/** @var array $blog */
 			foreach ( (array) $blogs as $blog ) {
 				$this->blogs_themes[ $blog[ 'blog_id' ] ]                 = $blog;
