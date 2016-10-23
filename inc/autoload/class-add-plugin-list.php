@@ -253,8 +253,10 @@ class Multisite_Add_Plugin_List {
 
 			/** @var array $blog */
 			foreach ( $blogs as $blog ) {
+
 				// Convert object to array.
 				$blog = (array) $blog;
+
 				$this->blogs_plugins[ $blog[ 'blog_id' ] ]                     = $blog;
 				$this->blogs_plugins[ $blog[ 'blog_id' ] ][ 'blogpath' ]       = get_blog_details(
 					$blog[ 'blog_id' ]

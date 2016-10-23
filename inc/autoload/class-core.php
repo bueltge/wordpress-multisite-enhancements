@@ -3,7 +3,7 @@
  * Core methods, there will be used.
  *
  * @since   2013-07-24
- * @version 2016-01-15
+ * @version 2016-10-23
  */
 
 add_action( 'init', array( 'Multisite_Core', 'init' ) );

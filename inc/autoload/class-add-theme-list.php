@@ -123,7 +123,7 @@ class Multisite_Add_Theme_List {
 		if ( $is_child ) {
 			$parent_name = $theme_data->parent()->Name;
 			$child_context .= sprintf(
-				'<br>' . __( 'This is a child theme of %s.' ),
+				'<br>' . esc_attr__( 'This is a child theme of %s.', 'multisite_enhancements' ),
 				'<strong>' . esc_attr( $parent_name ) . '</strong>'
 			);
 		}
@@ -132,7 +132,7 @@ class Multisite_Add_Theme_List {
 		$parent_context = '';
 		$used_as_parent = $this->is_parent( $theme_key );
 		if ( count( $used_as_parent ) ) {
-			$parent_context .= '<br>' . __( 'This is used as a parent theme by:', 'multisite_enhancements' ) . ' ';
+			$parent_context .= '<br>' . esc_attr__( 'This is used as a parent theme by:', 'multisite_enhancements' ) . ' ';
 			$parent_context .= implode( ', ', $used_as_parent );
 		}
 
@@ -252,10 +252,14 @@ class Multisite_Add_Theme_List {
 			// Cannot load data from transient, so load from DB and set transient.
 			$this->blogs_themes = array();
 
-			$blogs = Multisite_Core::get_blog_list( 0, $this->sites_limit );
-			pre_print($blogs);
+			$blogs = (array) Multisite_Core::get_blog_list( 0, $this->sites_limit );
+
 			/** @var array $blog */
-			foreach ( (array) $blogs as $blog ) {
+			foreach ( $blogs as $blog ) {
+
+				// Convert object to array.
+				$blog = (array) $blog;
+
 				$this->blogs_themes[ $blog[ 'blog_id' ] ]                 = $blog;
 				$this->blogs_themes[ $blog[ 'blog_id' ] ][ 'blogpath' ]   = get_blog_details(
 					$blog[ 'blog_id' ]
