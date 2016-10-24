@@ -15,9 +15,10 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
 * Remove also the 'W' logo and his sub-links in admin bar
 * Add status to each site in the admin bar to identifier fast if the site `noindex` status and external url.
 * Add functions to be used in your install
-	 * The function `get_blog_list()` is currently deprecated in the WP Core, but currently usable. The plugin check this and get a alternative in [`inc/autoload/core.php`](./inc/autoload/core.php)
-	 * If you will develop with the alternative to this function from my source, then use the method `get_blog_list()` in class `Multisite_Core`. She use also caching with the Transient API. See more about the function on the function in [`inc/autoload/class-core.php`](./inc/autoload/class-core.php).
-	 * If you use WordPress version 3.7 and higher, then check the function `wp_get_sites()`, the new alternative function inside the core to get all sides inside the network. The function accept a array with arguments, see the [description](http://wpseek.com/wp_get_sites/).
+   * The function `get_blog_list()` is currently deprecated in the WP Core, but currently usable. The plugin check this and get a alternative in [`inc/autoload/core.php`](./inc/autoload/core.php)
+   * If you will develop with the alternative to this function from my source, then use the method `get_blog_list()` in class `Multisite_Core`. She use also caching with the Transient API. See more about the function on the function in [`inc/autoload/class-core.php`](./inc/autoload/class-core.php).
+   * If you use WordPress version 3.7 and higher, then check the function `wp_get_sites()`, the new alternative function inside the core to get all sides inside the network. The function accept a array with arguments, see the [description](http://wpseek.com/wp_get_sites/).
+   * But if you use WordPress 4.6 and higher that a new alternate ;) - `get_sites()` is current function to get all sites in the network. The helper method of this plugin `Multisite_Core::get_blog_list()` or the function `get_blog_list()` have all checks include.
 * Filter theme list to find fast your goal. Works on single theme page and also network theme page.
 
 ### Installation
@@ -37,33 +38,33 @@ Use the installer via back-end. Find via search and install.
 
 ### Screenshots
  1. [Blog ID on Sites](./assets/screenshot-1.png)
- 
+
  ![Blog ID on Sites](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-1.png)
  2. [User ID on Users](./assets/screenshot-2.png)
- 
+
  ![User ID on Users](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-2.png)
  3. [Add New link to install new plugin on each blog](./assets/screenshot-3.png)
- 
+
  ![Add New link to install new plugin on each blog](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-3.png)
  4. [Manage Comments with Counter on Admin Bar](./assets/screenshot-4.png)
- 
+
  ![Manage Comments with Counter on Admin Bar](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-4.png)
  5. [On which blog is the plugin active](./assets/screenshot-5.png)
- 
+
  ![On which blog is the plugin active](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-5.png)
  6. [On which blog is the theme active](./assets/screenshot-6.png)
- 
+
  ![On which blog is the theme active](./assets/screenshot-6.png)
  7. [New Admin footer text](./assets/screenshot-7.png)
- 
+
  ![New Admin footer text](./assets/screenshot-7.png)
  8. [Favicon on Admin bar](./assets/screenshot-8.png)
- 
+
  ![Favicon on Admin bar](./assets/screenshot-8.png)
  9. [Filter Themes](./assets/screenshot-9.gif)
- 
+
  ![Filter Themes](./assets/screenshot-9.gif)
- 
+
 ## Other Notes
 ###Crafted by [Inpsyde](http://inpsyde.com) · The team is engineering the Web since 2006.
 
