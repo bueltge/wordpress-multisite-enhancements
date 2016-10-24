@@ -9,6 +9,9 @@
 
 add_action( 'init', array( 'Multisite_Add_Plugin_List', 'init' ) );
 
+/**
+ * Class Multisite_Add_Plugin_List
+ */
 class Multisite_Add_Plugin_List {
 
 	/**
@@ -86,7 +89,7 @@ class Multisite_Add_Plugin_List {
 	/**
 	 * Run helpers if the debug constant is true to help on development, debugging.
 	 *
-	 * @since 2016-10-23
+	 * @since  2016-10-23
 	 * @return bool
 	 */
 	public function development_helper() {
@@ -109,7 +112,7 @@ class Multisite_Add_Plugin_List {
 	public function notice_about_clear_cache() {
 
 		$class = 'notice notice-info';
-		$message = esc_attr__( 'Delete site transients for the plugin usage to help on development, debugging. The constant WP_DEBUG is true.', 'multisite_enhancements' );
+		$message = esc_attr__( 'Multisite Enhancements: Delete site transients for the plugin usage to help on development, debugging. The constant WP_DEBUG is true.', 'multisite_enhancements' );
 		printf( '<div class="%1$s"><p>%2$s</p></div>', $class, $message );
 	}
 

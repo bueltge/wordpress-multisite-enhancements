@@ -8,6 +8,9 @@
 
 add_action( 'init', array( 'Multisite_Core', 'init' ) );
 
+/**
+ * Class Multisite_Core
+ */
 class Multisite_Core {
 
 	/**
@@ -113,6 +116,7 @@ class Multisite_Core {
 			if ( FALSE === $blog_list ) {
 
 				global $wpdb;
+				/** @var array $details */
 				foreach ( (array) $blogs as $details ) {
 					$blog_list[ $details[ 'blog_id' ] ]                = $details;
 					$blog_list[ $details[ 'blog_id' ] ][ 'postcount' ] = $wpdb->get_var(

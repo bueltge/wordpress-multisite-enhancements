@@ -54,15 +54,11 @@ class Multisite_Add_Site_Status_labels {
 		// Remove last string for exactly check.
 		$needle = rtrim( $needle, '/' );
 
-		if ( $needle && FALSE === strpos(
-				$haystack,
-				str_replace( array( 'http://', 'https://', '//' ), '', $needle )
-			)
-		) {
-			return TRUE;
-		}
-
-		return FALSE;
+		return $needle
+		       && FALSE === strpos(
+			$haystack,
+			str_replace( array( 'http://', 'https://', '//' ), '', $needle )
+		);
 	}
 
 	/**
@@ -87,7 +83,7 @@ class Multisite_Add_Site_Status_labels {
 	 *
 	 * @return mixed
 	 */
-	public function add_status_label( $admin_bar ) {
+	public function add_status_label( \WP_Admin_Bar $admin_bar ) {
 
 		foreach ( $admin_bar->user->blogs as $key => $blog ) {
 

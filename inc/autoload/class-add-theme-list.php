@@ -85,7 +85,7 @@ class Multisite_Add_Theme_List {
 	/**
 	 * Run helpers if the debug constant is true to help on development, debugging.
 	 *
-	 * @since 2016-10-23
+	 * @since  2016-10-23
 	 * @return bool
 	 */
 	public function development_helper() {
@@ -108,7 +108,7 @@ class Multisite_Add_Theme_List {
 	public function notice_about_clear_cache() {
 
 		$class = 'notice notice-info';
-		$message = esc_attr__( 'Delete site transients for the theme usage to help on development, debugging. The constant WP_DEBUG is true.', 'multisite_enhancements' );
+		$message = esc_attr__( 'Multisite Enhancements: Delete site transients for the theme usage to help on development, debugging. The constant WP_DEBUG is true.', 'multisite_enhancements' );
 		printf( '<div class="%1$s"><p>%2$s</p></div>', $class, $message );
 	}
 
@@ -130,17 +130,17 @@ class Multisite_Add_Theme_List {
 
 	/**
 	 * Get data for each row on each theme.
-	 * Echo the string about the usage.
+	 * Print the string about the usage.
 	 *
 	 * @since   0.0.2
 	 *
-	 * @param  String $column_name Name of the column.
-	 * @param  String $theme_key   Path to the theme file.
-	 * @param  array  $theme_data  An array of theme data.
+	 * @param  String         $column_name Name of the column.
+	 * @param  String         $theme_key   Path to the theme file.
+	 * @param array|\WP_Theme $theme_data  An array of theme data.
 	 *
 	 * @return void
 	 */
-	public function manage_themes_custom_column( $column_name, $theme_key, WP_Theme $theme_data ) {
+	public function manage_themes_custom_column( $column_name, $theme_key, \WP_Theme $theme_data ) {
 
 		if ( 'active_blogs' !== $column_name ) {
 			return NULL;
@@ -226,11 +226,11 @@ class Multisite_Add_Theme_List {
 	/**
 	 * Check, the current theme have a parent value and is a child theme.
 	 *
-	 * @param array $theme_data An array of theme data.
+	 * @param array|\WP_Theme $theme_data An array of theme data.
 	 *
 	 * @return bool
 	 */
-	public function is_child( $theme_data ) {
+	public function is_child( \WP_Theme $theme_data ) {
 
 		return (bool) $theme_data->parent();
 	}
