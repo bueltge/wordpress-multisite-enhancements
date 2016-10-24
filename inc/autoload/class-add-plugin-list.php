@@ -64,7 +64,7 @@ class Multisite_Add_Plugin_List {
 	 */
 	public function __construct() {
 
-		add_action( 'admin_init', array( $this, 'development_helper' ) );
+		add_action( 'load-plugins.php', array( $this, 'development_helper' ) );
 
 		// Fires after a plugin has been activated; but not on silently activated, like update.
 		add_action( 'activated_plugin', array( $this, 'clear_plugins_site_transient' ), 10, 2 );
