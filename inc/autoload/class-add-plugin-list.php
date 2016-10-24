@@ -64,7 +64,7 @@ class Multisite_Add_Plugin_List {
 	 */
 	public function __construct() {
 
-		add_action( 'load-plugins.php', array( $this, 'development_helper' ) );
+		add_action( 'admin_init', array( $this, 'development_helper' ) );
 
 		// Fires after a plugin has been activated; but not on silently activated, like update.
 		add_action( 'activated_plugin', array( $this, 'clear_plugins_site_transient' ), 10, 2 );
@@ -135,7 +135,7 @@ class Multisite_Add_Plugin_List {
 		// Not useful on different selections.
 		if ( ! in_array( esc_attr( $_GET[ 'plugin_status' ] ), self::$excluded_plugin_status, FALSE ) ) {
 			// Translators: Active in is the head of the table column on plugin list.
-			$columns[ 'active_blogs' ] = _x( '<nobr>Active in </nobr>', 'column name' );
+			$columns[ 'active_blogs' ] = _x( '<nobr>Active in </nobr>', 'column name', 'multisite_enhancements' );
 		}
 
 		return $columns;

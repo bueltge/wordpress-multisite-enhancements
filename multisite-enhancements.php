@@ -5,7 +5,7 @@
  * Plugin URI:  https://github.com/bueltge/WordPress-Multisite-Enhancements
  * Version:     1.3.7
  * Author:      Frank Bültge
- * Author URI:  http://bueltge.de
+ * Author URI:  https://bueltge.de
  * License:     GPLv2+
  * License URI: ./assets/LICENSE
  * Text Domain: multisite_enhancements

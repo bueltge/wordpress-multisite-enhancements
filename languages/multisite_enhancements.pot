@@ -2,10 +2,10 @@
 # This file is distributed under the GPLv2+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Multisite Enhancements 1.3.7-RC1\n"
+"Project-Id-Version: Multisite Enhancements 1.3.7\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/multisite-enhancements\n"
-"POT-Creation-Date: 2016-10-23 12:37:00+00:00\n"
+"POT-Creation-Date: 2016-10-24 20:04:49+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,19 +18,19 @@ msgstr ""
 msgid "ID"
 msgstr ""
 
-#: inc/autoload/class-add-plugin-list.php:112
+#: inc/autoload/class-add-plugin-list.php:115
 msgid ""
-"Delete site transients for the plugin usage to help on development, "
-"debugging. The constant WP_DEBUG is true."
+"Multisite Enhancements: Delete site transients for the plugin usage to help "
+"on development, debugging. The constant WP_DEBUG is true."
 msgstr ""
 
-#: inc/autoload/class-add-plugin-list.php:171
+#: inc/autoload/class-add-plugin-list.php:174
 #. Translators: The plugin is network wide active, the string is for each
 #. plugin possible.
 msgid "<nobr>Network Activated</nobr>"
 msgstr ""
 
-#: inc/autoload/class-add-plugin-list.php:180
+#: inc/autoload/class-add-plugin-list.php:183
 #: inc/autoload/class-add-theme-list.php:174
 #. Translators: The plugin is not activated, the string is for each plugin
 #. possible.
@@ -39,14 +39,14 @@ msgstr ""
 msgid "<nobr>Not Activated</nobr>"
 msgstr ""
 
-#: inc/autoload/class-add-plugin-list.php:197
+#: inc/autoload/class-add-plugin-list.php:200
 msgid " Network Only"
 msgstr ""
 
 #: inc/autoload/class-add-theme-list.php:111
 msgid ""
-"Delete site transients for the theme usage to help on development, "
-"debugging. The constant WP_DEBUG is true."
+"Multisite Enhancements: Delete site transients for the theme usage to help "
+"on development, debugging. The constant WP_DEBUG is true."
 msgstr ""
 
 #: inc/autoload/class-add-theme-list.php:159
@@ -71,8 +71,8 @@ msgid_plural "%s comments awaiting moderation"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/autoload/class-multisite-add-new-plugin.php:47
-#: inc/autoload/class-multisite-add-new-plugin.php:48
+#: inc/autoload/class-multisite-add-new-plugin.php:50
+#: inc/autoload/class-multisite-add-new-plugin.php:51
 msgid "Add New"
 msgstr ""
 
@@ -107,10 +107,10 @@ msgid "Frank Bültge"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://bueltge.de"
+msgid "https://bueltge.de"
 msgstr ""
 
-#: inc/autoload/class-add-plugin-list.php:135
+#: inc/autoload/class-add-plugin-list.php:138
 #: inc/autoload/class-add-theme-list.php:126
 #. Translators: Active in is the head of the table column on plugin list.
 msgctxt "column name"
