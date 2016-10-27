@@ -112,7 +112,7 @@ class Multisite_Add_Plugin_List {
 	public function notice_about_clear_cache() {
 
 		$class = 'notice notice-info';
-		$message = esc_attr__( 'Multisite Enhancements: Delete site transients for the plugin usage to help on development, debugging. The constant WP_DEBUG is true.', 'multisite_enhancements' );
+		$message = esc_attr__( 'Multisite Enhancements: Delete site transients for the plugin usage to help on development, debugging. The constant WP_DEBUG is true.', 'multisite-enhancements' );
 		printf( '<div class="%1$s"><p>%2$s</p></div>', $class, $message );
 	}
 
@@ -135,7 +135,7 @@ class Multisite_Add_Plugin_List {
 		// Not useful on different selections.
 		if ( ! in_array( esc_attr( $_GET[ 'plugin_status' ] ), self::$excluded_plugin_status, FALSE ) ) {
 			// Translators: Active in is the head of the table column on plugin list.
-			$columns[ 'active_blogs' ] = _x( '<nobr>Active in </nobr>', 'column name', 'multisite_enhancements' );
+			$columns[ 'active_blogs' ] = _x( '<nobr>Active in </nobr>', 'column name', 'multisite-enhancements' );
 		}
 
 		return $columns;
@@ -171,7 +171,7 @@ class Multisite_Add_Plugin_List {
 		if ( $active_on_network ) {
 			// We don't need to check any further for network active plugins.
 			// Translators: The plugin is network wide active, the string is for each plugin possible.
-			$output .= __( '<nobr>Network Activated</nobr>', 'multisite_enhancements' );
+			$output .= __( '<nobr>Network Activated</nobr>', 'multisite-enhancements' );
 
 			// List Blogs, there is activated.
 		} else {
@@ -180,7 +180,7 @@ class Multisite_Add_Plugin_List {
 
 			if ( ! $active_on_blogs ) {
 				// Translators: The plugin is not activated, the string is for each plugin possible.
-				$output .= __( '<nobr>Not Activated</nobr>', 'multisite_enhancements' );
+				$output .= __( '<nobr>Not Activated</nobr>', 'multisite-enhancements' );
 			} else {
 				$output .= '<ul>';
 
@@ -197,7 +197,7 @@ class Multisite_Add_Plugin_List {
 		// Add indicator that the plugin is "Network Only".
 		if ( $plugin_data[ 'Network' ] ) {
 			$output .= '<br /><nobr class="submitbox"><span class="submitdelete">'
-				. __( ' Network Only', 'multisite_enhancements' )
+				. __( ' Network Only', 'multisite-enhancements' )
 				. '</span></nobr>';
 		}
 

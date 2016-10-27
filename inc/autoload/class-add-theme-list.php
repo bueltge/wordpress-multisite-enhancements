@@ -108,7 +108,7 @@ class Multisite_Add_Theme_List {
 	public function notice_about_clear_cache() {
 
 		$class = 'notice notice-info';
-		$message = esc_attr__( 'Multisite Enhancements: Delete site transients for the theme usage to help on development, debugging. The constant WP_DEBUG is true.', 'multisite_enhancements' );
+		$message = esc_attr__( 'Multisite Enhancements: Delete site transients for the theme usage to help on development, debugging. The constant WP_DEBUG is true.', 'multisite-enhancements' );
 		printf( '<div class="%1$s"><p>%2$s</p></div>', $class, $message );
 	}
 
@@ -123,7 +123,7 @@ class Multisite_Add_Theme_List {
 	 */
 	public function add_themes_column( $columns ) {
 
-		$columns[ 'active_blogs' ] = _x( '<nobr>Active in </nobr>', 'column name', 'multisite_enhancements' );
+		$columns[ 'active_blogs' ] = _x( '<nobr>Active in </nobr>', 'column name', 'multisite-enhancements' );
 
 		return $columns;
 	}
@@ -156,7 +156,7 @@ class Multisite_Add_Theme_List {
 		if ( $is_child ) {
 			$parent_name = $theme_data->parent()->Name;
 			$child_context .= sprintf(
-				'<br>' . esc_attr__( 'This is a child theme of %s.', 'multisite_enhancements' ),
+				'<br>' . esc_attr__( 'This is a child theme of %s.', 'multisite-enhancements' ),
 				'<strong>' . esc_attr( $parent_name ) . '</strong>'
 			);
 		}
@@ -165,13 +165,13 @@ class Multisite_Add_Theme_List {
 		$parent_context = '';
 		$used_as_parent = $this->is_parent( $theme_key );
 		if ( count( $used_as_parent ) ) {
-			$parent_context .= '<br>' . esc_attr__( 'This is used as a parent theme by:', 'multisite_enhancements' ) . ' ';
+			$parent_context .= '<br>' . esc_attr__( 'This is used as a parent theme by:', 'multisite-enhancements' ) . ' ';
 			$parent_context .= implode( ', ', $used_as_parent );
 		}
 
 		if ( ! $active_on_blogs ) {
 			// Translators: The theme is not activated, the string is for each plugin possible.
-			$output .= __( '<nobr>Not Activated</nobr>', 'multisite_enhancements' );
+			$output .= __( '<nobr>Not Activated</nobr>', 'multisite-enhancements' );
 			$output .= $child_context;
 			$output .= $parent_context;
 		} else {

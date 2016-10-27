@@ -91,13 +91,13 @@ class Multisite_Add_Site_Status_labels {
 			$live_hint = '';
 
 			if ( $this->check_external_url( $blog->siteurl, $admin_bar->user->domain ) ) {
-				$title    = esc_attr__( 'external domain', 'multisite_enhancements' );
+				$title    = esc_attr__( 'external domain', 'multisite-enhancements' );
 				$class    = 'ab-icon dashicons-before dashicons-external';
 				$url_hint = '<span title="' . $title . '" class="' . $class . '"></span>';
 			}
 
 			if ( ! $this->is_site_live( $blog->userblog_id ) ) {
-				$title     = esc_attr__( 'noindex', 'multisite_enhancements' );
+				$title     = esc_attr__( 'noindex', 'multisite-enhancements' );
 				$class     = 'ab-icon dashicons-before dashicons-dismiss';
 				$live_hint = '<span title="' . $title . '" class="' . $class . '"></span>';
 			}

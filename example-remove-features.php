@@ -8,7 +8,7 @@
  * Author URI:  http://bueltge.de
  * License:     GPLv2+
  * License URI: ./assets/LICENSE
- * Text Domain: multisite_enhancements
+ * Text Domain: multisite-enhancements
  * Domain Path: /languages
  * Network:     true
  */

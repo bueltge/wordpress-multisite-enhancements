@@ -8,7 +8,7 @@
  * Author URI:  https://bueltge.de
  * License:     GPLv2+
  * License URI: ./assets/LICENSE
- * Text Domain: multisite_enhancements
+ * Text Domain: multisite-enhancements
  * Domain Path: /languages
  * Network:     true
  */
@@ -84,7 +84,7 @@ class Multisite_Enhancements {
 	public function load_translation() {
 
 		load_plugin_textdomain(
-			'multisite_enhancements',
+			'multisite-enhancements',
 			FALSE,
 			basename( __DIR__ ) . '/languages/'
 		);
@@ -103,19 +103,19 @@ class Multisite_Enhancements {
 			<p>
 				<?php esc_html_e(
 					'The plugin only works in a multisite installation. See how to install a multisite network:',
-					'multisite_enhancements'
+					'multisite-enhancements'
 				); ?>
 				<a href="http://codex.wordpress.org/Create_A_Network" title="<?php esc_html_e(
-					'WordPress Codex: Create a network', 'multisite_enhancements'
+					'WordPress Codex: Create a network', 'multisite-enhancements'
 				); ?>">
-					<?php esc_html_e( 'WordPress Codex: Create a network', 'multisite_enhancements' ); ?>
+					<?php esc_html_e( 'WordPress Codex: Create a network', 'multisite-enhancements' ); ?>
 				</a>
 			</p>
 		</div>
 
 		<div class="updated notice">
 			<p>
-				<?php _e( 'Plugin <strong>deactivated</strong>.', 'multisite_enhancements' ); ?>
+				<?php _e( 'Plugin <strong>deactivated</strong>.', 'multisite-enhancements' ); ?>
 			</p>
 		</div>
 		<?php

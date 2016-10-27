@@ -1,118 +1,131 @@
-# Copyright (C) 2016 Frank Bültge
-# This file is distributed under the GPLv2+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Multisite Enhancements 1.3.7\n"
-"Report-Msgid-Bugs-To: "
-"https://wordpress.org/support/plugin/multisite-enhancements\n"
-"POT-Creation-Date: 2016-10-24 20:04:49+00:00\n"
+"Project-Id-Version: MultiSite Enhancements\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/multisite-"
+"enhancements\n"
+"POT-Creation-Date: 2016-10-27 15:51+0200\n"
+"PO-Revision-Date: 2016-10-27 15:51+0200\n"
+"Last-Translator: Frank Bültge <frank@bueltge.de>\n"
+"Language-Team: Internet D2 Savoie <contact@internetd2savoie.fr>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"X-Generator: grunt-wp-i18n 0.5.4\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: inc/autoload/class-add-blog-id.php:98
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: inc/autoload/class-add-plugin-list.php:115
 msgid ""
 "Multisite Enhancements: Delete site transients for the plugin usage to help "
 "on development, debugging. The constant WP_DEBUG is true."
 msgstr ""
+"Multisite Enhancements: Supprimer le site transients pour l'utilisation du "
+"plugin pour aider au développement et au debugging. La constante WP_DEBUG "
+"est true."
 
-#: inc/autoload/class-add-plugin-list.php:174
 #. Translators: The plugin is network wide active, the string is for each
 #. plugin possible.
+#: inc/autoload/class-add-plugin-list.php:174
 msgid "<nobr>Network Activated</nobr>"
-msgstr ""
+msgstr "<nobr>Activé sur le réseau</nobr>"
 
-#: inc/autoload/class-add-plugin-list.php:183
-#: inc/autoload/class-add-theme-list.php:174
 #. Translators: The plugin is not activated, the string is for each plugin
 #. possible.
 #. Translators: The theme is not activated, the string is for each plugin
 #. possible.
+#: inc/autoload/class-add-plugin-list.php:183
+#: inc/autoload/class-add-theme-list.php:174
 msgid "<nobr>Not Activated</nobr>"
-msgstr ""
+msgstr "<nobr>Inactif</nobr>"
 
 #: inc/autoload/class-add-plugin-list.php:200
 msgid " Network Only"
-msgstr ""
+msgstr "Réseau uniquement"
 
 #: inc/autoload/class-add-theme-list.php:111
 msgid ""
 "Multisite Enhancements: Delete site transients for the theme usage to help "
 "on development, debugging. The constant WP_DEBUG is true."
 msgstr ""
+"Multisite Enhancements: Supprimer le site transients pour l'utilisation du "
+"plugin pour aider au développement et au debugging. La constante WP_DEBUG "
+"est true."
 
 #: inc/autoload/class-add-theme-list.php:159
 msgid "This is a child theme of %s."
-msgstr ""
+msgstr "C'est un thème enfant de %s."
 
 #: inc/autoload/class-add-theme-list.php:168
 msgid "This is used as a parent theme by:"
-msgstr ""
+msgstr "Utilisé comme thème parent par : "
 
 #: inc/autoload/class-admin-bar-tweaks.php:67
 msgid "Plugins"
-msgstr ""
+msgstr "Plugins"
 
 #: inc/autoload/class-admin-bar-tweaks.php:98
 msgid "Manage Comments"
-msgstr ""
+msgstr "Gérer les Commentaires"
 
 #: inc/autoload/class-admin-bar-tweaks.php:104
 msgid "%s comment awaiting moderation"
 msgid_plural "%s comments awaiting moderation"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s commentaire en attente de modération"
+msgstr[1] "%s commentaires en attente de modération"
 
 #: inc/autoload/class-multisite-add-new-plugin.php:50
 #: inc/autoload/class-multisite-add-new-plugin.php:51
 msgid "Add New"
-msgstr ""
+msgstr "Ajouter un nouveau"
 
 #: multisite-enhancements.php:104
 msgid ""
 "The plugin only works in a multisite installation. See how to install a "
 "multisite network:"
 msgstr ""
+"Le plugin fonctionne seulement sur une installation multisite. Voir comment "
+"créer un réseau multisites :"
 
 #: multisite-enhancements.php:108 multisite-enhancements.php:111
 msgid "WordPress Codex: Create a network"
-msgstr ""
+msgstr "WordPress Codex : Créé un réseau"
 
 #: multisite-enhancements.php:118
 msgid "Plugin <strong>deactivated</strong>."
-msgstr ""
+msgstr "Plugin <strong>désactivé</strong>."
 
 #. Plugin Name of the plugin/theme
 msgid "Multisite Enhancements"
-msgstr ""
+msgstr "Multisite Enhancements"
 
 #. Plugin URI of the plugin/theme
 msgid "https://github.com/bueltge/WordPress-Multisite-Enhancements"
-msgstr ""
+msgstr "https://github.com/bueltge/WordPress-Multisite-Enhancements"
 
 #. Description of the plugin/theme
 msgid "Enhance Multisite for Network Admins with different topics"
 msgstr ""
+"Améliore la gestion multisite pour les administrateurs réseau avec "
+"différents sujets"
 
 #. Author of the plugin/theme
 msgid "Frank Bültge"
-msgstr ""
+msgstr "Frank Bültge"
 
 #. Author URI of the plugin/theme
 msgid "https://bueltge.de"
-msgstr ""
+msgstr "https://bueltge.de"
 
+#. Translators: Active in is the head of the table column on plugin list.
 #: inc/autoload/class-add-plugin-list.php:138
 #: inc/autoload/class-add-theme-list.php:126
-#. Translators: Active in is the head of the table column on plugin list.
 msgctxt "column name"
 msgid "<nobr>Active in </nobr>"
-msgstr ""
+msgstr "<nobr>Actif dans </nobr>"
