@@ -3,7 +3,7 @@
  * On the network plugins page, show which blogs have this plugin active.
  *
  * @since   2013-07-19
- * @version 2016-10-05
+ * @version 2016-10-28
  * @package WordPress
  */
 
@@ -45,6 +45,29 @@ class Multisite_Add_Plugin_List {
 	 * @var    string
 	 */
 	static protected $site_transient_blogs_plugins = 'blogs_plugins';
+
+	/**
+	 * Define the allowed html tags for wp_kses.
+	 *
+	 * @var array
+	 */
+	static protected $wp_kses_allowed_html = array(
+		'br' => array(),
+		'nobr' => array(
+			'class' => array(),
+		),
+		'span' => array(
+			'class' => array(),
+		),
+		'ul' => array(),
+		'li' => array(
+			'title' => array(),
+		),
+		'a' => array(
+			'href' => array(),
+			'title' => array(),
+		),
+	);
 
 	/**
 	 * Initialize the class.
@@ -197,11 +220,11 @@ class Multisite_Add_Plugin_List {
 		// Add indicator that the plugin is "Network Only".
 		if ( $plugin_data[ 'Network' ] ) {
 			$output .= '<br /><nobr class="submitbox"><span class="submitdelete">'
-				. __( ' Network Only', 'multisite-enhancements' )
+				. esc_attr__( 'Network Only', 'multisite-enhancements' )
 				. '</span></nobr>';
 		}
 
-		echo $output;
+		echo wp_kses( $output, self::$wp_kses_allowed_html );
 	}
 
 	/**
@@ -222,7 +245,7 @@ class Multisite_Add_Plugin_List {
 		$active_in_plugins = array();
 
 		foreach ( $blogs_plugins as $blog_id => $data ) {
-			if ( in_array( $plugin_file, $data[ 'active_plugins' ], FALSE ) ) {
+			if ( in_array( $plugin_file, $data[ 'active_plugins' ], TRUE ) ) {
 				$active_in_plugins[ $blog_id ] = array(
 					'name' => $data[ 'blogname' ],
 					'path' => $data[ 'blogpath' ],
@@ -247,14 +270,18 @@ class Multisite_Add_Plugin_List {
 			return $this->blogs_plugins;
 
 			// If not, see if we can load data from the transient.
-		} else if ( FALSE === ( $this->blogs_plugins = get_site_transient( self::$site_transient_blogs_plugins ) ) ) {
+		} elseif ( FALSE === ( $this->blogs_plugins = get_site_transient( self::$site_transient_blogs_plugins ) ) ) {
 
 			// Cannot load data from transient, so load from DB and set transient.
 			$this->blogs_plugins = array();
 
 			$blogs = (array) Multisite_Core::get_blog_list( 0, $this->sites_limit );
 
-			/** @var array $blog */
+			/**
+			 * Data to each site of the network, blogs.
+			 *
+			 * @var array $blog
+			 */
 			foreach ( $blogs as $blog ) {
 
 				// Convert object to array.

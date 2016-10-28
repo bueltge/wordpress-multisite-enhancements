@@ -3,7 +3,7 @@
  * On the network theme page, show which blog have the theme active.
  *
  * @since   2013-07-22
- * @version 2016-10-05
+ * @version 2016-10-28
  * @package WordPress
  */
 
@@ -39,6 +39,29 @@ class Multisite_Add_Theme_List {
 	 * @var    string
 	 */
 	static protected $site_transient_blogs_themes = 'blogs_themes';
+
+	/**
+	 * Define the allowed html tags for wp_kses.
+	 *
+	 * @var array
+	 */
+	static protected $wp_kses_allowed_html = array(
+		'br' => array(),
+		'nobr' => array(
+			'class' => array(),
+		),
+		'span' => array(
+			'class' => array(),
+		),
+		'ul' => array(),
+		'li' => array(
+			'title' => array(),
+		),
+		'a' => array(
+			'href' => array(),
+			'title' => array(),
+		),
+	);
 
 	/**
 	 * Initialize the class.
@@ -190,7 +213,7 @@ class Multisite_Add_Theme_List {
 			$output .= $parent_context;
 		}
 
-		echo $output;
+		echo wp_kses( $output, self::$wp_kses_allowed_html );
 	}
 
 	/**
@@ -249,7 +272,11 @@ class Multisite_Add_Theme_List {
 		$blogs_themes = $this->get_blogs_themes();
 		$parent_of    = array();
 
-		/** @var array $data */
+		/**
+		 * Provide the data to the Theme of each site.
+		 *
+		 * @var array $data
+		 */
 		foreach ( (array) $blogs_themes as $blog_id => $data ) {
 
 			$template = FALSE;
@@ -280,14 +307,18 @@ class Multisite_Add_Theme_List {
 			return $this->blogs_themes;
 
 			// If not, see if we can load data from the transient.
-		} else if ( FALSE === ( $this->blogs_themes = get_site_transient( self::$site_transient_blogs_themes ) ) ) {
+		} elseif ( FALSE === ( $this->blogs_themes = get_site_transient( self::$site_transient_blogs_themes ) ) ) {
 
 			// Cannot load data from transient, so load from DB and set transient.
 			$this->blogs_themes = array();
 
 			$blogs = (array) Multisite_Core::get_blog_list( 0, $this->sites_limit );
 
-			/** @var array $blog */
+			/**
+			 * Data to each site of the network, blogs.
+			 *
+			 * @var array $blog
+			 */
 			foreach ( $blogs as $blog ) {
 
 				// Convert object to array.
