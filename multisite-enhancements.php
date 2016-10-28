@@ -19,7 +19,6 @@ add_filter( 'plugins_loaded', array( 'Multisite_Enhancements', 'get_object' ) );
 
 /**
  * Class Multisite_Enhancements.
- *
  * Plugin wrapper to list as plugin in WordPress environment and load all necessary files.
  * Use the filter hook 'multisite_enhancements_autoload' to unset classes, there is not necessary for you.
  */
@@ -66,6 +65,7 @@ class Multisite_Enhancements {
 		// This check prevents using this plugin not in a multisite.
 		if ( function_exists( 'is_multisite' ) && ! is_multisite() ) {
 			add_filter( 'admin_notices', array( $this, 'error_msg_no_multisite' ) );
+
 			return;
 		}
 
@@ -115,7 +115,12 @@ class Multisite_Enhancements {
 
 		<div class="updated notice">
 			<p>
-				<?php _e( 'Plugin <strong>deactivated</strong>.', 'multisite-enhancements' ); ?>
+				<?php echo wp_kses(
+					__( 'Plugin <strong>deactivated</strong>.', 'multisite-enhancements' ),
+					array(
+						'strong' => array(),
+					)
+				); ?>
 			</p>
 		</div>
 		<?php
@@ -123,7 +128,6 @@ class Multisite_Enhancements {
 
 	/**
 	 * Load all files in folder inc.
-	 *
 	 * Use the filter hook 'multisite_enhancements_autoload' to unset classes, there is not necessary for you.
 	 *
 	 * @since   0.0.1
@@ -138,7 +142,11 @@ class Multisite_Enhancements {
 
 		// Load files.
 		foreach ( $autoload_files as $path ) {
-			/** @var string $path Path of each file, that we load */
+			/**
+			 * Path of each file, that we load.
+			 *
+			 * @var string $path
+			 */
 			require_once $path;
 		}
 	}

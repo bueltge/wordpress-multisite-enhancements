@@ -3,7 +3,8 @@
  * Core methods, there will be used.
  *
  * @since   2013-07-24
- * @version 2016-10-23
+ * @version 2016-10-28
+ * @package WordPress
  */
 
 add_action( 'init', array( 'Multisite_Core', 'init' ) );
@@ -105,7 +106,11 @@ class Multisite_Core {
 		// Only if usable, set via var.
 		if ( TRUE === $details ) {
 
-			/** @var array $blog_list */
+			/**
+			 * Get data to each site in the network.
+			 *
+			 * @var array $blog_list
+			 */
 			$blog_list = get_site_transient( 'multisite_blog_list_details' );
 
 			// For debugging purpose.
@@ -116,7 +121,11 @@ class Multisite_Core {
 			if ( FALSE === $blog_list ) {
 
 				global $wpdb;
-				/** @var array $details */
+				/**
+				 * The data details of each site of the network.
+				 *
+				 * @var array $details
+				 */
 				foreach ( (array) $blogs as $details ) {
 					$blog_list[ $details[ 'blog_id' ] ]                = $details;
 					$blog_list[ $details[ 'blog_id' ] ][ 'postcount' ] = $wpdb->get_var(

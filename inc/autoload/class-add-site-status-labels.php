@@ -3,7 +3,7 @@
  * Add status labels to blogs.
  *
  * @since   2015-07-14
- * @version 2016-01-15
+ * @version 2016-10-28
  * @package WordPress
  */
 
@@ -79,7 +79,7 @@ class Multisite_Add_Site_Status_labels {
 	 *
 	 * Use the filter hook 'multisite_enhancements_status_label' to change style, dashicon, markup.
 	 *
-	 * @param WP_Admin_Bar $admin_bar All necessary admin bar items.
+	 * @param \WP_Admin_Bar $admin_bar All necessary admin bar items.
 	 *
 	 * @return mixed
 	 */

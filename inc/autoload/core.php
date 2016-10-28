@@ -8,6 +8,7 @@
  *
  * @since    2013-07-24
  * @version  2016-10-05
+ * @package WordPress
  */
 
 if ( ! function_exists( 'get_blog_list' ) ) {
@@ -42,5 +43,4 @@ if ( ! function_exists( 'get_blog_list' ) ) {
 
 		return Multisite_Core::get_blog_list( $start, $num, $expires );
 	}
-
 } // end if fct exist

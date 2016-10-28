@@ -4,6 +4,7 @@
  *
  * @since   2013-07-19
  * @version 2016-01-15
+ * @package WordPress
  */
 
 add_action( 'init', array( 'Multisite_Add_New_Plugin', 'init' ) );

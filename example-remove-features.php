@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Multisite Enhancements Add-on to remove features
- * Description: Thhis plugin remove features from the Multisite Enhancement plugin.
+ * Description: This plugin remove features from the Multisite Enhancement plugin.
  * Plugin URI:  https://github.com/bueltge/WordPress-Multisite-Enhancements
  * Version:     2015-12-03
  * Author:      Frank Bültge
@@ -11,6 +11,8 @@
  * Text Domain: multisite-enhancements
  * Domain Path: /languages
  * Network:     true
+ *
+ * @package WordPress
  */
 
 ! defined( 'ABSPATH' ) and exit;

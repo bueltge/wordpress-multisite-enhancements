@@ -12,7 +12,6 @@ add_action( 'init', array( 'Multisite_Add_Blog_Id', 'init' ) );
 
 /**
  * View Blog and User ID in WordPress Multisite.
- *
  * Class Multisite_Add_Blog_Id
  */
 class Multisite_Add_Blog_Id {
@@ -82,7 +81,7 @@ class Multisite_Add_Blog_Id {
 		if ( 'object_id' === $column_name ) {
 			return (int) $user_id;
 		}
-		
+
 		return $value;
 	}
 
