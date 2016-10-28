@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: MultiSite Enhancements\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/multisite-"
 "enhancements\n"
-"POT-Creation-Date: 2016-10-27 15:51+0200\n"
-"PO-Revision-Date: 2016-10-27 15:51+0200\n"
+"POT-Creation-Date: 2016-10-28 20:33+0200\n"
+"PO-Revision-Date: 2016-10-28 20:33+0200\n"
 "Last-Translator: Frank Bültge <frank@bueltge.de>\n"
 "Language-Team: Internet D2 Savoie <contact@internetd2savoie.fr>\n"
 "Language: fr\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: inc/autoload/class-add-blog-id.php:98
+#: inc/autoload/class-add-blog-id.php:97
 msgid "ID"
 msgstr "ID"
 
-#: inc/autoload/class-add-plugin-list.php:115
+#: inc/autoload/class-add-plugin-list.php:138
 msgid ""
 "Multisite Enhancements: Delete site transients for the plugin usage to help "
 "on development, debugging. The constant WP_DEBUG is true."
@@ -32,7 +32,7 @@ msgstr ""
 
 #. Translators: The plugin is network wide active, the string is for each
 #. plugin possible.
-#: inc/autoload/class-add-plugin-list.php:174
+#: inc/autoload/class-add-plugin-list.php:197
 msgid "<nobr>Network Activated</nobr>"
 msgstr "<nobr>Activé sur le réseau</nobr>"
 
@@ -40,16 +40,17 @@ msgstr "<nobr>Activé sur le réseau</nobr>"
 #. possible.
 #. Translators: The theme is not activated, the string is for each plugin
 #. possible.
-#: inc/autoload/class-add-plugin-list.php:183
-#: inc/autoload/class-add-theme-list.php:174
+#: inc/autoload/class-add-plugin-list.php:206
+#: inc/autoload/class-add-theme-list.php:197
 msgid "<nobr>Not Activated</nobr>"
 msgstr "<nobr>Inactif</nobr>"
 
-#: inc/autoload/class-add-plugin-list.php:200
-msgid " Network Only"
+#: inc/autoload/class-add-plugin-list.php:223
+#, fuzzy
+msgid "Network Only"
 msgstr "Réseau uniquement"
 
-#: inc/autoload/class-add-theme-list.php:111
+#: inc/autoload/class-add-theme-list.php:134
 msgid ""
 "Multisite Enhancements: Delete site transients for the theme usage to help "
 "on development, debugging. The constant WP_DEBUG is true."
@@ -58,30 +59,30 @@ msgstr ""
 "plugin pour aider au développement et au debugging. La constante WP_DEBUG "
 "est true."
 
-#: inc/autoload/class-add-theme-list.php:159
+#: inc/autoload/class-add-theme-list.php:182
 msgid "This is a child theme of %s."
 msgstr "C'est un thème enfant de %s."
 
-#: inc/autoload/class-add-theme-list.php:168
+#: inc/autoload/class-add-theme-list.php:191
 msgid "This is used as a parent theme by:"
 msgstr "Utilisé comme thème parent par : "
 
-#: inc/autoload/class-admin-bar-tweaks.php:67
+#: inc/autoload/class-admin-bar-tweaks.php:71
 msgid "Plugins"
 msgstr "Plugins"
 
-#: inc/autoload/class-admin-bar-tweaks.php:98
+#: inc/autoload/class-admin-bar-tweaks.php:106
 msgid "Manage Comments"
 msgstr "Gérer les Commentaires"
 
-#: inc/autoload/class-admin-bar-tweaks.php:104
+#: inc/autoload/class-admin-bar-tweaks.php:112
 msgid "%s comment awaiting moderation"
 msgid_plural "%s comments awaiting moderation"
 msgstr[0] "%s commentaire en attente de modération"
 msgstr[1] "%s commentaires en attente de modération"
 
-#: inc/autoload/class-multisite-add-new-plugin.php:50
 #: inc/autoload/class-multisite-add-new-plugin.php:51
+#: inc/autoload/class-multisite-add-new-plugin.php:52
 msgid "Add New"
 msgstr "Ajouter un nouveau"
 
@@ -97,7 +98,7 @@ msgstr ""
 msgid "WordPress Codex: Create a network"
 msgstr "WordPress Codex : Créé un réseau"
 
-#: multisite-enhancements.php:118
+#: multisite-enhancements.php:119
 msgid "Plugin <strong>deactivated</strong>."
 msgstr "Plugin <strong>désactivé</strong>."
 
@@ -124,8 +125,8 @@ msgid "https://bueltge.de"
 msgstr "https://bueltge.de"
 
 #. Translators: Active in is the head of the table column on plugin list.
-#: inc/autoload/class-add-plugin-list.php:138
-#: inc/autoload/class-add-theme-list.php:126
+#: inc/autoload/class-add-plugin-list.php:161
+#: inc/autoload/class-add-theme-list.php:149
 msgctxt "column name"
 msgid "<nobr>Active in </nobr>"
 msgstr "<nobr>Actif dans </nobr>"
