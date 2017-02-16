@@ -2,24 +2,24 @@
 Enhance Multisite for Network Admins with different topics
 
 ## Description
-When you work quite a bit with WordPress Multisites, sometimes you need more information or menu items. This plugin enhance the network area for super admins with useful functions.
+When you work quite a bit with WordPress Multisites, sometimes you need more information or menu items. This plugin enhances the network area for super admins with useful functions.
 
-* Add Blog and User ID in network view [more](http://wpengineer.com/2188/view-blog-id-in-wordpress-multisite/)
+* Adds Blog and User ID in network view [more](http://wpengineer.com/2188/view-blog-id-in-wordpress-multisite/)
 * Enables an 'Add New' link under the Plugins menu for Network admins
 * Adds several useful items to the multisite 'Network Admin' admin bar
-* On the network plugins page, show which site have this plugin active
-* On the network theme page, show which blog have the theme active and is it a Child theme
-* Change Admin footer text for Administrators to view fast currently used RAM, SQL, RAM Version
-* Add Favicon from theme folder to the admin area to easier identify the blog, use the `favicon.ico` file in the theme folder of the active theme in each blog
-* Add Favicon to each blog on the Admin Bar Item 'My Sites'. If you a like a custom path for each favicon, please see the [documentation](https://github.com/bueltge/WordPress-Multisite-Enhancements/wiki/Filter-Hook-for-Favicon-File-Path) for this feature.
-* Remove also the 'W' logo and his sub-links in admin bar
-* Add status to each site in the admin bar to identifier fast if the site `noindex` status and external url.
+* On the network plugins page, shows which site has this plugin active
+* On the network theme page, shows which blog has the theme active and is a Child theme
+* Change Admin footer text for Administrators to view currently used RAM, SQL, RAM version fast
+* Adds Favicon from theme folder to the admin area to easily identify the blog, use the `favicon.ico` file in the theme folder of the active theme in each blog
+* Adds Favicon to each blog on the Admin Bar Item 'My Sites'. If you a like a custom path for each favicon, please see the [documentation](https://github.com/bueltge/WordPress-Multisite-Enhancements/wiki/Filter-Hook-for-Favicon-File-Path) for this feature.
+* Removes also the 'W' logo and his sub-links in admin bar
+* Adds the status to each site in the admin bar to identify fastly if the site has a `noindex` status and to see the external url.
 * Add functions to be used in your install
-   * The function `get_blog_list()` is currently deprecated in the WP Core, but currently usable. The plugin check this and get a alternative in [`inc/autoload/core.php`](./inc/autoload/core.php)
-   * If you will develop with the alternative to this function from my source, then use the method `get_blog_list()` in class `Multisite_Core`. She use also caching with the Transient API. See more about the function on the function in [`inc/autoload/class-core.php`](./inc/autoload/class-core.php).
-   * If you use WordPress version 3.7 and higher, then check the function `wp_get_sites()`, the new alternative function inside the core to get all sides inside the network. The function accept a array with arguments, see the [description](http://wpseek.com/wp_get_sites/).
-   * But if you use WordPress 4.6 and higher that a new alternate ;) - `get_sites()` is current function to get all sites in the network. The helper method of this plugin `Multisite_Core::get_blog_list()` or the function `get_blog_list()` have all checks include.
-* Filter theme list to find fast your goal. Works on single theme page and also network theme page.
+   * The function `get_blog_list()` is currently deprecated in the WP Core, but currently usable. The plugin checks this and gets an alternative in [`inc/autoload/core.php`](./inc/autoload/core.php)
+   * If you will develop with the alternative to this function from my source, then use the method `get_blog_list()` in class `Multisite_Core`. My source also use caching with the Transient API. More about the function in  [`inc/autoload/class-core.php`](./inc/autoload/class-core.php).
+   * If you use WordPress version 3.7 and higher, then check the function `wp_get_sites()`, the new alternative function inside the core to get all sides inside the network. The function accepts a array with arguments, see the [description](http://wpseek.com/wp_get_sites/).
+   * But if you use WordPress 4.6 and higher then that new alternative ;) - `get_sites()` - is the current function to get all sites in the network. The helper method of this plugin `Multisite_Core::get_blog_list()` or the function `get_blog_list()` have all checks included.
+* Filter theme list to find your target fast. Works on single theme page and also network theme page.
 
 ### Installation
 #### Composer Package
@@ -89,6 +89,3 @@ Please fork it, add an issue for ideas and bugs.
 ### Disclaimer
 I'm German and my English might be gruesome here and there. 
 So please be patient with me and let me know of typos or grammatical parts. Thanks
-
-***
-
