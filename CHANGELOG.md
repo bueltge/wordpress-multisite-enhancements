@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.3.7...HEAD)
+* Fixed duplicated view on parent theme usage.
+
 
 ## [1.3.7](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.3.6...1.3.7) - 2016-10-24
 * Fix the usage of plugins for each site in the network on the plugin network view. #32

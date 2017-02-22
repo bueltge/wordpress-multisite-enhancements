@@ -95,6 +95,9 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.3.8 () =
+* Fixed duplicated view on parent theme usage.
+
 = 1.3.7 (2016-10-24) =
 * Fix the usage of plugins for each site in the network on the plugin network view.
 * Add helpers to remove transient caching for development, debugging, if `WP_DEBUG` is true.
