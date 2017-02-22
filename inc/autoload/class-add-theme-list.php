@@ -46,19 +46,19 @@ class Multisite_Add_Theme_List {
 	 * @var array
 	 */
 	static protected $wp_kses_allowed_html = array(
-		'br' => array(),
+		'br'   => array(),
 		'nobr' => array(
 			'class' => array(),
 		),
 		'span' => array(
 			'class' => array(),
 		),
-		'ul' => array(),
-		'li' => array(
+		'ul'   => array(),
+		'li'   => array(
 			'title' => array(),
 		),
-		'a' => array(
-			'href' => array(),
+		'a'    => array(
+			'href'  => array(),
 			'title' => array(),
 		),
 	);
@@ -130,8 +130,9 @@ class Multisite_Add_Theme_List {
 	 */
 	public function notice_about_clear_cache() {
 
-		$class = 'notice notice-info';
-		$message = esc_attr__( 'Multisite Enhancements: Delete site transients for the theme usage to help on development, debugging. The constant WP_DEBUG is true.', 'multisite-enhancements' );
+		$class   = 'notice notice-info';
+		$message = esc_attr__( 'Multisite Enhancements: Delete site transients for the theme usage to help on development, debugging. The constant WP_DEBUG is true.',
+		                       'multisite-enhancements' );
 		printf( '<div class="%1$s"><p>%2$s</p></div>', $class, $message );
 	}
 
@@ -188,7 +189,8 @@ class Multisite_Add_Theme_List {
 		$parent_context = '';
 		$used_as_parent = $this->is_parent( $theme_key );
 		if ( count( $used_as_parent ) ) {
-			$parent_context .= '<br>' . esc_attr__( 'This is used as a parent theme by:', 'multisite-enhancements' ) . ' ';
+			$parent_context .= '<br>' . esc_attr__( 'This is used as a parent theme by:',
+			                                        'multisite-enhancements' ) . ' ';
 			$parent_context .= implode( ', ', $used_as_parent );
 		}
 
@@ -261,11 +263,12 @@ class Multisite_Add_Theme_List {
 	/**
 	 * Gets an array of themes which have the selected one as parent.
 	 *
-	 * @since  21/02/2015
+	 * @since   21/02/2015
+	 * @version 2017-02-22
 	 *
-	 * @param String $theme_key The key of each theme.
+	 * @param   string $theme_key The key of each theme.
 	 *
-	 * @return array
+	 * @return  array
 	 */
 	public function is_parent( $theme_key ) {
 
@@ -284,13 +287,13 @@ class Multisite_Add_Theme_List {
 				$template = $data[ 'template' ];
 			}
 
-			if ( $template !== $data[ 'stylesheet' ] && $template === $theme_key ) {
+			if ( $template === $theme_key && $template !== $data[ 'stylesheet' ] ) {
 				$theme       = wp_get_theme( $data[ 'stylesheet' ] );
 				$parent_of[] = $theme->get( 'Name' );
 			}
 		}
 
-		return $parent_of;
+		return array_unique( $parent_of );
 	}
 
 	/**
