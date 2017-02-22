@@ -3,7 +3,7 @@
  * On the network theme page, show which blog have the theme active.
  *
  * @since   2013-07-22
- * @version 2016-10-28
+ * @version 2017-02-22
  * @package WordPress
  */
 
@@ -203,10 +203,17 @@ class Multisite_Add_Theme_List {
 			$output .= '<ul>';
 
 			foreach ( $active_on_blogs as $key => $value ) {
-				$output .= '<li title="Blog ID: ' . $key . '">';
-				$output .= '<nobr><a href="' . get_admin_url(
-						$key
-					) . 'themes.php">' . $value[ 'name' ] . '</a></nobr>';
+
+				// Check the site for archived.
+				$class = $hint = '';
+				if ( $this->is_archived( $key ) ) {
+					$class = ' class="site-archived"';
+					$hint  = esc_attr__( ', Archived site', 'multisite-enhancements' );
+				}
+
+				$output .= '<li' . $class . ' title="Blog ID: ' . $key . $hint . '">';
+				$output .= '<nobr><a href="' . get_admin_url( $key ) . 'themes.php">'
+				           . $value[ 'name' ] . '</a>' . $hint . '</nobr>';
 				$output .= $child_context;
 				$output .= '</li>';
 			}
@@ -246,6 +253,19 @@ class Multisite_Add_Theme_List {
 		}
 
 		return $active_in_themes;
+	}
+
+	/**
+	 * Check, if the status of the site archived.
+	 *
+	 * @param integer $site_id ID of the site.
+	 *
+	 * @return bool
+	 */
+	public function is_archived( $site_id ) {
+
+		$site_id = (int) $site_id;
+		return (bool) get_blog_details( $site_id )->archived;
 	}
 
 	/**

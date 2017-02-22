@@ -97,6 +97,7 @@ So please be patient with me and let me know of typos or grammatical parts. Than
 == Changelog ==
 = 1.3.8 () =
 * Fixed duplicated view on parent theme usage.
+* Adds status text to a site, if is a archived site on plugin/theme list.
 
 = 1.3.7 (2016-10-24) =
 * Fix the usage of plugins for each site in the network on the plugin network view.

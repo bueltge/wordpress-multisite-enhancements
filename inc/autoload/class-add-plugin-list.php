@@ -3,7 +3,7 @@
  * On the network plugins page, show which blogs have this plugin active.
  *
  * @since   2013-07-19
- * @version 2016-10-28
+ * @version 2017-02-22
  * @package WordPress
  */
 
@@ -52,19 +52,19 @@ class Multisite_Add_Plugin_List {
 	 * @var array
 	 */
 	static protected $wp_kses_allowed_html = array(
-		'br' => array(),
+		'br'   => array(),
 		'nobr' => array(
 			'class' => array(),
 		),
 		'span' => array(
 			'class' => array(),
 		),
-		'ul' => array(),
-		'li' => array(
+		'ul'   => array(),
+		'li'   => array(
 			'title' => array(),
 		),
-		'a' => array(
-			'href' => array(),
+		'a'    => array(
+			'href'  => array(),
 			'title' => array(),
 		),
 	);
@@ -134,8 +134,9 @@ class Multisite_Add_Plugin_List {
 	 */
 	public function notice_about_clear_cache() {
 
-		$class = 'notice notice-info';
-		$message = esc_attr__( 'Multisite Enhancements: Delete site transients for the plugin usage to help on development, debugging. The constant WP_DEBUG is true.', 'multisite-enhancements' );
+		$class   = 'notice notice-info';
+		$message = esc_attr__( 'Multisite Enhancements: Delete site transients for the plugin usage to help on development, debugging. The constant WP_DEBUG is true.',
+		                       'multisite-enhancements' );
 		printf( '<div class="%1$s"><p>%2$s</p></div>', $class, $message );
 	}
 
@@ -208,9 +209,17 @@ class Multisite_Add_Plugin_List {
 				$output .= '<ul>';
 
 				foreach ( $active_on_blogs as $key => $value ) {
-					$output .= '<li title="Blog ID: ' . $key . '"><nobr><a href="' . get_admin_url(
-							$key
-						) . 'plugins.php">' . $value[ 'name' ] . '</a></nobr></li>';
+
+					// Check the site for archived.
+					$class = $hint = '';
+					if ( $this->is_archived( $key ) ) {
+						$class = ' class="site-archived"';
+						$hint  = esc_attr__( ', Archived site', 'multisite-enhancements' );
+					}
+
+					$output .= '<li' . $class . ' title="Blog ID: ' . $key . $hint . '">';
+					$output .= '<nobr><a href="' . get_admin_url( $key ) . 'plugins.php">'
+					           . $value[ 'name' ] . '</a>' . $hint . '</nobr></li>';
 				}
 
 				$output .= '</ul>';
@@ -220,11 +229,25 @@ class Multisite_Add_Plugin_List {
 		// Add indicator that the plugin is "Network Only".
 		if ( $plugin_data[ 'Network' ] ) {
 			$output .= '<br /><nobr class="submitbox"><span class="submitdelete">'
-				. esc_attr__( 'Network Only', 'multisite-enhancements' )
-				. '</span></nobr>';
+			           . esc_attr__( 'Network Only', 'multisite-enhancements' )
+			           . '</span></nobr>';
 		}
 
 		echo wp_kses( $output, self::$wp_kses_allowed_html );
+	}
+
+	/**
+	 * Check, if the status of the site archived.
+	 *
+	 * @param integer $site_id ID of the site.
+	 *
+	 * @return bool
+	 */
+	public function is_archived( $site_id ) {
+
+		$site_id = (int) $site_id;
+
+		return (bool) get_blog_details( $site_id )->archived;
 	}
 
 	/**

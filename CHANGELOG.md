@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.3.7...HEAD)
 * Fixed duplicated view on parent theme usage.
-
+* Adds status text to a site, if is a archived site on plugin/theme list.
 
 ## [1.3.7](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.3.6...1.3.7) - 2016-10-24
 * Fix the usage of plugins for each site in the network on the plugin network view. #32
