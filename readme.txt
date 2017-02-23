@@ -3,7 +3,7 @@ Contributors: Bueltge, inpsyde
 Tags: multisite, administration, admin bar, network,
 Requires at least: 3.0.0
 Tested up to: 4.7.2
-Stable tag: 1.3.7
+Stable tag: 1.3.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,7 +95,7 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
-= 1.3.8 () =
+= 1.3.8 (2017-02-23) =
 * Fixed duplicated view on parent theme usage.
 * Adds status text to a site, if is a archived site on plugin/theme list.
 
