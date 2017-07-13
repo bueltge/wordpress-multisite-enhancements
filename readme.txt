@@ -1,9 +1,9 @@
 === Multisite Enhancements ===
 Contributors: Bueltge, inpsyde
 Tags: multisite, administration, admin bar, network,
-Requires at least: 3.0.0
-Tested up to: 4.7.2
-Stable tag: 1.3.8
+Requires at least: 4.6
+Tested up to: 4.7
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,6 +22,7 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
 * Adds Favicon to each blog on the Admin Bar Item 'My Sites'. If you a like a custom path for each favicon, please see the [documentation](https://github.com/bueltge/WordPress-Multisite-Enhancements/wiki/Filter-Hook-for-Favicon-File-Path) for this feature.
 * Removes also the 'W' logo and his sub-links in admin bar
 * Adds the status to each site in the admin bar to identify fastly if the site has a `noindex` status and to see the external url.
+* Handy ssl identifier to each site in network site view page.
 * Add functions to be used in your install
    * The function `get_blog_list()` is currently deprecated in the WP Core, but currently usable. The plugin checks this and gets an alternative in [`inc/autoload/core.php`](./inc/autoload/core.php)
    * If you will develop with the alternative to this function from my source, then use the method `get_blog_list()` in class `Multisite_Core`. My source also use caching with the Transient API. More about the function in  [`inc/autoload/class-core.php`](./inc/autoload/class-core.php).
@@ -40,7 +41,7 @@ You want to donate - we prefer a [positive review](https://wordpress.org/support
 
 = Requirements =
 * WordPress Multisite 3.0+
-* PHP 5.3*, newer PHP versions will work faster.
+* PHP 5.6*, newer PHP versions will work faster.
 
 = Installation =
 * Use the installer via back-end of your install or ...
@@ -63,7 +64,7 @@ You want to donate - we prefer a [positive review](https://wordpress.org/support
 
 == Other Notes ==
 
-**Crafted by [Inpsyde](http://inpsyde.com) · The team is engineering the Web since 2006.**
+**Crafted by [Inpsyde](https://inpsyde.com) · The team is engineering the Web since 2006.**
 
 = Hints, knowledge =
 See also for helpful hints on the [wiki page](https://github.com/bueltge/wordpress-multisite-enhancements/wiki).
@@ -95,6 +96,9 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.4.0 (@ToDo) =
+* Adds handy ssl identifier to each site in network site view page.
+
 = 1.3.8 (2017-02-23) =
 * Fixed duplicated view on parent theme usage.
 * Adds status text to a site, if is a archived site on plugin/theme list.

@@ -1,8 +1,8 @@
 # Change Log
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [1.4.0](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.3.8...1.4.0) - 
-* Add ssl identifier to each site in network site view page.
+## [1.4.0](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.3.8...1.4.0) - 2017-07-13
+* Added ssl identifier to each site in network site view page.
 
 ## [1.3.8](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.3.7...1.3.8) - 2017-02-23
 * Fixed duplicated view on parent theme usage.

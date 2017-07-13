@@ -20,6 +20,7 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
    * If you use WordPress version 3.7 and higher, then check the function `wp_get_sites()`, the new alternative function inside the core to get all sides inside the network. The function accepts a array with arguments, see the [description](http://wpseek.com/wp_get_sites/).
    * But if you use WordPress 4.6 and higher then that new alternative ;) - `get_sites()` - is the current function to get all sites in the network. The helper method of this plugin `Multisite_Core::get_blog_list()` or the function `get_blog_list()` have all checks included.
 * Filter theme list to find your target fast. Works on single theme page and also network theme page.
+* Handy ssl identifier to each site in network site view page.
 
 ### Installation
 #### Composer Package
@@ -66,7 +67,7 @@ Use the installer via back-end. Find via search and install.
  ![Filter Themes](./assets/screenshot-9.gif)
 
 ## Other Notes
-###Crafted by [Inpsyde](http://inpsyde.com) · The team is engineering the Web since 2006.
+### Crafted by [Inpsyde](https://inpsyde.com) · The team is engineering the Web since 2006.
 
 ### Bugs, technical hints or contribute
 Please give me feedback, contribute and file technical bugs on this 
@@ -81,7 +82,7 @@ for the time I've spent writing and supporting this plugin.
 And I really don't want to know how many hours of my life this plugin has already eaten ;)
 
 ### Contact & Feedback
-The plugin is designed and developed by me [Frank Bültge](http://bueltge.de), [G+ Page](https://plus.google.com/111291152590065605567/about?rel=author)
+The plugin is designed and developed by me [Frank Bültge](http://bueltge.de)
 
 Please let me know if you like the plugin or you hate it or whatever ... 
 Please fork it, add an issue for ideas and bugs.

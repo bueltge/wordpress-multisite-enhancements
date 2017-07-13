@@ -1,4 +1,4 @@
-<?php
+<?php # -*- coding: utf-8 -*-
 /**
  * Add a icon to identify the ssl protocol on each site.
  *
