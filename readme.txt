@@ -2,7 +2,7 @@
 Contributors: Bueltge, inpsyde
 Tags: multisite, administration, admin bar, network,
 Requires at least: 4.6
-Tested up to: 4.7
+Tested up to: 4.8
 Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -96,7 +96,7 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
-= 1.4.0 (@ToDo) =
+= 1.4.0 (2017-07-23) =
 * Adds handy ssl identifier to each site in network site view page.
 
 = 1.3.8 (2017-02-23) =
