@@ -9,7 +9,8 @@
 
 add_action( 'admin_init', function () {
 
-	( new Multisite_Add_Ssh_Identifier() )->init();
+	$multisite_add_ssh_identifier = new Multisite_Add_Ssh_Identifier();
+	$multisite_add_ssh_identifier->init();
 } );
 
 /**
