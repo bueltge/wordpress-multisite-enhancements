@@ -3,7 +3,7 @@
  * Add a icon to identify the ssl protocol on each site.
  *
  * @since   2017-07-13
- * @version 2017-07-13
+ * @version 2017-08-10
  * @package WordPress
  */
 

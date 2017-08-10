@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.4.1](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.4.0...1.4.1) - 2017-08-10
+* Added a change for initialization of the class to run also on php 5.3 installs.
+
 ## [1.4.0](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.3.8...1.4.0) - 2017-07-23
 * Added ssl identifier to each site in network site view page.
 
