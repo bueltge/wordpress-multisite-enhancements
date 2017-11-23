@@ -206,6 +206,13 @@ class Multisite_Add_Plugin_List {
 				// Translators: The plugin is not activated, the string is for each plugin possible.
 				$output .= __( '<nobr>Not Activated</nobr>', 'multisite-enhancements' );
 			} else {
+				$active_count = sizeOf( $active_on_blogs );
+				$output .= '<p>' .
+				           sprintf(
+					           _n( 'Active on %s site', 'Active on %s sites', $active_count, 'multisite-enhancements' ),
+					           $active_count
+				           )
+				           . '</p>';
 				$output .= '<ul>';
 
 				foreach ( $active_on_blogs as $key => $value ) {
