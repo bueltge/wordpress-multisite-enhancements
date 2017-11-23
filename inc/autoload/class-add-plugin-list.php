@@ -159,7 +159,7 @@ class Multisite_Add_Plugin_List {
 		// Not useful on different selections.
 		if ( ! in_array( esc_attr( $_GET[ 'plugin_status' ] ), self::$excluded_plugin_status, FALSE ) ) {
 			// Translators: Active in is the head of the table column on plugin list.
-			$columns[ 'active_blogs' ] = _x( '<nobr>Active in </nobr>', 'column name', 'multisite-enhancements' );
+			$columns[ 'active_blogs' ] = '<nobr>' . _x( 'Usage', 'column name', 'multisite-enhancements' ) . '</nobr>';
 		}
 
 		return $columns;
