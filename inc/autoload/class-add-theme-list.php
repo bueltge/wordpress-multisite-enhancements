@@ -147,7 +147,7 @@ class Multisite_Add_Theme_List {
 	 */
 	public function add_themes_column( $columns ) {
 
-		$columns[ 'active_blogs' ] = _x( '<nobr>Active in </nobr>', 'column name', 'multisite-enhancements' );
+		$columns[ 'active_blogs' ] = '<nobr>' . _x( 'Active on', 'column name', 'multisite-enhancements' ) . '</nobr>';
 
 		return $columns;
 	}
