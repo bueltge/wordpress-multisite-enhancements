@@ -19,24 +19,20 @@
 
 add_filter( 'multisite_enhancements_autoload', function ( $files ) {
 
-	// Unset the favicon-feature, file class-add-admin-favicon.php.
-	unset( $files[ 0 ] );
-
-	/**
-	 * Current are this possible.
-	 *
-	 *  0 => inc/autoload/class-add-admin-favicon.php'
-	 *  1 => inc/autoload/class-add-blog-id.php'
-	 *  2 => inc/autoload/class-add-plugin-list.php'
-	 *  3 => inc/autoload/class-add-site-status-labels.php'
-	 *  4 => inc/autoload/class-add-theme-list.php'
-	 *  5 => inc/autoload/class-admin-bar-tweaks.php'
-	 *  6 => inc/autoload/class-change-footer-text.php'
-	 *  7 => inc/autoload/class-core.php'
-	 *  8 => inc/autoload/class-filtering-themes.php'
-	 *  9 => inc/autoload/class-multisite-add-new-plugin.php'
-	 * 10 => inc/autoload/core.php'
-	 */
+	// Unset features by unsetting the filename from the autoloader
+	// Uncomment to deactivate
+//	unset( $files[ 'class-add-admin-favicon.php' ] );
+//	unset( $files[ 'class-add-blog-id.php' ] );
+//	unset( $files[ 'class-add-plugin-list.php' ] );
+//	unset( $files[ 'class-add-site-status-labels.php' ] );
+//	unset( $files[ 'class-add-ssl-identifiers.php' ] );
+//	unset( $files[ 'class-add-theme-list.php' ] );
+//	unset( $files[ 'class-admin-bar-tweaks.php' ] );
+//	unset( $files[ 'class-change-footer-text.php' ] );
+//	unset( $files[ 'class-core.php' ] );
+//	unset( $files[ 'class-filtering-themes.php' ] );
+//	unset( $files[ 'class-multisite-add-new-plugins.php' ] );
+//	unset( $files[ 'core.php' ] );
 
 	return $files;
 } );
