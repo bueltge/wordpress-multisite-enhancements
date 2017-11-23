@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file. This projec
 ## Unreleased, only in master branch
 * Change syntax for usage of plugins, themes; probs @cfoellmann
 * Count the usage in sites for plugins, themes; probs @cfoellmann
+* Change of the autoloader, the removel of a function is now more solid. See [the wiki page](https://github.com/bueltge/wordpress-multisite-enhancements/wiki/Remove-features); probs @cfoellmann
 
 ## [1.4.1](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.4.0...1.4.1) - 2017-08-10
 * Added a change for initialization of the class to run also on php 5.3 installs.
