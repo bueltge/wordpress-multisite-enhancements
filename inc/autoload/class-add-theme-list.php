@@ -148,7 +148,6 @@ class Multisite_Add_Theme_List {
 	public function add_themes_column( $columns ) {
 
 		$columns[ 'active_blogs' ] = '<nobr>' . _x( 'Usage', 'column name', 'multisite-enhancements' ) . '</nobr>';
-
 		return $columns;
 	}
 
