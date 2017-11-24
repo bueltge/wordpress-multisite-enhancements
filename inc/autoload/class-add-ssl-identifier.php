@@ -7,11 +7,7 @@
  * @package WordPress
  */
 
-add_action( 'admin_init', function () {
-
-	$multisite_add_ssh_identifier = new Multisite_Add_Ssh_Identifier();
-	$multisite_add_ssh_identifier->init();
-} );
+add_action( 'admin_init', array( 'Multisite_Add_Ssh_Identifier', 'init' ) );
 
 /**
  * Class Multisite_Add_Ssh_Identifier
@@ -26,22 +22,26 @@ class Multisite_Add_Ssh_Identifier {
 	private $column = 'site_ssl';
 
 	/**
-	 * Use the WP hooks to include the functions in wp.
+	 * Init the class.
 	 */
-	public function init() {
+	public static function init() {
+
+		$class = __CLASS__;
+		if ( empty( $GLOBALS[ $class ] ) ) {
+			$GLOBALS[ $class ] = new $class;
+		}
+	}
+
+	/**
+	 * Init function to register all used hooks.
+	 */
+	public function __construct() {
 
 		add_filter( 'wpmu_blogs_columns', array( $this, 'add_column' ) );
 		add_action( 'manage_sites_custom_column', array( $this, 'get_protocol' ), 10, 2 );
 
 		add_action( 'admin_print_styles-sites.php', array( $this, 'add_style' ) );
 	}
-
-	/**
-	 * Constructor.
-	 *
-	 * Multisite_Add_Ssh_Identifier constructor.
-	 */
-	public function __construct() {}
 
 	/**
 	 * Determines if SSL is used.
