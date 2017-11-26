@@ -3,15 +3,21 @@
  * Add a icon to identify the ssl protocol on each site.
  *
  * @since   2017-07-13
- * @version 2017-08-10
+ * @version 2017-11-26
  * @package WordPress
  */
 
-add_action( 'admin_init', function () {
+namespace Bueltge\Multisite_Add_Ssh_Identifier;
+
+add_action( 'admin_init', __NAMESPACE__ . '\\bootstrap' );
+/**
+ * Create the instance of this class.
+ */
+function bootstrap() {
 
 	$multisite_add_ssh_identifier = new Multisite_Add_Ssh_Identifier();
 	$multisite_add_ssh_identifier->init();
-} );
+}
 
 /**
  * Class Multisite_Add_Ssh_Identifier
@@ -91,7 +97,7 @@ class Multisite_Add_Ssh_Identifier {
 				$status = 'lock';
 			}
 
-			echo '<span class="dashicons dashicons-' . $status . '"></span>';
+			echo '<span class="dashicons dashicons-' . $status . '"></span>'; // WPCS: XSS ok.
 		}
 		return $column_name;
 	}
