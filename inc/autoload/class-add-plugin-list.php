@@ -3,7 +3,7 @@
  * On the network plugins page, show which blogs have this plugin active.
  *
  * @since   2013-07-19
- * @version 2017-02-22
+ * @version 2018-02-15
  * @package WordPress
  */
 
