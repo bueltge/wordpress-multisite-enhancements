@@ -23,6 +23,7 @@ add_filter( 'multisite_enhancements_autoload', function ( $files ) {
 	// Uncomment to deactivate.
 //	unset( $files[ 'class-add-admin-favicon.php' ] );
 //	unset( $files[ 'class-add-blog-id.php' ] );
+//	unset( $files[ 'class-add-css.php' ] );
 //	unset( $files[ 'class-add-plugin-list.php' ] );
 //	unset( $files[ 'class-add-site-status-labels.php' ] );
 //	unset( $files[ 'class-add-ssl-identifier.php' ] );

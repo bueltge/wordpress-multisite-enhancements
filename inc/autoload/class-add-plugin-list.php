@@ -59,14 +59,19 @@ class Multisite_Add_Plugin_List {
 		'span' => array(
 			'class' => array(),
 		),
-		'ul'   => array(),
+		'ul'   => array(
+			'id' => array(),
+			'class' => array(),
+		),
 		'li'   => array(
 			'title' => array(),
 		),
 		'a'    => array(
 			'href'  => array(),
+			'onclick' => array(),
 			'title' => array(),
 		),
+		'p'    => array(),
 	);
 
 	/**
@@ -207,13 +212,29 @@ class Multisite_Add_Plugin_List {
 				$output .= __( '<nobr>Not Activated</nobr>', 'multisite-enhancements' );
 			} else {
 				$active_count = sizeOf( $active_on_blogs );
-				$output .= '<p>' .
-				           sprintf(
-					           _n( 'Active on %s site', 'Active on %s sites', $active_count, 'multisite-enhancements' ),
-					           $active_count
-				           )
-				           . '</p>';
-				$output .= '<ul>';
+				$output .= '<p>';
+
+				$is_list_hidden = false;
+				// Hide the list of sites if the class isn"t loaded or there's less or equal to 4 sites 
+				if ( class_exists('Enqueue_Column_Style',false) && $active_count > 4) {
+					$output .= sprintf(
+						_n( 'Active on %2$s %1$d site %3$s', 'Active on %2$s %1$d sites %3$s', $active_count, 'multisite-enhancements' ),
+						$active_count,
+						"<a onclick=\"jQuery('ul[id*=\'siteslist_{$plugin_file}\']').slideToggle('swing');\">",
+						'</a>'
+					);
+				} else {
+					$output .=  sprintf(
+						_n( 'Active on %s site', 'Active on %s sites', $active_count, 'multisite-enhancements' ),
+						$active_count
+					);
+						$is_list_hidden = true;
+				}
+				$output .= '</p>';
+				$output .= '<ul id="siteslist_' . $plugin_file;
+				$output .= ( $is_list_hidden ) ? '">' : '" class="siteslist">';
+				
+	
 
 				foreach ( $active_on_blogs as $key => $value ) {
 
