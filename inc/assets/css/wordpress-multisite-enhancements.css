@@ -1,0 +1,11 @@
+td.column-active_blogs {
+	width: 200px;
+}
+
+td.column-active_blogs a {
+	cursor: pointer;
+}
+
+.siteslist {
+	display: none;
+}

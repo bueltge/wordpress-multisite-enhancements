@@ -7,8 +7,9 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
 * Adds Blog and User ID in network view [more](http://wpengineer.com/2188/view-blog-id-in-wordpress-multisite/)
 * Enables an 'Add New' link under the Plugins menu for Network admins
 * Adds several useful items to the multisite 'Network Admin' admin bar
-* On the network plugins page, shows which site has this plugin active
-* On the network theme page, shows which blog has the theme active and is a Child theme
+* On the network plugins page, shows which site has this plugin active.
+* On the network theme page, shows which blog has the theme active and is a Child theme.
+  * If you have more as 4 sites active for an plugin, theme then is the list only available via click for an proper way to not overload the admin interface.
 * Change Admin footer text for Administrators to view currently used RAM, SQL, RAM version fast
 * Adds Favicon from theme folder to the admin area to easily identify the blog, use the `favicon.ico` file in the theme folder of the active theme in each blog
 * Adds Favicon to each blog on the Admin Bar Item 'My Sites'. If you a like a custom path for each favicon, please see the [documentation](https://github.com/bueltge/WordPress-Multisite-Enhancements/wiki/Filter-Hook-for-Favicon-File-Path) for this feature.
