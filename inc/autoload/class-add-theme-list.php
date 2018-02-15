@@ -53,14 +53,19 @@ class Multisite_Add_Theme_List {
 		'span' => array(
 			'class' => array(),
 		),
-		'ul'   => array(),
+		'ul'   => array(
+			'id' => array(),
+			'class' => array(),
+		),
 		'li'   => array(
 			'title' => array(),
 		),
 		'a'    => array(
 			'href'  => array(),
+			'onclick' => array(),
 			'title' => array(),
 		),
+		'p'    => array(),
 	);
 
 	/**
@@ -179,7 +184,7 @@ class Multisite_Add_Theme_List {
 		if ( $is_child ) {
 			$parent_name = $theme_data->parent()->Name;
 			$child_context .= sprintf(
-				'<br>' . esc_attr__( 'This is a child theme of %s.', 'multisite-enhancements' ),
+				esc_attr__( 'This is a child theme of %s.', 'multisite-enhancements' ),
 				'<strong>' . esc_attr( $parent_name ) . '</strong>'
 			);
 		}
@@ -188,7 +193,7 @@ class Multisite_Add_Theme_List {
 		$parent_context = '';
 		$used_as_parent = $this->is_parent( $theme_key );
 		if ( count( $used_as_parent ) ) {
-			$parent_context .= '<br>' . esc_attr__( 'This is used as a parent theme by:',
+			$parent_context .= esc_attr__( 'This is used as a parent theme by:',
 			                                        'multisite-enhancements' ) . ' ';
 			$parent_context .= implode( ', ', $used_as_parent );
 		}
@@ -200,14 +205,28 @@ class Multisite_Add_Theme_List {
 			$output .= $parent_context;
 		} else {
 			$active_count = sizeOf( $active_on_blogs );
-			$output .= '<p>' .
-			           sprintf(
-				           _n( 'Active on %s site', 'Active on %s sites', $active_count, 'multisite-enhancements' ),
-				           $active_count
-			           )
-			           . '</p>';
-			$output .= '<ul>';
+			$output .= '<p>';
 
+			$is_list_hidden = false;
+			// Hide the list of sites if the class isn"t loaded or there's less or equal to 4 sites 
+			if ( class_exists('Enqueue_Column_Style',false) && $active_count > 4) {
+				$output .= sprintf(
+					_n( 'Active on %2$s %1$d site %3$s', 'Active on %2$s %1$d sites %3$s', $active_count, 'multisite-enhancements' ),
+					$active_count,
+					"<a onclick=\"jQuery('ul[id*=\'siteslist_{$theme_key}\']').slideToggle('swing');\">",
+					'</a>'
+				);
+			} else {
+				$output .=  sprintf(
+					_n( 'Active on %s site', 'Active on %s sites', $active_count, 'multisite-enhancements' ),
+					$active_count
+				);
+					$is_list_hidden = true;
+			}
+			$output .= '</p>';
+			$output .= '<ul id="siteslist_'.$theme_key;
+			$output .= ( $is_list_hidden ) ? '">' : '" class="siteslist">';
+			
 			foreach ( $active_on_blogs as $key => $value ) {
 
 				// Check the site for archived.
@@ -220,11 +239,11 @@ class Multisite_Add_Theme_List {
 				$output .= '<li' . $class . ' title="Blog ID: ' . $key . $hint . '">';
 				$output .= '<nobr><a href="' . get_admin_url( $key ) . 'themes.php">'
 				           . $value[ 'name' ] . '</a>' . $hint . '</nobr>';
-				$output .= $child_context;
 				$output .= '</li>';
 			}
 
 			$output .= '</ul>';
+			$output .= $child_context;
 			$output .= $parent_context;
 		}
 
