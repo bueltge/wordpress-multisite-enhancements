@@ -4,6 +4,8 @@
  * If this class is loaded, modify the presentation of the column in order to
  * allow showing or hiding the list of sites that uses a theme or plugin
  *
+ * Kudos to #n-goncalves for this solution.
+ * @see https://github.com/bueltge/wordpress-multisite-enhancements/pull/44
  *
  * @since   2018-02-15
  * @version 2018-02-15
