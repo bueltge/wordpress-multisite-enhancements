@@ -1,10 +1,10 @@
 {
   "name": "wordpress-multisite-enhancements",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Enhance WordPress Multisite for Network Admins with different topics.",
   "homepage": "https://github.com/bueltge/wordpress-multisite-enhancements",
   "bugs": "https://github.com/bueltge/wordpress-multisite-enhancements/issues",
-  "license": "GPL-2.0+",
+  "license": "GPL-2.0-or-later",
   "author": {
     "name": "Frank Bueltge",
     "email": "frank@bueltge.de",

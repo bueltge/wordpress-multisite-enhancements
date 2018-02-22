@@ -2,8 +2,7 @@
   "name": "bueltge/wordpress-multisite-enhancements",
   "description": "Enhance Multisite for Network Admins with different topics",
   "keywords"   : ["wordpress", "multisite", "plugin"],
-  "license": "GPL-2.0+",
-  "version": "1.4.0",
+  "license": "GPL-2.0-or-later",
   "type": "wordpress-plugin",
   "homepage": "https://github.com/bueltge/wordpress-multisite-enhancements/",
   "authors": [
