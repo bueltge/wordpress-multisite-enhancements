@@ -2,7 +2,8 @@
 <ruleset name="marksimple">
  <description>Rules for my MarkSimple PHP projects</description>
 
- <file>./src</file>
+ <file>./inc</file>
+ <file>./multisite-enhancements.php</file>
 
  <!-- Code Reviews Rules -->
  <rule ref="Inpsyde"/>
