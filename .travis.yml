@@ -11,6 +11,9 @@ matrix:
     - php: 5.3
       dist: precise
       env: PHP53=true
+    - php: 5.6
+      dist: precise
+      env: PHP53=true
     - php: 7.0
     - php: 7.1
     - php: 7.2
@@ -31,4 +34,4 @@ install:
 
 script:
   - vendor/bin/phpcs --config-set installed_paths "../../wp-coding-standards/wpcs/,../../automattic/phpcs-neutron-standard/,../../inpsyde/php-coding-standards/,../../wimg/php-compatibility/,../../pheromone/phpcs-security-audit/Security/"
-  - vendor/bin/phpcs -n
+  - vendor/bin/phpcs --standard="Inpsyde" *.php -n
