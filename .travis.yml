@@ -1,23 +1,22 @@
 
 language:
-    - php
+  - php
 
-php:
-  - 5.6
-  - 7.0
-  - 7.1
-  - 7.2
-  - hhvm
-  - nightly
-
-# Specify versions of WordPress to test against
-# WP_VERSION = WordPress version number (use "master" for SVN trunk)
-# WP_MULTISITE = whether to test multisite (use either "0" or "1")
-env:
-    - WP_VERSION=master WP_MULTISITE=1
+dist:
+  - trusty
 
 matrix:
   fast_finish: true
+  include:
+    - php: 5.3
+      dist: precise
+      env: PHP53=true
+    - php: 7.0
+    - php: 7.1
+    - php: 7.2
+    - php: nightly
+    - php: hhvm
+      env: HHVM=true
   allow_failures:
     - php: hhvm
     - php: nightly
@@ -27,6 +26,8 @@ before_install:
 
 install:
   - composer install
+  - if [[ $PHP53 == true ]]; then composer require "phpunit/phpunit:5.7"; fi
+  - if [[ $HHVM == true ]]; then composer require "phpunit/phpunit:5.7"; fi
 
 script:
   - vendor/bin/phpcs --config-set installed_paths "../../wp-coding-standards/wpcs/,../../automattic/phpcs-neutron-standard/,../../inpsyde/php-coding-standards/,../../wimg/php-compatibility/,../../pheromone/phpcs-security-audit/Security/"
