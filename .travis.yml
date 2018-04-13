@@ -20,6 +20,7 @@ matrix:
   allow_failures:
     - php: hhvm
     - php: nightly
+    - script: vendor/bin/phpcs
 
 before_install:
   - composer self-update
@@ -31,4 +32,4 @@ install:
 
 script:
   - vendor/bin/phpcs --config-set installed_paths "../../wp-coding-standards/wpcs/,../../automattic/phpcs-neutron-standard/,../../inpsyde/php-coding-standards/,../../wimg/php-compatibility/,../../pheromone/phpcs-security-audit/Security/"
-  - vendor/bin/phpcs -n
+  - vendor/bin/phpcs --standard="WordPress" ./inc/autoload/ ./multisite-enhancements.php
