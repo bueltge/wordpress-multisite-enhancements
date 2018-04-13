@@ -3,7 +3,7 @@
  * On the network plugins page, show which blogs have this plugin active.
  *
  * @since   2013-07-19
- * @version 2018-02-15
+ * @version 2018-04-13
  * @package WordPress
  */
 
@@ -229,6 +229,10 @@ class Multisite_Add_Plugin_List {
 
 				$output .= '</ul>';
 			}
+		}
+
+		if ( ! isset($plugin_data['Network']) ) {
+			$plugin_data['Network'] = false;
 		}
 
 		// Add indicator that the plugin is "Network Only".
