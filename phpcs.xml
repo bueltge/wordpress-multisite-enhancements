@@ -6,7 +6,7 @@
  <file>./multisite-enhancements.php</file>
 
  <!-- Code Reviews Rules -->
- <rule ref="Inpsyde"/>
+ <rule ref="WordPress"/>
 
 <!-- Security Code Reviews Rules -->
 

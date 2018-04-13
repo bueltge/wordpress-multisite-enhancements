@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file. This projec
 ## Unreleased, only in master branch
 * ​
 
+## [1.4.3](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.4.2...1.4.3) - ToDo
+* Fix undefined index Network on plugin list, #46
+
 ## [1.4.2](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.4.1...1.4.2) - 2018-02-22
 * Change syntax for usage of plugins, themes; probs @cfoellmann
 * Count the usage in sites for plugins, themes; probs @cfoellmann
