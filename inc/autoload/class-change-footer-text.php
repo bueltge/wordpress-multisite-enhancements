@@ -116,10 +116,10 @@ class Multisite_Change_Footer_Text {
 		}
 
 		$footer_text .= wp_html_excerpt( $blogname, 40, '&hellip;' );
-		$footer_text .= ' &bull; <abbr title="Random-access memory">RAM</abbr> ' . number_format(
-				memory_get_peak_usage( TRUE ) / 1024 / 1024
-				, 1, ',', ''
-			) . '/' . WP_MEMORY_LIMIT;
+		$footer_text .= ' &bull; <abbr title="Random-access memory">RAM</abbr> ' . number_format_i18n(
+				memory_get_peak_usage( TRUE ) / 1024 / 1024,
+				1
+			) . __( '/', 'multisite-enhancements' ) . WP_MEMORY_LIMIT;
 		$footer_text .= ' &bull; <abbr title="Structured Query Language">SQL</abbr> ' . $GLOBALS[ 'wpdb' ]->num_queries;
 		$footer_text .= ' &bull; <abbr title="Version of PHP (Hypertext Preprocessor)">PHPv</abbr> ' . phpversion();
 
