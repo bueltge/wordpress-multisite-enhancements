@@ -115,13 +115,21 @@ class Multisite_Change_Footer_Text {
 			$blogname = get_bloginfo( 'name' );
 		}
 
-		$footer_text .= wp_html_excerpt( $blogname, 40, '&hellip;' );
-		$footer_text .= ' &bull; <abbr title="Random-access memory">RAM</abbr> ' . number_format_i18n(
-				memory_get_peak_usage( TRUE ) / 1024 / 1024,
-				1
-			) . __( '/', 'multisite-enhancements' ) . WP_MEMORY_LIMIT;
-		$footer_text .= ' &bull; <abbr title="Structured Query Language">SQL</abbr> ' . $GLOBALS[ 'wpdb' ]->num_queries;
-		$footer_text .= ' &bull; <abbr title="Version of PHP (Hypertext Preprocessor)">PHPv</abbr> ' . phpversion();
+		$footer_text .= wp_html_excerpt($blogname, 40, __('&hellip;', 'multisite-enhancements'));
+		$footer_text .= ' &bull; <abbr title="'
+		                . esc_html__('Random-access memory', 'multisite-enhancements')
+		                . '">' . esc_html__('RAM', 'multisite-enhancements') . '</abbr> '
+		                . number_format_i18n(
+			                memory_get_peak_usage(true) / 1024 / 1024,
+			                1
+		                )
+		                . __('/', 'multisite-enhancements') . WP_MEMORY_LIMIT;
+		$footer_text .= ' &bull; <abbr title="' . esc_html__('Query Language',
+				'multisite-enhancements') . '">' . esc_html__('SQL',
+				'multisite-enhancements') . '</abbr> ' . $GLOBALS[ 'wpdb' ]->num_queries;
+		$footer_text .= ' &bull; <abbr title="' . esc_html__('Version of PHP (Hypertext Preprocessor)',
+				'multisite-enhancements') . '">' . esc_html__('PHPv',
+				'multisite-enhancements') . '</abbr> ' . phpversion();
 
 		/**
 		 * Filter for change content form other source.
