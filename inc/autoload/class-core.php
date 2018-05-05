@@ -30,11 +30,11 @@ class Multisite_Core {
 	 *
 	 * Only blogs marked as public and flagged as safe (mature flag off) are returned.
 	 *
-	 * @param  Integer $start   The first blog to return in the array.
-	 * @param  Integer $num     The number of blogs to return in the array (thus the size of the array).
+	 * @param  Integer $start        The first blog to return in the array.
+	 * @param  Integer $num          The number of blogs to return in the array (thus the size of the array).
 	 *                          Setting this to string 'all' returns all blogs from $start.
 	 * @param  Boolean $details Get also Postcount for each blog, default is False for a better performance.
-	 * @param  Integer $expires Time until expiration in seconds, default 86400s (1day).
+	 * @param  Integer $expires      Time until expiration in seconds, default 86400s (1day).
 	 *
 	 * @return array   Returns an array of arrays each representing a blog.
 	 *                  Details are represented in the following format:
@@ -81,6 +81,8 @@ class Multisite_Core {
 				$limit = '';
 			}
 
+			/** @noinspection SqlDialectInspection */
+			/** @noinspection SqlNoDataSourceInspection */
 			$blogs = $wpdb->get_results(
 				$wpdb->prepare(
 					"
@@ -104,7 +106,7 @@ class Multisite_Core {
 		}
 
 		// Only if usable, set via var.
-		if ( TRUE === $details ) {
+		if (TRUE === $details ) {
 
 			/**
 			 * Get data to each site in the network.
@@ -124,13 +126,13 @@ class Multisite_Core {
 				/**
 				 * The data details of each site of the network.
 				 *
-				 * @var array $details
+				 * @var array $blog_details
 				 */
-				foreach ( (array) $blogs as $details ) {
-					$blog_list[ $details[ 'blog_id' ] ]                = $details;
-					$blog_list[ $details[ 'blog_id' ] ][ 'postcount' ] = $wpdb->get_var(
+				foreach ( (array) $blogs as $blog_details ) {
+					$blog_list[ $blog_details[ 'blog_id' ] ]                = $blog_details;
+					$blog_list[ $blog_details[ 'blog_id' ] ][ 'postcount' ] = $wpdb->get_var(
 						"SELECT COUNT(ID)
-						FROM " . $wpdb->get_blog_prefix( $details[ 'blog_id' ] ) . "posts
+						FROM " . $wpdb->get_blog_prefix( $blog_details[ 'blog_id' ] ) . "posts
 						WHERE post_status='publish'
 						AND post_type='post'"
 					);
