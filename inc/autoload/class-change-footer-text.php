@@ -109,10 +109,9 @@ class Multisite_Change_Footer_Text {
 		}
 
 		// Set string of admin area.
+		$blogname = get_bloginfo( 'name' );
 		if ( is_network_admin() ) {
 			$blogname = ' ' . esc_html( $GLOBALS[ 'current_site' ]->site_name );
-		} else {
-			$blogname = get_bloginfo( 'name' );
 		}
 
 		$footer_text .= wp_html_excerpt($blogname, 40, __('&hellip;', 'multisite-enhancements'));
