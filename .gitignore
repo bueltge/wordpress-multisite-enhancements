@@ -17,7 +17,7 @@
 .sass-cache
 
 # Vendor (e.g. Composer)
-vendor/*
+vendor
 !vendor/.gitkeep
 composer.lock
 
