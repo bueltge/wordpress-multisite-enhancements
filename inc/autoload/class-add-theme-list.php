@@ -3,7 +3,7 @@
  * On the network theme page, show which blog have the theme active.
  *
  * @since   2013-07-22
- * @version 2018-02-15
+ * @version 2018-05-16
  * @package WordPress
  */
 
