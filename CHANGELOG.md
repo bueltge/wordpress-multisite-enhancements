@@ -2,7 +2,10 @@
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased, only in master branch
-* ​
+* Fixed small php notes.
+* Fixed the possibility to translate the footer message about RAM, SQL queries.
+* ​Added fix to leave message for the parent theme in a single line.
+* Added Ui change to list more as 4 themes in Theme usage overview. Probs @n-goncalves #44
 
 ## [1.4.3](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.4.2...1.4.3) - ToDo
 * Fix undefined index Network on plugin list, #46
