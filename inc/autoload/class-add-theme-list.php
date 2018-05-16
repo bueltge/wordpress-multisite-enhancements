@@ -247,7 +247,7 @@ class Multisite_Add_Theme_List {
 
 		$active_in_themes = array();
 
-		foreach ( (array) $blogs_themes as $blog_id => $data ) {
+		foreach ( $blogs_themes as $blog_id => $data ) {
 
 			if ( $data['stylesheet'] === $theme_key ) {
 				$active_in_themes[ $blog_id ] = array(
@@ -375,7 +375,7 @@ class Multisite_Add_Theme_List {
 		 *
 		 * @var array $data
 		 */
-		foreach ( (array) $blogs_themes as $blog_id => $data ) {
+		foreach ( $blogs_themes as $blog_id => $data ) {
 
 			$template = false;
 			if ( array_key_exists( 'template', $data ) ) {
