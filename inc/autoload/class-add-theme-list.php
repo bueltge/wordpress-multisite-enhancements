@@ -170,7 +170,7 @@ class Multisite_Add_Theme_List {
 		}
 
 		// Check if used as a parent theme for a child.
-		$parent_context = '';
+		$parent_context = '<br>';
 		$used_as_parent = $this->is_parent( $theme_key );
 		if ( count( $used_as_parent ) ) {
 			$parent_context .= esc_attr__( 'This is used as a parent theme by:',
