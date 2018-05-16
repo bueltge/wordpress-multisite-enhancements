@@ -184,7 +184,7 @@ class Multisite_Add_Theme_List {
 			$output .= $child_context;
 			$output .= $parent_context;
 		} else {
-			$active_count = sizeOf( $active_on_blogs );
+			$active_count = count( $active_on_blogs );
 			$output       .= '<p>';
 
 			$is_list_hidden = false;
