@@ -115,8 +115,10 @@ class Multisite_Add_Theme_List {
 	public function notice_about_clear_cache() {
 
 		$class   = 'notice notice-info';
-		$message = esc_attr__( 'Multisite Enhancements: Delete site transients for the theme usage to help on development, debugging. The constant WP_DEBUG is true.',
-			'multisite-enhancements' );
+		$message = esc_attr__(
+			'Multisite Enhancements: Delete site transients for the theme usage to help on development, debugging. The constant WP_DEBUG is true.',
+		'multisite-enhancements'
+		);
 		printf( '<div class="%1$s"><p>%2$s</p></div>', $class, $message );
 	}
 
@@ -142,11 +144,9 @@ class Multisite_Add_Theme_List {
 	 *
 	 * @since   0.0.2
 	 *
-	 * @param  String         $column_name Name of the column.
-	 * @param  String         $theme_key   Path to the theme file.
+	 * @param  String          $column_name Name of the column.
+	 * @param  String          $theme_key   Path to the theme file.
 	 * @param array|\WP_Theme $theme_data  An array of theme data.
-	 *
-	 * @return void
 	 */
 	public function manage_themes_custom_column( $column_name, $theme_key, \WP_Theme $theme_data ) {
 
@@ -162,8 +162,9 @@ class Multisite_Add_Theme_List {
 		$child_context = '';
 		$is_child      = $this->is_child( $theme_data );
 		if ( $is_child ) {
-			$parent_name   = $theme_data->parent()->Name;
+			$parent_name    = $theme_data->parent()->Name;
 			$child_context .= '<br>' . sprintf(
+				// Translators: The placeholder will be replaced by the name of the parent theme.
 				esc_attr__( 'This is a child theme of %s.', 'multisite-enhancements' ),
 				'<strong>' . esc_attr( $parent_name ) . '</strong>'
 			);
@@ -173,8 +174,10 @@ class Multisite_Add_Theme_List {
 		$parent_context = '';
 		$used_as_parent = $this->is_parent( $theme_key );
 		if ( count( $used_as_parent ) ) {
-			$parent_context .= '<br>' . esc_attr__( 'This is used as a parent theme by:',
-					'multisite-enhancements' ) . ' ';
+			$parent_context .= '<br>' . esc_attr__(
+				'This is used as a parent theme by:',
+				'multisite-enhancements'
+			) . ' ';
 			$parent_context .= implode( ', ', $used_as_parent );
 		}
 
@@ -185,19 +188,25 @@ class Multisite_Add_Theme_List {
 			$output .= $parent_context;
 		} else {
 			$active_count = count( $active_on_blogs );
-			$output       .= '<p>';
+			$output      .= '<p>';
 
 			$is_list_hidden = false;
-			// Hide the list of sites if the class isn"t loaded or there's less or equal to 4 sites
+			// Hide the list of sites if the class isn"t loaded or there's less or equal to 4 sites.
 			if ( class_exists( 'Enqueue_Column_Style', false ) && $active_count > 4 ) {
 				$output .= sprintf(
-					_n( 'Active on %2$s %1$d site %3$s', 'Active on %2$s %1$d sites %3$s', $active_count, 'multisite-enhancements' ),
+					_n(
+						'Active on %2$s %1$d site %3$s',
+						'Active on %2$s %1$d sites %3$s',
+						$active_count,
+				'multisite-enhancements'
+					),
 					$active_count,
 					"<a onclick=\"jQuery('ul[id*=\'siteslist_{$theme_key}\']').slideToggle('swing');\">",
 					'</a>'
 				);
 			} else {
-				$output         .= sprintf(
+				$output        .= sprintf(
+					// Translators: The placeholder will be replaced by the count of sites there use that theme.
 					_n( 'Active on %s site', 'Active on %s sites', $active_count, 'multisite-enhancements' ),
 					$active_count
 				);
@@ -218,7 +227,7 @@ class Multisite_Add_Theme_List {
 
 				$output .= '<li' . $class . ' title="Blog ID: ' . $key . $hint . '">';
 				$output .= '<nobr><a href="' . get_admin_url( $key ) . 'themes.php">'
-				           . $value['name'] . '</a>' . $hint . '</nobr>';
+					. $value['name'] . '</a>' . $hint . '</nobr>';
 				$output .= '</li>';
 			}
 
