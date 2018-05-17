@@ -163,17 +163,17 @@ class Multisite_Add_Theme_List {
 		$is_child      = $this->is_child( $theme_data );
 		if ( $is_child ) {
 			$parent_name   = $theme_data->parent()->Name;
-			$child_context .= sprintf(
+			$child_context .= '<br>' . sprintf(
 				esc_attr__( 'This is a child theme of %s.', 'multisite-enhancements' ),
 				'<strong>' . esc_attr( $parent_name ) . '</strong>'
 			);
 		}
 
 		// Check if used as a parent theme for a child.
-		$parent_context = '<br>';
+		$parent_context = '';
 		$used_as_parent = $this->is_parent( $theme_key );
 		if ( count( $used_as_parent ) ) {
-			$parent_context .= esc_attr__( 'This is used as a parent theme by:',
+			$parent_context .= '<br>' . esc_attr__( 'This is used as a parent theme by:',
 					'multisite-enhancements' ) . ' ';
 			$parent_context .= implode( ', ', $used_as_parent );
 		}
