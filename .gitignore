@@ -19,7 +19,6 @@
 # Vendor (e.g. Composer)
 vendor
 !vendor/.gitkeep
-composer.lock
 
 # IDE PhpStorm
 .idea/
