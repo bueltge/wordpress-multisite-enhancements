@@ -22,7 +22,6 @@
 			<exclude>
 				<directory>tests</directory>
 				<directory>vendor</directory>
-				<directory>src/Templates</directory>
 			</exclude>
 		</whitelist>
 	</filter>
