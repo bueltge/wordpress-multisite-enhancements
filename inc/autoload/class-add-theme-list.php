@@ -116,7 +116,7 @@ class Multisite_Add_Theme_List {
 
 		$class   = 'notice notice-info';
 		$message = esc_attr__(
-			'Multisite Enhancements: Delete site transients for the theme usage to help on development, debugging. The constant WP_DEBUG is true.',
+			'Multisite Enhancements: Theme usage information is not cached while WP_DEBUG is true.',
 		'multisite-enhancements'
 		);
 		printf( '<div class="%1$s"><p>%2$s</p></div>', $class, $message );
