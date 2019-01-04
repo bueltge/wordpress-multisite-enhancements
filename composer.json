@@ -37,8 +37,16 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "autoload-dev": {
-    "psr-4": {
-      "MultisiteEnhancements\\Tests\\": "tests/phpunit"
-    }
+    "psr-4" : {
+        "MultisiteEnhancements\\Tests\\" : "tests/phpunit/"
+    },
+  },
+  "autoload" : {
+    "psr-0" : {
+      "MultisiteEnhancements_" : "inc/"
+    },
+    "classmap" : [
+      "multisite-enhancements.php"
+    ]
   }
 }
