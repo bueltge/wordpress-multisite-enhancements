@@ -6,7 +6,7 @@ class MultisiteEnhancementsTest extends AbstractTestCase
 {
 	public function testBasicInstantiation()
     {
-		$plugin = new Multisite_Enhancements(__DIR__);
+		$plugin = new \Multisite_Enhancements(__DIR__);
 		static::assertInstanceOf(Multisite_Enhancements::class, $plugin);
 	}
 }
