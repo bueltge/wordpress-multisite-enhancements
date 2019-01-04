@@ -31,7 +31,7 @@ before_install:
   - composer self-update
 
 install:
-  - composer install
+  - composer install --optimize-autoloader
   - if [[ $PHP56 == true ]]; then composer require "phpunit/phpunit:5.7"; fi
   - if [[ $HHVM == true ]]; then composer require "phpunit/phpunit:5.7"; fi
 
