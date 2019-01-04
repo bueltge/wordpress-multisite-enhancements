@@ -37,7 +37,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "autoload-dev": {
-    "psr-0": {
+    "psr-4": {
       "MultisiteEnhancements\\Tests\\": "tests/phpunit"
     }
   }
