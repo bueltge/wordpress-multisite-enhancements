@@ -43,7 +43,7 @@
   },
   "autoload" : {
     "psr-0" : {
-      "MultisiteEnhancements_" : "inc/"
+      "" : "inc/autoload/"
     },
     "classmap" : [
       "multisite-enhancements.php"
