@@ -39,7 +39,7 @@
   "autoload-dev": {
     "psr-4" : {
         "MultisiteEnhancements\\Tests\\" : "tests/phpunit/"
-    },
+    }
   },
   "autoload" : {
     "psr-0" : {
