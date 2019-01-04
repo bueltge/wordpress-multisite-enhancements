@@ -31,9 +31,8 @@ if ( ! function_exists( 'get_blog_list' ) ) {
 	 *                       postcount (integer) The number of posts in this blog.
 	 */
 	function get_blog_list( $start = 0, $num = 10, $expires = 86400 ) {
-
 		if ( ! is_multisite() ) {
-			return FALSE;
+			return false;
 		}
 
 		if ( ! class_exists( 'Multisite_Core' ) ) {
