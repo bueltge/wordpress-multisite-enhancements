@@ -31,13 +31,14 @@ class Enqueue_Column_Style {
 
 		add_action( 'admin_head-themes.php', array( $this, 'enqueue_style' ) );
 		add_action( 'admin_head-plugins.php', array( $this, 'enqueue_style' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_style' ) );
+
 	}
 
 	/**
 	 * Initialize the class.
 	 */
 	public static function init() {
-
 		$class = __CLASS__;
 		if ( empty( $GLOBALS[ $class ] ) ) {
 			$GLOBALS[ $class ] = new $class;
@@ -53,10 +54,10 @@ class Enqueue_Column_Style {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		wp_register_style(
-			'admin_column_css',
+			'admin-column',
 			plugins_url( '/inc/assets/css/wordpress-multisite-enhancements' . $suffix . '.css', MULTISITE_ENHANCEMENT_BASE ),
 			false );
-		wp_enqueue_style( 'admin_column_css' );
+		wp_enqueue_style( 'admin-column' );
 	} // end enqueue_style()
 
 } // end class
