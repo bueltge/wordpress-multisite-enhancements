@@ -1,32 +1,35 @@
 <?php
-add_action( 'init', array( 'Enqueue_scrollable_adminmenu_Style', 'init' ) );
+namespace Bueltge\Multisite_Scrollable_AdminMenu;
 
-class Enqueue_scrollable_adminmenu_Style {
+add_action( 'admin_init', __NAMESPACE__ . '\\bootstrap' );
 
+/**
+ * Create the instance of this class.
+ */
+function bootstrap() {
+	$multisite_scollable_adminmenu = new Multisite_Scrollable_AdminMenu();
+	$multisite_scollable_adminmenu->init();
+}
+
+class Multisite_Scrollable_AdminMenu {
+
+	/**
+	 * @var string
+	 */
 	private $suffix;
 
 	/**
 	 * Init function to register all used hooks.
 	 *
 	 */
-	public function __construct() {
+	public function init() {
 		$this->suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_style' ) );
-
 	}
 
 	/**
-	 * Initialize the class.
+	 * Enqueue admin styles
 	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			$GLOBALS[ $class ] = new $class;
-		}
-	}
-
-
 	public function admin_enqueue_style() {
 		$handle = 'enhance-adminmenu';
 		
