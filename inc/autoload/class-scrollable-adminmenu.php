@@ -34,11 +34,11 @@ class Multisite_Scrollable_AdminMenu {
 		$handle = 'enhance-adminmenu';
 		
 		wp_register_style(
-			$handle . 'styles',
+			$handle,
 			plugins_url( MULTISITE_ENHANCEMENT_ASSETS . 'css/enhance-adminmenu' . $this->suffix . '.css', MULTISITE_ENHANCEMENT_BASE ),
 			false );
 
-		wp_enqueue_style( $handle . 'styles' );
+		wp_enqueue_style( $handle );
 	}
 
 }
