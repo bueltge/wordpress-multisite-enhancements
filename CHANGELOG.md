@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased, only in master branch
+* 
+
+## [1.5.0](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.4.3...1.5.0) - 2019-02-24
 * Networkmenu is now scrollable.
 * More clearance for the message about inactive cache.
 
