@@ -2,12 +2,14 @@
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased, only in master branch
+* Networkmenu is now scrollable.
+* More clearance for the message about inactive cache.
 
 ## [1.4.3](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.4.2...1.4.3) - 2018-05-17
 * Fix undefined index Network on plugin list, #46
 * Fix small php notes.
 * Fix the possibility to translate the footer message about RAM, SQL queries.
-* ​Add fix to leave message for the parent theme in a single line.
+* Add fix to leave message for the parent theme in a single line.
 * Add Ui change to list more as 4 themes in Theme usage overview. Probs @n-goncalves #44
 
 ## [1.4.2](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.4.1...1.4.2) - 2018-02-22
