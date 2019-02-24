@@ -136,6 +136,7 @@ class Multisite_Enhancements {
 
 		$file_base = self::$file_base;
 		define( 'MULTISITE_ENHANCEMENT_BASE', $file_base );
+		define( 'MULTISITE_ENHANCEMENT_ASSETS', '/inc/assets/' );
 
 		$autoload_paths = glob( "$file_base/autoload/*.php" );
 
