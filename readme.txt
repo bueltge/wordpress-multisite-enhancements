@@ -4,7 +4,7 @@ Tags: multisite, administration, admin bar, network,
 Requires at least: 4.6
 Tested up to: 5.1
 Requires PHP: 5.6
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -97,9 +97,13 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.5.0 (2019-02-25) =
+* Remove feature 'Networkmenu is now scrollable'.
+
 = 1.5.0 (2019-02-24) =
 * Networkmenu is now scrollable.
 * More clearance for the message about inactive cache.
+* Small php fixes.
 
 = 1.4.3 (2018-05-17) =
 * Fix undefined index Network on plugin list, #46

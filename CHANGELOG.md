@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file. This projec
 ## Unreleased, only in master branch
 * 
 
+## [1.5.1](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.5.0...1.5.1) - 2019-02-25
+* Remove feature 'Networkmenu is now scrollable' - to much problems.
+* More clearance for the message about inactive cache.
+
 ## [1.5.0](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.4.3...1.5.0) - 2019-02-24
 * Networkmenu is now scrollable.
 * More clearance for the message about inactive cache.
