@@ -46,7 +46,7 @@ class Multisite_Admin_Bar_Tweaks {
 		global $wp_admin_bar;
 
 		// Show only when the user has at least one site, or they're a super admin.
-		if ( count( $wp_admin_bar->user->blogs ) < 1 ) {
+		if ( ! isset( $wp_admin_bar->user->blogs ) || count( $wp_admin_bar->user->blogs ) < 1 ) {
 			return;
 		}
 
@@ -90,6 +90,10 @@ class Multisite_Admin_Bar_Tweaks {
 		 */
 		global $wp_admin_bar;
 
+		if ( ! isset( $wp_admin_bar->user->blogs ) ) {
+			return;
+		}
+		
 		foreach ( (array) $wp_admin_bar->user->blogs as $blog ) {
 
 			switch_to_blog( $blog->userblog_id );
