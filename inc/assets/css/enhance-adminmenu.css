@@ -95,24 +95,31 @@
 	background: #b43c38;
 }
 
-!* Admin color blue *!
-.admin-color-blue #wpadminbar #wp-admin-bar-my-sites .menupop ul {
-	background: #464b50;
+/* Admin color blue */
+.admin-color-blue #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin,
+.admin-color-blue #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin .ab-submenu{
+	background:#006587;
 }
 
-.admin-color-blue #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin,
-.admin-color-blue #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-network-admin-default{
-	background: #b43c38;
-}*/
+.admin-color-blue #wpadminbar #wp-admin-bar-my-sites .menupop ul,
+.admin-color-blue #wpadminbar #wp-admin-bar-my-sites .menupop ul li:hover{
+	background: #1b97b6;
+}
+
+.admin-color-blue #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin li a,
+.admin-color-blue #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin .ab-submenu li a,
+.admin-color-blue #wpadminbar .quicklinks li .blavatar, #wpadminbar .menupop .menupop > .ab-item:before{
+	color: #e5e5e5;
+}
 
 /* Admin color light */
-.admin-color-light #wpadminbar #wp-admin-bar-my-sites .menupop ul {
-	background: #999;
-}
-
 .admin-color-light #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin,
 .admin-color-light #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin .ab-submenu{
 	background:#999;
+}
+
+.admin-color-light #wpadminbar #wp-admin-bar-my-sites .menupop ul{
+	background: #e5e5e5;
 }
 
 .admin-color-light #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin li a,
