@@ -31,111 +31,100 @@
 }
 
 #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin,
-#wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-network-admin-default{
+#wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin .ab-submenu,
+#wpadminbar #wp-admin-bar-my-sites .menupop ul{
 	background: #32373c;
 }
-/*
-!* Admin color sunrise *!
-.admin-color-sunrise #wpadminbar #wp-admin-bar-my-sites .menupop ul {
-	background: #464b50;
+
+#wpadminbar #wp-admin-bar-my-sites-list li:hover,
+#wpadminbar #wp-admin-bar-my-sites .menupop ul li:hover{
+	background: #222222;
 }
 
+
+/* Admin color sunrise */
 .admin-color-sunrise #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin,
-.admin-color-sunrise #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-network-admin-default{
-	background: #b43c38;
+.admin-color-sunrise #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin .ab-submenu,
+.admin-color-sunrise #wpadminbar #wp-admin-bar-my-sites .menupop ul{
+	background:#c32e31;
 }
 
-!* Admin color sunrise *!
-.admin-color-sunrise #wpadminbar #wp-admin-bar-my-sites .menupop ul {
-	background: #464b50;
+.admin-color-sunrise #wpadminbar #wp-admin-bar-my-sites-list li:hover,
+.admin-color-sunrise #wpadminbar #wp-admin-bar-my-sites .menupop ul li:hover{
+	background: #e03b3d;
 }
 
-.admin-color-sunrise #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin,
-.admin-color-sunrise #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-network-admin-default{
-	background: #b43c38;
+/* Admin color ocean */
+.admin-color-ocean #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin,
+.admin-color-ocean #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin .ab-submenu{
+	background:#627c83;
 }
 
-!* Admin color ectoplasm *!
-.admin-color-ectoplasm #wpadminbar #wp-admin-bar-my-sites .menupop ul {
-	background: #464b50;
+.admin-color-ocean #wpadminbar #wp-admin-bar-my-sites .menupop ul{
+	background: #627c83;
 }
 
+.admin-color-ocean #wpadminbar #wp-admin-bar-my-sites-list li:hover,
+.admin-color-ocean #wpadminbar #wp-admin-bar-my-sites .menupop ul li:hover{
+	background: #6c8f97;
+}
+
+.admin-color-ocean #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin li a,
+.admin-color-ocean #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin .ab-submenu li a,
+.admin-color-ocean #wpadminbar .quicklinks li .blavatar, #wpadminbar .menupop .menupop > .ab-item:before{
+	color: #e5e5e5;
+}
+
+
+/* Admin color ectoplasm */
 .admin-color-ectoplasm #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin,
-.admin-color-ectoplasm #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-network-admin-default{
-	background: #b43c38;
+.admin-color-ectoplasm #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin .ab-submenu,
+.admin-color-ectoplasm #wpadminbar #wp-admin-bar-my-sites .menupop ul{
+	background:#413256;
 }
 
-!* Admin color midnightoceacoffee *!
-.admin-color-midnightoceacoffee #wpadminbar #wp-admin-bar-my-sites .menupop ul {
-	background: #464b50;
+.admin-color-ectoplasm #wpadminbar #wp-admin-bar-my-sites-list li:hover,
+.admin-color-ectoplasm #wpadminbar #wp-admin-bar-my-sites .menupop ul li:hover{
+	background: #563d70;
 }
 
-.admin-color-midnightoceacoffee #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin,
-.admin-color-midnightoceacoffee #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-network-admin-default{
-	background: #b43c38;
-}
-
-!* Admin color oceacoffee *!
-.admin-color-oceacoffee #wpadminbar #wp-admin-bar-my-sites .menupop ul {
-	background: #464b50;
-}
-
-.admin-color-oceacoffee #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin,
-.admin-color-oceacoffee #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-network-admin-default{
-	background: #b43c38;
-}
-
-!* Admin color coffee *!
-.admin-color-coffee #wpadminbar #wp-admin-bar-my-sites .menupop ul {
-	background: #464b50;
-}
-
-.admin-color-coffee #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin,
-.admin-color-coffee #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-network-admin-default{
-	background: #b43c38;
+.admin-color-ectoplasm #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin li a,
+.admin-color-ectoplasm #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin .ab-submenu li a,
+.admin-color-ectoplasm #wpadminbar .quicklinks li .blavatar, #wpadminbar .menupop .menupop > .ab-item:before{
+	color: #e5e5e5;
 }
 
 /* Admin color blue */
 .admin-color-blue #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin,
-.admin-color-blue #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin .ab-submenu{
+.admin-color-blue #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin .ab-submenu,
+.admin-color-blue #wpadminbar #wp-admin-bar-my-sites .menupop ul{
 	background:#006587;
 }
 
-.admin-color-blue #wpadminbar #wp-admin-bar-my-sites .menupop ul,
+.admin-color-blue #wpadminbar #wp-admin-bar-my-sites-list li:hover,
 .admin-color-blue #wpadminbar #wp-admin-bar-my-sites .menupop ul li:hover{
 	background: #1b97b6;
 }
 
 .admin-color-blue #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin li a,
-.admin-color-blue #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin .ab-submenu li a,
-.admin-color-blue #wpadminbar .quicklinks li .blavatar, #wpadminbar .menupop .menupop > .ab-item:before{
+.admin-color-blue #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin .ab-submenu li a{
 	color: #e5e5e5;
 }
 
 /* Admin color light */
 .admin-color-light #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin,
-.admin-color-light #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin .ab-submenu{
-	background:#999;
+.admin-color-light #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin .ab-submenu,
+.admin-color-light #wpadminbar #wp-admin-bar-my-sites .menupop ul{
+	background:#afaeae;
 }
 
-.admin-color-light #wpadminbar #wp-admin-bar-my-sites .menupop ul{
-	background: #e5e5e5;
+.admin-color-light #wpadminbar #wp-admin-bar-my-sites-list li:hover,
+.admin-color-light #wpadminbar #wp-admin-bar-my-sites .menupop ul li:hover{
+	background: #999999;
 }
 
 .admin-color-light #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin li a,
-.admin-color-light #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin .ab-submenu li a,
-.admin-color-light #wpadminbar .quicklinks li .blavatar, #wpadminbar .menupop .menupop > .ab-item:before{
+.admin-color-light #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin .ab-submenu li a.ab-item,
+.admin-color-light #wpadminbar #wp-admin-bar-my-sites .menupop ul li a.ab-item{
 	color: #e5e5e5;
 }
-/*
-!* Admin color ocean *!
-.admin-color-ocean #wpadminbar #wp-admin-bar-my-sites .menupop ul{
-	color: #627c83;
-}
-
-.admin-color-ocean #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-my-sites-super-admin,
-.admin-color-ocean #wpadminbar #wp-admin-bar-my-sites ul#wp-admin-bar-network-admin-default{
-	background: #738e96;
-}*/
-
-
