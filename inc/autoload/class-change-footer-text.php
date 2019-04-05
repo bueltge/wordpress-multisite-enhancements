@@ -41,7 +41,7 @@ class Multisite_Change_Footer_Text {
 	 * @since  0.0.2
 	 * @var    Boolean
 	 */
-	static protected $reset_footer_text = TRUE;
+	static protected $reset_footer_text = true;
 
 	/**
 	 * Initialize the class.
