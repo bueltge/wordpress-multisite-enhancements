@@ -44,7 +44,7 @@ class Filtering_Themes {
 			plugins_url( '/inc/assets/js/filtering-themes' . $suffix . '.js', MULTISITE_ENHANCEMENT_BASE ),
 			array( 'jquery' ),
 			'2016-10-05',
-			TRUE
+			true
 		);
 		wp_enqueue_script( 'me_filtering_plugins' );
 	}

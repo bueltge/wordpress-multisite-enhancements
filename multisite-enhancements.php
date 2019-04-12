@@ -48,7 +48,7 @@ class Multisite_Enhancements {
 	 */
 	public static function get_object() {
 
-		if ( NULL === self::$class_object ) {
+		if ( null === self::$class_object ) {
 			self::$class_object = new self;
 		}
 
@@ -85,7 +85,7 @@ class Multisite_Enhancements {
 
 		load_plugin_textdomain(
 			'multisite-enhancements',
-			FALSE,
+			false,
 			basename( __DIR__ ) . '/languages/'
 		);
 	}

@@ -55,7 +55,7 @@ class Multisite_Add_Site_Status_labels {
 		$needle = rtrim( $needle, '/' );
 
 		return $needle
-		       && FALSE === strpos(
+		       && false === strpos(
 			$haystack,
 			str_replace( array( 'http://', 'https://', '//' ), '', $needle )
 		);
