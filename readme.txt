@@ -97,7 +97,7 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
-= 1.5.0 (2019-02-25) =
+= 1.5.1 (2019-02-25) =
 * Remove feature 'Networkmenu is now scrollable'.
 
 = 1.5.0 (2019-02-24) =

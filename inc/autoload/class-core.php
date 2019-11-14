@@ -43,7 +43,7 @@ class Multisite_Core {
 	 *                      path      (string)  Path used to access this blog.
 	 *                      postcount (integer) The number of posts in this blog.
 	 */
-	public static function get_blog_list( $start = 0, $num = 10, $details = FALSE, $expires = 86400 ) {
+	public static function get_blog_list( $start = 0, $num = 10, $details = false, $expires = 86400 ) {
 
 		// Since WP version 4.6.0 is a new function inside the core to get this value.
 		if ( function_exists( 'get_sites' ) ) {
@@ -68,10 +68,10 @@ class Multisite_Core {
 
 		// For debugging purpose.
 		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			$blogs = FALSE;
+			$blogs = false;
 		}
 
-		if ( FALSE === $blogs ) {
+		if ( false === $blogs ) {
 
 			global $wpdb;
 
@@ -106,7 +106,7 @@ class Multisite_Core {
 		}
 
 		// Only if usable, set via var.
-		if (TRUE === $details ) {
+		if (true === $details ) {
 
 			/**
 			 * Get data to each site in the network.
@@ -117,10 +117,10 @@ class Multisite_Core {
 
 			// For debugging purpose.
 			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				$blog_list = FALSE;
+				$blog_list = false;
 			}
 
-			if ( FALSE === $blog_list ) {
+			if ( false === $blog_list ) {
 
 				global $wpdb;
 				/**
@@ -145,7 +145,7 @@ class Multisite_Core {
 			$blogs = $blog_list;
 		}
 
-		if ( FALSE === is_array( $blogs ) ) {
+		if ( false === is_array( $blogs ) ) {
 			return array();
 		}
 

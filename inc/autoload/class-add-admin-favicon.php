@@ -56,7 +56,7 @@ class Multisite_Add_Admin_Favicon {
 	 * @since 0.0.2
 	 * @var   Boolean
 	 */
-	static protected $remove_wp_admin_bar = TRUE;
+	static protected $remove_wp_admin_bar = true;
 
 	/**
 	 * Initialize the class.
@@ -158,7 +158,7 @@ class Multisite_Add_Admin_Favicon {
 		$output = '';
 		foreach ( (array) $user_blogs as $blog ) {
 
-			$custom_icon = FALSE;
+			$custom_icon = false;
 
 			// Validate, that we use nly int value.
 			$blog_id    = (int) $blog->userblog_id;
@@ -187,7 +187,7 @@ class Multisite_Add_Admin_Favicon {
 				$custom_icon = $favicon_dir_uri;
 			}
 
-			if ( FALSE !== $custom_icon ) {
+			if ( false !== $custom_icon ) {
 				$output .= '#wpadminbar .quicklinks li#wp-admin-bar-blog-' . $blog_id
 					. ' .blavatar { font-size: 0 !important; }';
 				$output .= '#wp-admin-bar-blog-' . $blog_id
