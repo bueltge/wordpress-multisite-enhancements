@@ -163,33 +163,26 @@ class Multisite_Add_Plugin_List {
 		if ( 'active_blogs' !== $column_name ) {
 			return null;
 		}
-
 		// Is this plugin network activated.
 		if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
 			require_once ABSPATH . '/wp-admin/includes/plugin.php';
 		}
-
 		$active_on_network = is_plugin_active_for_network( $plugin_file );
-
 		$output = '';
-
 		if ( $active_on_network ) {
 			// We don't need to check any further for network active plugins.
 			// Translators: The plugin is network wide active, the string is for each plugin possible.
-			$output .= __( '<nobr>Network Activated</nobr>', 'multisite-enhancements' );
-
+			$output .= __( '<span style="white-space:nowrap">Network Activated</span>', 'multisite-enhancements' );
 			// List Blogs, there is activated.
 		} else {
 			// Is this plugin active on any blogs in this network.
 			$active_on_blogs = $this->is_plugin_active_on_blogs( $plugin_file );
-
 			if ( ! $active_on_blogs ) {
 				// Translators: The plugin is not activated, the string is for each plugin possible.
-				$output .= __( '<nobr>Not Activated</nobr>', 'multisite-enhancements' );
+				$output .= __( '<span style="white-space:nowrap">Not Activated</span>', 'multisite-enhancements' );
 			} else {
-				$active_count = sizeOf( $active_on_blogs );
-				$output       .= '<p>';
-
+				$active_count   = sizeOf( $active_on_blogs );
+				$output        .= '<p>';
 				$is_list_hidden = false;
 				// Hide the list of sites if the class isn"t loaded or there's less or equal to 4 sites
 				if ( class_exists( 'Enqueue_Column_Style', false ) && $active_count > 4 ) {
@@ -200,13 +193,7 @@ class Multisite_Add_Plugin_List {
 						'</a>'
 					);
 				} else {
-					$output .= sprintf(, 'active_plugins'
-				);
-				if ( $plugins ) {
-					foreach ( $plugins as $plugin_file ) {
-						$this->blogs_plugins[ $blog['blog_id'] ]['active_plugins'][] = $plugin_file;
-					}
-				}
+					$output .= sprintf(
 						_n( 'Active on %s site', 'Active on %s sites', $active_count, 'multisite-enhancements' ),
 						$active_count
 					);
@@ -215,37 +202,29 @@ class Multisite_Add_Plugin_List {
 				$output .= '</p>';
 				$output .= '<ul id="siteslist_' . $plugin_file;
 				$output .= ( $is_list_hidden ) ? '">' : '" class="siteslist">';
-
-
 				foreach ( $active_on_blogs as $key => $value ) {
-
 					// Check the site for archived.
 					$class = $hint = '';
 					if ( $this->is_archived( $key ) ) {
 						$class = ' class="site-archived"';
 						$hint  = esc_attr__( ', Archived site', 'multisite-enhancements' );
 					}
-
 					$output .= '<li' . $class . ' title="Blog ID: ' . $key . $hint . '">';
-					$output .= '<span style="white-space:nowrap"><a href="' . get_admin_url( $key ) . 'plugins.php">'
-					. $value['name'] . '</a>' . $hint . '</span></li>';
+					$output .= '<nobr><a href="' . get_admin_url( $key ) . 'plugins.php">'
+					. $value['name'] . '</a>' . $hint . '</nobr></li>';
 				}
-
 				$output .= '</ul>';
 			}
 		}
-
 		if ( ! isset( $plugin_data['Network'] ) ) {
 			$plugin_data['Network'] = false;
 		}
-
 		// Add indicator that the plugin is "Network Only".
 		if ( $plugin_data['Network'] ) {
-			$output .= '<br /><span class="submitbox"><span class="submitdelete">'
+			$output .= '<br /><span style="white-space:nowrap" class="submitbox"><span class="submitdelete">'
 			. esc_attr__( 'Network Only', 'multisite-enhancements' )
 			. '</span></span>';
 		}
-
 		echo wp_kses( $output, self::$wp_kses_allowed_html );
 	}
 

@@ -17,10 +17,9 @@ class Filtering_Themes {
 	 * Init the class.
 	 */
 	public static function init() {
-
 		$class = __CLASS__;
 		if ( empty( $GLOBALS[ $class ] ) ) {
-			$GLOBALS[ $class ] = new $class;
+			$GLOBALS[ $class ] = new $class();
 		}
 	}
 
@@ -28,7 +27,6 @@ class Filtering_Themes {
 	 * Filtering_Plugins constructor.
 	 */
 	public function __construct() {
-
 		add_action( 'admin_print_scripts-themes.php', array( $this, 'enqueue_script' ) );
 	}
 
@@ -36,7 +34,6 @@ class Filtering_Themes {
 	 * Enqueue scripts.
 	 */
 	public function enqueue_script() {
-
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		wp_register_script(
