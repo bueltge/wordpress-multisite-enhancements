@@ -4,7 +4,7 @@
  *
  * @see     http://wpengineer.com/2188/view-blog-id-in-wordpress-multisite/
  * @since   2013-07-19
- * @version 2016-01-15
+ * @version 2019-11-14
  * @package WordPress
  */
 
@@ -20,10 +20,9 @@ class Multisite_Add_Blog_Id {
 	 * Init the class.
 	 */
 	public static function init() {
-
 		$class = __CLASS__;
 		if ( empty( $GLOBALS[ $class ] ) ) {
-			$GLOBALS[ $class ] = new $class;
+			$GLOBALS[ $class ] = new $class();
 		}
 	}
 
@@ -33,7 +32,6 @@ class Multisite_Add_Blog_Id {
 	 * @since   0.0.1
 	 */
 	public function __construct() {
-
 		if ( ! is_network_admin() ) {
 			return;
 		}
@@ -59,7 +57,6 @@ class Multisite_Add_Blog_Id {
 	 * @return mixed
 	 */
 	public function get_blog_id( $column_name, $blog_id ) {
-
 		if ( 'object_id' === $column_name ) {
 			echo (int) $blog_id;
 		}
@@ -77,7 +74,6 @@ class Multisite_Add_Blog_Id {
 	 * @return int|string
 	 */
 	public function get_user_id( $value, $column_name, $user_id ) {
-
 		if ( 'object_id' === $column_name ) {
 			return (int) $user_id;
 		}
@@ -93,8 +89,7 @@ class Multisite_Add_Blog_Id {
 	 * @return mixed
 	 */
 	public function get_id( $columns ) {
-
-		$columns[ 'object_id' ] = __( 'ID' );
+		$columns['object_id'] = __( 'ID' );
 
 		return $columns;
 	}
@@ -103,7 +98,6 @@ class Multisite_Add_Blog_Id {
 	 * Add custom style.
 	 */
 	public function add_style() {
-
 		echo '<style>#object_id { width:7%; }</style>';
 	}
 
