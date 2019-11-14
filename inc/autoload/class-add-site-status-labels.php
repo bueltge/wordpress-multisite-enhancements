@@ -93,13 +93,13 @@ class Multisite_Add_Site_Status_labels {
 			if ( $this->check_external_url( $blog->siteurl, $admin_bar->user->domain ) ) {
 				$title    = esc_attr__( 'external domain', 'multisite-enhancements' );
 				$class    = 'ab-icon dashicons-before dashicons-external';
-				$url_hint = '<span title="' . $title . '" class="' . $class . '"></span>';
+				$url_hint = '<span style="padding:4px 0 0 0; margin: 0 4px 0 -4px" title="' . $title . '" class="' . $class . '"></span>';
 			}
 
 			if ( ! $this->is_site_live( $blog->userblog_id ) ) {
 				$title     = esc_attr__( 'noindex', 'multisite-enhancements' );
 				$class     = 'ab-icon dashicons-before dashicons-dismiss';
-				$live_hint = '<span title="' . $title . '" class="' . $class . '"></span>';
+				$live_hint = '<span style="padding:4px 0 0 0; margin: 0 4px 0 -4px" title="' . $title . '" class="' . $class . '"></span>';
 			}
 
 			// Add span markup.
