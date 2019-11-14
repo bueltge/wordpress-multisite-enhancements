@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file. This projec
 
 ## Unreleased, only in master branch
 * 
+## [1.5.2](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.5.1...1.5.2) - 2019-11-14
+* Fix style problem on list of all sites for admin bar.
+* Change enqueue of styles and script to default variants.
 
 ## [1.5.1](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.5.0...1.5.1) - 2019-02-25
 * Remove feature 'Networkmenu is now scrollable' - to much problems.
