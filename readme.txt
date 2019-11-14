@@ -100,6 +100,7 @@ So please be patient with me and let me know of typos or grammatical parts. Than
 = 1.5.2 (2019-11-14) =
 * Fix style problem on list of all sites for admin bar.
 * Change enqueue of styles and script to default variants.
+* Remove filter script on plugins, because is a part of the core.
 
 = 1.5.1 (2019-02-25) =
 * Remove feature 'Networkmenu is now scrollable'.
