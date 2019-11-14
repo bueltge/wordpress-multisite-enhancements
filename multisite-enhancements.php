@@ -3,7 +3,7 @@
  * Plugin Name: Multisite Enhancements
  * Description: Enhance Multisite for Network Admins with different topics
  * Plugin URI:  https://github.com/bueltge/WordPress-Multisite-Enhancements
- * Version:     1.5.1
+ * Version:     1.5.2
  * Author:      Frank Bültge
  * Author URI:  https://bueltge.de
  * License:     GPLv2+
@@ -49,7 +49,7 @@ class Multisite_Enhancements {
 	public static function get_object() {
 
 		if ( null === self::$class_object ) {
-			self::$class_object = new self;
+			self::$class_object = new self();
 		}
 
 		return self::$class_object;
@@ -82,7 +82,6 @@ class Multisite_Enhancements {
 	 * @since 2016-10-23
 	 */
 	public function load_translation() {
-
 		load_plugin_textdomain(
 			'multisite-enhancements',
 			false,
@@ -96,7 +95,6 @@ class Multisite_Enhancements {
 	 * @since   0.0.1
 	 */
 	public function error_msg_no_multisite() {
-
 		deactivate_plugins( plugin_basename( __FILE__ ) );
 		?>
 		<div class="error">
@@ -133,17 +131,16 @@ class Multisite_Enhancements {
 	 * @since   0.0.1
 	 */
 	public static function load() {
-
 		$file_base = self::$file_base;
 		define( 'MULTISITE_ENHANCEMENT_BASE', $file_base );
 
 		$autoload_paths = glob( "$file_base/autoload/*.php" );
 
 		foreach ( $autoload_paths as $classnames => $path ) {
-		    $path_split = explode( DIRECTORY_SEPARATOR, $path );
-		    $class = end( $path_split );
+			$path_split = explode( DIRECTORY_SEPARATOR, $path );
+			$class = end( $path_split );
 			$autoload_files[$class] = $path;
-        }
+		}
 
 		$autoload_files = (array) apply_filters( 'multisite_enhancements_autoload', $autoload_files );
 

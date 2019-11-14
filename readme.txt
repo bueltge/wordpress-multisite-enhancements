@@ -2,9 +2,9 @@
 Contributors: Bueltge, inpsyde
 Tags: multisite, administration, admin bar, network,
 Requires at least: 4.6
-Tested up to: 5.1
+Tested up to: 5.3
 Requires PHP: 5.6
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -97,6 +97,10 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.5.2 (2019-11-14) =
+* Fix style problem on list of all sites for admin bar.
+* Change enqueue of styles and script to default variants.
+
 = 1.5.1 (2019-02-25) =
 * Remove feature 'Networkmenu is now scrollable'.
 
