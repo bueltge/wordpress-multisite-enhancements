@@ -32,14 +32,6 @@ add_action( 'init', array( 'Multisite_Add_Admin_Favicon', 'init' ) );
 class Multisite_Add_Admin_Favicon {
 
 	/**
-	 * Value to get sites in the Network.
-	 *
-	 * @since 2015-02-26
-	 * @var int
-	 */
-	private $sites_limit = 9999;
-
-	/**
 	 * Define Hooks for add the favicon markup.
 	 *
 	 * @since 0.0.2
@@ -49,7 +41,6 @@ class Multisite_Add_Admin_Favicon {
 		'admin_head',
 		'wp_head',
 	);
-
 	/**
 	 * Filter to remove "W" logo incl. sublinks from admin bar.
 	 *
@@ -57,17 +48,13 @@ class Multisite_Add_Admin_Favicon {
 	 * @var   Boolean
 	 */
 	static protected $remove_wp_admin_bar = true;
-
 	/**
-	 * Initialize the class.
+	 * Value to get sites in the Network.
+	 *
+	 * @since 2015-02-26
+	 * @var int
 	 */
-	public static function init() {
-
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			$GLOBALS[ $class ] = new $class;
-		}
-	}
+	private $sites_limit = 9999;
 
 	/**
 	 * Init function to register all used hooks.
@@ -105,6 +92,16 @@ class Multisite_Add_Admin_Favicon {
 	}
 
 	/**
+	 * Initialize the class.
+	 */
+	public static function init() {
+		$class = __CLASS__;
+		if ( empty( $GLOBALS[ $class ] ) ) {
+			$GLOBALS[ $class ] = new $class();
+		}
+	}
+
+	/**
 	 * Create markup, if favicon is exist in active theme folder.
 	 *
 	 * Use the filter hook to change style
@@ -113,19 +110,17 @@ class Multisite_Add_Admin_Favicon {
 	 * @since   0.0.2
 	 */
 	public function set_favicon() {
-
 		$stylesheet_dir_uri = get_stylesheet_directory_uri();
 		$stylesheet_dir     = get_stylesheet_directory();
 		$output             = '';
 
 		if ( file_exists( $stylesheet_dir . $this->get_favicon_path() ) ) {
-			$output .= '<link rel="shortcut icon" type="image/x-icon" href="'
-				. esc_url( $stylesheet_dir_uri . $this->get_favicon_path() ) . '" />';
+			$output .= '<link rel="shortcut icon" type="image/x-icon" href="' . esc_url( $stylesheet_dir_uri . $this->get_favicon_path() ) . '" />';
 			$output .= '<style>';
 			$output .= '#wpadminbar #wp-admin-bar-site-name>.ab-item:before { content: none !important;}';
-			$output .= 'li#wp-admin-bar-site-name a { background: url( "'
-				. $stylesheet_dir_uri . $this->get_favicon_path()
-				. '" ) left center/20px no-repeat !important; padding-left: 21px !important; background-size: 20px !important; } li#wp-admin-bar-site-name { margin-left: 5px !important; } li#wp-admin-bar-site-name {} #wp-admin-bar-site-name div a { background: none !important; }' . "\n";
+			$output .= 'li#wp-admin-bar-site-name a { background: url( "' . $stylesheet_dir_uri
+			. $this->get_favicon_path()
+			. '" ) left center/20px no-repeat !important; padding-left: 21px !important; background-size: 20px !important; } li#wp-admin-bar-site-name { margin-left: 5px !important; } li#wp-admin-bar-site-name {} #wp-admin-bar-site-name div a { background: none !important; }' . "\n";
 			$output .= '</style>';
 		}
 
@@ -135,6 +130,47 @@ class Multisite_Add_Admin_Favicon {
 		 * @type string
 		 */
 		echo apply_filters( 'multisite_enhancements_add_favicon', $output );
+	}
+
+	/**
+	 * Get the path to the favicon file from the root of a theme.
+	 *
+	 * @param int    $blog_id Id of the blog in the network.
+	 * @param string $path Path to Favicon.
+	 * @param string $path_type Type 'url' or 'dir'.
+	 *
+	 * @return string File path to favicon file.
+	 * @since    1.0.5
+	 *
+	 * @internal param ID $integer of blog in network
+	 * @internal param Path $string to Favicon
+	 * @internal param Path $string type 'url' or 'dir'
+	 */
+	protected function get_favicon_path( $blog_id = 0, $path = '', $path_type = 'url' ) {
+		if ( 0 === $blog_id ) {
+			$blog_id = get_current_blog_id();
+		}
+
+		/**
+		 * Filter the file path to the favicon file.
+		 *
+		 * Default is '/favicon.ico' which assumes there's a .ico file in the theme root.
+		 * This filter allows that path, file name, and file extension to be changed.
+		 *
+		 * @param string $path Path to favicon file.
+		 *
+		 * Optional parameters:
+		 *
+		 * When using a different directory than the stylesheet use the $blog_id and $path_type
+		 * integer $blog_id
+		 *
+		 * string $path_type = 'url' -> use URL for the location as a URL
+		 * string $path_type = 'dir' -> use URL for the location in the server, used to check if the file exists
+		 *
+		 * @since 1.0.5
+		 */
+
+		return apply_filters( 'multisite_enhancements_favicon_path', $path . '/favicon.ico', $blog_id, $path_type );
 	}
 
 	/**
@@ -157,7 +193,6 @@ class Multisite_Add_Admin_Favicon {
 
 		$output = '';
 		foreach ( (array) $user_blogs as $blog ) {
-
 			$custom_icon = false;
 
 			// Validate, that we use nly int value.
@@ -180,7 +215,7 @@ class Multisite_Add_Admin_Favicon {
 			$site_icon_id = (int) get_blog_option( $blog_id, 'site_icon' );
 			if ( 0 !== $site_icon_id ) {
 				switch_to_blog( $blog_id );
-				$url_data = wp_get_attachment_image_src( $site_icon_id, array( 32, 32 ) );
+				$url_data    = wp_get_attachment_image_src( $site_icon_id, array( 32, 32 ) );
 				$custom_icon = esc_url( $url_data[0] );
 				restore_current_blog();
 			} elseif ( file_exists( $favicon_dir ) ) {
@@ -189,10 +224,10 @@ class Multisite_Add_Admin_Favicon {
 
 			if ( false !== $custom_icon ) {
 				$output .= '#wpadminbar .quicklinks li#wp-admin-bar-blog-' . $blog_id
-					. ' .blavatar { font-size: 0 !important; }';
+				. ' .blavatar { font-size: 0 !important; }';
 				$output .= '#wp-admin-bar-blog-' . $blog_id
-					. ' div.blavatar { background: url( "' . $custom_icon
-					. '" ) left bottom/16px no-repeat !important; background-size: 16px !important; margin: 0 2px 0 -2px; }' . "\n";
+				. ' div.blavatar { background: url( "' . $custom_icon
+				. '" ) left bottom/16px no-repeat !important; background-size: 16px !important; margin: 0 2px 0 -2px; }' . "\n";
 			}
 		}
 
@@ -215,8 +250,9 @@ class Multisite_Add_Admin_Favicon {
 	 * Use the filter hook to change the default to remove the "W" logo and his sublinks
 	 *     Hook: multisite_enhancements_remove_wp_admin_bar
 	 *
+	 * @param WP_Admin_Bar $admin_bar WP_Admin_Bar instance, passed by reference.
+	 *
 	 * @since   0.0.2
-	 * @param   WP_Admin_Bar $admin_bar WP_Admin_Bar instance, passed by reference.
 	 */
 	public function change_admin_bar_menu( $admin_bar ) {
 
@@ -232,48 +268,6 @@ class Multisite_Add_Admin_Favicon {
 		) {
 			$admin_bar->remove_node( 'wp-logo' );
 		}
-	}
-
-	/**
-	 * Get the path to the favicon file from the root of a theme.
-	 *
-	 * @since    1.0.5
-	 *
-	 * @param int    $blog_id   Id of the blog in the network.
-	 * @param string $path      Path to Favicon.
-	 * @param string $path_type Type 'url' or 'dir'.
-	 *
-	 * @return string File path to favicon file.
-	 * @internal param ID $integer of blog in network
-	 * @internal param Path $string to Favicon
-	 * @internal param Path $string type 'url' or 'dir'
-	 */
-	protected function get_favicon_path( $blog_id = 0, $path = '', $path_type = 'url' ) {
-
-		if ( 0 === $blog_id ) {
-			$blog_id = get_current_blog_id();
-		}
-
-		/**
-		 * Filter the file path to the favicon file.
-		 *
-		 * Default is '/favicon.ico' which assumes there's a .ico file in the theme root.
-		 * This filter allows that path, file name, and file extension to be changed.
-		 *
-		 * @since 1.0.5
-		 *
-		 * @param string $path Path to favicon file.
-		 *
-		 * Optional parameters:
-		 *
-		 * When using a different directory than the stylesheet use the $blog_id and $path_type
-		 * integer $blog_id
-		 *
-		 * string $path_type = 'url' -> use URL for the location as a URL
-		 * string $path_type = 'dir' -> use URL for the location in the server, used to check if the file exists
-		 */
-
-		return apply_filters( 'multisite_enhancements_favicon_path', $path . '/favicon.ico', $blog_id, $path_type );
 	}
 
 } // end class
