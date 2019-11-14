@@ -18,10 +18,9 @@ class Multisite_Core {
 	 * Init the class.
 	 */
 	public static function init() {
-
 		$class = __CLASS__;
 		if ( empty( $GLOBALS[ $class ] ) ) {
-			$GLOBALS[ $class ] = new $class;
+			$GLOBALS[ $class ] = new $class();
 		}
 	}
 
@@ -72,7 +71,6 @@ class Multisite_Core {
 		}
 
 		if ( false === $blogs ) {
-
 			global $wpdb;
 
 			// Add limit for select.
@@ -107,7 +105,6 @@ class Multisite_Core {
 
 		// Only if usable, set via var.
 		if (true === $details ) {
-
 			/**
 			 * Get data to each site in the network.
 			 *
@@ -121,7 +118,6 @@ class Multisite_Core {
 			}
 
 			if ( false === $blog_list ) {
-
 				global $wpdb;
 				/**
 				 * The data details of each site of the network.
