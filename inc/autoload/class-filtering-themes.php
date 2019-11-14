@@ -27,13 +27,16 @@ class Filtering_Themes {
 	 * Filtering_Plugins constructor.
 	 */
 	public function __construct() {
-		add_action( 'admin_print_scripts-themes.php', array( $this, 'enqueue_script' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_script' ) );
 	}
 
 	/**
 	 * Enqueue scripts.
 	 */
-	public function enqueue_script() {
+	public function enqueue_script( $hook ) {
+		if ( is_admin() && 'themes.php' !== $hook ) {
+			return;
+		}
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		wp_register_script(
