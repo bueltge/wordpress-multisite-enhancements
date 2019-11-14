@@ -3,7 +3,7 @@
  * Add a icon to identify the ssl protocol on each site.
  *
  * @since   2017-07-13
- * @version 2017-11-26
+ * @version 2019-11-24
  * @package WordPress
  */
 
@@ -14,7 +14,6 @@ add_action( 'admin_init', __NAMESPACE__ . '\\bootstrap' );
  * Create the instance of this class.
  */
 function bootstrap() {
-
 	$multisite_add_ssh_identifier = new Multisite_Add_Ssh_Identifier();
 	$multisite_add_ssh_identifier->init();
 }
@@ -35,7 +34,6 @@ class Multisite_Add_Ssh_Identifier {
 	 * Use the WP hooks to include the functions in wp.
 	 */
 	public function init() {
-
 		add_filter( 'wpmu_blogs_columns', array( $this, 'add_column' ) );
 		add_action( 'manage_sites_custom_column', array( $this, 'get_protocol' ), 10, 2 );
 
@@ -52,13 +50,12 @@ class Multisite_Add_Ssh_Identifier {
 	/**
 	 * Determines if SSL is used.
 	 *
-	 * @param  integer $blog_id
+	 * @param  integer $blog_id Id of the blog.
 	 *
 	 * @return bool
 	 */
 	private function is_ssl( $blog_id ) {
-
-		return ( strstr( get_home_url( $blog_id ), 'https' ) ) ? true : false;
+		return ( strpos( get_home_url( $blog_id ), 'https' ) !== false );
 	}
 
 	/**
@@ -69,15 +66,12 @@ class Multisite_Add_Ssh_Identifier {
 	 * @return array
 	 */
 	public function add_column( array $columns ) {
-
 		$first_column        = array_slice( $columns, 0, 1 );
 		$after_first_columns = array_slice( $columns, 1 );
 		$ssh_column          = array( $this->column => esc_html__( 'https', 'multisite-enhancements' ) );
 
 		// Union of the arrays.
-		$columns = $first_column + $ssh_column + $after_first_columns;
-
-		return $columns;
+		return $first_column + $ssh_column + $after_first_columns;
 	}
 
 	/**
@@ -89,9 +83,7 @@ class Multisite_Add_Ssh_Identifier {
 	 * @return string
 	 */
 	public function get_protocol( $column_name, $blog_id ) {
-
 		if ( $this->column === $column_name ) {
-
 			$status = 'unlock';
 			if ( $this->is_ssl( $blog_id ) ) {
 				$status = 'lock';
@@ -106,7 +98,6 @@ class Multisite_Add_Ssh_Identifier {
 	 * Print custom style for the https column.
 	 */
 	public function add_style() {
-
 		echo '<style>#' . esc_attr( $this->column ) . ' { width:5%; } .column-' . esc_attr( $this->column ) . ' { text-align: center; }</style>';
 	}
 }
