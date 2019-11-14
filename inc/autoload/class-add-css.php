@@ -28,8 +28,7 @@ class Enqueue_Column_Style {
 	 * Init function to register all used hooks.
 	 */
 	public function __construct() {
-		add_action( 'admin_head-themes.php', array( $this, 'enqueue_style' ) );
-		add_action( 'admin_head-plugins.php', array( $this, 'enqueue_style' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_style' ) );
 	}
 
 	/**
@@ -45,7 +44,10 @@ class Enqueue_Column_Style {
 	/**
 	 * Enqueue column style.
 	 */
-	public function enqueue_style() {
+	public function enqueue_style( $hook ) {
+		if ( is_admin() && ! in_array( $hook, array( 'themes.php', 'plugins.php' ), true ) ) {
+			return;
+		}
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		wp_register_style(

@@ -100,10 +100,9 @@ class Multisite_Add_Theme_List {
 	 * Initialize the class.
 	 */
 	public static function init() {
-
 		$class = __CLASS__;
 		if ( empty( $GLOBALS[ $class ] ) ) {
-			$GLOBALS[ $class ] = new $class;
+			$GLOBALS[ $class ] = new $class();
 		}
 	}
 
@@ -113,13 +112,12 @@ class Multisite_Add_Theme_List {
 	 * @since 2016-10-23
 	 */
 	public function notice_about_clear_cache() {
-
 		$class   = 'notice notice-info';
-		$message = esc_attr__(
+		$message = __(
 			'Multisite Enhancements: Theme usage information is not cached while WP_DEBUG is true.',
-		'multisite-enhancements'
+			'multisite-enhancements'
 		);
-		printf( '<div class="%1$s"><p>%2$s</p></div>', $class, $message );
+		printf( '<div class="%1$s"><p>%2$s</p></div>', $class, esc_attr( $message ) );
 	}
 
 	/**
@@ -251,13 +249,11 @@ class Multisite_Add_Theme_List {
 	 * @return array
 	 */
 	public function is_theme_active_on_blogs( $theme_key ) {
-
 		$blogs_themes = $this->get_blogs_themes();
 
 		$active_in_themes = array();
 
 		foreach ( $blogs_themes as $blog_id => $data ) {
-
 			if ( $data['stylesheet'] === $theme_key ) {
 				$active_in_themes[ $blog_id ] = array(
 					'name' => $data['blogname'],
@@ -331,7 +327,6 @@ class Multisite_Add_Theme_List {
 	 * @return bool
 	 */
 	public function development_helper() {
-
 		if ( ! defined( 'WP_DEBUG' ) || ! WP_DEBUG ) {
 			return false;
 		}
@@ -348,19 +343,17 @@ class Multisite_Add_Theme_List {
 	 * @since 2015-02-21
 	 */
 	public function clear_themes_site_transient() {
-
 		delete_site_transient( self::$site_transient_blogs_themes );
 	}
 
 	/**
 	 * Check, the current theme have a parent value and is a child theme.
 	 *
-	 * @param array|\WP_Theme $theme_data An array of theme data.
+	 * @param array|WP_Theme $theme_data An array of theme data.
 	 *
 	 * @return bool
 	 */
-	public function is_child( \WP_Theme $theme_data ) {
-
+	public function is_child( WP_Theme $theme_data ) {
 		return (bool) $theme_data->parent();
 	}
 
@@ -375,7 +368,6 @@ class Multisite_Add_Theme_List {
 	 * @return  array
 	 */
 	public function is_parent( $theme_key ) {
-
 		$blogs_themes = $this->get_blogs_themes();
 		$parent_of    = array();
 
@@ -385,7 +377,6 @@ class Multisite_Add_Theme_List {
 		 * @var array $data
 		 */
 		foreach ( $blogs_themes as $blog_id => $data ) {
-
 			$template = false;
 			if ( array_key_exists( 'template', $data ) ) {
 				$template = $data['template'];
@@ -408,7 +399,6 @@ class Multisite_Add_Theme_List {
 	 * @return bool
 	 */
 	public function is_archived( $site_id ) {
-
 		$site_id = (int) $site_id;
 
 		return (bool) get_blog_details( $site_id )->archived;

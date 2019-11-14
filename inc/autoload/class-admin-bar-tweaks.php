@@ -18,10 +18,9 @@ class Multisite_Admin_Bar_Tweaks {
 	 * Initialize this class.
 	 */
 	public static function init() {
-
 		$class = __CLASS__;
 		if ( empty( $GLOBALS[ $class ] ) ) {
-			$GLOBALS[ $class ] = new $class;
+			$GLOBALS[ $class ] = new $class();
 		}
 	}
 
@@ -31,7 +30,6 @@ class Multisite_Admin_Bar_Tweaks {
 	 * @since   0.0.1
 	 */
 	public function __construct() {
-
 		add_action( 'wp_before_admin_bar_render', array( $this, 'enhance_network_admin_bar' ) );
 		add_action( 'wp_before_admin_bar_render', array( $this, 'enhance_network_blog_admin_bar' ) );
 	}
@@ -42,7 +40,6 @@ class Multisite_Admin_Bar_Tweaks {
 	 * @since   0.0.1
 	 */
 	public function enhance_network_admin_bar() {
-
 		global $wp_admin_bar;
 
 		// Show only when the user has at least one site, or they're a super admin.
@@ -95,13 +92,11 @@ class Multisite_Admin_Bar_Tweaks {
 		}
 		
 		foreach ( (array) $wp_admin_bar->user->blogs as $blog ) {
-
 			switch_to_blog( $blog->userblog_id );
 
 			$menu_id = 'blog-' . $blog->userblog_id;
 
 			if ( current_user_can( 'edit_posts' ) ) {
-
 				$wp_admin_bar->remove_node( $menu_id . '-c' );
 
 				$awaiting_mod = wp_count_comments();

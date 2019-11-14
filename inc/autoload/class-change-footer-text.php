@@ -47,10 +47,9 @@ class Multisite_Change_Footer_Text {
 	 * Initialize the class.
 	 */
 	public static function init() {
-
 		$class = __CLASS__;
 		if ( empty( $GLOBALS[ $class ] ) ) {
-			$GLOBALS[ $class ] = new $class;
+			$GLOBALS[ $class ] = new $class();
 		}
 	}
 
