@@ -5,10 +5,11 @@
  * allow showing or hiding the list of sites that uses a theme or plugin
  *
  * Kudos to #n-goncalves for this solution.
+ *
  * @see https://github.com/bueltge/wordpress-multisite-enhancements/pull/44
  *
  * @since   2018-02-15
- * @version 2018-02-15
+ * @version 2019-11-14
  * @package WordPress
  */
 
@@ -25,10 +26,8 @@ class Enqueue_Column_Style {
 
 	/**
 	 * Init function to register all used hooks.
-	 *
 	 */
 	public function __construct() {
-
 		add_action( 'admin_head-themes.php', array( $this, 'enqueue_style' ) );
 		add_action( 'admin_head-plugins.php', array( $this, 'enqueue_style' ) );
 	}
@@ -37,25 +36,24 @@ class Enqueue_Column_Style {
 	 * Initialize the class.
 	 */
 	public static function init() {
-
 		$class = __CLASS__;
 		if ( empty( $GLOBALS[ $class ] ) ) {
-			$GLOBALS[ $class ] = new $class;
+			$GLOBALS[ $class ] = new $class();
 		}
 	}
 
 	/**
 	 * Enqueue column style.
-	 *
 	 */
 	public function enqueue_style() {
-
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		wp_register_style(
 			'admin_column_css',
 			plugins_url( '/inc/assets/css/wordpress-multisite-enhancements' . $suffix . '.css', MULTISITE_ENHANCEMENT_BASE ),
-			false );
+			false,
+			'2019-11-14'
+		);
 		wp_enqueue_style( 'admin_column_css' );
 	} // end enqueue_style()
 
