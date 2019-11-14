@@ -3,7 +3,7 @@
  * Add status labels to blogs.
  *
  * @since   2015-07-14
- * @version 2016-10-28
+ * @version 2019-11-14
  * @package WordPress
  */
 
@@ -20,10 +20,9 @@ class Multisite_Add_Site_Status_labels {
 	 * Initialize the class.
 	 */
 	public static function init() {
-
 		$class = __CLASS__;
 		if ( empty( $GLOBALS[ $class ] ) ) {
-			$GLOBALS[ $class ] = new $class;
+			$GLOBALS[ $class ] = new $class();
 		}
 	}
 
@@ -33,7 +32,6 @@ class Multisite_Add_Site_Status_labels {
 	 * @since  2015-07-14
 	 */
 	public function __construct() {
-
 		if ( ! current_user_can( 'manage_network' ) ) {
 			return;
 		}
@@ -54,8 +52,7 @@ class Multisite_Add_Site_Status_labels {
 		// Remove last string for exactly check.
 		$needle = rtrim( $needle, '/' );
 
-		return $needle
-		       && false === strpos(
+		return $needle && false === strpos(
 			$haystack,
 			str_replace( array( 'http://', 'https://', '//' ), '', $needle )
 		);
@@ -69,7 +66,6 @@ class Multisite_Add_Site_Status_labels {
 	 * @return bool
 	 */
 	public function is_site_live( $site_id ) {
-
 		$site_id = (int) $site_id;
 		return (bool) get_blog_option( $site_id, 'blog_public' );
 	}
@@ -79,14 +75,12 @@ class Multisite_Add_Site_Status_labels {
 	 *
 	 * Use the filter hook 'multisite_enhancements_status_label' to change style, dashicon, markup.
 	 *
-	 * @param \WP_Admin_Bar $admin_bar All necessary admin bar items.
+	 * @param WP_Admin_Bar $admin_bar All necessary admin bar items.
 	 *
 	 * @return mixed
 	 */
-	public function add_status_label( \WP_Admin_Bar $admin_bar ) {
-
+	public function add_status_label( WP_Admin_Bar $admin_bar ) {
 		foreach ( $admin_bar->user->blogs as $key => $blog ) {
-
 			$url_hint  = '';
 			$live_hint = '';
 
