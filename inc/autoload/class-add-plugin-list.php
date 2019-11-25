@@ -47,6 +47,7 @@ class Multisite_Add_Plugin_List {
 		),
 		'li'   => array(
 			'title' => array(),
+			'class' => array(),
 		),
 		'a'    => array(
 			'href'    => array(),
@@ -209,6 +210,10 @@ class Multisite_Add_Plugin_List {
 						$class = ' class="site-archived"';
 						$hint  = esc_attr__( ', Archived site', 'multisite-enhancements' );
 					}
+					elseif ( $this->is_deleted( $key ) ) {
+						$class = ' class="site-deleted"';
+						$hint  = esc_attr__( ', Deleted site', 'multisite-enhancements' );
+					}
 					$output .= '<li' . $class . ' title="Blog ID: ' . $key . $hint . '">';
 					$output .= '<nobr><a href="' . get_admin_url( $key ) . 'plugins.php">'
 					. ( trim( $value['name'] ) ?: $value['path'] ) . '</a>' . $hint . '</nobr></li>';
@@ -352,6 +357,19 @@ class Multisite_Add_Plugin_List {
 		$site_id = (int) $site_id;
 
 		return (bool) get_blog_details( $site_id )->archived;
+	}
+
+	/**
+	 * Check, if the status of the site deleted.
+	 *
+	 * @param integer $site_id ID of the site.
+	 *
+	 * @return bool
+	 */
+	public function is_deleted( $site_id ) {
+		$site_id = (int) $site_id;
+
+		return (bool) get_blog_details( $site_id )->deleted;
 	}
 
 } // end class
