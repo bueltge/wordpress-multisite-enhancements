@@ -225,7 +225,7 @@ class Multisite_Add_Theme_List {
 
 				$output .= '<li' . $class . ' title="Blog ID: ' . $key . $hint . '">';
 				$output .= '<nobr><a href="' . get_admin_url( $key ) . 'themes.php">'
-					. $value['name'] . '</a>' . $hint . '</nobr>';
+					. ( trim( $value['name'] ) ?: $value['path'] ) . '</a>' . $hint . '</nobr>';
 				$output .= '</li>';
 			}
 

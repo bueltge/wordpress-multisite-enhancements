@@ -211,7 +211,7 @@ class Multisite_Add_Plugin_List {
 					}
 					$output .= '<li' . $class . ' title="Blog ID: ' . $key . $hint . '">';
 					$output .= '<nobr><a href="' . get_admin_url( $key ) . 'plugins.php">'
-					. $value['name'] . '</a>' . $hint . '</nobr></li>';
+					. ( trim( $value['name'] ) ?: $value['path'] ) . '</a>' . $hint . '</nobr></li>';
 				}
 				$output .= '</ul>';
 			}
