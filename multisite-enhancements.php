@@ -153,6 +153,8 @@ class Multisite_Enhancements {
 			 */
 			require_once $path;
 		}
+
+		require_once __DIR__ . '/settings.php';
 	}
 
 } // end class
