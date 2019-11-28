@@ -30,9 +30,6 @@ class Multisite_Add_Theme_List {
 	 */
 	static protected $wp_kses_allowed_html = array(
 		'br'   => array(),
-		'nobr' => array(
-			'class' => array(),
-		),
 		'span' => array(
 			'class' => array(),
 		),
@@ -132,7 +129,7 @@ class Multisite_Add_Theme_List {
 	 */
 	public function add_themes_column( $columns ) {
 
-		$columns['active_blogs'] = '<nobr>' . _x( 'Usage', 'column name', 'multisite-enhancements' ) . '</nobr>';
+		$columns['active_blogs'] = '<span class="non-breaking">' . _x( 'Usage', 'column name', 'multisite-enhancements' ) . '</span>';
 
 		return $columns;
 	}
@@ -182,7 +179,7 @@ class Multisite_Add_Theme_List {
 
 		if ( ! $active_on_blogs ) {
 			// Translators: The theme is not activated, the string is for each plugin possible.
-			$output .= __( '<nobr>Not Activated</nobr>', 'multisite-enhancements' );
+			$output .= __( '<span class="non-breaking">Not Activated</span>', 'multisite-enhancements' );
 			$output .= $child_context;
 			$output .= $parent_context;
 		} else {
@@ -229,8 +226,8 @@ class Multisite_Add_Theme_List {
 				}
 
 				$output .= '<li' . $class . ' title="Blog ID: ' . $key . $hint . '">';
-				$output .= '<nobr><a href="' . get_admin_url( $key ) . 'themes.php">'
-					. ( trim( $value['name'] ) ?: $value['path'] ) . '</a>' . $hint . '</nobr>';
+				$output .= '<span class="non-breaking"><a href="' . get_admin_url( $key ) . 'themes.php">'
+					. ( trim( $value['name'] ) ?: $value['path'] ) . '</a>' . $hint . '</span>';
 				$output .= '</li>';
 			}
 

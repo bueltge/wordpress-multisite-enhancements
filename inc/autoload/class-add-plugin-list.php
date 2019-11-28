@@ -35,9 +35,6 @@ class Multisite_Add_Plugin_List {
 	 */
 	static protected $wp_kses_allowed_html = array(
 		'br'   => array(),
-		'nobr' => array(
-			'class' => array(),
-		),
 		'span' => array(
 			'class' => array(),
 		),
@@ -215,8 +212,8 @@ class Multisite_Add_Plugin_List {
 						$hint  = esc_attr__( ', Deleted site', 'multisite-enhancements' );
 					}
 					$output .= '<li' . $class . ' title="Blog ID: ' . $key . $hint . '">';
-					$output .= '<nobr><a href="' . get_admin_url( $key ) . 'plugins.php">'
-					. ( trim( $value['name'] ) ?: $value['path'] ) . '</a>' . $hint . '</nobr></li>';
+					$output .= '<span class="non-breaking"><a href="' . get_admin_url( $key ) . 'plugins.php">'
+					. ( trim( $value['name'] ) ?: $value['path'] ) . '</a>' . $hint . '</span></li>';
 				}
 				$output .= '</ul>';
 			}

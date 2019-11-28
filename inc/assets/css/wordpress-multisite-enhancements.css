@@ -9,3 +9,7 @@ td.column-active_blogs a {
 .siteslist {
 	display: none;
 }
+
+.non-breaking {
+	white-space: nowrap;
+}
