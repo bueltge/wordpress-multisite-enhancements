@@ -11,7 +11,7 @@ class Multisite_Enhancements_Settings {
 	/**
 	 * Feature settings
 	 */
-	static protected $feature_settings;
+	static protected $feature_settings, $default_options = array();
 
 	/**
 	 * Init function to register all used hooks.
@@ -33,6 +33,11 @@ class Multisite_Enhancements_Settings {
 			'filtering-themes'    => __( 'Add simple javascript to filter the theme list on network and single site theme page of WordPress back end', 'multisite-enhancements' ),
 			'change-footer'       => __( 'Enhance the admin footer text with RAM, SQL queries and PHP version information', 'multisite-enhancements' ),
 		);
+
+		// enable all settings by default
+		foreach( array_keys( self::$feature_settings ) as $key ) {
+			self::$default_options[ $key ] = '1';
+		}
 
 		// register settings
 		add_action( 'admin_init', array( $this, 'settings_init' ) );
@@ -63,7 +68,7 @@ class Multisite_Enhancements_Settings {
 		// register database option
 		register_setting(
 			'wpme_options',	// group name, used in settings_fields() call
-			'wpme_options'	// database option name
+			'wpme_options'  // database option name
 		);
 
 		// register configuration page section
@@ -152,7 +157,7 @@ class Multisite_Enhancements_Settings {
 	 */
 	public function settings_fields_callback( $args ) {
 
-		$options = get_site_option( 'wpme_options' );
+		$options = $this->get_settings();
 
 		if ( $args['label_for'] == 'enable_features' ) {
 			foreach( self::$feature_settings as $key => $description ) {
@@ -196,5 +201,21 @@ class Multisite_Enhancements_Settings {
 		exit;
 	}
 
+	/**
+	 * Load settings from database and merge them with default values
+	 *
+ 	 * @param string [$key] Key of an specific setting desired (optional).
+	 *
+	 * @return string|array Value of setting selected by $key or full array of settings.
+	 */
+	public function get_settings( $key = NULL ) {
+		$options = get_site_option( 'wpme_options' );
+		$options = wp_parse_args( $options, self::$default_options );
+
+		if ( isset( $key ) )
+			return $options[ $key ];
+		else
+			return $options;
+	}
 
 } // end class
