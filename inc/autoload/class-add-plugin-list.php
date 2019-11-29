@@ -201,15 +201,15 @@ class Multisite_Add_Plugin_List {
 				$output .= '<ul id="siteslist_' . $plugin_file;
 				$output .= ( $is_list_hidden ) ? '">' : '" class="siteslist">';
 				foreach ( $active_on_blogs as $key => $value ) {
-					// Check the site for archived.
+					// Check the site for archived and deleted.
 					$class = $hint = '';
 					if ( $this->is_archived( $key ) ) {
 						$class = ' class="site-archived"';
-						$hint  = esc_attr__( ', Archived site', 'multisite-enhancements' );
+						$hint  = ', ' . esc_attr__( 'Archived' );
 					}
-					elseif ( $this->is_deleted( $key ) ) {
+					if ( $this->is_deleted( $key ) ) {
 						$class = ' class="site-deleted"';
-						$hint  = esc_attr__( ', Deleted site', 'multisite-enhancements' );
+						$hint  .= ', ' . esc_attr__( 'Deleted' );
 					}
 					$output .= '<li' . $class . ' title="Blog ID: ' . $key . $hint . '">';
 					$output .= '<span class="non-breaking"><a href="' . get_admin_url( $key ) . 'plugins.php">'
