@@ -29,7 +29,7 @@ class Multisite_Enhancements_Settings {
 		// add menu item in the network Settings menu
 		add_action( 'network_admin_menu', array( $this, 'add_settings_menu' ) );
 		// register our custom URL to save the options
-		add_action( 'network_admin_edit_msenhancements_update_settings', array( $this, 'update_settings' ) );
+		add_action( 'network_admin_edit_wpme_update_settings', array( $this, 'update_settings' ) );
 	}
 
 	/**
@@ -52,16 +52,16 @@ class Multisite_Enhancements_Settings {
 
 		// register database option
 		register_setting(
-			'msenhancements_options',	// group name, used in settings_fields() call
-			'msenhancements_options'	// database option name
+			'wpme_options',	// group name, used in settings_fields() call
+			'wpme_options'	// database option name
 		);
 
 		// register configuration page section
 		add_settings_section(
-			'msenhancements_general',									// unique ID
+			'wpme_general',		// unique ID
 			__( 'General configuration', 'multisite-enhancements' ),	// section title
 			array( $this, 'settings_section_callback' ),				// callback to render the section's HTML
-			'msenhancements_config'			// config page slug - used in do_settings_sections() call
+			'wpme_config'			// config page slug - used in do_settings_sections() call
 		);
 
 		// regista campos para o formulário
@@ -69,8 +69,8 @@ class Multisite_Enhancements_Settings {
 			'enable_features',	 	// unique ID
 			__( 'Enabled features', 'multisite-enhancements' ),	// field label
 			array( $this, 'settings_fields_callback' ),		// callback para exibir o HTML do campo
-			'msenhancements_config',		// config page slug
-			'msenhancements_general',		// section ID where the field will be shown
+			'wpme_config',		// config page slug
+			'wpme_general',		// section ID where the field will be shown
 			array(					// arguments passed to the callback function
 				'label_for' => 'enable_features',
 			)
@@ -86,7 +86,7 @@ class Multisite_Enhancements_Settings {
 			'Multisite Enhancements',		// page title
 			'Multisite Enhancements',		// menu item title
 			'manage_network_options',		// capabilities
-			'msenhancements_config',		// menu slug
+			'wpme_config',		// menu slug
 			array( $this, 'settings_page_callback' ) 	// callback to render the page HTML
 		);
 	}
@@ -114,12 +114,12 @@ class Multisite_Enhancements_Settings {
 ?>
 		<div class="wrap">
 		<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-		<form action="edit.php?action=msenhancements_update_settings" method="post">
+		<form action="edit.php?action=wpme_update_settings" method="post">
 <?php
 		// output security fields for our registered setting
-		settings_fields( 'msenhancements_options' );
+		settings_fields( 'wpme_options' );
 		// output setting sections and their fields
-		do_settings_sections( 'msenhancements_config' );
+		do_settings_sections( 'wpme_config' );
 		// output save settings button
 		submit_button( __( 'Save settings', 'multisite-enhancements' ) );
 ?>
@@ -132,7 +132,7 @@ class Multisite_Enhancements_Settings {
 	 * Configuration sections callback
 	 */
 	public function settings_section_callback( $args ) {
-		if ( $args['id'] == 'msenhancements_general' ) {
+		if ( $args['id'] == 'wpme_general' ) {
 			echo '<p>' . __( 'Check or uncheck the options below to enable or disable specific plugin features:', 'multisite-enhancements' ) . '</p>';
 		}
 	}
@@ -142,14 +142,14 @@ class Multisite_Enhancements_Settings {
 	 */
 	public function settings_fields_callback( $args ) {
 
-		$options = get_site_option( 'msenhancements_options' );
+		$options = get_site_option( 'wpme_options' );
 
 		if ( $args['label_for'] == 'enable_features' ) {
 			foreach( self::$feature_settings as $key => $description ) {
 ?>
 				<p>
 					<label>
-						<input type="checkbox" name="msenhancements_options[<?php echo esc_attr( $key ); ?>]" <?php checked( $options[ $key ], 1 ); ?> value="1">
+						<input type="checkbox" name="wpme_options[<?php echo esc_attr( $key ); ?>]" <?php checked( $options[ $key ], 1 ); ?> value="1">
 						<?php echo $description; ?>
 					</label>
 				</p>
@@ -163,22 +163,22 @@ class Multisite_Enhancements_Settings {
 	 */
 	public function update_settings() {
 		// check the referer to make sure the data comes from our options page.
-		check_admin_referer( 'msenhancements_options-options' );
+		check_admin_referer( 'wpme_options-options' );
 
-		$msenhancements_options = $_POST['msenhancements_options'];
+		$options = $_POST['wpme_options'];
 
 		foreach( array_keys( self::$feature_settings ) as $key ) {
-			if ( ! isset( $msenhancements_options[ $key ] ) )
-				$msenhancements_options[ $key ] = '0';
+			if ( ! isset( $options[ $key ] ) )
+				$options[ $key ] = '0';
 		}
 
 		// update option on database
-		update_site_option( 'msenhancements_options', $msenhancements_options );
+		update_site_option( 'wpme_options', $options );
 
 		// redirect back to our options page
 		wp_redirect(
 			add_query_arg( array(
-				'page' => 'msenhancements_config',
+				'page' => 'wpme_config',
 				'updated' => 'true'
 			),
 			network_admin_url( 'settings.php' )
