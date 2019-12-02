@@ -9,36 +9,28 @@ add_action( 'init', array( 'Multisite_Enhancements_Settings', 'init' ) );
 class Multisite_Enhancements_Settings {
 
 	/**
-	 * Feature settings
+	 * Default options settings
 	 */
-	static protected $feature_settings, $default_options = array();
+	static protected $default_options = array(
+		'remove-logo'         => '1',
+		'add-favicon'         => '1',
+		'add-blog-id'         => '1',
+		'add-css'             => '1',
+		'add-plugin-list'     => '1',
+		'add-theme-list'      => '1',
+		'add-site-status'     => '1',
+		'add-ssl-identifier'  => '1',
+		'add-manage-comments' => '1',
+		'add-network-plugins' => '1',
+		'add-new-plugin'      => '1',
+		'filtering-themes'    => '1',
+		'change-footer'       => '1',
+	);
 
 	/**
 	 * Init function to register all used hooks.
 	 */
 	public function __construct() {
-		// populate feature settings array
-		self::$feature_settings = array(
-			'remove-logo'         => __( 'Remove "W" logo menu from the admin top bar', 'multisite-enhancements' ),
-			'add-favicon'         => __( 'Add sites favicons to admin area', 'multisite-enhancements' ),
-			'add-blog-id'         => __( 'Add blog and user IDs to admin lists', 'multisite-enhancements' ),
-			'add-css'             => __( 'Add custom CSS to allow showing or hiding the list of sites that uses a theme or plugin', 'multisite-enhancements' ),
-			'add-plugin-list'     => __( 'On the network Plugins page, show which blogs have the plugin active', 'multisite-enhancements' ),
-			'add-theme-list'      => __( 'On the network Themes page, show which blogs have the theme active', 'multisite-enhancements' ),
-			'add-site-status'     => __( 'Add status labels for no-index and external domain to blogs in "My Sites" menu', 'multisite-enhancements' ),
-			'add-ssl-identifier'  => __( 'Add an icon to identify the SSL protocol on each site in the network Sites page', 'multisite-enhancements' ),
-			'add-manage-comments' => __( 'Add new "Manage Comments" item with count of comments waiting for moderation in "My Sites" menu', 'multisite-enhancements' ),
-			'add-network-plugins' => __( 'Add a link to the Plugins page under Network Admin in "My Sites" menu', 'multisite-enhancements' ),
-			'add-new-plugin'      => __( 'Enables an "Add New" link under the Plugins menu of each blog for Network admins.', 'multisite-enhancements' ),
-			'filtering-themes'    => __( 'Add simple javascript to filter the theme list on network and single site theme page of WordPress back end', 'multisite-enhancements' ),
-			'change-footer'       => __( 'Enhance the admin footer text with RAM, SQL queries and PHP version information', 'multisite-enhancements' ),
-		);
-
-		// enable all settings by default
-		foreach( array_keys( self::$feature_settings ) as $key ) {
-			self::$default_options[ $key ] = '1';
-		}
-
 		// register settings
 		add_action( 'admin_init', array( $this, 'settings_init' ) );
 		// add menu item in the network Settings menu
@@ -157,19 +149,33 @@ class Multisite_Enhancements_Settings {
 	 */
 	public function settings_fields_callback( $args ) {
 
-		$options = $this->get_settings();
+		$feature_settings = array(
+			'remove-logo'         => __( 'Remove "W" logo menu from the admin top bar', 'multisite-enhancements' ),
+			'add-favicon'         => __( 'Add sites favicons to admin area', 'multisite-enhancements' ),
+			'add-blog-id'         => __( 'Add blog and user IDs to admin lists', 'multisite-enhancements' ),
+			'add-css'             => __( 'Add custom CSS to allow showing or hiding the list of sites that uses a theme or plugin', 'multisite-enhancements' ),
+			'add-plugin-list'     => __( 'On the network Plugins page, show which blogs have the plugin active', 'multisite-enhancements' ),
+			'add-theme-list'      => __( 'On the network Themes page, show which blogs have the theme active', 'multisite-enhancements' ),
+			'add-site-status'     => __( 'Add status labels for no-index and external domain to blogs in "My Sites" menu', 'multisite-enhancements' ),
+			'add-ssl-identifier'  => __( 'Add an icon to identify the SSL protocol on each site in the network Sites page', 'multisite-enhancements' ),
+			'add-manage-comments' => __( 'Add new "Manage Comments" item with count of comments waiting for moderation in "My Sites" menu', 'multisite-enhancements' ),
+			'add-network-plugins' => __( 'Add a link to the Plugins page under Network Admin in "My Sites" menu', 'multisite-enhancements' ),
+			'add-new-plugin'      => __( 'Enables an "Add New" link under the Plugins menu of each blog for Network admins.', 'multisite-enhancements' ),
+			'filtering-themes'    => __( 'Add simple javascript to filter the theme list on network and single site theme page of WordPress back end', 'multisite-enhancements' ),
+			'change-footer'       => __( 'Enhance the admin footer text with RAM, SQL queries and PHP version information', 'multisite-enhancements' ),
+		);
 
-		if ( $args['label_for'] == 'enable_features' ) {
-			foreach( self::$feature_settings as $key => $description ) {
+		$options = self::get_settings();
+
+		foreach( $feature_settings as $key => $description ) {
 ?>
-				<p>
-					<label>
-						<input type="checkbox" name="wpme_options[<?php echo esc_attr( $key ); ?>]" <?php checked( $options[ $key ], 1 ); ?> value="1">
-						<?php echo $description; ?>
-					</label>
-				</p>
+			<p>
+				<label>
+					<input type="checkbox" name="wpme_options[<?php echo esc_attr( $key ); ?>]" <?php checked( $options[ $key ], 1 ); ?> value="1">
+					<?php echo $description; ?>
+				</label>
+			</p>
 <?php
-			}
 		}
 	}
 
@@ -182,7 +188,7 @@ class Multisite_Enhancements_Settings {
 
 		$options = $_POST['wpme_options'];
 
-		foreach( array_keys( self::$feature_settings ) as $key ) {
+		foreach( array_keys( self::$default_options ) as $key ) {
 			if ( ! isset( $options[ $key ] ) )
 				$options[ $key ] = '0';
 		}
@@ -208,7 +214,7 @@ class Multisite_Enhancements_Settings {
 	 *
 	 * @return string|array Value of setting selected by $key or full array of settings.
 	 */
-	public function get_settings( $key = NULL ) {
+	public static function get_settings( $key = NULL ) {
 		$options = get_site_option( 'wpme_options' );
 		$options = wp_parse_args( $options, self::$default_options );
 
