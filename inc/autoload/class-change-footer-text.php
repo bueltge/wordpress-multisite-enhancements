@@ -20,7 +20,9 @@
  * @package WordPress
  */
 
-add_action( 'init', array( 'Multisite_Change_Footer_Text', 'init' ) );
+if ( '1' === Multisite_Enhancements_Settings::get_settings( 'change-footer' ) ) {
+	add_action( 'init', array( 'Multisite_Change_Footer_Text', 'init' ) );
+}
 
 /**
  * Class Multisite_Change_Footer_Text
