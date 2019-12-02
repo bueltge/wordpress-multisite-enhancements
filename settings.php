@@ -1,6 +1,7 @@
 <?php
 /**
  * Plugin configuration page
+ * Based on: https://vedovini.net/2015/10/using-the-wordpress-settings-api-with-network-admin-pages/
  */
 
 add_action( 'init', array( 'Multisite_Enhancements_Settings', 'init' ) );
@@ -148,18 +149,18 @@ class Multisite_Enhancements_Settings {
 	public function settings_fields_callback( $args ) {
 
 		$feature_settings = array(
-			'remove-logo'         => __( 'Remove "W" logo menu from the admin top bar', 'multisite-enhancements' ),
+			'remove-logo'         => __( 'Remove the "W" logo menu from the admin top bar', 'multisite-enhancements' ),
 			'add-favicon'         => __( 'Add sites favicons to admin area', 'multisite-enhancements' ),
 			'add-blog-id'         => __( 'Add blog and user IDs to admin lists', 'multisite-enhancements' ),
-			'add-css'             => __( 'Add custom CSS to allow showing or hiding the list of sites that uses a theme or plugin', 'multisite-enhancements' ),
+			'add-css'             => __( 'Add custom CSS to allow showing or hiding the list of sites that use a theme or plugin', 'multisite-enhancements' ),
 			'add-plugin-list'     => __( 'On the network Plugins page, show which blogs have the plugin active', 'multisite-enhancements' ),
 			'add-theme-list'      => __( 'On the network Themes page, show which blogs have the theme active', 'multisite-enhancements' ),
 			'add-site-status'     => __( 'Add status labels for no-index and external domain to blogs in "My Sites" menu', 'multisite-enhancements' ),
 			'add-ssl-identifier'  => __( 'Add an icon to identify the SSL protocol on each site in the network Sites page', 'multisite-enhancements' ),
 			'add-manage-comments' => __( 'Add new "Manage Comments" item with count of comments waiting for moderation in "My Sites" menu', 'multisite-enhancements' ),
-			'add-network-plugins' => __( 'For WordPress earlier than 3.7, add a link to the Plugins page under Network Admin in "My Sites" menu', 'multisite-enhancements' ),
-			'add-new-plugin'      => __( 'Enables an "Add New" link under the Plugins menu of each blog for Network admins.', 'multisite-enhancements' ),
-			'filtering-themes'    => __( 'Add simple javascript to filter the theme list on network and single site theme page of WordPress back end', 'multisite-enhancements' ),
+			'add-network-plugins' => __( 'For WordPress earlier than 3.7, add a link to the Plugins page under "Network Admin" in "My Sites" menu', 'multisite-enhancements' ),
+			'add-new-plugin'      => __( 'Enables an "Add New" link under the Plugins menu of each blog, for network admins', 'multisite-enhancements' ),
+			'filtering-themes'    => __( 'Add simple javascript to filter the theme list on network and single site theme page of WordPress backend', 'multisite-enhancements' ),
 			'change-footer'       => __( 'Enhance the admin footer text with RAM, SQL queries and PHP version information', 'multisite-enhancements' ),
 		);
 
