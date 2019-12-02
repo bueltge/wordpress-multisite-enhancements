@@ -134,6 +134,9 @@ class Multisite_Enhancements {
 		$file_base = self::$file_base;
 		define( 'MULTISITE_ENHANCEMENT_BASE', $file_base );
 
+		// Load configuration settings
+		require_once __DIR__ . '/settings.php';
+
 		$autoload_paths = glob( "$file_base/autoload/*.php" );
 
 		foreach ( $autoload_paths as $classnames => $path ) {
@@ -154,7 +157,6 @@ class Multisite_Enhancements {
 			require_once $path;
 		}
 
-		require_once __DIR__ . '/settings.php';
 	}
 
 } // end class
