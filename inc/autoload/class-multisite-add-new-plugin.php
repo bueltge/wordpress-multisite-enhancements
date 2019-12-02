@@ -7,7 +7,9 @@
  * @package WordPress
  */
 
-add_action( 'init', array( 'Multisite_Add_New_Plugin', 'init' ) );
+if ( '1' === Multisite_Enhancements_Settings::get_settings( 'add-new-plugin' ) ) {
+	add_action( 'init', array( 'Multisite_Add_New_Plugin', 'init' ) );
+}
 
 /**
  * Class Multisite_Add_New_Plugin
