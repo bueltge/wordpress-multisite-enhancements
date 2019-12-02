@@ -70,16 +70,14 @@ class Multisite_Enhancements_Settings {
 			'wpme_config'		// config page slug - used in do_settings_sections() call
 		);
 
-		// regista campos para o formulário
+		// register form fields
 		add_settings_field(
 			'enable_features',	 // unique ID
-			__( 'Enabled features', 'multisite-enhancements' ),	// field label
+			__( 'Plugin features', 'multisite-enhancements' ),	// field label
 			array( $this, 'settings_fields_callback' ),
 			'wpme_config',		// config page slug
 			'wpme_general',		// section ID where the field will be shown
-			array(				// arguments passed to the callback function
-				'label_for' => 'enable_features',
-			)
+			array()				// arguments passed to the callback function ('label_for' and 'class' go here, when needed)
 		);
 	}
 
