@@ -1,7 +1,6 @@
 <?php
 /**
- * Configuration page
- * Based on: https://vedovini.net/2015/10/using-the-wordpress-settings-api-with-network-admin-pages/
+ * Plugin configuration page
  */
 
 add_action( 'init', array( 'Multisite_Enhancements_Settings', 'init' ) );
@@ -68,17 +67,17 @@ class Multisite_Enhancements_Settings {
 			'wpme_general',		// unique ID
 			__( 'General configuration', 'multisite-enhancements' ),	// section title
 			array( $this, 'settings_section_callback' ),				// callback to render the section's HTML
-			'wpme_config'			// config page slug - used in do_settings_sections() call
+			'wpme_config'		// config page slug - used in do_settings_sections() call
 		);
 
 		// regista campos para o formulário
 		add_settings_field(
-			'enable_features',	 	// unique ID
+			'enable_features',	 // unique ID
 			__( 'Enabled features', 'multisite-enhancements' ),	// field label
-			array( $this, 'settings_fields_callback' ),		// callback para exibir o HTML do campo
+			array( $this, 'settings_fields_callback' ),
 			'wpme_config',		// config page slug
 			'wpme_general',		// section ID where the field will be shown
-			array(					// arguments passed to the callback function
+			array(				// arguments passed to the callback function
 				'label_for' => 'enable_features',
 			)
 		);
@@ -89,18 +88,17 @@ class Multisite_Enhancements_Settings {
 	 */
 	public function add_settings_menu() {
 		add_submenu_page(
-			'settings.php',					// parent menu slug
-			'Multisite Enhancements',		// page title
-			'Multisite Enhancements',		// menu item title
-			'manage_network_options',		// capabilities
-			'wpme_config',		// menu slug
-			array( $this, 'settings_page_callback' ) 	// callback to render the page HTML
+			'settings.php',
+			'Multisite Enhancements',
+			'Multisite Enhancements',
+			'manage_network_options',
+			'wpme_config',
+			array( $this, 'settings_page_callback' )
 		);
 	}
 
 	/**
 	 * Render the configuration page HTML
-	 * Notice the form 'action' which points to our custom URL
 	 */
 	public function settings_page_callback() {
 
@@ -108,16 +106,14 @@ class Multisite_Enhancements_Settings {
 			return;
 		}
 
-		// add error/update messages
-
-		// check if the user have submitted the settings
-		// wordpress will add the "settings-updated" $_GET parameter to the url
+		// check if coming from the update function
 		if ( isset( $_GET['updated'] ) ) {
 ?>
 			<div id="message" class="updated notice is-dismissible"><p><?php _e( 'Settings saved', 'multisite-enhancements' ); ?></p></div>
 <?php
 		}
 
+		// render the header and form - notice the form 'action' which points to our custom URL
 ?>
 		<div class="wrap">
 		<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
@@ -137,15 +133,19 @@ class Multisite_Enhancements_Settings {
 
 	/**
 	 * Configuration sections callback
+	 *
+ 	 * @param array $args array with following keys: title, id, callback - defined by add_settings_section()
 	 */
 	public function settings_section_callback( $args ) {
-		if ( $args['id'] == 'wpme_general' ) {
+		if ( 'wpme_general' === $args['id'] ) {
 			echo '<p>' . __( 'Check or uncheck the options below to enable or disable specific plugin features:', 'multisite-enhancements' ) . '</p>';
 		}
 	}
 
 	/**
 	 * Configuration fields callback
+	 *
+ 	 * @param array $args arguments defined by add_settings_field()
 	 */
 	public function settings_fields_callback( $args ) {
 
