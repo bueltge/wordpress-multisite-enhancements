@@ -30,8 +30,13 @@ class Multisite_Admin_Bar_Tweaks {
 	 * @since   0.0.1
 	 */
 	public function __construct() {
-		add_action( 'wp_before_admin_bar_render', array( $this, 'enhance_network_admin_bar' ) );
-		add_action( 'wp_before_admin_bar_render', array( $this, 'enhance_network_blog_admin_bar' ) );
+		if ( '1' === Multisite_Enhancements_Settings::get_settings( 'add-network-plugins' ) ) {
+			add_action( 'wp_before_admin_bar_render', array( $this, 'enhance_network_admin_bar' ) );
+		}
+
+		if ( '1' === Multisite_Enhancements_Settings::get_settings( 'add-manage-comments' ) ) {
+			add_action( 'wp_before_admin_bar_render', array( $this, 'enhance_network_blog_admin_bar' ) );
+		}
 	}
 
 	/**
@@ -90,7 +95,7 @@ class Multisite_Admin_Bar_Tweaks {
 		if ( ! isset( $wp_admin_bar->user->blogs ) ) {
 			return;
 		}
-		
+
 		foreach ( (array) $wp_admin_bar->user->blogs as $blog ) {
 			switch_to_blog( $blog->userblog_id );
 

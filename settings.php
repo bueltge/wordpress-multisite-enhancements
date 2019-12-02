@@ -20,7 +20,7 @@ class Multisite_Enhancements_Settings {
 		'add-site-status'     => '1',
 		'add-ssl-identifier'  => '1',
 		'add-manage-comments' => '1',
-		'add-network-plugins' => '1',
+		'add-network-plugins' => '0', // not needed for WP >= 3.7
 		'add-new-plugin'      => '1',
 		'filtering-themes'    => '1',
 		'change-footer'       => '1',
@@ -157,7 +157,7 @@ class Multisite_Enhancements_Settings {
 			'add-site-status'     => __( 'Add status labels for no-index and external domain to blogs in "My Sites" menu', 'multisite-enhancements' ),
 			'add-ssl-identifier'  => __( 'Add an icon to identify the SSL protocol on each site in the network Sites page', 'multisite-enhancements' ),
 			'add-manage-comments' => __( 'Add new "Manage Comments" item with count of comments waiting for moderation in "My Sites" menu', 'multisite-enhancements' ),
-			'add-network-plugins' => __( 'Add a link to the Plugins page under Network Admin in "My Sites" menu', 'multisite-enhancements' ),
+			'add-network-plugins' => __( 'For WordPress earlier than 3.7, add a link to the Plugins page under Network Admin in "My Sites" menu', 'multisite-enhancements' ),
 			'add-new-plugin'      => __( 'Enables an "Add New" link under the Plugins menu of each blog for Network admins.', 'multisite-enhancements' ),
 			'filtering-themes'    => __( 'Add simple javascript to filter the theme list on network and single site theme page of WordPress back end', 'multisite-enhancements' ),
 			'change-footer'       => __( 'Enhance the admin footer text with RAM, SQL queries and PHP version information', 'multisite-enhancements' ),
