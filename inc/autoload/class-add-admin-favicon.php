@@ -78,17 +78,21 @@ class Multisite_Add_Admin_Favicon {
 		 *
 		 * @type array
 		 */
-		$hooks = (array) apply_filters( 'multisite_enhancements_favicon', self::$favicon_hooks );
+		if ( '1' === Multisite_Enhancements_Settings::get_settings( 'add-favicon' ) ) {
+			$hooks = (array) apply_filters( 'multisite_enhancements_favicon', self::$favicon_hooks );
 
-		foreach ( $hooks as $hook ) {
-			add_action( esc_attr( $hook ), array( $this, 'set_favicon' ) );
+			foreach ( $hooks as $hook ) {
+				add_action( esc_attr( $hook ), array( $this, 'set_favicon' ) );
 
-			// Add favicon from theme folder to each blog.
-			add_action( esc_attr( $hook ), array( $this, 'set_admin_bar_blog_icon' ) );
+				// Add favicon from theme folder to each blog.
+				add_action( esc_attr( $hook ), array( $this, 'set_admin_bar_blog_icon' ) );
+			}
 		}
 
 		// Remove admin bar item with "W" logo.
-		add_action( 'admin_bar_menu', array( $this, 'change_admin_bar_menu' ), 25 );
+		if ( '1' === Multisite_Enhancements_Settings::get_settings( 'remove-logo' ) ) {
+			add_action( 'admin_bar_menu', array( $this, 'change_admin_bar_menu' ), 25 );
+		}
 	}
 
 	/**
