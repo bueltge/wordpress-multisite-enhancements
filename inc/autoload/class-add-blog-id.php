@@ -36,16 +36,18 @@ class Multisite_Add_Blog_Id {
 			return;
 		}
 
-		// Add blog id.
-		add_filter( 'wpmu_blogs_columns', array( $this, 'get_id' ) );
-		add_action( 'manage_sites_custom_column', array( $this, 'get_blog_id' ), 10, 2 );
+		if ( '1' === Multisite_Enhancements_Settings::get_settings( 'add-blog-id' ) ) {
+			// Add blog id.
+			add_filter( 'wpmu_blogs_columns', array( $this, 'get_id' ) );
+			add_action( 'manage_sites_custom_column', array( $this, 'get_blog_id' ), 10, 2 );
 
-		// Add user id.
-		add_filter( 'manage_users-network_columns', array( $this, 'get_id' ) );
-		add_filter( 'manage_users_custom_column', array( $this, 'get_user_id' ), 10, 3 );
+			// Add user id.
+			add_filter( 'manage_users-network_columns', array( $this, 'get_id' ) );
+			add_filter( 'manage_users_custom_column', array( $this, 'get_user_id' ), 10, 3 );
 
-		add_action( 'admin_print_styles-sites.php', array( $this, 'add_style' ) );
-		add_action( 'admin_print_styles-users.php', array( $this, 'add_style' ) );
+			add_action( 'admin_print_styles-sites.php', array( $this, 'add_style' ) );
+			add_action( 'admin_print_styles-users.php', array( $this, 'add_style' ) );
+		}
 	}
 
 	/**
