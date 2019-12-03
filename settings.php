@@ -222,4 +222,16 @@ class Multisite_Enhancements_Settings {
 		return $options;
 	}
 
+	/**
+	 * Check if a feature is enabled
+	 *
+ 	 * @param string $key Key of desired setting to check
+	 *
+	 * @return boolean
+	 */
+	public static function is_feature_enabled( $key ) {
+
+		return (bool) self::get_settings( $key );
+	}
+
 } // end class

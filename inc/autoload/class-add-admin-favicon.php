@@ -78,21 +78,17 @@ class Multisite_Add_Admin_Favicon {
 		 *
 		 * @type array
 		 */
-		if ( '1' === Multisite_Enhancements_Settings::get_settings( 'add-favicon' ) ) {
-			$hooks = (array) apply_filters( 'multisite_enhancements_favicon', self::$favicon_hooks );
+		$hooks = (array) apply_filters( 'multisite_enhancements_favicon', self::$favicon_hooks );
 
-			foreach ( $hooks as $hook ) {
-				add_action( esc_attr( $hook ), array( $this, 'set_favicon' ) );
+		foreach ( $hooks as $hook ) {
+			add_action( esc_attr( $hook ), array( $this, 'set_favicon' ) );
 
-				// Add favicon from theme folder to each blog.
-				add_action( esc_attr( $hook ), array( $this, 'set_admin_bar_blog_icon' ) );
-			}
+			// Add favicon from theme folder to each blog.
+			add_action( esc_attr( $hook ), array( $this, 'set_admin_bar_blog_icon' ) );
 		}
 
 		// Remove admin bar item with "W" logo.
-		if ( '1' === Multisite_Enhancements_Settings::get_settings( 'remove-logo' ) ) {
-			add_action( 'admin_bar_menu', array( $this, 'change_admin_bar_menu' ), 25 );
-		}
+		add_action( 'admin_bar_menu', array( $this, 'change_admin_bar_menu' ), 25 );
 	}
 
 	/**
@@ -114,6 +110,10 @@ class Multisite_Add_Admin_Favicon {
 	 * @since   0.0.2
 	 */
 	public function set_favicon() {
+		if ( ! Multisite_Enhancements_Settings::is_feature_enabled( 'add-favicon' ) ) {
+			return;
+		}
+
 		$stylesheet_dir_uri = get_stylesheet_directory_uri();
 		$stylesheet_dir     = get_stylesheet_directory();
 		$output             = '';
@@ -188,7 +188,7 @@ class Multisite_Add_Admin_Favicon {
 	public function set_admin_bar_blog_icon() {
 
 		// Only usable if the user is logged in and use the admin bar.
-		if ( ! is_user_logged_in() || ! is_admin_bar_showing() ) {
+		if ( ! is_user_logged_in() || ! is_admin_bar_showing() || ! Multisite_Enhancements_Settings::is_feature_enabled( 'add-favicon' ) ) {
 			return;
 		}
 
@@ -265,7 +265,8 @@ class Multisite_Add_Admin_Favicon {
 		 *
 		 * @type bool
 		 */
-		if ( apply_filters(
+		if ( Multisite_Enhancements_Settings::is_feature_enabled( 'remove-logo' ) &&
+			apply_filters(
 			'multisite_enhancements_remove_wp_admin_bar',
 			self::$remove_wp_admin_bar
 		)
