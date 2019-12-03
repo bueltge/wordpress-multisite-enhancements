@@ -35,9 +35,6 @@ class Multisite_Add_Plugin_List {
 	 */
 	static protected $wp_kses_allowed_html = array(
 		'br'   => array(),
-		'nobr' => array(
-			'class' => array(),
-		),
 		'span' => array(
 			'class' => array(),
 		),
@@ -47,6 +44,7 @@ class Multisite_Add_Plugin_List {
 		),
 		'li'   => array(
 			'title' => array(),
+			'class' => array(),
 		),
 		'a'    => array(
 			'href'    => array(),
@@ -203,15 +201,19 @@ class Multisite_Add_Plugin_List {
 				$output .= '<ul id="siteslist_' . $plugin_file;
 				$output .= ( $is_list_hidden ) ? '">' : '" class="siteslist">';
 				foreach ( $active_on_blogs as $key => $value ) {
-					// Check the site for archived.
+					// Check the site for archived and deleted.
 					$class = $hint = '';
 					if ( $this->is_archived( $key ) ) {
 						$class = ' class="site-archived"';
-						$hint  = esc_attr__( ', Archived site', 'multisite-enhancements' );
+						$hint  = ', ' . esc_attr__( 'Archived' );
+					}
+					if ( $this->is_deleted( $key ) ) {
+						$class = ' class="site-deleted"';
+						$hint  .= ', ' . esc_attr__( 'Deleted' );
 					}
 					$output .= '<li' . $class . ' title="Blog ID: ' . $key . $hint . '">';
-					$output .= '<nobr><a href="' . get_admin_url( $key ) . 'plugins.php">'
-					. $value['name'] . '</a>' . $hint . '</nobr></li>';
+					$output .= '<span class="non-breaking"><a href="' . get_admin_url( $key ) . 'plugins.php">'
+					. ( trim( $value['name'] ) ?: $value['path'] ) . '</a>' . $hint . '</span></li>';
 				}
 				$output .= '</ul>';
 			}
@@ -352,6 +354,19 @@ class Multisite_Add_Plugin_List {
 		$site_id = (int) $site_id;
 
 		return (bool) get_blog_details( $site_id )->archived;
+	}
+
+	/**
+	 * Check, if the status of the site deleted.
+	 *
+	 * @param integer $site_id ID of the site.
+	 *
+	 * @return bool
+	 */
+	public function is_deleted( $site_id ) {
+		$site_id = (int) $site_id;
+
+		return (bool) get_blog_details( $site_id )->deleted;
 	}
 
 } // end class

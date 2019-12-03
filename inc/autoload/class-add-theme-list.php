@@ -30,9 +30,6 @@ class Multisite_Add_Theme_List {
 	 */
 	static protected $wp_kses_allowed_html = array(
 		'br'   => array(),
-		'nobr' => array(
-			'class' => array(),
-		),
 		'span' => array(
 			'class' => array(),
 		),
@@ -42,6 +39,7 @@ class Multisite_Add_Theme_List {
 		),
 		'li'   => array(
 			'title' => array(),
+			'class' => array(),
 		),
 		'a'    => array(
 			'href'    => array(),
@@ -131,7 +129,7 @@ class Multisite_Add_Theme_List {
 	 */
 	public function add_themes_column( $columns ) {
 
-		$columns['active_blogs'] = '<nobr>' . _x( 'Usage', 'column name', 'multisite-enhancements' ) . '</nobr>';
+		$columns['active_blogs'] = '<span class="non-breaking">' . _x( 'Usage', 'column name', 'multisite-enhancements' ) . '</span>';
 
 		return $columns;
 	}
@@ -181,7 +179,7 @@ class Multisite_Add_Theme_List {
 
 		if ( ! $active_on_blogs ) {
 			// Translators: The theme is not activated, the string is for each plugin possible.
-			$output .= __( '<nobr>Not Activated</nobr>', 'multisite-enhancements' );
+			$output .= __( '<span class="non-breaking">Not Activated</span>', 'multisite-enhancements' );
 			$output .= $child_context;
 			$output .= $parent_context;
 		} else {
@@ -216,16 +214,20 @@ class Multisite_Add_Theme_List {
 
 			foreach ( $active_on_blogs as $key => $value ) {
 
-				// Check the site for archived.
+				// Check the site for archived and deleted.
 				$class = $hint = '';
 				if ( $this->is_archived( $key ) ) {
 					$class = ' class="site-archived"';
-					$hint  = esc_attr__( ', Archived site', 'multisite-enhancements' );
+					$hint  = ', ' . esc_attr__( 'Archived' );
+				}
+				if ( $this->is_deleted( $key ) ) {
+					$class = ' class="site-deleted"';
+					$hint  .= ', ' . esc_attr__( 'Deleted' );
 				}
 
 				$output .= '<li' . $class . ' title="Blog ID: ' . $key . $hint . '">';
-				$output .= '<nobr><a href="' . get_admin_url( $key ) . 'themes.php">'
-					. $value['name'] . '</a>' . $hint . '</nobr>';
+				$output .= '<span class="non-breaking"><a href="' . get_admin_url( $key ) . 'themes.php">'
+					. ( trim( $value['name'] ) ?: $value['path'] ) . '</a>' . $hint . '</span>';
 				$output .= '</li>';
 			}
 
@@ -402,6 +404,19 @@ class Multisite_Add_Theme_List {
 		$site_id = (int) $site_id;
 
 		return (bool) get_blog_details( $site_id )->archived;
+	}
+
+	/**
+	 * Check, if the status of the site deleted.
+	 *
+	 * @param integer $site_id ID of the site.
+	 *
+	 * @return bool
+	 */
+	public function is_deleted( $site_id ) {
+		$site_id = (int) $site_id;
+
+		return (bool) get_blog_details( $site_id )->deleted;
 	}
 
 } // end class

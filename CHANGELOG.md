@@ -2,7 +2,11 @@
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased, only in master branch
-* 
+* Show site path for sites with blank titles in the themes and plugins lists.
+* Show status of deleted sites.
+* Apply styles for archived and deleted sites in the lists.
+* Replace obsolete HTML 'nobr' element.
+
 ## [1.5.2](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.5.1...1.5.2) - 2019-11-14
 * Fix style problem on list of all sites for admin bar.
 * Change enqueue of styles and script to default variants.

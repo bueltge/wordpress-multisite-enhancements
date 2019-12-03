@@ -97,6 +97,12 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= UNRELEASED =
+* Show site path for sites with blank titles in the themes and plugins lists.
+* Show status of deleted sites.
+* Apply styles for archived and deleted sites in the lists.
+* Replace obsolete HTML 'nobr' element.
+
 = 1.5.2 (2019-11-14) =
 * Fix style problem on list of all sites for admin bar.
 * Change enqueue of styles and script to default variants.
