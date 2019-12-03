@@ -12,19 +12,19 @@ class Multisite_Enhancements_Settings {
 	 * Default options settings
 	 */
 	static protected $default_options = array(
-		'remove-logo'         => '1',
-		'add-favicon'         => '1',
-		'add-blog-id'         => '1',
-		'add-css'             => '1',
-		'add-plugin-list'     => '1',
-		'add-theme-list'      => '1',
-		'add-site-status'     => '1',
-		'add-ssl-identifier'  => '1',
-		'add-manage-comments' => '1',
-		'add-network-plugins' => '0', // not needed for WP >= 3.7
-		'add-new-plugin'      => '1',
-		'filtering-themes'    => '1',
-		'change-footer'       => '1',
+		'remove-logo'         => 1,
+		'add-favicon'         => 1,
+		'add-blog-id'         => 1,
+		'add-css'             => 1,
+		'add-plugin-list'     => 1,
+		'add-theme-list'      => 1,
+		'add-site-status'     => 1,
+		'add-ssl-identifier'  => 1,
+		'add-manage-comments' => 1,
+		'add-network-plugins' => 0, // not needed for WP >= 3.7
+		'add-new-plugin'      => 1,
+		'filtering-themes'    => 1,
+		'change-footer'       => 1,
 	);
 
 	/**
@@ -188,8 +188,7 @@ class Multisite_Enhancements_Settings {
 		$options = $_POST['wpme_options'];
 
 		foreach( array_keys( self::$default_options ) as $key ) {
-			if ( ! isset( $options[ $key ] ) )
-				$options[ $key ] = '0';
+			$options[ $key ] = (int) isset( $options[ $key ] );
 		}
 
 		// update option on database
@@ -219,8 +218,8 @@ class Multisite_Enhancements_Settings {
 
 		if ( isset( $key ) )
 			return $options[ $key ];
-		else
-			return $options;
+
+		return $options;
 	}
 
 } // end class
