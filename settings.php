@@ -66,7 +66,7 @@ class Multisite_Enhancements_Settings {
 		// register configuration page section
 		add_settings_section(
 			'wpme_general',		// unique ID
-			__( 'General configuration', 'multisite-enhancements' ),	// section title
+			esc_html__( 'General configuration', 'multisite-enhancements' ),	// section title
 			array( $this, 'settings_section_callback' ),				// callback to render the section's HTML
 			'wpme_config'		// config page slug - used in do_settings_sections() call
 		);
@@ -74,7 +74,7 @@ class Multisite_Enhancements_Settings {
 		// register form fields
 		add_settings_field(
 			'enable_features',	 // unique ID
-			__( 'Plugin features', 'multisite-enhancements' ),	// field label
+			esc_html__( 'Plugin features', 'multisite-enhancements' ),	// field label
 			array( $this, 'settings_fields_callback' ),
 			'wpme_config',		// config page slug
 			'wpme_general',		// section ID where the field will be shown
@@ -108,7 +108,7 @@ class Multisite_Enhancements_Settings {
 		// check if coming from the update function
 		if ( isset( $_GET['updated'] ) ) {
 ?>
-			<div id="message" class="updated notice is-dismissible"><p><?php _e( 'Settings saved', 'multisite-enhancements' ); ?></p></div>
+			<div id="message" class="updated notice is-dismissible"><p><?php esc_html_e( 'Settings saved', 'multisite-enhancements' ); ?></p></div>
 <?php
 		}
 
@@ -137,7 +137,7 @@ class Multisite_Enhancements_Settings {
 	 */
 	public function settings_section_callback( $args ) {
 		if ( 'wpme_general' === $args['id'] ) {
-			echo '<p>' . __( 'Check or uncheck the options below to enable or disable specific plugin features:', 'multisite-enhancements' ) . '</p>';
+			echo '<p>' . esc_html__( 'Check or uncheck the options below to enable or disable specific plugin features:', 'multisite-enhancements' ) . '</p>';
 		}
 	}
 
@@ -171,7 +171,7 @@ class Multisite_Enhancements_Settings {
 			<p>
 				<label>
 					<input type="checkbox" name="wpme_options[<?php echo esc_attr( $key ); ?>]" <?php checked( $options[ $key ], 1 ); ?> value="1">
-					<?php echo $description; ?>
+					<?php echo esc_html( $description ); ?>
 				</label>
 			</p>
 <?php
