@@ -7,9 +7,7 @@
  * @package WordPress
  */
 
-if ( '1' === Multisite_Enhancements_Settings::get_settings( 'add-theme-list' ) ) {
-	add_action( 'init', array( 'Multisite_Add_Theme_List', 'init' ) );
-}
+add_action( 'init', array( 'Multisite_Add_Theme_List', 'init' ) );
 
 /**
  * On the network theme page, show which blog have the theme active.

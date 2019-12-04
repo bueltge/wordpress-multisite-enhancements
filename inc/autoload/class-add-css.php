@@ -13,9 +13,7 @@
  * @package WordPress
  */
 
-if ( '1' === Multisite_Enhancements_Settings::get_settings( 'add-css' ) ) {
-	add_action( 'init', array( 'Enqueue_Column_Style', 'init' ) );
-}
+add_action( 'init', array( 'Enqueue_Column_Style', 'init' ) );
 
 /**
  * On the network plugin and theme pages, add css to present the active column

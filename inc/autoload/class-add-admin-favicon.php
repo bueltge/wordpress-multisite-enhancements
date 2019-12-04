@@ -187,8 +187,9 @@ class Multisite_Add_Admin_Favicon {
 	 */
 	public function set_admin_bar_blog_icon() {
 
-		// Only usable if the user is logged in and use the admin bar.
-		if ( ! is_user_logged_in() || ! is_admin_bar_showing() || ! Multisite_Enhancements_Settings::is_feature_enabled( 'add-favicon' ) ) {
+		// Only usable if the feature is enabled, the user is logged in and use the admin bar.
+		if ( ! is_user_logged_in() || ! is_admin_bar_showing() ||
+			 ! Multisite_Enhancements_Settings::is_feature_enabled( 'add-favicon' ) ) {
 			return;
 		}
 

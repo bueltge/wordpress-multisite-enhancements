@@ -9,9 +9,7 @@
 
 namespace Bueltge\Multisite_Add_Ssh_Identifier;
 
-if ( '1' === \Multisite_Enhancements_Settings::get_settings( 'add-ssl-identifier' ) ) {
-	add_action( 'admin_init', __NAMESPACE__ . '\\bootstrap' );
-}
+add_action( 'admin_init', __NAMESPACE__ . '\\bootstrap' );
 
 /**
  * Create the instance of this class.

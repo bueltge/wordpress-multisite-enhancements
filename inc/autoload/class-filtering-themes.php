@@ -6,9 +6,7 @@
  * @package WordPress
  */
 
-if ( '1' === Multisite_Enhancements_Settings::get_settings( 'filtering-themes' ) ) {
-	add_action( 'admin_init', array( 'Filtering_Themes', 'init' ) );
-}
+add_action( 'admin_init', array( 'Filtering_Themes', 'init' ) );
 
 /**
  * Class Filtering_Themes

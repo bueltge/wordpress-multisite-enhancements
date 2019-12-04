@@ -7,9 +7,7 @@
  * @package WordPress
  */
 
-if ( '1' === Multisite_Enhancements_Settings::get_settings( 'add-site-status' ) ) {
-	add_action( 'init', array( 'Multisite_Add_Site_Status_labels', 'init' ) );
-}
+add_action( 'init', array( 'Multisite_Add_Site_Status_labels', 'init' ) );
 
 /**
  * Add status labels to sites.

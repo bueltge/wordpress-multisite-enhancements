@@ -30,13 +30,8 @@ class Multisite_Admin_Bar_Tweaks {
 	 * @since   0.0.1
 	 */
 	public function __construct() {
-		if ( '1' === Multisite_Enhancements_Settings::get_settings( 'add-network-plugins' ) ) {
-			add_action( 'wp_before_admin_bar_render', array( $this, 'enhance_network_admin_bar' ) );
-		}
-
-		if ( '1' === Multisite_Enhancements_Settings::get_settings( 'add-manage-comments' ) ) {
-			add_action( 'wp_before_admin_bar_render', array( $this, 'enhance_network_blog_admin_bar' ) );
-		}
+		add_action( 'wp_before_admin_bar_render', array( $this, 'enhance_network_admin_bar' ) );
+		add_action( 'wp_before_admin_bar_render', array( $this, 'enhance_network_blog_admin_bar' ) );
 	}
 
 	/**
@@ -47,8 +42,9 @@ class Multisite_Admin_Bar_Tweaks {
 	public function enhance_network_admin_bar() {
 		global $wp_admin_bar;
 
-		// Show only when the user has at least one site, or they're a super admin.
-		if ( ! isset( $wp_admin_bar->user->blogs ) || count( $wp_admin_bar->user->blogs ) < 1 ) {
+		// Show only when feature is enabled and the user has at least one site, or they're a super admin.
+		if ( ! isset( $wp_admin_bar->user->blogs ) || count( $wp_admin_bar->user->blogs ) < 1 ||
+			 ! Multisite_Enhancements_Settings::is_feature_enabled( 'add-network-plugins' ) ) {
 			return;
 		}
 
@@ -92,7 +88,7 @@ class Multisite_Admin_Bar_Tweaks {
 		 */
 		global $wp_admin_bar;
 
-		if ( ! isset( $wp_admin_bar->user->blogs ) ) {
+		if ( ! isset( $wp_admin_bar->user->blogs ) || ! Multisite_Enhancements_Settings::is_feature_enabled( 'add-manage-comments' ) ) {
 			return;
 		}
 
