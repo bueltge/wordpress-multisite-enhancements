@@ -9,6 +9,12 @@ add_action( 'init', array( 'Multisite_Enhancements_Settings', 'init' ) );
 class Multisite_Enhancements_Settings {
 
 	/**
+	 * Database option name
+	 * This is a network-wide option, saved in the `wp_sitemeta` table
+	 */
+	const OPTION_NAME = 'wpme_options';
+
+	/**
 	 * Default options settings
 	 */
 	static protected $default_options = array(
@@ -25,6 +31,7 @@ class Multisite_Enhancements_Settings {
 		'add-new-plugin'      => 1,
 		'filtering-themes'    => 1,
 		'change-footer'       => 1,
+		'delete-settings'     => 1,
 	);
 
 	/**
@@ -59,8 +66,8 @@ class Multisite_Enhancements_Settings {
 
 		// register database option
 		register_setting(
-			'wpme_options',	// group name, used in settings_fields() call
-			'wpme_options'  // database option name
+			'wpme_options',		// group name, used in settings_fields() call
+			self::OPTION_NAME   // database option name
 		);
 
 		// register configuration page section
@@ -162,6 +169,7 @@ class Multisite_Enhancements_Settings {
 			'add-new-plugin'      => __( 'Enables an "Add New" link under the Plugins menu of each blog, for network admins', 'multisite-enhancements' ),
 			'filtering-themes'    => __( 'Add simple javascript to filter the theme list on network and single site theme page of WordPress backend', 'multisite-enhancements' ),
 			'change-footer'       => __( 'Enhance the admin footer text with RAM, SQL queries and PHP version information', 'multisite-enhancements' ),
+			'delete-settings'     => __( 'Delete configuration options from the database when uninstalling Multisite Enhancements', 'multisite-enhancements' ),
 		);
 
 		$options = self::get_settings();
@@ -192,7 +200,7 @@ class Multisite_Enhancements_Settings {
 		}
 
 		// update option on database
-		update_site_option( 'wpme_options', $options );
+		update_site_option( self::OPTION_NAME, $options );
 
 		// redirect back to our options page
 		wp_redirect(
@@ -213,7 +221,7 @@ class Multisite_Enhancements_Settings {
 	 * @return string|array Value of setting selected by $key or full array of settings.
 	 */
 	public static function get_settings( $key = NULL ) {
-		$options = get_site_option( 'wpme_options' );
+		$options = get_site_option( self::OPTION_NAME );
 		$options = wp_parse_args( $options, self::$default_options );
 
 		if ( isset( $key ) )
