@@ -1,40 +1,33 @@
+language: php
 
-language:
-  - php
+dist: trusty
 
-dist:
-  - trusty
+cache:
+  directories:
+    - $HOME/.composer/cache/files
 
 matrix:
   fast_finish: true
   include:
     - php: 5.6
-      dist: precise
-      env: PHP56=true
     - php: 7.0
     - php: 7.1
     - php: 7.2
+    - php: 7.3
     - php: nightly
-    - php: hhvm
-      env: HHVM=true
   allow_failures:
-    - php: hhvm
     - php: nightly
     - script: vendor/bin/phpcs
 
-cache:
-  directories:
-  - vendor
-  - $HOME/.composer/cache
-
 before_install:
+  - phpenv config-rm xdebug.ini || echo 'No xdebug config.'
   - composer self-update
 
 install:
-  - composer install --optimize-autoloader
-  - if [[ $PHP56 == true ]]; then composer require "phpunit/phpunit:5.7"; fi
-  - if [[ $HHVM == true ]]; then composer require "phpunit/phpunit:5.7"; fi
+  - composer install --no-interaction
+  - if [[ $TRAVIS_PHP_VERSION == "5.6" ]]; then composer require "phpunit/phpunit:5.7"; fi
 
 script:
+  - find src tests \( -name '*.php' \) -exec php -l {} \;
   - vendor/bin/phpunit
-  - vendor/bin/phpcs
+  - if [[ $TRAVIS_PHP_VERSION == "7.3" ]]; then vendor/bin/phpcs; fi
