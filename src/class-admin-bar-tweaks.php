@@ -7,7 +7,15 @@
  * @package WordPress
  */
 
-add_action( 'init', array( 'Multisite_Admin_Bar_Tweaks', 'init' ) );
+namespace Bueltge\Admin_Bar_Tweaks;
+
+add_action(
+	'init',
+	function () {
+		$multisite_admin_bar_tweaks = new Multisite_Admin_Bar_Tweaks();
+		$multisite_admin_bar_tweaks->init();
+	}
+);
 
 /**
  * Class Multisite_Admin_Bar_Tweaks
@@ -15,61 +23,18 @@ add_action( 'init', array( 'Multisite_Admin_Bar_Tweaks', 'init' ) );
 class Multisite_Admin_Bar_Tweaks {
 
 	/**
-	 * Initialize this class.
-	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			$GLOBALS[ $class ] = new $class();
-		}
-	}
-
-	/**
 	 * Init function to register all used hooks.
 	 *
 	 * @since   0.0.1
 	 */
 	public function __construct() {
-		add_action( 'wp_before_admin_bar_render', array( $this, 'enhance_network_admin_bar' ) );
-		add_action( 'wp_before_admin_bar_render', array( $this, 'enhance_network_blog_admin_bar' ) );
 	}
 
 	/**
-	 * Enhance network item.
-	 *
-	 * @since   0.0.1
+	 * Initialize this class.
 	 */
-	public function enhance_network_admin_bar() {
-		global $wp_admin_bar;
-
-		// Show only when feature is enabled and the user has at least one site, or they're a super admin.
-		if ( ! isset( $wp_admin_bar->user->blogs ) || count( $wp_admin_bar->user->blogs ) < 1 ||
-			 ! Multisite_Enhancements_Settings::is_feature_enabled( 'add-network-plugins' ) ) {
-			return;
-		}
-
-		// Since WP version 3.7 is the plugin link in core.
-		// Return, if is active.
-		/**
-		 * Toolbar API class.
-		 *
-		 * @var WP_Admin_Bar $wp_admin_bar
-		 */
-		$wp_admin_bar_nodes = (array) $wp_admin_bar->get_nodes();
-
-		if ( array_key_exists( 'network-admin-p', $wp_admin_bar_nodes ) ) {
-			return;
-		}
-
-		// Add a link to the Network > Plugins page.
-		$wp_admin_bar->add_node(
-			array(
-				'parent' => 'network-admin',
-				'id'     => 'network-admin-plugins',
-				'title'  => __( 'Plugins' ),
-				'href'   => network_admin_url( 'plugins.php' ),
-			)
-		);
+	public function init() {
+		add_action( 'init', array( $this, 'enhance_network_blog_admin_bar' ) );
 	}
 
 	/**
@@ -104,8 +69,8 @@ class Multisite_Admin_Bar_Tweaks {
 				$awaiting_mod = $awaiting_mod->moderated;
 
 				$title = __( 'Manage Comments' )
-					. '<span class="ab-label awaiting-mod pending-count count-'
-					. (int) $awaiting_mod . '" style="margin-left:.2em">' . number_format_i18n( $awaiting_mod ) . '</span>';
+				         . '<span class="ab-label awaiting-mod pending-count count-'
+				         . (int) $awaiting_mod . '" style="margin-left:.2em">' . number_format_i18n( $awaiting_mod ) . '</span>';
 
 				$awaiting_title = esc_attr(
 					sprintf(
