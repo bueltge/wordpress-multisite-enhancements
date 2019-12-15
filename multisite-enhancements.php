@@ -134,6 +134,9 @@ class Multisite_Enhancements {
 		$file_base = self::$file_base;
 		define( 'MULTISITE_ENHANCEMENT_BASE', $file_base );
 
+		// Load configuration settings
+		require_once __DIR__ . '/settings.php';
+
 		$autoload_paths = glob( "$file_base/autoload/*.php" );
 
 		foreach ( $autoload_paths as $classnames => $path ) {
@@ -144,6 +147,40 @@ class Multisite_Enhancements {
 
 		$autoload_files = (array) apply_filters( 'multisite_enhancements_autoload', $autoload_files );
 
+		// Remove from autoload classes for disabled features
+		$feature_modules = array(
+			'class-add-admin-favicon.php'        => array( 'add-favicon', 'remove-logo' ),
+			'class-add-blog-id.php'              => 'add-blog-id',
+			'class-add-css.php'                  => 'add-css',
+			'class-add-plugin-list.php'          => 'add-plugin-list',
+			'class-add-site-status-labels.php'   => 'add-site-status',
+			'class-add-ssl-identifier.php'       => 'add-ssl-identifier',
+			'class-add-theme-list.php'           => 'add-theme-list',
+			'class-admin-bar-tweaks.php'         => array( 'add-network-plugins', 'add-manage-comments' ),
+			'class-change-footer-text.php'       => 'change-footer',
+			'class-filtering-themes.php'         => 'filtering-themes',
+			'class-multisite-add-new-plugin.php' => 'add-new-plugin',
+		);
+
+		foreach ( $feature_modules as $file => $settings ) {
+			if ( is_array( $settings ) ) {
+				$enabled = array_reduce(
+					$settings,
+					function( $carry, $item ) {
+						return $carry || Multisite_Enhancements_Settings::is_feature_enabled( $item );
+					},
+					false
+				);
+			}
+			else {
+				$enabled = Multisite_Enhancements_Settings::is_feature_enabled( $settings );
+			}
+
+			if ( ! $enabled ) {
+				unset( $autoload_files[ $file ] );
+			}
+		}
+
 		// Load files.
 		foreach ( $autoload_files as $path ) {
 			/**
@@ -153,6 +190,7 @@ class Multisite_Enhancements {
 			 */
 			require_once $path;
 		}
+
 	}
 
 } // end class
