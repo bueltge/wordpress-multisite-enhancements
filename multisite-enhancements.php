@@ -7,7 +7,7 @@
  * Author:      Frank Bültge
  * Author URI:  https://bueltge.de
  * License:     GPLv2+
- * License URI: ./assets/LICENSE
+ * License URI: ./w-org-assets/LICENSE
  * Text Domain: multisite-enhancements
  * Domain Path: /languages
  * Network:     true
@@ -72,7 +72,7 @@ class Multisite_Enhancements {
 		$this->load_translation();
 
 		// Since 2015-08-18 only PHP 5.3, use now __DIR__ as equivalent to dirname(__FILE__).
-		self::$file_base = __DIR__ . '/inc';
+		self::$file_base = __DIR__ . '/src';
 		self::load();
 	}
 
@@ -125,7 +125,7 @@ class Multisite_Enhancements {
 	}
 
 	/**
-	 * Load all files in folder inc.
+	 * Load all files in folder src.
 	 * Use the filter hook 'multisite_enhancements_autoload' to unset classes, there is not necessary for you.
 	 *
 	 * @since   0.0.1
@@ -135,9 +135,9 @@ class Multisite_Enhancements {
 		define( 'MULTISITE_ENHANCEMENT_BASE', $file_base );
 
 		// Load configuration settings
-		require_once __DIR__ . '/settings.php';
+		require_once $file_base . '/settings.php';
 
-		$autoload_paths = glob( "$file_base/autoload/*.php" );
+		$autoload_paths = glob( "$file_base/*.php" );
 
 		foreach ( $autoload_paths as $classnames => $path ) {
 			$path_split = explode( DIRECTORY_SEPARATOR, $path );
