@@ -2,7 +2,7 @@
 <ruleset name="multisite-enhancements">
 	<description>Rules for the Multisite Enhancement WordPress Plugin PHP projects</description>
 
-	<file>./inc</file>
+	<file>./src</file>
 	<file>./multisite-enhancements.php</file>
 
 	<!-- Code Reviews Rules -->
