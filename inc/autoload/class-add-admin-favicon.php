@@ -231,9 +231,17 @@ class Multisite_Add_Admin_Favicon {
 			}
 		}
 
-		if ( '' !== $output ) {
+		/**
+		 * Use the filter hook to change style.
+		 *
+		 * @type string
+		 */
+		$output = apply_filters( 'multisite_enhancements_add_admin_bar_favicon_css', $output );
+
+		if ( $output ) {
+
 			/**
-			 * Use the filter hook to change style.
+			 * Use the filter hook to change style element.
 			 *
 			 * @type string
 			 */
