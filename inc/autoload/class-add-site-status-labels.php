@@ -35,6 +35,13 @@ class Multisite_Add_Site_Status_labels {
 		if ( ! current_user_can( 'manage_network' ) ) {
 			return;
 		}
+		$this->add_hooks();
+	}
+
+	/**
+	 * Installs required hooks.
+	 */
+	public function add_hooks() {
 
 		add_filter( 'multisite_enhancements_add_admin_bar_favicon_css', array( $this, 'status_label_css' ) );
 
