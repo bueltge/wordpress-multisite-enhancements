@@ -227,7 +227,7 @@ class Multisite_Add_Admin_Favicon {
 				. ' .blavatar { font-size: 0 !important; }';
 				$output .= '#wp-admin-bar-blog-' . $blog_id
 				. ' div.blavatar { background: url( "' . $custom_icon
-				. '" ) left bottom/16px no-repeat !important; background-size: 16px !important; margin: 0 2px 0 -2px; }' . "\n";
+				. '" ) left top no-repeat !important; background-size: 16px !important; margin: 0 2px 0 -2px; }' . "\n";
 			}
 		}
 
