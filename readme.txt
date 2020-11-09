@@ -97,11 +97,13 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
-= UNRELEASED =
+= 1.5.3 (2020-11-09) =
 * Show site path for sites with blank titles in the themes and plugins lists.
 * Show status of deleted sites.
 * Apply styles for archived and deleted sites in the lists.
 * Replace obsolete HTML 'nobr' element.
+* Small fix for php notice on missing url paramters from Favicon feature.
+* Improve site label/icon positioning.
 
 = 1.5.2 (2019-11-14) =
 * Fix style problem on list of all sites for admin bar.

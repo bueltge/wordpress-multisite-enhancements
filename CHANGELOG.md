@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file. This projec
 * Apply styles for archived and deleted sites in the lists.
 * Replace obsolete HTML 'nobr' element.
 * Improve site label/icon positioning, #66, Probs @JoryHogeveen
+* Small fix for php notice on missing url paramters from Favicon feature.
 
 ## [1.5.2](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.5.1...1.5.2) - 2019-11-14
 * Fix style problem on list of all sites for admin bar.
