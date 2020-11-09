@@ -21,13 +21,9 @@
     "composer/installers": "^1"
   },
   "require-dev": {
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
-    "phpcompatibility/phpcompatibility-wp": "^1",
-    "roave/security-advisories": "dev-master",
-    "squizlabs/php_codesniffer": "^3.3",
-    "wp-coding-standards/wpcs": "^1",
-    "dg/composer-cleaner": "^2",
-    "phpmd/phpmd": "2.1.3",
+    "dealerdirect/phpcodesniffer-composer-installer": "*",
+    "friendsofphp/php-cs-fixer": "*",
+    "phpcompatibility/phpcompatibility-wp": "*",
     "phpunit/phpunit": "^5.7 || ^6.3",
     "brain/monkey": "^2"
   },
@@ -48,5 +44,9 @@
     "classmap" : [
       "multisite-enhancements.php"
     ]
+  },
+    "scripts": {
+    "ci": "vendor/bin/phpcs",
+    "cf": "vendor/bin/php-cs-fixer fix --diff --dry-run -vvv"
   }
 }
