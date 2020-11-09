@@ -1,0 +1,24 @@
+name: Code Style
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.3'
+          tools: composer:v1
+          
+      - name: Validate composer.json
+        run: composer validate
+        
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+        
+        # Docs: https://getcomposer.org/doc/articles/scripts.md
+        # Run QA
+      - name: Run PHPCS
+        run: composer ci
