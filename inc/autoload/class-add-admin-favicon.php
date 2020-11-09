@@ -227,13 +227,21 @@ class Multisite_Add_Admin_Favicon {
 				. ' .blavatar { font-size: 0 !important; }';
 				$output .= '#wp-admin-bar-blog-' . $blog_id
 				. ' div.blavatar { background: url( "' . $custom_icon
-				. '" ) left bottom/16px no-repeat !important; background-size: 16px !important; margin: 0 2px 0 -2px; }' . "\n";
+				. '" ) left top no-repeat !important; background-size: 16px !important; margin: 0 2px 0 -2px; }' . "\n";
 			}
 		}
 
-		if ( '' !== $output ) {
+		/**
+		 * Use the filter hook to change style.
+		 *
+		 * @type string
+		 */
+		$output = apply_filters( 'multisite_enhancements_add_admin_bar_favicon_css', $output );
+
+		if ( $output ) {
+
 			/**
-			 * Use the filter hook to change style.
+			 * Use the filter hook to change style element.
 			 *
 			 * @type string
 			 */
