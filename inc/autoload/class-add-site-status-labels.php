@@ -42,9 +42,7 @@ class Multisite_Add_Site_Status_labels {
 	 * Installs required hooks.
 	 */
 	public function add_hooks() {
-
 		add_filter( 'multisite_enhancements_add_admin_bar_favicon_css', array( $this, 'status_label_css' ) );
-
 		add_action( 'admin_bar_menu', array( $this, 'add_status_label' ) );
 	}
 
