@@ -24,6 +24,7 @@
     "dealerdirect/phpcodesniffer-composer-installer": "*",
     "friendsofphp/php-cs-fixer": "*",
     "phpcompatibility/phpcompatibility-wp": "*",
+    "wp-coding-standards/wpcs": "*",
     "phpunit/phpunit": "^5.7 || ^6.3",
     "brain/monkey": "^2"
   },
