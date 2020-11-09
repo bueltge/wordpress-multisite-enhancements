@@ -46,8 +46,10 @@ class Multisite_Add_New_Plugin {
 	 */
 	public function add_plugins_page() {
 		add_plugins_page(
+			// phpcs:disable
 			__( 'Add New' ),
 			__( 'Add New' ),
+			// phpcs:enable
 			'manage_network',
 			'plugin-install.php'
 		);

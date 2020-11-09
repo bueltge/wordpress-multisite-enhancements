@@ -7,31 +7,34 @@
  * @package WordPress
  */
 
-add_action( 'init', array( 'Multisite_Admin_Bar_Tweaks', 'init' ) );
+add_action('init', array('Multisite_Admin_Bar_Tweaks', 'init'));
 
 /**
  * Class Multisite_Admin_Bar_Tweaks
  */
-class Multisite_Admin_Bar_Tweaks {
-
-	/**
-	 * Initialize this class.
-	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			$GLOBALS[ $class ] = new $class();
-		}
-	}
+class Multisite_Admin_Bar_Tweaks
+{
 
 	/**
 	 * Init function to register all used hooks.
 	 *
 	 * @since   0.0.1
 	 */
-	public function __construct() {
-		add_action( 'wp_before_admin_bar_render', array( $this, 'enhance_network_admin_bar' ) );
-		add_action( 'wp_before_admin_bar_render', array( $this, 'enhance_network_blog_admin_bar' ) );
+	public function __construct()
+	{
+		add_action('wp_before_admin_bar_render', array($this, 'enhance_network_admin_bar'));
+		add_action('wp_before_admin_bar_render', array($this, 'enhance_network_blog_admin_bar'));
+	}
+
+	/**
+	 * Initialize this class.
+	 */
+	public static function init()
+	{
+		$class = __CLASS__;
+		if (empty($GLOBALS[$class])) {
+			$GLOBALS[$class] = new $class();
+		}
 	}
 
 	/**
@@ -39,11 +42,12 @@ class Multisite_Admin_Bar_Tweaks {
 	 *
 	 * @since   0.0.1
 	 */
-	public function enhance_network_admin_bar() {
+	public function enhance_network_admin_bar()
+	{
 		global $wp_admin_bar;
 
 		// Show only when the user has at least one site, or they're a super admin.
-		if ( ! isset( $wp_admin_bar->user->blogs ) || count( $wp_admin_bar->user->blogs ) < 1 ) {
+		if ( ! isset($wp_admin_bar->user->blogs) || count($wp_admin_bar->user->blogs) < 1) {
 			return;
 		}
 
@@ -54,9 +58,9 @@ class Multisite_Admin_Bar_Tweaks {
 		 *
 		 * @var WP_Admin_Bar $wp_admin_bar
 		 */
-		$wp_admin_bar_nodes = (array) $wp_admin_bar->get_nodes();
+		$wp_admin_bar_nodes = (array)$wp_admin_bar->get_nodes();
 
-		if ( array_key_exists( 'network-admin-p', $wp_admin_bar_nodes ) ) {
+		if (array_key_exists('network-admin-p', $wp_admin_bar_nodes)) {
 			return;
 		}
 
@@ -65,8 +69,8 @@ class Multisite_Admin_Bar_Tweaks {
 			array(
 				'parent' => 'network-admin',
 				'id'     => 'network-admin-plugins',
-				'title'  => __( 'Plugins' ),
-				'href'   => network_admin_url( 'plugins.php' ),
+				'title'  => __('Plugins'),
+				'href'   => network_admin_url('plugins.php'),
 			)
 		);
 	}
@@ -78,33 +82,32 @@ class Multisite_Admin_Bar_Tweaks {
 	 *
 	 * @since   0.0.1
 	 */
-	public function enhance_network_blog_admin_bar() {
+	public function enhance_network_blog_admin_bar()
+	{
 
 		/**
 		 * The Toolbar API class.
-		 *
-		 * @var WP_Admin_Bar $wp_admin_bar
 		 */
 		global $wp_admin_bar;
 
-		if ( ! isset( $wp_admin_bar->user->blogs ) ) {
+		if ( ! isset($wp_admin_bar->user->blogs)) {
 			return;
 		}
-		
-		foreach ( (array) $wp_admin_bar->user->blogs as $blog ) {
-			switch_to_blog( $blog->userblog_id );
+
+		foreach ((array)$wp_admin_bar->user->blogs as $blog) {
+			switch_to_blog($blog->userblog_id);
 
 			$menu_id = 'blog-' . $blog->userblog_id;
 
-			if ( current_user_can( 'edit_posts' ) ) {
-				$wp_admin_bar->remove_node( $menu_id . '-c' );
+			if (current_user_can('edit_posts')) {
+				$wp_admin_bar->remove_node($menu_id . '-c');
 
 				$awaiting_mod = wp_count_comments();
 				$awaiting_mod = $awaiting_mod->moderated;
 
-				$title = __( 'Manage Comments' )
-					. '<span class="ab-label awaiting-mod pending-count count-'
-					. (int) $awaiting_mod . '" style="margin-left:.2em">' . number_format_i18n( $awaiting_mod ) . '</span>';
+				$title = __('Manage Comments')
+				         . '<span class="ab-label awaiting-mod pending-count count-'
+				         . (int)$awaiting_mod . '" style="margin-left:.2em">' . number_format_i18n($awaiting_mod) . '</span>';
 
 				$awaiting_title = esc_attr(
 					sprintf(
@@ -112,7 +115,7 @@ class Multisite_Admin_Bar_Tweaks {
 							'%s comment awaiting moderation',
 							'%s comments awaiting moderation',
 							$awaiting_mod
-						), number_format_i18n( $awaiting_mod )
+						), number_format_i18n($awaiting_mod)
 					)
 				);
 
@@ -121,8 +124,8 @@ class Multisite_Admin_Bar_Tweaks {
 						'parent' => $menu_id,
 						'id'     => $menu_id . '-comments',
 						'title'  => $title,
-						'href'   => admin_url( 'edit-comments.php' ),
-						'meta'   => array( 'title' => $awaiting_title ),
+						'href'   => admin_url('edit-comments.php'),
+						'meta'   => array('title' => $awaiting_title),
 					)
 				);
 
