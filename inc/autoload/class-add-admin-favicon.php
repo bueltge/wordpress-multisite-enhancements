@@ -48,13 +48,6 @@ class Multisite_Add_Admin_Favicon {
 	 * @var   Boolean
 	 */
 	static protected $remove_wp_admin_bar = true;
-	/**
-	 * Value to get sites in the Network.
-	 *
-	 * @since 2015-02-26
-	 * @var int
-	 */
-	private $sites_limit = 9999;
 
 	/**
 	 * Init function to register all used hooks.
@@ -65,13 +58,6 @@ class Multisite_Add_Admin_Favicon {
 	 * @since   0.0.2
 	 */
 	public function __construct() {
-
-		/**
-		 * Filter hook to change the value for get sites inside the network.
-		 *
-		 * @type integer
-		 */
-		$this->sites_limit = (int) apply_filters( 'multisite_enhancements_sites_limit', $this->sites_limit );
 
 		/**
 		 * Hooks for add favicon markup.
