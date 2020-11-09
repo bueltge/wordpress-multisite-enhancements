@@ -118,12 +118,10 @@ class Multisite_Add_Site_Status_labels {
 	/**
 	 * Add required CSS for site status labels.
 	 *
-	 * @param string $css
-	 *
 	 * @return string
 	 */
-	public function status_label_css( $css = '' ) {
-		$css .= '#wp-admin-bar-my-sites-list .site-status-icon { padding: 4px 0 0 0 !important; margin: 0 4px 0 -4px !important; }';
-		return $css;
+	public function status_label_css()
+	{
+		return '#wp-admin-bar-my-sites-list .site-status-icon { padding: 4px 0 0 0 !important; margin: 0 4px 0 -4px !important; }';
 	}
 } // end class
