@@ -33,10 +33,10 @@ class Filtering_Themes {
 	/**
 	 * Enqueue scripts.
 	 *
-	 * @param $hook
+	 * @param string $hook Hook name.
 	 */
 	public function enqueue_script( $hook ) {
-		if ( 'themes.php' !== $hook && is_admin()) {
+		if ( 'themes.php' !== $hook && is_admin() ) {
 			return;
 		}
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
