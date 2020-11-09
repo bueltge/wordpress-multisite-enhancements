@@ -18,7 +18,7 @@
  *     - Default is: TRUE
  *
  * @since   2015-07-23
- * @version 2016-10-05
+ * @version 2020-11-09
  * @package WordPress
  */
 
@@ -202,7 +202,9 @@ class Multisite_Add_Admin_Favicon {
 			if ( 0 !== $site_icon_id ) {
 				switch_to_blog( $blog_id );
 				$url_data    = wp_get_attachment_image_src( $site_icon_id, array( 32, 32 ) );
-				$custom_icon = esc_url( $url_data[0] );
+				if ( ! is_null($url_data[0])) {
+					$custom_icon = esc_url($url_data[0]);
+				}
 				restore_current_blog();
 			} elseif ( file_exists( $favicon_dir ) ) {
 				$custom_icon = $favicon_dir_uri;
