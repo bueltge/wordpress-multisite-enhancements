@@ -190,6 +190,7 @@ class Multisite_Add_Theme_List {
 			// Hide the list of sites if the class isn"t loaded or there's less or equal to 4 sites.
 			if ( class_exists( 'Enqueue_Column_Style', false ) && $active_count > 4 ) {
 				$output .= sprintf(
+					// Translators: The placeholder will be replaced by the count and the toggle link of sites there use that themes.
 					_n(
 						'Active on %2$s %1$d site %3$s',
 						'Active on %2$s %1$d sites %3$s',
