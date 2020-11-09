@@ -192,6 +192,7 @@ class Multisite_Add_Plugin_List {
 					);
 				} else {
 					$output .= sprintf(
+					// Translators: The placeholder will be replaced by the count of sites there use that plugin.
 						_n( 'Active on %s site', 'Active on %s sites', $active_count, 'multisite-enhancements' ),
 						$active_count
 					);
