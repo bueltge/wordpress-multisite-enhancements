@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased, only in master branch
+## [1.5.4](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.5.3...1.5.4) - 2020-11-16
+* Quickfix for custom favicon.
 
 ## [1.5.3](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.5.2...1.5.3) - 2020-11-09
 * Show site path for sites with blank titles in the themes and plugins lists.

@@ -2,9 +2,9 @@
 Contributors: Bueltge, inpsyde
 Tags: multisite, administration, admin bar, network,
 Requires at least: 4.6
-Tested up to: 5.5
+Tested up to: 5.6
 Requires PHP: 5.6
-Stable tag: 1.5.3
+Stable tag: 1.5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -97,6 +97,9 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.5.4 (2020-11-16) =
+* Quickfix for custom favicon.
+
 = 1.5.3 (2020-11-09) =
 * Show site path for sites with blank titles in the themes and plugins lists.
 * Show status of deleted sites.
