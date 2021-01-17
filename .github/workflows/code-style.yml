@@ -35,8 +35,5 @@ jobs:
     - name: Install dependencies
       run: composer install -q -n -a --no-progress --prefer-dist
 
-    - name: Check code styles
-      run: ./vendor/bin/phpcs
-
     - name: Run QA Scripts from composer.json
       run: composer qa
