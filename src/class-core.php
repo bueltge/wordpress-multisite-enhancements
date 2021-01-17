@@ -54,6 +54,7 @@ class Multisite_Core {
 		}
 
 		// For WordPress smaller version 4.6.0, available since WordPress 3.7.
+		// phpcs:disable WordPress.WP.DeprecatedFunctions.wp_get_sitesFound
 		if ( function_exists( 'wp_get_sites' ) ) {
 			return wp_get_sites(
 				array(
@@ -61,6 +62,7 @@ class Multisite_Core {
 				)
 			);
 		}
+		// phpcs:enable
 
 		// Get blog list from cache.
 		$blogs = get_site_transient( 'multisite_blog_list' );
@@ -79,6 +81,7 @@ class Multisite_Core {
 				$limit = '';
 			}
 
+			// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery
 			/** @noinspection SqlDialectInspection */
 			/** @noinspection SqlNoDataSourceInspection */
 			$blogs = $wpdb->get_results(
@@ -98,6 +101,7 @@ class Multisite_Core {
 				),
 				ARRAY_A
 			);
+			// phpcs:enable
 
 			// Set the Transient cache.
 			set_site_transient( 'multisite_blog_list', $blogs, $expires );
@@ -124,11 +128,11 @@ class Multisite_Core {
 				 *
 				 * @var array $blog_details
 				 */
-				foreach ( (array) $blogs as $blog_details ) {
-					$blog_list[ $blog_details[ 'blog_id' ] ]                = $blog_details;
-					$blog_list[ $blog_details[ 'blog_id' ] ][ 'postcount' ] = $wpdb->get_var(
+				foreach ((array)$blogs as $blog_details) {
+					$blog_list[$blog_details['blog_id']]              = $blog_details;
+					$blog_list[$blog_details['blog_id']]['postcount'] = $wpdb->get_var(
 						"SELECT COUNT(ID)
-						FROM " . $wpdb->get_blog_prefix( $blog_details[ 'blog_id' ] ) . "posts
+						FROM " . $wpdb->get_blog_prefix($blog_details['blog_id']) . "posts
 						WHERE post_status='publish'
 						AND post_type='post'"
 					);

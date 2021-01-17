@@ -18,7 +18,7 @@
  *     - Default is: TRUE
  *
  * @since   2015-07-23
- * @version 2016-10-05
+ * @version 2020-11-09
  * @package WordPress
  */
 
@@ -48,13 +48,6 @@ class Multisite_Add_Admin_Favicon {
 	 * @var   Boolean
 	 */
 	static protected $remove_wp_admin_bar = true;
-	/**
-	 * Value to get sites in the Network.
-	 *
-	 * @since 2015-02-26
-	 * @var int
-	 */
-	private $sites_limit = 9999;
 
 	/**
 	 * Init function to register all used hooks.
@@ -65,13 +58,6 @@ class Multisite_Add_Admin_Favicon {
 	 * @since   0.0.2
 	 */
 	public function __construct() {
-
-		/**
-		 * Filter hook to change the value for get sites inside the network.
-		 *
-		 * @type integer
-		 */
-		$this->sites_limit = (int) apply_filters( 'multisite_enhancements_sites_limit', $this->sites_limit );
 
 		/**
 		 * Hooks for add favicon markup.
@@ -221,7 +207,9 @@ class Multisite_Add_Admin_Favicon {
 			if ( 0 !== $site_icon_id ) {
 				switch_to_blog( $blog_id );
 				$url_data    = wp_get_attachment_image_src( $site_icon_id, array( 32, 32 ) );
-				$custom_icon = esc_url( $url_data[0] );
+				if ( ! is_null($url_data[0])) {
+					$custom_icon = esc_url($url_data[0]);
+				}
 				restore_current_blog();
 			} elseif ( file_exists( $favicon_dir ) ) {
 				$custom_icon = $favicon_dir_uri;
@@ -232,13 +220,21 @@ class Multisite_Add_Admin_Favicon {
 				. ' .blavatar { font-size: 0 !important; }';
 				$output .= '#wp-admin-bar-blog-' . $blog_id
 				. ' div.blavatar { background: url( "' . $custom_icon
-				. '" ) left bottom/16px no-repeat !important; background-size: 16px !important; margin: 0 2px 0 -2px; }' . "\n";
+				. '" ) left top no-repeat !important; background-size: 16px !important; margin: 0 2px 0 -2px; }' . "\n";
 			}
 		}
 
-		if ( '' !== $output ) {
+		/**
+		 * Use the filter hook to change style.
+		 *
+		 * @type string
+		 */
+		$output = apply_filters( 'multisite_enhancements_add_admin_bar_favicon_css', $output );
+
+		if ( $output ) {
+
 			/**
-			 * Use the filter hook to change style.
+			 * Use the filter hook to change style element.
 			 *
 			 * @type string
 			 */

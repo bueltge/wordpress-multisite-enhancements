@@ -13,16 +13,16 @@
  * @package WordPress
  */
 
-add_action( 'init', array( 'Enqueue_Column_Style', 'init' ) );
+add_action( 'init', array('Add_Css', 'init' ) );
 
 /**
  * On the network plugin and theme pages, add css to present the active column
  * If this class is loaded, modify the presentation of the column in order to
  * allow showing or hiding the list of sites that uses a theme or plugin
  *
- * Class Enqueue_Column_Style
+ * Class Add_Css
  */
-class Enqueue_Column_Style {
+class Add_Css {
 
 	/**
 	 * Init function to register all used hooks.

@@ -20,21 +20,24 @@ add_action(
 /**
  * Class Multisite_Admin_Bar_Tweaks
  */
-class Multisite_Admin_Bar_Tweaks {
+class Multisite_Admin_Bar_Tweaks
+{
 
 	/**
 	 * Init function to register all used hooks.
 	 *
 	 * @since   0.0.1
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 	}
 
 	/**
 	 * Initialize this class.
 	 */
-	public function init() {
-		add_action( 'init', array( $this, 'enhance_network_blog_admin_bar' ) );
+	public function init()
+	{
+		add_action('init', array($this, 'enhance_network_blog_admin_bar'));
 	}
 
 	/**
@@ -44,33 +47,31 @@ class Multisite_Admin_Bar_Tweaks {
 	 *
 	 * @since   0.0.1
 	 */
-	public function enhance_network_blog_admin_bar() {
+	public function enhance_network_blog_admin_bar()
+	{
 
 		/**
 		 * The Toolbar API class.
-		 *
-		 * @var WP_Admin_Bar $wp_admin_bar
 		 */
 		global $wp_admin_bar;
-
-		if ( ! isset( $wp_admin_bar->user->blogs ) || ! Multisite_Enhancements_Settings::is_feature_enabled( 'add-manage-comments' ) ) {
+		if ( ! isset($wp_admin_bar->user->blogs) || ! Multisite_Enhancements_Settings::is_feature_enabled('add-manage-comments')) {
 			return;
 		}
 
-		foreach ( (array) $wp_admin_bar->user->blogs as $blog ) {
-			switch_to_blog( $blog->userblog_id );
+		foreach ((array)$wp_admin_bar->user->blogs as $blog) {
+			switch_to_blog($blog->userblog_id);
 
 			$menu_id = 'blog-' . $blog->userblog_id;
 
-			if ( current_user_can( 'edit_posts' ) ) {
-				$wp_admin_bar->remove_node( $menu_id . '-c' );
+			if (current_user_can('edit_posts')) {
+				$wp_admin_bar->remove_node($menu_id . '-c');
 
 				$awaiting_mod = wp_count_comments();
 				$awaiting_mod = $awaiting_mod->moderated;
 
-				$title = __( 'Manage Comments' )
+				$title = __('Manage Comments')
 				         . '<span class="ab-label awaiting-mod pending-count count-'
-				         . (int) $awaiting_mod . '" style="margin-left:.2em">' . number_format_i18n( $awaiting_mod ) . '</span>';
+				         . (int)$awaiting_mod . '" style="margin-left:.2em">' . number_format_i18n($awaiting_mod) . '</span>';
 
 				$awaiting_title = esc_attr(
 					sprintf(
@@ -78,7 +79,7 @@ class Multisite_Admin_Bar_Tweaks {
 							'%s comment awaiting moderation',
 							'%s comments awaiting moderation',
 							$awaiting_mod
-						), number_format_i18n( $awaiting_mod )
+						), number_format_i18n($awaiting_mod)
 					)
 				);
 
@@ -87,8 +88,8 @@ class Multisite_Admin_Bar_Tweaks {
 						'parent' => $menu_id,
 						'id'     => $menu_id . '-comments',
 						'title'  => $title,
-						'href'   => admin_url( 'edit-comments.php' ),
-						'meta'   => array( 'title' => $awaiting_title ),
+						'href'   => admin_url('edit-comments.php'),
+						'meta'   => array('title' => $awaiting_title),
 					)
 				);
 

@@ -11,6 +11,7 @@
  * @package WordPress
  */
 
+// phpcs:ignoreFile
 if ( ! function_exists( 'get_blog_list' ) ) {
 
 	/**

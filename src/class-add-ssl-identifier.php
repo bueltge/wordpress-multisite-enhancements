@@ -62,7 +62,7 @@ class Multisite_Add_Ssh_Identifier {
 	/**
 	 * Add new column for the ssh identifier.
 	 *
-	 * @param  array $columns
+	 * @param  array $columns Column data.
 	 *
 	 * @return array
 	 */
@@ -78,7 +78,7 @@ class Multisite_Add_Ssh_Identifier {
 	/**
 	 * Print icon, markup to identifier the protocol for each site.
 	 *
-	 * @param string  $column_name
+	 * @param string  $column_name Column name.
 	 * @param integer $blog_id
 	 *
 	 * @return string
@@ -90,7 +90,9 @@ class Multisite_Add_Ssh_Identifier {
 				$status = 'lock';
 			}
 
-			echo '<span class="dashicons dashicons-' . $status . '"></span>'; // WPCS: XSS ok.
+			// phpcs:disable WordPress.Security.EscapeOutput.DeprecatedWhitelistCommentFound
+			echo '<span class="dashicons dashicons-' . $status . '"></span>';
+			// phpcs: enable
 		}
 		return $column_name;
 	}

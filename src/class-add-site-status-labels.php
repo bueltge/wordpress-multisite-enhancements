@@ -35,7 +35,14 @@ class Multisite_Add_Site_Status_labels {
 		if ( ! current_user_can( 'manage_network' ) ) {
 			return;
 		}
+		$this->add_hooks();
+	}
 
+	/**
+	 * Installs required hooks.
+	 */
+	public function add_hooks() {
+		add_filter( 'multisite_enhancements_add_admin_bar_favicon_css', array( $this, 'status_label_css' ) );
 		add_action( 'admin_bar_menu', array( $this, 'add_status_label' ) );
 	}
 
@@ -86,14 +93,14 @@ class Multisite_Add_Site_Status_labels {
 
 			if ( $this->check_external_url( $blog->siteurl, $admin_bar->user->domain ) ) {
 				$title    = esc_attr__( 'external domain', 'multisite-enhancements' );
-				$class    = 'ab-icon dashicons-before dashicons-external';
-				$url_hint = '<span style="padding:4px 0 0 0; margin: 0 4px 0 -4px" title="' . $title . '" class="' . $class . '"></span>';
+				$class    = 'site-status-icon ab-icon dashicons-before dashicons-external';
+				$url_hint = '<span title="' . $title . '" class="' . $class . '"></span>';
 			}
 
 			if ( ! $this->is_site_live( $blog->userblog_id ) ) {
 				$title     = esc_attr__( 'noindex', 'multisite-enhancements' );
-				$class     = 'ab-icon dashicons-before dashicons-dismiss';
-				$live_hint = '<span style="padding:4px 0 0 0; margin: 0 4px 0 -4px" title="' . $title . '" class="' . $class . '"></span>';
+				$class     = 'site-status-icon ab-icon dashicons-before dashicons-dismiss';
+				$live_hint = '<span title="' . $title . '" class="' . $class . '"></span>';
 			}
 
 			// Add span markup.
@@ -106,5 +113,17 @@ class Multisite_Add_Site_Status_labels {
 		}
 
 		return $admin_bar;
+	}
+
+	/**
+	 * Add required CSS for site status labels.
+	 *
+	 * @param string $style
+	 *
+	 * @return string
+	 */
+	public function status_label_css($style = '') {
+		$style .= '#wp-admin-bar-my-sites-list .site-status-icon { padding: 4px 0 0 0 !important; margin: 0 4px 0 -4px !important; }';
+		return $style;
 	}
 } // end class

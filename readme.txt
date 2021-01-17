@@ -2,9 +2,9 @@
 Contributors: Bueltge, inpsyde
 Tags: multisite, administration, admin bar, network,
 Requires at least: 4.6
-Tested up to: 5.3
+Tested up to: 5.6
 Requires PHP: 5.6
-Stable tag: 1.5.2
+Stable tag: 1.5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -97,11 +97,16 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
-= UNRELEASED =
+= 1.5.4 (2020-11-16) =
+* Quickfix for custom favicon.
+
+= 1.5.3 (2020-11-09) =
 * Show site path for sites with blank titles in the themes and plugins lists.
 * Show status of deleted sites.
 * Apply styles for archived and deleted sites in the lists.
 * Replace obsolete HTML 'nobr' element.
+* Small fix for php notice on missing url paramters from Favicon feature.
+* Improve site label/icon positioning.
 
 = 1.5.2 (2019-11-14) =
 * Fix style problem on list of all sites for admin bar.
