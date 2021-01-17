@@ -1,24 +1,42 @@
-name: Code Style
-on: [push, pull_request]
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
 jobs:
   build:
-    runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'ci skip')"
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest    
+    strategy:
+      matrix:
+        php-versions: ['7.2', '7.3', '7.4']
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v1
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '7.3'
-          tools: composer:v1
-          
-      - name: Validate composer.json
-        run: composer validate
-        
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
-        
-        # Docs: https://getcomposer.org/doc/articles/scripts.md
-        # Run QA
-      - name: Run PHPCS
-        run: composer cs
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+
+    - name: Check syntax error in sources
+      run: find ./src/ ./tests/ -type f -name '*.php' -print0 | xargs -0 -L 1 -P 4 -- php -l
+
+    - name: Clear cache of Composer
+      run: composer clear-cache
+
+    - name: Validate Composer.json and composer.lock
+      run: composer update
+
+    - name: Install dependencies
+      run: composer install -q -n -a --no-progress --prefer-dist
+
+    - name: Check code styles
+      run: ./vendor/bin/phpcs
+
+    - name: Run QA Scripts from composer.json
+      run: composer qa
