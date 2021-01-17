@@ -2,9 +2,9 @@
 Contributors: Bueltge, inpsyde
 Tags: multisite, administration, admin bar, network,
 Requires at least: 4.6
-Tested up to: 5.6
+Tested up to: 5.7
 Requires PHP: 5.6
-Stable tag: 1.5.4
+Stable tag: 1.6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,7 +50,7 @@ You want to donate - we prefer a [positive review](https://wordpress.org/support
 1. Unpack the download-package
 2. Upload the files to the `/wp-content/plugins/` directory
 3. Activate the plugin through the 'Network/Plugins' menu in WordPress and hit 'Network Activate'
-4. No options, no settings, it works
+4. Change the default settings in the Network Admin Menu, Settings --> Multisite Enhancements
 
 == Screenshots ==
 1. Add Blog-ID on Sites
@@ -97,6 +97,9 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.5.6 (2021-01-17) =
+* Add settings page, Big probs to @hvianna
+
 = 1.5.4 (2020-11-16) =
 * Quickfix for custom favicon.
 
@@ -105,7 +108,7 @@ So please be patient with me and let me know of typos or grammatical parts. Than
 * Show status of deleted sites.
 * Apply styles for archived and deleted sites in the lists.
 * Replace obsolete HTML 'nobr' element.
-* Small fix for php notice on missing url paramters from Favicon feature.
+* Small fix for php notice on missing url parameters from Favicon feature.
 * Improve site label/icon positioning.
 
 = 1.5.2 (2019-11-14) =
@@ -125,7 +128,7 @@ So please be patient with me and let me know of typos or grammatical parts. Than
 * Fix undefined index Network on plugin list, #46
 * Fix small php notes.
 * Fix the possibility to translate the footer message about RAM, SQL queries.
-* ​Add fix to leave message for the parent theme in a single line.
+* Add fix to leave message for the parent theme in a single line.
 * Add Ui change to list more as 4 themes in Theme usage overview. Probs @n-goncalves #44
 
 = 1.4.2 (2017-02-22) =

@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## Unreleased, only in master branch
+
+## [1.6.0](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.5.4...1.6.0) - 2021-01-17
+* Add settings page, Big probs to @hvianna
+
 ## [1.5.4](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.5.3...1.5.4) - 2020-11-16
 * Quickfix for custom favicon.
 
