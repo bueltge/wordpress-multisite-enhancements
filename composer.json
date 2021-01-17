@@ -1,48 +1,58 @@
 {
-  "name": "bueltge/wordpress-multisite-enhancements",
-  "description": "Enhance Multisite for Network Admins with different topics",
-  "keywords"   : ["wordpress", "multisite", "plugin"],
-  "license": "GPL-2.0-or-later",
-  "type": "wordpress-plugin",
-  "homepage": "https://github.com/bueltge/wordpress-multisite-enhancements/",
-  "authors": [
-    {
-      "name": "Frank Bültge",
-      "homepage": "https://bueltge.de",
-      "email": "frank@bueltge.de",
-      "role": "Developer"
-    }
-  ],
-  "support": {
-    "issues": "https://github.com/bueltge/wordpress-multisite-enhancements/issues"
-  },
-  "require": {
-    "php": ">=5.3",
-    "composer/installers": "^1"
-  },
-  "require-dev": {
-    "phpcompatibility/phpcompatibility-wp": "^2.1",
-    "wp-coding-standards/wpcs": "^2.2",
-    "phpmd/phpmd": "^2",
-    "phpunit/phpunit": "^5.7 || ^6.3",
-    "brain/monkey": "^1.5"
-  },
-  "config": {
-    "sort-packages": true
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "autoload-dev": {
-    "psr-4" : {
-        "MultisiteEnhancements\\Tests\\" : "tests/phpunit/"
-    }
-  },
-  "autoload" : {
-    "psr-0" : {
-      "" : "src/"
-    },
-    "classmap" : [
-      "multisite-enhancements.php"
-    ]
-  }
+	"name": "bueltge/wordpress-multisite-enhancements",
+	"description": "Enhance Multisite for Network Admins with different topics",
+	"keywords": [
+		"wordpress",
+		"multisite",
+		"plugin"
+	],
+	"license": "GPL-2.0-or-later",
+	"type": "wordpress-plugin",
+	"homepage": "https://github.com/bueltge/wordpress-multisite-enhancements/",
+	"authors": [
+		{
+			"name": "Frank Bültge",
+			"homepage": "https://bueltge.de",
+			"email": "frank@bueltge.de",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/bueltge/wordpress-multisite-enhancements/issues"
+	},
+	"require": {
+		"php": ">=5.3",
+		"composer/installers": "^1"
+	},
+	"require-dev": {
+		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"wp-coding-standards/wpcs": "^2.2",
+		"phpmd/phpmd": "^2",
+		"phpunit/phpunit": "^5.7 || ^6.3",
+		"brain/monkey": "^1.5"
+	},
+	"config": {
+		"sort-packages": true,
+		"optimize-autoloader": true
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"autoload-dev": {
+		"psr-4": {
+			"MultisiteEnhancements\\Tests\\": "tests/phpunit/"
+		}
+	},
+	"autoload": {
+		"psr-0": {
+			"": "src/"
+		},
+		"classmap": [
+			"multisite-enhancements.php"
+		]
+	},
+	"scripts": {
+		"cs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
+		"pu": "@php ./vendor/bin/phpunit",
+		"qa": ["@cs", "@pu"]
+	}
 }
