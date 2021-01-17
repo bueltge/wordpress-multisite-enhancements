@@ -7,7 +7,15 @@
  * @package WordPress
  */
 
-add_action('init', array('Multisite_Admin_Bar_Tweaks', 'init'));
+namespace Bueltge\Admin_Bar_Tweaks;
+
+add_action(
+	'init',
+	function () {
+		$multisite_admin_bar_tweaks = new Multisite_Admin_Bar_Tweaks();
+		$multisite_admin_bar_tweaks->init();
+	}
+);
 
 /**
  * Class Multisite_Admin_Bar_Tweaks
@@ -22,57 +30,14 @@ class Multisite_Admin_Bar_Tweaks
 	 */
 	public function __construct()
 	{
-		add_action('wp_before_admin_bar_render', array($this, 'enhance_network_admin_bar'));
-		add_action('wp_before_admin_bar_render', array($this, 'enhance_network_blog_admin_bar'));
 	}
 
 	/**
 	 * Initialize this class.
 	 */
-	public static function init()
+	public function init()
 	{
-		$class = __CLASS__;
-		if (empty($GLOBALS[$class])) {
-			$GLOBALS[$class] = new $class();
-		}
-	}
-
-	/**
-	 * Enhance network item.
-	 *
-	 * @since   0.0.1
-	 */
-	public function enhance_network_admin_bar()
-	{
-		global $wp_admin_bar;
-
-		// Show only when the user has at least one site, or they're a super admin.
-		if ( ! isset($wp_admin_bar->user->blogs) || count($wp_admin_bar->user->blogs) < 1) {
-			return;
-		}
-
-		// Since WP version 3.7 is the plugin link in core.
-		// Return, if is active.
-		/**
-		 * Toolbar API class.
-		 *
-		 * @var WP_Admin_Bar $wp_admin_bar
-		 */
-		$wp_admin_bar_nodes = (array)$wp_admin_bar->get_nodes();
-
-		if (array_key_exists('network-admin-p', $wp_admin_bar_nodes)) {
-			return;
-		}
-
-		// Add a link to the Network > Plugins page.
-		$wp_admin_bar->add_node(
-			array(
-				'parent' => 'network-admin',
-				'id'     => 'network-admin-plugins',
-				'title'  => __('Plugins'),
-				'href'   => network_admin_url('plugins.php'),
-			)
-		);
+		add_action('init', array($this, 'enhance_network_blog_admin_bar'));
 	}
 
 	/**
@@ -89,8 +54,7 @@ class Multisite_Admin_Bar_Tweaks
 		 * The Toolbar API class.
 		 */
 		global $wp_admin_bar;
-
-		if ( ! isset($wp_admin_bar->user->blogs)) {
+		if ( ! isset($wp_admin_bar->user->blogs) || ! Multisite_Enhancements_Settings::is_feature_enabled('add-manage-comments')) {
 			return;
 		}
 

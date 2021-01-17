@@ -52,7 +52,7 @@ class Add_Css {
 
 		wp_register_style(
 			'admin_column_css',
-			plugins_url( '/inc/assets/css/wordpress-multisite-enhancements' . $suffix . '.css', MULTISITE_ENHANCEMENT_BASE ),
+			plugins_url( '/w-org-assets/css/wordpress-multisite-enhancements' . $suffix . '.css', MULTISITE_ENHANCEMENT_BASE ),
 			false,
 			'2019-11-14'
 		);

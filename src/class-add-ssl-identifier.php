@@ -10,6 +10,7 @@
 namespace Bueltge\Multisite_Add_Ssh_Identifier;
 
 add_action( 'admin_init', __NAMESPACE__ . '\\bootstrap' );
+
 /**
  * Create the instance of this class.
  */

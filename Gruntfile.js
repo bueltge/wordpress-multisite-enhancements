@@ -10,10 +10,10 @@ module.exports = function( grunt ) {
 				src: 'assets',
 				dest: 'assets'
 			},
-			dest: 'inc',
+			dest: 'src',
 			scripts: {
-				src: 'inc/assets/js/',
-				dest: 'inc/assets/js/'
+				src: 'w-org-assets/js/',
+				dest: 'w-org-assets/js/'
 			}
 		},
 
@@ -29,9 +29,9 @@ module.exports = function( grunt ) {
 			},
 			assets: {
 				expand: true,
-				cwd: '<%= config.assets.src %>',
+				cwd: '<%= config.w-org-assets.src %>',
 				src: [ '*.{gif,jpeg,jpg,png}' ],
-				dest: '<%= config.assets.dest %>'
+				dest: '<%= config.w-org-assets.dest %>'
 			},
 			images: {
 				expand: true,
@@ -127,11 +127,11 @@ module.exports = function( grunt ) {
 				options: {
 					include: [
 						'multisite-enhancements.php',
-						'inc/autoload/class-add-blog-id.php',
-						'inc/autoload/class-add-plugin-list.php',
-						'inc/autoload/class-add-theme-list.php',
-						'inc/autoload/class-admin-bar-tweaks.php',
-						'inc/autoload/class-multisite-add-new-plugin.php'
+						'src/class-add-blog-id.php',
+						'src/class-add-plugin-list.php',
+						'src/class-add-theme-list.php',
+						'src/class-admin-bar-tweaks.php',
+						'src/class-multisite-add-new-plugin.php'
 					],
 					type: 'wp-plugin'
 				}
@@ -146,9 +146,9 @@ module.exports = function( grunt ) {
 			},
 
 			assets: {
-				files: [ '<%= config.assets.src %>*.{gif,jpeg,jpg,png}' ],
+				files: [ '<%= config.w-org-assets.src %>*.{gif,jpeg,jpg,png}' ],
 				tasks: [
-					'newer:imagemin:assets'
+					'newer:imagemin:w-org-assets'
 				]
 			},
 

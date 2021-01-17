@@ -96,6 +96,10 @@ class Multisite_Add_Admin_Favicon {
 	 * @since   0.0.2
 	 */
 	public function set_favicon() {
+		if ( ! Multisite_Enhancements_Settings::is_feature_enabled( 'add-favicon' ) ) {
+			return;
+		}
+
 		$stylesheet_dir_uri = get_stylesheet_directory_uri();
 		$stylesheet_dir     = get_stylesheet_directory();
 		$output             = '';
@@ -169,8 +173,9 @@ class Multisite_Add_Admin_Favicon {
 	 */
 	public function set_admin_bar_blog_icon() {
 
-		// Only usable if the user is logged in and use the admin bar.
-		if ( ! is_user_logged_in() || ! is_admin_bar_showing() ) {
+		// Only usable if the feature is enabled, the user is logged in and use the admin bar.
+		if ( ! is_user_logged_in() || ! is_admin_bar_showing() ||
+			 ! Multisite_Enhancements_Settings::is_feature_enabled( 'add-favicon' ) ) {
 			return;
 		}
 
@@ -257,7 +262,8 @@ class Multisite_Add_Admin_Favicon {
 		 *
 		 * @type bool
 		 */
-		if ( apply_filters(
+		if ( Multisite_Enhancements_Settings::is_feature_enabled( 'remove-logo' ) &&
+			apply_filters(
 			'multisite_enhancements_remove_wp_admin_bar',
 			self::$remove_wp_admin_bar
 		)

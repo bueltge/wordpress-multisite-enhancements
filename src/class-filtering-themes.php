@@ -43,7 +43,7 @@ class Filtering_Themes {
 
 		wp_register_script(
 			'me_filtering_plugins',
-			plugins_url( '/inc/assets/js/filtering-themes' . $suffix . '.js', MULTISITE_ENHANCEMENT_BASE ),
+			plugins_url( '/w-org-assets/js/filtering-themes' . $suffix . '.js', MULTISITE_ENHANCEMENT_BASE ),
 			array( 'jquery' ),
 			'2016-10-05',
 			true
