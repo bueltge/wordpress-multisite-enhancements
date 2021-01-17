@@ -40,31 +40,30 @@ Use the installer via back-end. Find via search and install.
 
 ### Screenshots
  1. [Blog ID on Sites](resources/w-org-assets/screenshot-1.png)
+ ![Blog ID on Sites](resources/w-org-assets/screenshot-1.png)
 
- ![Blog ID on Sites](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-1.png)
  2. [User ID on Users](resources/w-org-assets/screenshot-2.png)
+ ![User ID on Users](resources/w-org-assets/screenshot-2.png)
 
- ![User ID on Users](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-2.png)
  3. [Add New link to install new plugin on each blog](resources/w-org-assets/screenshot-3.png)
+ ![Add New link to install new plugin on each blog](resources/w-org-assets/screenshot-3.png)
 
- ![Add New link to install new plugin on each blog](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-3.png)
  4. [Manage Comments with Counter on Admin Bar](resources/w-org-assets/screenshot-4.png)
+ ![Manage Comments with Counter on Admin Bar](resources/w-org-assets/screenshot-4.png)
 
- ![Manage Comments with Counter on Admin Bar](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-4.png)
  5. [On which blog is the plugin active](resources/w-org-assets/screenshot-5.png)
+ ![On which blog is the plugin active](resources/w-org-assets/screenshot-5.png)
 
- ![On which blog is the plugin active](https://raw.github.com/bueltge/WordPress-Multisite-Enhancements/master/assets/screenshot-5.png)
  6. [On which blog is the theme active](resources/w-org-assets/screenshot-6.png)
-
  ![On which blog is the theme active](resources/w-org-assets/screenshot-6.png)
+
  7. [New Admin footer text](resources/w-org-assets/screenshot-7.png)
-
  ![New Admin footer text](resources/w-org-assets/screenshot-7.png)
+
  8. [Favicon on Admin bar](resources/w-org-assets/screenshot-8.png)
-
  ![Favicon on Admin bar](resources/w-org-assets/screenshot-8.png)
- 9. [Filter Themes](resources/w-org-assets/screenshot-9.gif)
 
+ 9. [Filter Themes](resources/w-org-assets/screenshot-9.gif)
  ![Filter Themes](resources/w-org-assets/screenshot-9.gif)
 
 ## Other Notes
