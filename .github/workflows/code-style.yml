@@ -21,4 +21,4 @@ jobs:
         # Docs: https://getcomposer.org/doc/articles/scripts.md
         # Run QA
       - name: Run PHPCS
-        run: composer ci
+        run: composer cs
