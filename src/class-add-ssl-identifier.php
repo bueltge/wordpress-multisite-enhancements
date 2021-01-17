@@ -1,10 +1,10 @@
-<?php # -*- coding: utf-8 -*-
+<?php
 /**
  * Add a icon to identify the ssl protocol on each site.
  *
  * @since   2017-07-13
  * @version 2019-11-24
- * @package WordPress
+ * @package multisite-enhancements
  */
 
 namespace Bueltge\Multisite_Add_Ssh_Identifier;
@@ -79,7 +79,7 @@ class Multisite_Add_Ssh_Identifier {
 	 * Print icon, markup to identifier the protocol for each site.
 	 *
 	 * @param string  $column_name Column name.
-	 * @param integer $blog_id
+	 * @param integer $blog_id ID of a site.
 	 *
 	 * @return string
 	 */
@@ -90,7 +90,7 @@ class Multisite_Add_Ssh_Identifier {
 				$status = 'lock';
 			}
 
-			// phpcs:disable WordPress.Security.EscapeOutput.DeprecatedWhitelistCommentFound
+			// phpcs:disable
 			echo '<span class="dashicons dashicons-' . $status . '"></span>';
 			// phpcs: enable
 		}

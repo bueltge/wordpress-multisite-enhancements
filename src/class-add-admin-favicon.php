@@ -19,7 +19,7 @@
  *
  * @since   2015-07-23
  * @version 2020-11-09
- * @package WordPress
+ * @package multisite-enhancements
  */
 
 add_action( 'init', array( 'Multisite_Add_Admin_Favicon', 'init' ) );
@@ -37,7 +37,7 @@ class Multisite_Add_Admin_Favicon {
 	 * @since 0.0.2
 	 * @var   array
 	 */
-	static protected $favicon_hooks = array(
+	protected static $favicon_hooks = array(
 		'admin_head',
 		'wp_head',
 	);
@@ -47,7 +47,7 @@ class Multisite_Add_Admin_Favicon {
 	 * @since 0.0.2
 	 * @var   Boolean
 	 */
-	static protected $remove_wp_admin_bar = true;
+	protected static $remove_wp_admin_bar = true;
 
 	/**
 	 * Init function to register all used hooks.
@@ -83,7 +83,9 @@ class Multisite_Add_Admin_Favicon {
 	public static function init() {
 		$class = __CLASS__;
 		if ( empty( $GLOBALS[ $class ] ) ) {
+			// phpcs:disable
 			$GLOBALS[ $class ] = new $class();
+			// phpcs:enable
 		}
 	}
 
@@ -119,7 +121,9 @@ class Multisite_Add_Admin_Favicon {
 		 *
 		 * @type string
 		 */
+		// phpcs:disable
 		echo apply_filters( 'multisite_enhancements_add_favicon', $output );
+		// phpcs:enable
 	}
 
 	/**
@@ -178,7 +182,6 @@ class Multisite_Add_Admin_Favicon {
 			 ! Multisite_Enhancements_Settings::is_feature_enabled( 'add-favicon' ) ) {
 			return;
 		}
-
 		$user_id    = get_current_user_id();
 		$user_blogs = get_blogs_of_user( $user_id );
 
@@ -206,9 +209,9 @@ class Multisite_Add_Admin_Favicon {
 			$site_icon_id = (int) get_blog_option( $blog_id, 'site_icon' );
 			if ( 0 !== $site_icon_id ) {
 				switch_to_blog( $blog_id );
-				$url_data    = wp_get_attachment_image_src( $site_icon_id, array( 32, 32 ) );
-				if ( ! is_null($url_data[0])) {
-					$custom_icon = esc_url($url_data[0]);
+				$url_data = wp_get_attachment_image_src( $site_icon_id, array( 32, 32 ) );
+				if ( ! is_null( $url_data[0] ) ) {
+					$custom_icon = esc_url( $url_data[0] );
 				}
 				restore_current_blog();
 			} elseif ( file_exists( $favicon_dir ) ) {
@@ -238,10 +241,12 @@ class Multisite_Add_Admin_Favicon {
 			 *
 			 * @type string
 			 */
+			// phpcs:disable
 			echo apply_filters(
 				'multisite_enhancements_add_admin_bar_favicon',
 				"\n" . '<style>' . $output . '</style>' . "\n"
 			);
+			// phpcs:enable
 		}
 	}
 
@@ -264,9 +269,9 @@ class Multisite_Add_Admin_Favicon {
 		 */
 		if ( Multisite_Enhancements_Settings::is_feature_enabled( 'remove-logo' ) &&
 			apply_filters(
-			'multisite_enhancements_remove_wp_admin_bar',
-			self::$remove_wp_admin_bar
-		)
+				'multisite_enhancements_remove_wp_admin_bar',
+				self::$remove_wp_admin_bar
+			)
 		) {
 			$admin_bar->remove_node( 'wp-logo' );
 		}

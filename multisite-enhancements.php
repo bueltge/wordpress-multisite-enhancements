@@ -1,4 +1,4 @@
-<?php # -*- coding: utf-8 -*-
+<?php
 /**
  * Plugin Name: Multisite Enhancements
  * Description: Enhance Multisite for Network Admins with different topics
@@ -11,10 +11,12 @@
  * Text Domain: multisite-enhancements
  * Domain Path: /languages
  * Network:     true
+ *
+ * @package multisite-enhancement
  */
 
 ! defined( 'ABSPATH' ) && exit;
-
+// phpcs:disable
 add_filter( 'plugins_loaded', array( 'Multisite_Enhancements', 'get_object' ) );
 
 /**
@@ -23,14 +25,14 @@ add_filter( 'plugins_loaded', array( 'Multisite_Enhancements', 'get_object' ) );
  * Use the filter hook 'multisite_enhancements_autoload' to unset classes, there is not necessary for you.
  */
 class Multisite_Enhancements {
-
+// phpcs:enable
 	/**
 	 * Define folder, there have inside the autoload files.
 	 *
 	 * @since  0.0.1
 	 * @var    String
 	 */
-	static protected $file_base = '';
+	protected static $file_base = '';
 
 	/**
 	 * The class object.
@@ -38,7 +40,7 @@ class Multisite_Enhancements {
 	 * @since  0.0.1
 	 * @var    String
 	 */
-	static protected $class_object;
+	protected static $class_object;
 
 	/**
 	 * Init function to register all used hooks.
@@ -138,9 +140,10 @@ class Multisite_Enhancements {
 			 *
 			 * @var string $path
 			 */
+			// phpcs:disable
 			require_once $path;
+			// phpcs: enable
 		}
-
 	}
 
 	/**
@@ -173,9 +176,14 @@ class Multisite_Enhancements {
 					'multisite-enhancements'
 				);
 				?>
-				<a href="http://codex.wordpress.org/Create_A_Network" title="<?php esc_html_e(
-					'WordPress Codex: Create a network', 'multisite-enhancements'
-				); ?>">
+				<a href="http://codex.wordpress.org/Create_A_Network" title="
+				<?php
+				esc_html_e(
+					'WordPress Codex: Create a network',
+					'multisite-enhancements'
+				);
+				?>
+				">
 					<?php esc_html_e( 'WordPress Codex: Create a network', 'multisite-enhancements' ); ?>
 				</a>
 			</p>

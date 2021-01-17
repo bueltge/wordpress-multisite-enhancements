@@ -2,10 +2,15 @@
 /**
  * Plugin configuration page
  * Based on: https://vedovini.net/2015/10/using-the-wordpress-settings-api-with-network-admin-pages/
+ *
+ * @package multisite-enhancements
  */
 
 add_action( 'init', array( 'Multisite_Enhancements_Settings', 'init' ) );
 
+/**
+ * Class Multisite_Enhancements_Settings
+ */
 class Multisite_Enhancements_Settings {
 
 	/**
@@ -16,8 +21,10 @@ class Multisite_Enhancements_Settings {
 
 	/**
 	 * Default options settings
+	 *
+	 * @var int[]
 	 */
-	static protected $default_options = array(
+	protected static $default_options = array(
 		'remove-logo'         => 1,
 		'add-favicon'         => 1,
 		'add-blog-id'         => 1,
@@ -37,11 +44,11 @@ class Multisite_Enhancements_Settings {
 	 * Init function to register all used hooks.
 	 */
 	public function __construct() {
-		// register settings
+		// Register settings.
 		add_action( 'admin_init', array( $this, 'settings_init' ) );
-		// add menu item in the network Settings menu
+		// Add menu item in the network Settings menu.
 		add_action( 'network_admin_menu', array( $this, 'add_settings_menu' ) );
-		// register our custom URL to save the options
+		// Register our custom URL to save the options.
 		add_action( 'network_admin_edit_wpme_update_settings', array( $this, 'update_settings' ) );
 	}
 
@@ -51,6 +58,7 @@ class Multisite_Enhancements_Settings {
 	public static function init() {
 		$class = __CLASS__;
 		if ( empty( $GLOBALS[ $class ] ) ) {
+			// phpcs:disable
 			$GLOBALS[ $class ] = new $class();
 		}
 	}
@@ -63,7 +71,6 @@ class Multisite_Enhancements_Settings {
 	 * @return boolean
 	 */
 	public static function is_feature_enabled( $key ) {
-
 		return (bool) self::get_settings( $key );
 	}
 
@@ -98,7 +105,7 @@ class Multisite_Enhancements_Settings {
 			'wpme_config',        // config page slug
 			'wpme_general',        // section ID where the field will be shown
 			array(                // arguments passed to the callback function ('label_for' and 'class' go here, when needed)
-				'group' => 'features'
+				'group' => 'features',
 			)
 		);
 
@@ -110,7 +117,7 @@ class Multisite_Enhancements_Settings {
 			'wpme_general',
 			array(
 				'group'     => 'uninstall',
-				'label_for' => 'delete-settings'
+				'label_for' => 'delete-settings',
 			)
 		);
 	}
@@ -133,7 +140,6 @@ class Multisite_Enhancements_Settings {
 	 * Render the configuration page HTML
 	 */
 	public function settings_page_callback() {
-
 		if ( ! current_user_can( 'manage_network_options' ) ) {
 			return;
 		}
@@ -181,24 +187,23 @@ class Multisite_Enhancements_Settings {
 	 * @param array $args arguments defined by add_settings_field()
 	 */
 	public function settings_fields_callback( $args ) {
-
 		$settings = array(
 			'features'  => array(
-				'remove-logo'         => __( 'Remove the "W" logo menu from the admin top bar', 'multisite-enhancements' ),
-				'add-favicon'         => __( 'Add sites favicons to admin area', 'multisite-enhancements' ),
-				'add-blog-id'         => __( 'Add blog and user IDs to admin lists', 'multisite-enhancements' ),
-				'add-css'             => __( 'Add custom CSS to allow showing or hiding the list of sites that use a theme or plugin', 'multisite-enhancements' ),
-				'add-plugin-list'     => __( 'On the network Plugins page, show which blogs have the plugin active', 'multisite-enhancements' ),
-				'add-theme-list'      => __( 'On the network Themes page, show which blogs have the theme active', 'multisite-enhancements' ),
-				'add-site-status'     => __( 'Add status labels for no-index and external domain to blogs in "My Sites" menu', 'multisite-enhancements' ),
-				'add-ssl-identifier'  => __( 'Add an icon to identify the SSL protocol on each site in the network Sites page', 'multisite-enhancements' ),
-				'add-manage-comments' => __( 'Add new "Manage Comments" item with count of comments waiting for moderation in "My Sites" menu', 'multisite-enhancements' ),
-				'add-new-plugin'      => __( 'Enables an "Add New" link under the Plugins menu of each blog, for network admins', 'multisite-enhancements' ),
-				'filtering-themes'    => __( 'Add simple javascript to filter the theme list on network and single site theme page of WordPress backend', 'multisite-enhancements' ),
-				'change-footer'       => __( 'Enhance the admin footer text with RAM, SQL queries and PHP version information', 'multisite-enhancements' ),
+				'remove-logo'         => esc_html__( 'Remove the "W" logo menu from the admin top bar', 'multisite-enhancements' ),
+				'add-favicon'         => esc_html__( 'Add sites favicons to admin area', 'multisite-enhancements' ),
+				'add-blog-id'         => esc_html__( 'Add blog and user IDs to admin lists', 'multisite-enhancements' ),
+				'add-css'             => esc_html__( 'Add custom CSS to allow showing or hiding the list of sites that use a theme or plugin', 'multisite-enhancements' ),
+				'add-plugin-list'     => esc_html__( 'On the network Plugins page, show which blogs have the plugin active', 'multisite-enhancements' ),
+				'add-theme-list'      => esc_html__( 'On the network Themes page, show which blogs have the theme active', 'multisite-enhancements' ),
+				'add-site-status'     => esc_html__( 'Add status labels for no-index and external domain to blogs in "My Sites" menu', 'multisite-enhancements' ),
+				'add-ssl-identifier'  => esc_html__( 'Add an icon to identify the SSL protocol on each site in the network Sites page', 'multisite-enhancements' ),
+				'add-manage-comments' => esc_html__( 'Add new "Manage Comments" item with count of comments waiting for moderation in "My Sites" menu', 'multisite-enhancements' ),
+				'add-new-plugin'      => esc_html__( 'Enables an "Add New" link under the Plugins menu of each blog, for network admins', 'multisite-enhancements' ),
+				'filtering-themes'    => esc_html__( 'Add simple javascript to filter the theme list on network and single site theme page of WordPress backend', 'multisite-enhancements' ),
+				'change-footer'       => esc_html__( 'Enhance the admin footer text with RAM, SQL queries and PHP version information', 'multisite-enhancements' ),
 			),
 			'uninstall' => array(
-				'delete-settings' => __( 'Delete configuration options from the database when uninstalling Multisite Enhancements', 'multisite-enhancements' ),
+				'delete-settings' => esc_html__( 'Delete configuration options from the database when uninstalling Multisite Enhancements', 'multisite-enhancements' ),
 			),
 		);
 
@@ -209,8 +214,8 @@ class Multisite_Enhancements_Settings {
 			<p>
 				<label>
 					<input type="checkbox" id="<?php echo esc_attr( $key ); ?>"
-					       name="wpme_options[<?php echo esc_attr( $key ); ?>]" <?php checked( $options[ $key ], 1 ); ?>
-					       value="1">
+						   name="wpme_options[<?php echo esc_attr( $key ); ?>]" <?php checked( $options[ $key ], 1 ); ?>
+						   value="1">
 					<?php echo esc_html( $description ); ?>
 				</label>
 			</p>
@@ -221,7 +226,7 @@ class Multisite_Enhancements_Settings {
 	/**
 	 * Load settings from database and merge them with default values
 	 *
-	 * @param string [$key] Key of an specific setting desired (optional).
+	 * @param string [ $key] Key of an specific setting desired (optional).
 	 *
 	 * @return string|array Value of setting selected by $key or full array of settings.
 	 */
@@ -254,12 +259,14 @@ class Multisite_Enhancements_Settings {
 
 		// redirect back to our options page
 		wp_redirect(
-			add_query_arg( array(
-				'page'    => 'wpme_config',
-				'updated' => 'true'
-			),
+			add_query_arg(
+				array(
+					'page'    => 'wpme_config',
+					'updated' => 'true',
+				),
 				network_admin_url( 'settings.php' )
-			) );
+			)
+		);
 		exit;
 	}
 

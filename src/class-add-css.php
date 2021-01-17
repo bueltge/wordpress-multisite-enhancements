@@ -10,10 +10,10 @@
  *
  * @since   2018-02-15
  * @version 2019-11-14
- * @package WordPress
+ * @package multisite-enhancements
  */
 
-add_action( 'init', array('Add_Css', 'init' ) );
+add_action( 'init', array( 'Add_Css', 'init' ) );
 
 /**
  * On the network plugin and theme pages, add css to present the active column
@@ -37,12 +37,16 @@ class Add_Css {
 	public static function init() {
 		$class = __CLASS__;
 		if ( empty( $GLOBALS[ $class ] ) ) {
+			// phpcs:disable
 			$GLOBALS[ $class ] = new $class();
+			// phpcs:enable
 		}
 	}
 
 	/**
 	 * Enqueue column style.
+	 *
+	 * @param string $hook Hook name.
 	 */
 	public function enqueue_style( $hook ) {
 		if ( is_admin() && ! in_array( $hook, array( 'themes.php', 'plugins.php' ), true ) ) {

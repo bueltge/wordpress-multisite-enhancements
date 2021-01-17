@@ -20,7 +20,9 @@ class Multisite_Core {
 	public static function init() {
 		$class = __CLASS__;
 		if ( empty( $GLOBALS[ $class ] ) ) {
+			// phpcs:disable
 			$GLOBALS[ $class ] = new $class();
+			// phpcs:enable
 		}
 	}
 
@@ -97,7 +99,8 @@ class Multisite_Core {
 					AND deleted = '0'
 					ORDER BY registered ASC
 					$limit
-				", $wpdb->siteid
+				",
+					$wpdb->siteid
 				),
 				ARRAY_A
 			);
@@ -108,7 +111,7 @@ class Multisite_Core {
 		}
 
 		// Only if usable, set via var.
-		if (true === $details ) {
+		if ( true === $details ) {
 			/**
 			 * Get data to each site in the network.
 			 *
@@ -128,14 +131,16 @@ class Multisite_Core {
 				 *
 				 * @var array $blog_details
 				 */
-				foreach ((array)$blogs as $blog_details) {
-					$blog_list[$blog_details['blog_id']]              = $blog_details;
-					$blog_list[$blog_details['blog_id']]['postcount'] = $wpdb->get_var(
-						"SELECT COUNT(ID)
-						FROM " . $wpdb->get_blog_prefix($blog_details['blog_id']) . "posts
+				foreach ( (array) $blogs as $blog_details ) {
+					// phpcs:disable
+					$blog_list[ $blog_details['blog_id'] ]              = $blog_details;
+					$blog_list[ $blog_details['blog_id'] ]['postcount'] = $wpdb->get_var(
+						'SELECT COUNT(ID)
+						FROM ' . $wpdb->get_blog_prefix( $blog_details['blog_id'] ) . "posts
 						WHERE post_status='publish'
 						AND post_type='post'"
 					);
+					// phpcs:enable
 				}
 
 				// Set the Transient cache.

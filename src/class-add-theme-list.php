@@ -3,8 +3,8 @@
  * On the network theme page, show which blog have the theme active.
  *
  * @since   2013-07-22
- * @version 2018-05-16
- * @package WordPress
+ * @version 2021-01-17
+ * @package multisite-enhancement
  */
 
 add_action( 'init', array( 'Multisite_Add_Theme_List', 'init' ) );
@@ -22,13 +22,13 @@ class Multisite_Add_Theme_List {
 	 * @since  2015-02-21
 	 * @var    string
 	 */
-	static protected $site_transient_blogs_themes = 'blogs_themes';
+	protected static $site_transient_blogs_themes = 'blogs_themes';
 	/**
 	 * Define the allowed html tags for wp_kses.
 	 *
 	 * @var array
 	 */
-	static protected $wp_kses_allowed_html = array(
+	protected static $wp_kses_allowed_html = array(
 		'br'   => array(),
 		'span' => array(
 			'class' => array(),
@@ -100,6 +100,7 @@ class Multisite_Add_Theme_List {
 	public static function init() {
 		$class = __CLASS__;
 		if ( empty( $GLOBALS[ $class ] ) ) {
+			// phpcs:disable
 			$GLOBALS[ $class ] = new $class();
 		}
 	}
@@ -128,7 +129,6 @@ class Multisite_Add_Theme_List {
 	 * @return array
 	 */
 	public function add_themes_column( $columns ) {
-
 		$columns['active_blogs'] = '<span class="non-breaking">' . _x( 'Usage', 'column name', 'multisite-enhancements' ) . '</span>';
 
 		return $columns;
@@ -138,14 +138,15 @@ class Multisite_Add_Theme_List {
 	 * Get data for each row on each theme.
 	 * Print the string about the usage.
 	 *
+	 * @param String $column_name Name of the column.
+	 * @param String $theme_key Path to the theme file.
+	 * @param array|\WP_Theme $theme_data An array of theme data.
+	 *
+	 * @return null
 	 * @since   0.0.2
 	 *
-	 * @param  String          $column_name Name of the column.
-	 * @param  String          $theme_key   Path to the theme file.
-	 * @param array|\WP_Theme $theme_data  An array of theme data.
 	 */
 	public function manage_themes_custom_column( $column_name, $theme_key, \WP_Theme $theme_data ) {
-
 		if ( 'active_blogs' !== $column_name ) {
 			return null;
 		}
@@ -188,21 +189,21 @@ class Multisite_Add_Theme_List {
 
 			$is_list_hidden = false;
 			// Hide the list of sites if the class isn"t loaded or there's less or equal to 4 sites.
-			if (class_exists( 'Add_Css', false ) && $active_count > 4 ) {
+			if ( class_exists( 'Add_Css', false ) && $active_count > 4 ) {
 				$output .= sprintf(
 					// Translators: The placeholder will be replaced by the count and the toggle link of sites there use that themes.
 					_n(
 						'Active on %2$s %1$d site %3$s',
 						'Active on %2$s %1$d sites %3$s',
 						$active_count,
-				'multisite-enhancements'
+						'multisite-enhancements'
 					),
 					$active_count,
 					"<a onclick=\"jQuery('ul[id*=\'siteslist_{$theme_key}\']').slideToggle('swing');\">",
 					'</a>'
 				);
 			} else {
-				$output        .= sprintf(
+				$output .= sprintf(
 					// Translators: The placeholder will be replaced by the count of sites there use that theme.
 					_n( 'Active on %s site', 'Active on %s sites', $active_count, 'multisite-enhancements' ),
 					$active_count
@@ -216,14 +217,15 @@ class Multisite_Add_Theme_List {
 			foreach ( $active_on_blogs as $key => $value ) {
 
 				// Check the site for archived and deleted.
-				$class = $hint = '';
+				$class = '';
+				$hint = '';
 				if ( $this->is_archived( $key ) ) {
 					$class = ' class="site-archived"';
 					$hint  = ', ' . esc_attr__( 'Archived' );
 				}
 				if ( $this->is_deleted( $key ) ) {
 					$class = ' class="site-deleted"';
-					$hint  .= ', ' . esc_attr__( 'Deleted' );
+					$hint .= ', ' . esc_attr__( 'Deleted' );
 				}
 
 				$output .= '<li' . $class . ' title="Blog ID: ' . $key . $hint . '">';
@@ -252,11 +254,11 @@ class Multisite_Add_Theme_List {
 	 * @return array
 	 */
 	public function is_theme_active_on_blogs( $theme_key ) {
-		$blogs_themes = $this->get_blogs_themes();
+		$blogs_themes_data = $this->get_blogs_themes();
 
 		$active_in_themes = array();
 
-		foreach ( $blogs_themes as $blog_id => $data ) {
+		foreach ( $blogs_themes_data as $blog_id => $data ) {
 			if ( $data['stylesheet'] === $theme_key ) {
 				$active_in_themes[ $blog_id ] = array(
 					'name' => $data['blogname'],
@@ -297,6 +299,7 @@ class Multisite_Add_Theme_List {
 			foreach ( $blogs as $blog ) {
 
 				// Convert object to array.
+				// phpcs:disable
 				$blog = (array) $blog;
 
 				$this->blogs_themes[ $blog['blog_id'] ]               = $blog;
@@ -307,10 +310,12 @@ class Multisite_Add_Theme_List {
 					$blog['blog_id']
 				)->blogname;
 				$this->blogs_themes[ $blog['blog_id'] ]['template']   = get_blog_option(
-					$blog['blog_id'], 'template'
+					$blog['blog_id'],
+					'template'
 				);
 				$this->blogs_themes[ $blog['blog_id'] ]['stylesheet'] = get_blog_option(
-					$blog['blog_id'], 'stylesheet'
+					$blog['blog_id'],
+					'stylesheet'
 				);
 			}
 
@@ -371,7 +376,7 @@ class Multisite_Add_Theme_List {
 	 * @return  array
 	 */
 	public function is_parent( $theme_key ) {
-		$blogs_themes = $this->get_blogs_themes();
+		$blogs_themes_data = $this->get_blogs_themes();
 		$parent_of    = array();
 
 		/**
@@ -379,7 +384,7 @@ class Multisite_Add_Theme_List {
 		 *
 		 * @var array $data
 		 */
-		foreach ( $blogs_themes as $blog_id => $data ) {
+		foreach ( $blogs_themes_data as $blog_id => $data ) {
 			$template = false;
 			if ( array_key_exists( 'template', $data ) ) {
 				$template = $data['template'];

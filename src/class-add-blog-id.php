@@ -5,7 +5,7 @@
  * @see     http://wpengineer.com/2188/view-blog-id-in-wordpress-multisite/
  * @since   2013-07-19
  * @version 2019-11-14
- * @package WordPress
+ * @package multisite-enhancements
  */
 
 add_action( 'init', array( 'Multisite_Add_Blog_Id', 'init' ) );
@@ -22,7 +22,9 @@ class Multisite_Add_Blog_Id {
 	public static function init() {
 		$class = __CLASS__;
 		if ( empty( $GLOBALS[ $class ] ) ) {
+			// phpcs:disable
 			$GLOBALS[ $class ] = new $class();
+			// phpcs:enable
 		}
 	}
 
@@ -89,7 +91,7 @@ class Multisite_Add_Blog_Id {
 	 * @return mixed
 	 */
 	public function get_id( $columns ) {
-		$columns['object_id'] = __( 'ID' );
+		$columns['object_id'] = esc_html__( 'ID', 'multisite-enhancements' );
 
 		return $columns;
 	}

@@ -20,20 +20,20 @@ class Multisite_Add_Plugin_List {
 	 * @since  01/03/2014
 	 * @var    array
 	 */
-	static protected $excluded_plugin_status = array( 'dropins', 'mustuse' );
+	protected static $excluded_plugin_status = array( 'dropins', 'mustuse' );
 	/**
 	 * String for the transient string, there save the blog plugins.
 	 *
 	 * @since  2015-02-21
 	 * @var    string
 	 */
-	static protected $site_transient_blogs_plugins = 'blogs_plugins';
+	protected static $site_transient_blogs_plugins = 'blogs_plugins';
 	/**
 	 * Define the allowed html tags for wp_kses.
 	 *
 	 * @var array
 	 */
-	static protected $wp_kses_allowed_html = array(
+	protected static $wp_kses_allowed_html = array(
 		'br'   => array(),
 		'span' => array(
 			'class' => array(),
@@ -102,7 +102,9 @@ class Multisite_Add_Plugin_List {
 	public static function init() {
 		$class = __CLASS__;
 		if ( empty( $GLOBALS[ $class ] ) ) {
+			// phpcs:disable
 			$GLOBALS[ $class ] = new $class();
+			// phpcs:enable
 		}
 	}
 
@@ -113,11 +115,13 @@ class Multisite_Add_Plugin_List {
 	 */
 	public function notice_about_clear_cache() {
 		$class   = 'notice notice-info';
-		$message = __(
+		$message = esc_html__(
 			'Multisite Enhancements: Plugin usage information is not cached while WP_DEBUG is true.',
 			'multisite-enhancements'
 		);
+		// phpcs:disable
 		printf( '<div class="%1$s"><p>%2$s</p></div>', $class, esc_attr( $message ) );
+		// phpcs:enable
 	}
 
 	/**
@@ -166,7 +170,7 @@ class Multisite_Add_Plugin_List {
 			require_once ABSPATH . '/wp-admin/includes/plugin.php';
 		}
 		$active_on_network = is_plugin_active_for_network( $plugin_file );
-		$output = '';
+		$output            = '';
 		if ( $active_on_network ) {
 			// We don't need to check any further for network active plugins.
 			// Translators: The plugin is network wide active, the string is for each plugin possible.
@@ -179,11 +183,11 @@ class Multisite_Add_Plugin_List {
 				// Translators: The plugin is not activated, the string is for each plugin possible.
 				$output .= __( '<span style="white-space:nowrap">Not Activated</span>', 'multisite-enhancements' );
 			} else {
-				$active_count   = sizeOf( $active_on_blogs );
+				$active_count   = count( $active_on_blogs );
 				$output        .= '<p>';
 				$is_list_hidden = false;
-				// Hide the list of sites if the class isn"t loaded or there's less or equal to 4 sites
-				if ( $active_count > 4 && class_exists( 'Add_Css', false )) {
+				// Hide the list of sites if the class isn"t loaded or there's less or equal to 4 sites.
+				if ( $active_count > 4 && class_exists( 'Add_Css', false ) ) {
 					$output .= sprintf(
 						// Translators: The placeholder will be replaced by the count and the toggle link of sites there use that plugin.
 						_n( 'Active on %2$s %1$d site %3$s', 'Active on %2$s %1$d sites %3$s', $active_count, 'multisite-enhancements' ),
@@ -204,14 +208,15 @@ class Multisite_Add_Plugin_List {
 				$output .= ( $is_list_hidden ) ? '">' : '" class="siteslist">';
 				foreach ( $active_on_blogs as $key => $value ) {
 					// Check the site for archived and deleted.
-					$class = $hint = '';
+					$class = '';
+					$hint  = '';
 					if ( $this->is_archived( $key ) ) {
 						$class = ' class="site-archived"';
-						$hint  = ', ' . esc_attr__( 'Archived' );
+						$hint  = ', ' . esc_attr__( 'Archived', 'multisite-enhancements' );
 					}
 					if ( $this->is_deleted( $key ) ) {
 						$class = ' class="site-deleted"';
-						$hint  .= ', ' . esc_attr__( 'Deleted' );
+						$hint .= ', ' . esc_attr__( 'Deleted', 'multisite-enhancements' );
 					}
 					$output .= '<li' . $class . ' title="Blog ID: ' . $key . $hint . '">';
 					$output .= '<span class="non-breaking"><a href="' . get_admin_url( $key ) . 'plugins.php">'
@@ -244,11 +249,11 @@ class Multisite_Add_Plugin_List {
 	 * @return array $active_in_plugins Which Blog ID and Name of Blog for each item in Array.
 	 */
 	public function is_plugin_active_on_blogs( $plugin_file ) {
-		$blogs_plugins = $this->get_blogs_plugins();
+		$blogs_plugins_data = $this->get_blogs_plugins();
 
 		$active_in_plugins = array();
 
-		foreach ( $blogs_plugins as $blog_id => $data ) {
+		foreach ( $blogs_plugins_data as $blog_id => $data ) {
 			if ( in_array( $plugin_file, $data['active_plugins'], true ) ) {
 				$active_in_plugins[ $blog_id ] = array(
 					'name' => $data['blogname'],

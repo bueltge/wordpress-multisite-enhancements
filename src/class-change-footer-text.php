@@ -49,7 +49,9 @@ class Multisite_Change_Footer_Text {
 	public static function init() {
 		$class = __CLASS__;
 		if ( empty( $GLOBALS[ $class ] ) ) {
+			// phpcs:disable
 			$GLOBALS[ $class ] = new $class();
+			// phpcs:enable
 		}
 	}
 
@@ -110,21 +112,34 @@ class Multisite_Change_Footer_Text {
 		// Set string of admin area.
 		$blogname = get_bloginfo( 'name' );
 		if ( is_network_admin() ) {
-			$blogname = ' ' . esc_html($GLOBALS['current_site']->site_name);
+			$blogname = ' ' . esc_html( $GLOBALS['current_site']->site_name );
 		}
 
-		$footer_text .= wp_html_excerpt($blogname, 40, __('&hellip;', 'multisite-enhancements'));
-		$footer_text .= ' &bull; <abbr title="' . esc_html__('Random-access memory',
-				'multisite-enhancements') . '">' . esc_html__('RAM',
-				'multisite-enhancements') . '</abbr> ' . number_format_i18n(
-			                memory_get_peak_usage(true) / 1024 / 1024,
-			                1) . esc_html__('/', 'multisite-enhancements') . WP_MEMORY_LIMIT;
-		$footer_text .= ' &bull; <abbr title="' . esc_html__('Structured Query Language',
-				'multisite-enhancements') . '">' . esc_html__('SQL',
-				'multisite-enhancements') . '</abbr> ' . $GLOBALS['wpdb']->num_queries;
-		$footer_text .= ' &bull; <abbr title="' . esc_html__('Version of PHP (Hypertext Preprocessor)',
-				'multisite-enhancements') . '">' . esc_html__('PHPv',
-				'multisite-enhancements') . '</abbr> ' . PHP_VERSION;
+		$footer_text .= wp_html_excerpt( $blogname, 40, __( '&hellip;', 'multisite-enhancements' ) );
+		$footer_text .= ' &bull; <abbr title="' . esc_html__(
+			'Random-access memory',
+			'multisite-enhancements'
+		) . '">' . esc_html__(
+			'RAM',
+			'multisite-enhancements'
+		) . '</abbr> ' . number_format_i18n(
+			memory_get_peak_usage( true ) / 1024 / 1024,
+			1
+		) . esc_html__( '/', 'multisite-enhancements' ) . WP_MEMORY_LIMIT;
+		$footer_text .= ' &bull; <abbr title="' . esc_html__(
+			'Structured Query Language',
+			'multisite-enhancements'
+		) . '">' . esc_html__(
+			'SQL',
+			'multisite-enhancements'
+		) . '</abbr> ' . $GLOBALS['wpdb']->num_queries;
+		$footer_text .= ' &bull; <abbr title="' . esc_html__(
+			'Version of PHP (Hypertext Preprocessor)',
+			'multisite-enhancements'
+		) . '">' . esc_html__(
+			'PHPv',
+			'multisite-enhancements'
+		) . '</abbr> ' . PHP_VERSION;
 
 		/**
 		 * Filter for change content form other source.
