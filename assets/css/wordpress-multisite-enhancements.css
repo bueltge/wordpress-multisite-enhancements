@@ -13,3 +13,7 @@ td.column-active_blogs a {
 .non-breaking {
 	white-space: nowrap;
 }
+
+.plugins .column-auto-updates {
+	width: 10em;
+}
