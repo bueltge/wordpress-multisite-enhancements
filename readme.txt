@@ -4,7 +4,7 @@ Tags: multisite, administration, admin bar, network,
 Requires at least: 4.6
 Tested up to: 5.7
 Requires PHP: 5.6
-Stable tag: 1.6.0
+Stable tag: 1.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -97,7 +97,10 @@ I'm German and my English might be gruesome here and there.
 So please be patient with me and let me know of typos or grammatical parts. Thanks
 
 == Changelog ==
-= 1.5.6 (2021-01-17) =
+= 1.6.1 =
+* Fix path for css/js files.
+
+= 1.6.0 (2021-01-17) =
 * Add settings page, Big probs to @hvianna
 
 = 1.5.4 (2020-11-16) =

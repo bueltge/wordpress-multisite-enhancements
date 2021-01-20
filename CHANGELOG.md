@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file. This projec
 
 ## Unreleased, only in master branch
 
+## [1.6.1](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.6.0...1.6.1) - 2021-01-20
+* Fix path for css/js files.
+
 ## [1.6.0](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.5.4...1.6.0) - 2021-01-17
 * Add settings page, Big probs to @hvianna
 
