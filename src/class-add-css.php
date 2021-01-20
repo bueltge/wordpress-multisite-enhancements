@@ -9,7 +9,7 @@
  * @see https://github.com/bueltge/wordpress-multisite-enhancements/pull/44
  *
  * @since   2018-02-15
- * @version 2019-11-14
+ * @version 2021-11-20
  * @package multisite-enhancements
  */
 
@@ -56,9 +56,9 @@ class Add_Css {
 
 		wp_register_style(
 			'admin_column_css',
-			plugins_url( '/w-org-assets/css/wordpress-multisite-enhancements' . $suffix . '.css', MULTISITE_ENHANCEMENT_BASE ),
+			plugins_url( '/assets/css/wordpress-multisite-enhancements' . $suffix . '.css', MULTISITE_ENHANCEMENT_BASE ),
 			false,
-			'2019-11-14'
+			'2021-11-20'
 		);
 		wp_enqueue_style( 'admin_column_css' );
 	} // end enqueue_style()
