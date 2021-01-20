@@ -61,6 +61,6 @@ class Add_Css {
 			'2021-11-20'
 		);
 		wp_enqueue_style( 'admin_column_css' );
-	} // end enqueue_style()
+	}
 
 } // end class

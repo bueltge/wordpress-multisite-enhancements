@@ -7,7 +7,7 @@
  * Author:      Frank Bültge
  * Author URI:  https://bueltge.de
  * License:     GPLv2+
- * License URI: ./w-org-assets/LICENSE
+ * License URI: LICENSE
  * Text Domain: multisite-enhancements
  * Domain Path: /languages
  * Network:     true
