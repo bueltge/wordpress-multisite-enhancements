@@ -43,9 +43,9 @@ class Filtering_Themes {
 
 		wp_register_script(
 			'me_filtering_plugins',
-			plugins_url( '/w-org-assets/js/filtering-themes' . $suffix . '.js', MULTISITE_ENHANCEMENT_BASE ),
+			plugins_url( '/assets/js/filtering-themes' . $suffix . '.js', MULTISITE_ENHANCEMENT_BASE ),
 			array( 'jquery' ),
-			'2016-10-05',
+			'2021-11-20',
 			true
 		);
 		wp_enqueue_script( 'me_filtering_plugins' );
