@@ -12,8 +12,8 @@ module.exports = function( grunt ) {
 			},
 			dest: 'src',
 			scripts: {
-				src: 'w-org-assets/js/',
-				dest: 'w-org-assets/js/'
+				src: 'assets/js/',
+				dest: 'assets/js/'
 			}
 		},
 
@@ -127,11 +127,19 @@ module.exports = function( grunt ) {
 				options: {
 					include: [
 						'multisite-enhancements.php',
+						'src/class-add-admin-favicon.php',
 						'src/class-add-blog-id.php',
+						'src/class-add-css.php',
 						'src/class-add-plugin-list.php',
+						'scr/class-add-site-status-labels.php',
+						'src/class-add-ssl-identifier.php',
 						'src/class-add-theme-list.php',
 						'src/class-admin-bar-tweaks.php',
-						'src/class-multisite-add-new-plugin.php'
+						'src/class-change-footer-text.php',
+						'src/class-filtering-themes.php',
+						'src/class-multisite-add-new-plugin.php',
+						'src/settings.php'
+
 					],
 					type: 'wp-plugin'
 				}
