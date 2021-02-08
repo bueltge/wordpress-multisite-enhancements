@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](https://github.com/bueltge/Adminimize/compare/1.6.1...HEAD), only in master branch
-* Fixing fatal error triggered by missing slash, #70, Probs @brasofolio
+* Fixing fatal error triggered by missing slash, [#70](https://github.com/bueltge/wordpress-multisite-enhancements/pull/70), Probs @brasofilo
 
 ## [1.6.1](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.6.0...1.6.1) - 2021-01-20
 * Fix path for css/js files.
