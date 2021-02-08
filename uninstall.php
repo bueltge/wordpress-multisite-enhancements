@@ -6,5 +6,5 @@
 
 ! defined( 'WP_UNINSTALL_PLUGIN' ) && exit;
 
-require_once __DIR__ . 'src/settings.php';
+require_once __DIR__ . '/src/settings.php';
 delete_site_option( Multisite_Enhancements_Settings::OPTION_NAME );
