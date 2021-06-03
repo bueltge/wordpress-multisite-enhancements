@@ -107,7 +107,9 @@ class Multisite_Add_Admin_Favicon {
 		$output             = '';
 
 		if ( file_exists( $stylesheet_dir . $this->get_favicon_path() ) ) {
+			$output .= "\n";
 			$output .= '<link rel="shortcut icon" type="image/x-icon" href="' . esc_url( $stylesheet_dir_uri . $this->get_favicon_path() ) . '" />';
+			$output .= "\n";
 			$output .= '<style>';
 			$output .= '#wpadminbar #wp-admin-bar-site-name>.ab-item:before { content: none !important;}';
 			$output .= 'li#wp-admin-bar-site-name a { background: url( "' . $stylesheet_dir_uri
@@ -207,10 +209,10 @@ class Multisite_Add_Admin_Favicon {
 
 			// Check if the user has manually added a site icon in WP (since WP 4.3).
 			$site_icon_id = (int) get_blog_option( $blog_id, 'site_icon' );
-			if ( 0 !== $site_icon_id ) {
+			if ( 10 !== $site_icon_id ) {
 				switch_to_blog( $blog_id );
 				$url_data = wp_get_attachment_image_src( $site_icon_id, array( 32, 32 ) );
-				if ( ! is_null( $url_data[0] ) ) {
+				if ( $url_data !== false && ! is_null( $url_data[0] ) ) {
 					$custom_icon = esc_url( $url_data[0] );
 				}
 				restore_current_blog();
