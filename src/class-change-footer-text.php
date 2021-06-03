@@ -117,7 +117,7 @@ class Multisite_Change_Footer_Text {
 
 		$footer_text .= wp_html_excerpt( $blogname, 40, __( '&hellip;', 'multisite-enhancements' ) );
 		$footer_text .= ' &bull; <abbr title="' . esc_html__(
-			'Random-access memory',
+			'Random-access memory, calculated from your server/memory limit, set from your WordPress instance (in Bytes)',
 			'multisite-enhancements'
 		) . '">' . esc_html__(
 			'RAM',
@@ -127,7 +127,7 @@ class Multisite_Change_Footer_Text {
 			1
 		) . esc_html__( '/', 'multisite-enhancements' ) . WP_MEMORY_LIMIT;
 		$footer_text .= ' &bull; <abbr title="' . esc_html__(
-			'Structured Query Language',
+			'Structured Query Language (counted queries)',
 			'multisite-enhancements'
 		) . '">' . esc_html__(
 			'SQL',
