@@ -1,4 +1,4 @@
-name: CI
+name: PHP Composer CI
 
 on:
   push:
@@ -8,14 +8,14 @@ on:
 
 jobs:
   build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest    
+
+    runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        php-versions: ['7.2', '7.3', '7.4']
-    # Steps represent a sequence of tasks that will be executed as part of the job
+        php-versions: ['5.6', '7.2', '7.3', '7.4', '8.0']
+
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
     - name: Setup PHP
@@ -24,16 +24,26 @@ jobs:
         php-version: ${{ matrix.php-versions }}
 
     - name: Check syntax error in sources
-      run: find ./src/ ./tests/ -type f -name '*.php' -print0 | xargs -0 -L 1 -P 4 -- php -l
+      run: find ./inc/ -type f -name '*.php' -print0 | xargs -0 -L 1 -P 4 -- php -l
 
     - name: Clear cache of Composer
       run: composer clear-cache
 
-    - name: Validate Composer.json and composer.lock
+    - name: Update Composer.json and composer.lock
       run: composer update
 
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
     - name: Install dependencies
+      if: steps.composer-cache.outputs.cache-hit != 'true'
       run: composer install -q -n -a --no-progress --prefer-dist
 
-    - name: Run QA Scripts from composer.json
-      run: composer qa
+    - name: Run phpCS Scripts from composer.json
+      run: composer cs
