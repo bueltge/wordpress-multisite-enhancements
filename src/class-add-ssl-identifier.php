@@ -85,9 +85,9 @@ class Multisite_Add_Ssh_Identifier {
 	 */
 	public function get_protocol( $column_name, $blog_id ) {
 		if ( $this->column === $column_name ) {
-			$status = 'unlock';
+			$status = 'no'; // https used: no.
 			if ( $this->is_ssl( $blog_id ) ) {
-				$status = 'lock';
+				$status = 'yes'; // https used: yes.
 			}
 
 			// phpcs:disable
