@@ -2,9 +2,10 @@
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.6.1...HEAD), only in master branch
-* Fixing fatal error triggered by missing slash, [#70](https://github.com/bueltge/wordpress-multisite-enhancements/pull/70), Probs @brasofilo
-* Enhance the footer information to makes more clear about the memory values, #71
-* Fix php note for favicon functionality, #65
+* Fixing fatal error triggered by missing slash, [#70](https://github.com/bueltge/wordpress-multisite-enhancements/pull/70). Probs @brasofilo
+* Enhance the footer information to make more clear about the memory values. #71
+* Fix php note for favicon functionality. #65
+* Change dashicons from lock/unlock to yes/no to optimize the visual difference of the icon to spot http usage easier. Probs @Zodiac1978 #76
 
 ## [1.6.1](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.6.0...1.6.1) - 2021-01-20
 * Fix path for css/js files.
