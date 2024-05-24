@@ -32,7 +32,11 @@
 	},
 	"config": {
 		"sort-packages": true,
-		"optimize-autoloader": true
+		"optimize-autoloader": true,
+		"allow-plugins": {
+			"composer/installers": true,
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
 	},
 	"minimum-stability": "dev",
 	"prefer-stable": true,
