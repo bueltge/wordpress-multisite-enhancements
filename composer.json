@@ -27,7 +27,7 @@
 		"phpcompatibility/phpcompatibility-wp": "^2.1",
 		"squizlabs/php_codesniffer": "^3",
 		"wp-coding-standards/wpcs": "*",
-		"phpunit/phpunit": "^11",
+		"phpunit/phpunit": "^8",
 		"brain/monkey": "^2.6"
 	},
 	"config": {
