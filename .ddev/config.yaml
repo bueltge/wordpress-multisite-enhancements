@@ -22,9 +22,7 @@ hooks:
 web_environment:
   - WP_VERSION=6.5.4
   - WP_LOCALE=de_DE
-  - WP_TITLE=DDEV Search and Replace Test
-  - WP_MULTISITE=true
-  - WP_MULTISITE_SLUGS=seite1,seite2,site3,site4,site5
+  - WP_TITLE=DDEV Multisite Enhancements Test
   - ADMIN_USER=admin
   - ADMIN_PASS=admin
   - ADMIN_EMAIL=admin@example.com
