@@ -33,6 +33,11 @@ wp theme enable twentytwentythree --network
 wp theme enable twentytwentytwo --network
 wp theme enable twentytwentyone --network
 
+cp "/var/www/html/.ddev/commands/favicon1.ico" "/var/www/html/.ddev/wordpress/wp-content/themes/twentytwentyone/favicon.ico"
+cp "/var/www/html/.ddev/commands/favicon2.ico" "/var/www/html/.ddev/wordpress/wp-content/themes/twentytwentytwo/favicon.ico"
+cp "/var/www/html/.ddev/commands/favicon3.ico" "/var/www/html/.ddev/wordpress/wp-content/themes/twentytwentythree/favicon.ico"
+cp "/var/www/html/.ddev/commands/favicon4.ico" "/var/www/html/.ddev/wordpress/wp-content/themes/twentytwentyfour/favicon.ico"
+
 wp theme activate twentytwentyfour --url="${DDEV_PRIMARY_URL}/site4"
 wp theme activate twentytwentythree --url="${DDEV_PRIMARY_URL}/site3"
 wp theme activate twentytwentytwo --url="${DDEV_PRIMARY_URL}/site2"
