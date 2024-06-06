@@ -9,16 +9,6 @@
 
 namespace Bueltge\Multisite_Add_Ssh_Identifier;
 
-add_action( 'admin_init', __NAMESPACE__ . '\\bootstrap' );
-
-/**
- * Create the instance of this class.
- */
-function bootstrap() {
-	$multisite_add_ssh_identifier = new Multisite_Add_Ssh_Identifier();
-	$multisite_add_ssh_identifier->init();
-}
-
 /**
  * Class Multisite_Add_Ssh_Identifier
  */
@@ -46,7 +36,8 @@ class Multisite_Add_Ssh_Identifier {
 	 *
 	 * Multisite_Add_Ssh_Identifier constructor.
 	 */
-	public function __construct() {}
+	public function __construct() {
+	}
 
 	/**
 	 * Determines if SSL is used.

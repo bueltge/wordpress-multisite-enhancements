@@ -7,8 +7,6 @@
  * @package WordPress
  */
 
-add_action( 'init', array( 'Multisite_Core', 'init' ) );
-
 /**
  * Class Multisite_Core
  */
@@ -156,5 +154,4 @@ class Multisite_Core {
 
 		return $blogs;
 	}
-
 } // end class

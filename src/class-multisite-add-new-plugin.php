@@ -7,8 +7,6 @@
  * @package WordPress
  */
 
-add_action( 'init', array( 'Multisite_Add_New_Plugin', 'init' ) );
-
 /**
  * Class Multisite_Add_New_Plugin
  */
@@ -54,5 +52,4 @@ class Multisite_Add_New_Plugin {
 			'plugin-install.php'
 		);
 	}
-
 } // end class

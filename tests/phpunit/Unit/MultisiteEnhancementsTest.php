@@ -2,11 +2,17 @@
 
 namespace MultisiteEnhancements\Tests\Unit;
 
-class MultisiteEnhancementsTest extends AbstractTestCase
-{
-	public function testBasicInstantiation()
-    {
-		$plugin = new \Multisite_Enhancements(__DIR__);
-		static::assertInstanceOf(Multisite_Enhancements::class, $plugin);
+/**
+ * First Test
+ */
+class MultisiteEnhancementsTest extends TestCase {
+	/**
+	 * First Test
+	 *
+	 * @return void
+	 */
+	public function testBasicInstantiation() {
+		$plugin = new \Multisite_Enhancements();
+		static::assertInstanceOf( \Multisite_Enhancements::class, $plugin );
 	}
 }

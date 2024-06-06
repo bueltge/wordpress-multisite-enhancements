@@ -20,8 +20,6 @@
  * @package WordPress
  */
 
-add_action( 'init', array( 'Multisite_Change_Footer_Text', 'init' ) );
-
 /**
  * Class Multisite_Change_Footer_Text
  */
@@ -148,5 +146,4 @@ class Multisite_Change_Footer_Text {
 		 */
 		return apply_filters( 'multisite_enhancements_admin_footer_text', $footer_text );
 	}
-
 } // end class

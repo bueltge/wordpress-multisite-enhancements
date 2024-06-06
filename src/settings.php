@@ -6,8 +6,6 @@
  * @package multisite-enhancements
  */
 
-add_action( 'init', array( 'Multisite_Enhancements_Settings', 'init' ) );
-
 /**
  * Class Multisite_Enhancements_Settings
  */

@@ -7,8 +7,6 @@
  * @package multisite-enhancement
  */
 
-add_action( 'init', array( 'Multisite_Add_Theme_List', 'init' ) );
-
 /**
  * On the network theme page, show which blog have the theme active.
  *

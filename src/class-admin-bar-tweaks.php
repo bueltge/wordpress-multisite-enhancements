@@ -9,14 +9,6 @@
 
 namespace Bueltge\Admin_Bar_Tweaks;
 
-add_action(
-	'init',
-	function () {
-		$multisite_admin_bar_tweaks = new Multisite_Admin_Bar_Tweaks();
-		$multisite_admin_bar_tweaks->init();
-	}
-);
-
 /**
  * Class Multisite_Admin_Bar_Tweaks
  */
@@ -65,8 +57,8 @@ class Multisite_Admin_Bar_Tweaks {
 				$awaiting_mod = $awaiting_mod->moderated;
 
 				$title = esc_html__( 'Manage Comments' )
-						 . '<span class="ab-label awaiting-mod pending-count count-'
-						 . (int) $awaiting_mod . '" style="margin-left:.2em">' . number_format_i18n( $awaiting_mod ) . '</span>';
+						. '<span class="ab-label awaiting-mod pending-count count-'
+						. (int) $awaiting_mod . '" style="margin-left:.2em">' . number_format_i18n( $awaiting_mod ) . '</span>';
 
 				$awaiting_title = esc_attr(
 					sprintf(
@@ -93,5 +85,4 @@ class Multisite_Admin_Bar_Tweaks {
 			restore_current_blog();
 		}
 	}
-
 } // end class

@@ -1,7 +1,7 @@
 name: multisite-enhancements
 type: php
 docroot: .ddev/wordpress
-php_version: "8.3"
+php_version: "7.2"
 nodejs_version: "18"
 webserver_type: apache-fpm
 router_http_port: "80"
@@ -20,11 +20,11 @@ hooks:
         - exec-host: "mkdir -p .ddev/wordpress/wp-content/plugins/${DDEV_PROJECT}"
 
 web_environment:
-  - WP_VERSION=6.5.3
+  - WP_VERSION=6.5.4
   - WP_LOCALE=de_DE
   - WP_TITLE=DDEV Search and Replace Test
   - WP_MULTISITE=true
-  - WP_MULTISITE_SLUGS=seite1,seite2
+  - WP_MULTISITE_SLUGS=seite1,seite2,site3,site4,site5
   - ADMIN_USER=admin
   - ADMIN_PASS=admin
   - ADMIN_EMAIL=admin@example.com

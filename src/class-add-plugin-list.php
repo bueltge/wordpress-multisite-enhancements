@@ -7,8 +7,6 @@
  * @package WordPress
  */
 
-add_action( 'init', array( 'Multisite_Add_Plugin_List', 'init' ) );
-
 /**
  * Class Multisite_Add_Plugin_List
  */
@@ -375,5 +373,4 @@ class Multisite_Add_Plugin_List {
 
 		return (bool) get_blog_details( $site_id )->deleted;
 	}
-
 } // end class

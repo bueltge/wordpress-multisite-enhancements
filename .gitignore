@@ -24,3 +24,6 @@ vendor
 .idea/
 *.ipr
 *.iws
+
+# PHP Unit
+.phpunit.result.cache

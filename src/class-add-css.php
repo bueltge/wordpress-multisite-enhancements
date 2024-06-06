@@ -13,8 +13,6 @@
  * @package multisite-enhancements
  */
 
-add_action( 'init', array( 'Add_Css', 'init' ) );
-
 /**
  * On the network plugin and theme pages, add css to present the active column
  * If this class is loaded, modify the presentation of the column in order to
@@ -62,5 +60,4 @@ class Add_Css {
 		);
 		wp_enqueue_style( 'admin_column_css' );
 	}
-
 } // end class

@@ -1,6 +1,6 @@
 <?php # -*- coding: utf-8 -*-
 
-$vendor = dirname(dirname(dirname(__FILE__))) . '/vendor/';
+$vendor = dirname(dirname(__DIR__)) . '/vendor/';
 
 if (!realpath($vendor)) {
 	die('Please install via Composer before running the tests.');

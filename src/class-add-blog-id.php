@@ -8,8 +8,6 @@
  * @package multisite-enhancements
  */
 
-add_action( 'init', array( 'Multisite_Add_Blog_Id', 'init' ) );
-
 /**
  * View Blog and User ID in WordPress Multisite.
  * Class Multisite_Add_Blog_Id
@@ -102,5 +100,4 @@ class Multisite_Add_Blog_Id {
 	public function add_style() {
 		echo '<style>#object_id { width:7%; }</style>';
 	}
-
 } // end class

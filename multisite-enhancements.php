@@ -1,16 +1,17 @@
-<?php
+<?php // phpcs:ignore WordPress.Files.FileName.InvalidClassFileName
 /**
- * Plugin Name: Multisite Enhancements
- * Description: Enhance Multisite for Network Admins with different topics
- * Plugin URI:  https://github.com/bueltge/WordPress-Multisite-Enhancements
- * Version:     1.6.1
- * Author:      Frank Bültge
- * Author URI:  https://bueltge.de
- * License:     GPLv2+
- * License URI: LICENSE
- * Text Domain: multisite-enhancements
- * Domain Path: /languages
- * Network:     true
+ * Plugin Name:  Multisite Enhancements
+ * Description:  Enhance Multisite for Network Admins with different topics
+ * Plugin URI:   https://github.com/bueltge/WordPress-Multisite-Enhancements
+ * Version:      1.7.0
+ * Author:       Frank Bültge
+ * Author URI:   https://bueltge.de
+ * License:      GPLv2+
+ * License URI:  LICENSE
+ * Requires PHP: 7.2
+ * Text Domain:  multisite-enhancements
+ * Domain Path:  /languages
+ * Network:      true
  *
  * @package multisite-enhancement
  */
@@ -22,18 +23,9 @@ add_filter( 'plugins_loaded', array( 'Multisite_Enhancements', 'get_object' ) );
 /**
  * Class Multisite_Enhancements.
  * Plugin wrapper to list as plugin in WordPress environment and load all necessary files.
- * Use the filter hook 'multisite_enhancements_autoload' to unset classes, there is not necessary for you.
  */
 class Multisite_Enhancements {
 // phpcs:enable
-	/**
-	 * Define folder, there have inside the autoload files.
-	 *
-	 * @since  0.0.1
-	 * @var    String
-	 */
-	protected static $file_base = '';
-
 	/**
 	 * The class object.
 	 *
@@ -58,8 +50,6 @@ class Multisite_Enhancements {
 
 		$this->load_translation();
 
-		// Since 2015-08-18 only PHP 5.3, use now __DIR__ as equivalent to dirname(__FILE__).
-		self::$file_base = __DIR__ . '/src';
 		self::load();
 	}
 
@@ -77,80 +67,59 @@ class Multisite_Enhancements {
 	}
 
 	/**
-	 * Load all files in folder src.
-	 * Use the filter hook 'multisite_enhancements_autoload' to unset classes, there is not necessary for you.
+	 * Autoload and init used functions.
 	 *
 	 * @since   0.0.1
 	 */
 	public static function load() {
-		$file_base = self::$file_base;
-		define( 'MULTISITE_ENHANCEMENT_BASE', $file_base );
+		define( 'MULTISITE_ENHANCEMENT_BASE', __DIR__ . '/src' );
 
-		// Load configuration settings.
-		require_once $file_base . '/settings.php';
+		require_once __DIR__ . '/vendor/autoload.php';
 
-		$autoload_paths = glob( "$file_base/*.php" );
-		$autoload_files = array();
+		add_action( 'init', array( 'Multisite_Enhancements_Settings', 'init' ) );
+		add_action( 'init', array( 'Multisite_Core', 'init' ) );
 
-		foreach ( $autoload_paths as $classnames => $path ) {
-			$path_split               = explode( DIRECTORY_SEPARATOR, $path );
-			$class                    = end( $path_split );
-			$autoload_files[ $class ] = $path;
-		}
-
-		$autoload_files = (array) apply_filters( 'multisite_enhancements_autoload', $autoload_files );
-
-		// Remove from autoload classes for disabled features.
-		$feature_modules = array(
-			'class-add-admin-favicon.php'        => array( 'add-favicon', 'remove-logo' ),
-			'class-add-blog-id.php'              => 'add-blog-id',
-			'class-add-css.php'                  => 'add-css',
-			'class-add-plugin-list.php'          => 'add-plugin-list',
-			'class-add-site-status-labels.php'   => 'add-site-status',
-			'class-add-ssl-identifier.php'       => 'add-ssl-identifier',
-			'class-add-theme-list.php'           => 'add-theme-list',
-			'class-admin-bar-tweaks.php'         => 'add-manage-comments',
-			'class-change-footer-text.php'       => 'change-footer',
-			'class-filtering-themes.php'         => 'filtering-themes',
-			'class-multisite-add-new-plugin.php' => 'add-new-plugin',
+		$modules = array(
+			'add-favicon'         => array( 'init' => array( 'Multisite_Add_Admin_Favicon', 'init' ) ),
+			'remove-logo'         => array( 'init' => array( 'Multisite_Add_Admin_Favicon', 'init' ) ),
+			'add-blog-id'         => array( 'init' => array( 'Multisite_Add_Blog_Id', 'init' ) ),
+			'add-css'             => array( 'init' => array( 'Add_Css', 'init' ) ),
+			'add-plugin-list'     => array( 'init' => array( 'Multisite_Add_Plugin_List', 'init' ) ),
+			'add-site-status'     => array( 'init' => array( 'Multisite_Add_Site_Status_labels', 'init' ) ),
+			'add-ssl-identifier'  => array(
+				'admin_init' => function () {
+						$multisite_add_ssh_identifier = new Bueltge\Multisite_Add_Ssh_Identifier\Multisite_Add_Ssh_Identifier();
+						$multisite_add_ssh_identifier->init();
+				},
+			),
+			'add-theme-list'      => array( 'init' => array( 'Multisite_Add_Theme_List', 'init' ) ),
+			'add-manage-comments' => array(
+				'init' => function () {
+								$multisite_admin_bar_tweaks = new Bueltge\Admin_Bar_Tweaks\Multisite_Admin_Bar_Tweaks();
+								$multisite_admin_bar_tweaks->init();
+				},
+			),
+			'change-footer'       => array( 'init' => array( 'Multisite_Change_Footer_Text', 'init' ) ),
+			'filtering-themes'    => array( 'admin_init' => array( 'Filtering_Themes', 'init' ) ),
+			'add-new-plugin'      => array( 'init' => array( 'Multisite_Add_New_Plugin', 'init' ) ),
 		);
 
-		foreach ( $feature_modules as $file => $settings ) {
-			if ( is_array( $settings ) ) {
-				$enabled = array_reduce(
-					$settings,
-					function ( $carry, $item ) {
-						return $carry || Multisite_Enhancements_Settings::is_feature_enabled( $item );
-					},
-					false
-				);
-			} else {
-				$enabled = Multisite_Enhancements_Settings::is_feature_enabled( $settings );
+		foreach ( $modules as $id => $hooks ) {
+			if ( Multisite_Enhancements_Settings::is_feature_enabled( $id ) ) {
+				foreach ( $hooks as $hook_name => $callback ) {
+					if ( ! has_action( $hook_name, $callback ) ) {
+						add_action( $hook_name, $callback );
+					}
+				}
 			}
-
-			if ( ! $enabled ) {
-				unset( $autoload_files[ $file ] );
-			}
-		}
-
-		// Load files.
-		foreach ( $autoload_files as $path ) {
-			/**
-			 * Path of each file, that we load.
-			 *
-			 * @var string $path
-			 */
-			// phpcs:disable
-			require_once $path;
-			// phpcs: enable
 		}
 	}
 
 	/**
 	 * Load the object and get the current state.
 	 *
-	 * @return String $class_object
-	 * @since   0.0.1
+	 * @return Multisite_Enhancements $class_object
+	 * @since  0.0.1
 	 */
 	public static function get_object() {
 		if ( null === self::$class_object ) {
@@ -176,7 +145,7 @@ class Multisite_Enhancements {
 					'multisite-enhancements'
 				);
 				?>
-				<a href="http://codex.wordpress.org/Create_A_Network" title="
+				<a href="https://developer.wordpress.org/advanced-administration/multisite/create-network/" title="
 				<?php
 				esc_html_e(
 					'WordPress Codex: Create a network',
@@ -203,5 +172,4 @@ class Multisite_Enhancements {
 		</div>
 		<?php
 	}
-
 } // end class

@@ -6,8 +6,6 @@
  * @package WordPress
  */
 
-add_action( 'admin_init', array( 'Filtering_Themes', 'init' ) );
-
 /**
  * Class Filtering_Themes
  */

@@ -7,8 +7,6 @@
  * @package WordPress
  */
 
-add_action( 'init', array( 'Multisite_Add_Site_Status_labels', 'init' ) );
-
 /**
  * Add status labels to sites.
  *

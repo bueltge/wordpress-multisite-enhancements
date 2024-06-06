@@ -22,8 +22,6 @@
  * @package multisite-enhancements
  */
 
-add_action( 'init', array( 'Multisite_Add_Admin_Favicon', 'init' ) );
-
 /**
  * Add Favicon from theme folder to the admin area to easier identify the blog.
  *
@@ -181,7 +179,7 @@ class Multisite_Add_Admin_Favicon {
 
 		// Only usable if the feature is enabled, the user is logged in and use the admin bar.
 		if ( ! is_user_logged_in() || ! is_admin_bar_showing() ||
-			 ! Multisite_Enhancements_Settings::is_feature_enabled( 'add-favicon' ) ) {
+			! Multisite_Enhancements_Settings::is_feature_enabled( 'add-favicon' ) ) {
 			return;
 		}
 		$user_id    = get_current_user_id();
@@ -278,5 +276,4 @@ class Multisite_Add_Admin_Favicon {
 			$admin_bar->remove_node( 'wp-logo' );
 		}
 	}
-
 } // end class
