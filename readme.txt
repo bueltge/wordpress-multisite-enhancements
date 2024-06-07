@@ -2,7 +2,7 @@
 Contributors: Bueltge, inpsyde, danielhuesken
 Tags: multisite, administration, admin bar, network,
 Requires at least: 4.6
-Tested up to: 5.7
+Tested up to: 6.5.4
 Requires PHP: 7.2
 Stable tag: 1.6.1
 License: GPLv2 or later

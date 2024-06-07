@@ -50,11 +50,11 @@ class Add_User_Last_Login {
 	/**
 	 * Filter users for sorting
 	 *
-	 * @param \WP_Query $query User query.
+	 * @param \WP_User_Query $query User query.
 	 *
 	 * @return void
 	 */
-	public function pre_get_users( \WP_Query $query ) {
+	public function pre_get_users( \WP_User_Query $query ) {
 		if ( ! is_network_admin() || 'last-logged-in' !== $query->get( 'orderby' ) || ! current_user_can( 'list_users' ) ) {
 			return;
 		}
