@@ -4,11 +4,13 @@
  *
  * @since   2013-07-19
  * @version 2016-01-15
- * @package WordPress
+ * @package multisite-enhancements
  */
 
+namespace Multisite_Enhancements;
+
 /**
- * Class Multisite_Add_New_Plugin
+ * Class Add_New_Plugin
  */
 class Multisite_Add_New_Plugin {
 

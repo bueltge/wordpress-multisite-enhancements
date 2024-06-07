@@ -8,11 +8,13 @@
  * @package multisite-enhancements
  */
 
+namespace Multisite_Enhancements;
+
 /**
  * View Blog and User ID in WordPress Multisite.
- * Class Multisite_Add_Blog_Id
+ * Class Add_Blog_Id
  */
-class Multisite_Add_Blog_Id {
+class Add_Blog_Id {
 
 	/**
 	 * Init the class.

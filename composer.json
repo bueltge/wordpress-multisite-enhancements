@@ -40,7 +40,7 @@
 	"prefer-stable": true,
 	"autoload-dev": {
 		"psr-4": {
-			"MultisiteEnhancements\\Tests\\": "tests/phpunit/"
+			"Multisite_Enhancements\\Tests\\": "tests/phpunit/"
 		}
 	},
 	"autoload": {

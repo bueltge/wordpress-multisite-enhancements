@@ -7,12 +7,12 @@
  * @package multisite-enhancements
  */
 
-namespace Bueltge\Multisite_Add_Ssh_Identifier;
+namespace Multisite_Enhancements;
 
 /**
- * Class Multisite_Add_Ssh_Identifier
+ * Class Add_Ssh_Identifier
  */
-class Multisite_Add_Ssh_Identifier {
+class Add_Ssh_Identifier {
 
 	/**
 	 * Set column name to identifier the column.

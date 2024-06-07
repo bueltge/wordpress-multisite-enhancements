@@ -4,13 +4,15 @@
  *
  * @since   2013-07-24
  * @version 2016-10-28
- * @package WordPress
+ * @package multisite-enhancements
  */
 
+namespace Multisite_Enhancements;
+
 /**
- * Class Multisite_Core
+ * Class Core
  */
-class Multisite_Core {
+class Core {
 
 	/**
 	 * Init the class.
@@ -76,8 +78,6 @@ class Multisite_Core {
 			}
 
 			// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery
-			/** @noinspection SqlDialectInspection */
-			/** @noinspection SqlNoDataSourceInspection */
 			$blogs = $wpdb->get_results(
 				$wpdb->prepare(
 					"

@@ -4,15 +4,15 @@
  *
  * @since   2013-07-19
  * @version 2016-10-28
- * @package WordPress
+ * @package multisite-enhancements
  */
 
-namespace Bueltge\Admin_Bar_Tweaks;
+namespace Multisite_Enhancements;
 
 /**
- * Class Multisite_Admin_Bar_Tweaks
+ * Class Admin_Bar_Tweaks
  */
-class Multisite_Admin_Bar_Tweaks {
+class Admin_Bar_Tweaks {
 
 	/**
 	 * Initialize this class.

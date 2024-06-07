@@ -38,7 +38,7 @@
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
 			<property name="prefixes" type="array">
-				<element value="multisite-enhancements"/>
+				<element value="multisite_enhancements"/>
 			</property>
 		</properties>
 	</rule>

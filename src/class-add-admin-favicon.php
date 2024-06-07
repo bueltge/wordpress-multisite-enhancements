@@ -22,12 +22,14 @@
  * @package multisite-enhancements
  */
 
+namespace Multisite_Enhancements;
+
 /**
  * Add Favicon from theme folder to the admin area to easier identify the blog.
  *
- * Class Multisite_Add_Admin_Favicon
+ * Class Add_Admin_Favicon
  */
-class Multisite_Add_Admin_Favicon {
+class Add_Admin_Favicon {
 
 	/**
 	 * Define Hooks for add the favicon markup.
@@ -80,7 +82,7 @@ class Multisite_Add_Admin_Favicon {
 	 * @since   0.0.2
 	 */
 	public function set_favicon() {
-		if ( ! Multisite_Enhancements_Settings::is_feature_enabled( 'add-favicon' ) ) {
+		if ( ! Settings::is_feature_enabled( 'add-favicon' ) ) {
 			return;
 		}
 
@@ -163,7 +165,7 @@ class Multisite_Add_Admin_Favicon {
 
 		// Only usable if the feature is enabled, the user is logged in and use the admin bar.
 		if ( ! is_user_logged_in() || ! is_admin_bar_showing() ||
-			! Multisite_Enhancements_Settings::is_feature_enabled( 'add-favicon' ) ) {
+			! Settings::is_feature_enabled( 'add-favicon' ) ) {
 			return;
 		}
 		$user_id    = get_current_user_id();
@@ -194,7 +196,7 @@ class Multisite_Add_Admin_Favicon {
 			if ( 0 !== $site_icon_id ) {
 				switch_to_blog( $blog_id );
 				$url_data = wp_get_attachment_image_src( $site_icon_id, array( 32, 32 ) );
-				if ( $url_data !== false && ! is_null( $url_data[0] ) ) {
+				if ( false !== $url_data && ! is_null( $url_data[0] ) ) {
 					$custom_icon = esc_url( $url_data[0] );
 				}
 				restore_current_blog();
@@ -240,7 +242,7 @@ class Multisite_Add_Admin_Favicon {
 	 * Use the filter hook to change the default to remove the "W" logo and his sublinks
 	 *     Hook: multisite_enhancements_remove_wp_admin_bar
 	 *
-	 * @param WP_Admin_Bar $admin_bar WP_Admin_Bar instance, passed by reference.
+	 * @param \WP_Admin_Bar $admin_bar WP_Admin_Bar instance, passed by reference.
 	 *
 	 * @since   0.0.2
 	 */
@@ -251,7 +253,7 @@ class Multisite_Add_Admin_Favicon {
 		 *
 		 * @type bool
 		 */
-		if ( Multisite_Enhancements_Settings::is_feature_enabled( 'remove-logo' ) &&
+		if ( Settings::is_feature_enabled( 'remove-logo' ) &&
 			apply_filters(
 				'multisite_enhancements_remove_wp_admin_bar',
 				self::$remove_wp_admin_bar

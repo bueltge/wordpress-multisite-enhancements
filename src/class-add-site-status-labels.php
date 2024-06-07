@@ -4,15 +4,17 @@
  *
  * @since   2015-07-14
  * @version 2019-11-14
- * @package WordPress
+ * @package multisite-enhancements
  */
+
+namespace Multisite_Enhancements;
 
 /**
  * Add status labels to sites.
  *
- * Class Multisite_Add_Site_Status_labels
+ * Class Add_Site_Status_labels
  */
-class Multisite_Add_Site_Status_labels {
+class Add_Site_Status_Labels {
 
 	/**
 	 * Initialize the class.
@@ -68,11 +70,11 @@ class Multisite_Add_Site_Status_labels {
 	 *
 	 * Use the filter hook 'multisite_enhancements_status_label' to change style, dashicon, markup.
 	 *
-	 * @param WP_Admin_Bar $admin_bar All necessary admin bar items.
+	 * @param \WP_Admin_Bar $admin_bar All necessary admin bar items.
 	 *
 	 * @return mixed
 	 */
-	public function add_status_label( WP_Admin_Bar $admin_bar ) {
+	public function add_status_label( \WP_Admin_Bar $admin_bar ) {
 		foreach ( $admin_bar->user->blogs as $key => $blog ) {
 			$url_hint  = '';
 			$live_hint = '';

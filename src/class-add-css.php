@@ -13,6 +13,8 @@
  * @package multisite-enhancements
  */
 
+namespace Multisite_Enhancements;
+
 /**
  * On the network plugin and theme pages, add css to present the active column
  * If this class is loaded, modify the presentation of the column in order to

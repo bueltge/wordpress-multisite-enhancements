@@ -1,11 +1,14 @@
 <?php
 /**
  * Add last users login
+ *
+ * @package multisite-enhancements
  */
-namespace Bueltge\User_Last_Login;
+
+namespace Multisite_Enhancements;
 
 /**
- * Class for adding last user logins
+ * Class Add_User_Last_Login
  */
 class Add_User_Last_Login {
 	/**
@@ -112,7 +115,7 @@ class Add_User_Last_Login {
 	 *                                  Default is 14 days from now.
 	 * @param int    $user_id User ID.
 	 *
-	 * @throws \Exception
+	 * @throws \Exception For hooked function.
 	 */
 	public function record_last_logged_in( $auth_cookie, $expire, $expiration, $user_id ) {
 		$login_at = new \DateTime( 'now', new \DateTimeZone( 'UTC' ) );

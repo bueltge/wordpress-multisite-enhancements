@@ -4,13 +4,15 @@
  *
  * @since   2013-07-19
  * @version 2019-11-14
- * @package WordPress
+ * @package multisite-enhancements
  */
 
+namespace Multisite_Enhancements;
+
 /**
- * Class Multisite_Add_Plugin_List
+ * Class Add_Plugin_List
  */
-class Multisite_Add_Plugin_List {
+class Add_Plugin_List {
 
 	/**
 	 * On this plugin status will not show the not or activated status in the table of plugins.
@@ -268,7 +270,7 @@ class Multisite_Add_Plugin_List {
 			// Cannot load data from transient, so load from DB and set transient.
 			$this->blogs_plugins = array();
 
-			$blogs = (array) Multisite_Core::get_blog_list( 0, $this->sites_limit );
+			$blogs = (array) Core::get_blog_list( 0, $this->sites_limit );
 
 			/**
 			 * Data to each site of the network, blogs.

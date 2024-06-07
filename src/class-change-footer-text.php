@@ -17,13 +17,15 @@
  *
  * @since   2013-07-23
  * @version 2016-10-28
- * @package WordPress
+ * @package multisite-enhancements
  */
 
+namespace Multisite_Enhancements;
+
 /**
- * Class Multisite_Change_Footer_Text
+ * Class Change_Footer_Text
  */
-class Multisite_Change_Footer_Text {
+class Change_Footer_Text {
 
 	/**
 	 * Define the capability to view the new admin footer text.

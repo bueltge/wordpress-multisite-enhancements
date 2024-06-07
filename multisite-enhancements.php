@@ -64,33 +64,33 @@ class Multisite_Enhancements {
 
 		require_once __DIR__ . '/vendor/autoload.php';
 
-		add_action( 'init', array( self::set_object( new Multisite_Enhancements_Settings() ), 'init' ) );
-		add_action( 'init', array( self::set_object( new Multisite_Core() ), 'init' ) );
+		add_action( 'init', array( self::set_object( new Multisite_Enhancements\Settings() ), 'init' ) );
+		add_action( 'init', array( self::set_object( new Multisite_Enhancements\Core() ), 'init' ) );
 
 		$modules = array(
-			'add-favicon'         => array( 'init' => array( Multisite_Add_Admin_Favicon::class, 'init' ) ),
-			'remove-logo'         => array( 'init' => array( Multisite_Add_Admin_Favicon::class, 'init' ) ),
-			'add-blog-id'         => array( 'init' => array( Multisite_Add_Blog_Id::class, 'init' ) ),
-			'add-css'             => array( 'init' => array( Add_Css::class, 'init' ) ),
-			'add-plugin-list'     => array( 'init' => array( Multisite_Add_Plugin_List::class, 'init' ) ),
-			'add-site-status'     => array( 'init' => array( Multisite_Add_Site_Status_labels::class, 'init' ) ),
+			'add-favicon'         => array( 'init' => array( Multisite_Enhancements\Add_Admin_Favicon::class, 'init' ) ),
+			'remove-logo'         => array( 'init' => array( Multisite_Enhancements\Add_Admin_Favicon::class, 'init' ) ),
+			'add-blog-id'         => array( 'init' => array( Multisite_Enhancements\Add_Blog_Id::class, 'init' ) ),
+			'add-css'             => array( 'init' => array( Multisite_Enhancements\Add_Css::class, 'init' ) ),
+			'add-plugin-list'     => array( 'init' => array( Multisite_Enhancements\Add_Plugin_List::class, 'init' ) ),
+			'add-site-status'     => array( 'init' => array( Multisite_Enhancements\Add_Site_Status_Labels::class, 'init' ) ),
 			'add-ssl-identifier'  => array(
-				'admin_init' => array( Bueltge\Multisite_Add_Ssh_Identifier\Multisite_Add_Ssh_Identifier::class, 'init' ),
+				'admin_init' => array( Multisite_Enhancements\Add_Ssh_Identifier::class, 'init' ),
 			),
-			'add-theme-list'      => array( 'init' => array( Multisite_Add_Theme_List::class, 'init' ) ),
+			'add-theme-list'      => array( 'init' => array( Multisite_Enhancements\Add_Theme_List::class, 'init' ) ),
 			'add-manage-comments' => array(
-				'init' => array( Bueltge\Admin_Bar_Tweaks\Multisite_Admin_Bar_Tweaks::class, 'init' ),
+				'init' => array( Multisite_Enhancements\Admin_Bar_Tweaks::class, 'init' ),
 			),
-			'change-footer'       => array( 'init' => array( Multisite_Change_Footer_Text::class, 'init' ) ),
-			'filtering-themes'    => array( 'admin_init' => array( Filtering_Themes::class, 'init' ) ),
-			'add-new-plugin'      => array( 'init' => array( Multisite_Add_New_Plugin::class, 'init' ) ),
+			'change-footer'       => array( 'init' => array( Multisite_Enhancements\Change_Footer_Text::class, 'init' ) ),
+			'filtering-themes'    => array( 'admin_init' => array( Multisite_Enhancements\Filtering_Themes::class, 'init' ) ),
+			'add-new-plugin'      => array( 'init' => array( Multisite_Enhancements\Multisite_Add_New_Plugin::class, 'init' ) ),
 			'add-user-last-login' => array(
-				'init' => array( Bueltge\User_Last_Login\Add_User_Last_Login::class, 'init' ),
+				'init' => array( Multisite_Enhancements\Add_User_Last_Login::class, 'init' ),
 			),
 		);
 
 		foreach ( $modules as $id => $hooks ) {
-			if ( Multisite_Enhancements_Settings::is_feature_enabled( $id ) ) {
+			if ( Multisite_Enhancements\Settings::is_feature_enabled( $id ) ) {
 				foreach ( $hooks as $hook_name => $callback ) {
 					if ( is_string( $callback[0] ) && class_exists( $callback[0] ) ) {
 						$callback[0] = self::set_object( new $callback[0]() );

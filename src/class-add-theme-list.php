@@ -7,12 +7,14 @@
  * @package multisite-enhancement
  */
 
+namespace Multisite_Enhancements;
+
 /**
  * On the network theme page, show which blog have the theme active.
  *
- * Class Multisite_Add_Theme_List
+ * Class Add_Theme_List
  */
-class Multisite_Add_Theme_List {
+class Add_Theme_List {
 
 	/**
 	 * String for the transient string, there save the blog themes.
@@ -273,7 +275,7 @@ class Multisite_Add_Theme_List {
 			// Cannot load data from transient, so load from DB and set transient.
 			$this->blogs_themes = array();
 
-			$blogs = (array) Multisite_Core::get_blog_list( 0, $this->sites_limit );
+			$blogs = (array) Core::get_blog_list( 0, $this->sites_limit );
 
 			/**
 			 * Data to each site of the network, blogs.
@@ -341,11 +343,11 @@ class Multisite_Add_Theme_List {
 	/**
 	 * Check, the current theme have a parent value and is a child theme.
 	 *
-	 * @param array|WP_Theme $theme_data An array of theme data.
+	 * @param \WP_Theme $theme_data An array of theme data.
 	 *
 	 * @return bool
 	 */
-	public function is_child( WP_Theme $theme_data ) {
+	public function is_child( \WP_Theme $theme_data ) {
 		return (bool) $theme_data->parent();
 	}
 

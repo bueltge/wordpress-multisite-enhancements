@@ -1,6 +1,6 @@
 <?php declare(strict_types=1); # -*- coding: utf-8 -*-
 
-namespace MultisiteEnhancements\Tests\Unit;
+namespace Multisite_Enhancements\Tests\Unit;
 
 /**
  * First Test

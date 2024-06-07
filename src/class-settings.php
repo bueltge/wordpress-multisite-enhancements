@@ -6,10 +6,12 @@
  * @package multisite-enhancements
  */
 
+namespace Multisite_Enhancements;
+
 /**
- * Class Multisite_Enhancements_Settings
+ * Class Settings
  */
-class Multisite_Enhancements_Settings {
+class Settings {
 
 	/**
 	 * Database option name
@@ -55,7 +57,7 @@ class Multisite_Enhancements_Settings {
 	/**
 	 * Check if a feature is enabled
 	 *
-	 * @param string $key Key of desired setting to check
+	 * @param string $key Key of desired setting to check.
 	 *
 	 * @return boolean
 	 */
@@ -71,29 +73,25 @@ class Multisite_Enhancements_Settings {
 			return;
 		}
 
-		// register database option
 		register_setting(
-			'wpme_options',        // group name, used in settings_fields() call
-			self::OPTION_NAME   // database option name
+			'wpme_options',
+			self::OPTION_NAME
 		);
 
-		// register configuration page section
 		add_settings_section(
-			'wpme_general',        // unique ID
-			esc_html__( 'General configuration', 'multisite-enhancements' ),    // section title
-			array( $this, 'settings_section_callback' ),                // callback to render the section's HTML
-			'wpme_config'        // config page slug - used in do_settings_sections() call
+			'wpme_general',
+			esc_html__( 'General configuration', 'multisite-enhancements' ),
+			array( $this, 'settings_section_callback' ),
+			'wpme_config'
 		);
-
-		// register form field groups
 
 		add_settings_field(
-			'enable_features',     // unique ID
-			esc_html__( 'Plugin features', 'multisite-enhancements' ),    // field label
+			'enable_features',
+			esc_html__( 'Plugin features', 'multisite-enhancements' ),
 			array( $this, 'settings_fields_callback' ),
-			'wpme_config',        // config page slug
-			'wpme_general',        // section ID where the field will be shown
-			array(                // arguments passed to the callback function ('label_for' and 'class' go here, when needed)
+			'wpme_config',
+			'wpme_general',
+			array(
 				'group' => 'features',
 			)
 		);
@@ -133,7 +131,6 @@ class Multisite_Enhancements_Settings {
 			return;
 		}
 
-		// check if coming from the update function
 		if ( isset( $_GET['updated'] ) ) {
 			?>
 			<div id="message" class="updated notice is-dismissible">
@@ -141,17 +138,13 @@ class Multisite_Enhancements_Settings {
 			<?php
 		}
 
-		// render the header and form - notice the form 'action' which points to our custom URL
 		?>
 		<div class="wrap">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 			<form action="edit.php?action=wpme_update_settings" method="post">
 				<?php
-				// output security fields for our registered setting
 				settings_fields( 'wpme_options' );
-				// output setting sections and their fields
 				do_settings_sections( 'wpme_config' );
-				// output save settings button
 				submit_button( __( 'Save settings', 'multisite-enhancements' ) );
 				?>
 			</form>
@@ -162,7 +155,7 @@ class Multisite_Enhancements_Settings {
 	/**
 	 * Configuration sections callback
 	 *
-	 * @param array $args array with following keys: title, id, callback - defined by add_settings_section()
+	 * @param array $args array with following keys: title, id, callback - defined by add_settings_section().
 	 */
 	public function settings_section_callback( $args ) {
 		if ( 'wpme_general' === $args['id'] ) {
@@ -173,7 +166,7 @@ class Multisite_Enhancements_Settings {
 	/**
 	 * Configuration fields callback
 	 *
-	 * @param array $args arguments defined by add_settings_field()
+	 * @param array $args arguments defined by add_settings_field().
 	 */
 	public function settings_fields_callback( $args ) {
 		$settings = array(
@@ -216,7 +209,7 @@ class Multisite_Enhancements_Settings {
 	/**
 	 * Load settings from database and merge them with default values
 	 *
-	 * @param string [ $key] Key of an specific setting desired (optional).
+	 * @param string $key Key of an specific setting desired (optional).
 	 *
 	 * @return string|array Value of setting selected by $key or full array of settings.
 	 */
@@ -244,10 +237,8 @@ class Multisite_Enhancements_Settings {
 			$options[ $key ] = (int) isset( $options[ $key ] );
 		}
 
-		// update option on database
 		update_site_option( self::OPTION_NAME, $options );
 
-		// redirect back to our options page
 		wp_redirect(
 			add_query_arg(
 				array(

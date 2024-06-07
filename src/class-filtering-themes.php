@@ -3,8 +3,10 @@
  * Add simple javascript to filter the theme list on network and single site theme page of WordPress back end.
  *
  * @since   2016-10-05
- * @package WordPress
+ * @package multisite-enhancements
  */
+
+namespace Multisite_Enhancements;
 
 /**
  * Class Filtering_Themes
