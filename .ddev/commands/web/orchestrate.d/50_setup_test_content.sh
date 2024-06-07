@@ -20,6 +20,8 @@ wp user set-role ${ADMIN_USER} administrator --url="${DDEV_PRIMARY_URL}/site3"
 wp user set-role ${ADMIN_USER} administrator --url="${DDEV_PRIMARY_URL}/site4"
 wp user set-role ${ADMIN_USER} administrator --url="${DDEV_PRIMARY_URL}/site5"
 
+wp plugin install user-switching --force --activate-network --version=1.7.0
+
 wp plugin activate hello --url="${DDEV_PRIMARY_URL}/site2"
 wp plugin activate hello --url="${DDEV_PRIMARY_URL}/site4"
 
