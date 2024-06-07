@@ -48,12 +48,14 @@ class Admin_Bar_Tweaks {
 				$awaiting_mod = wp_count_comments();
 				$awaiting_mod = $awaiting_mod->moderated;
 
+				// phpcs:ignore WordPress.WP.I18n.MissingArgDomain
 				$title = esc_html__( 'Manage Comments' )
 						. '<span class="ab-label awaiting-mod pending-count count-'
 						. (int) $awaiting_mod . '" style="margin-left:.2em">' . number_format_i18n( $awaiting_mod ) . '</span>';
 
 				$awaiting_title = esc_attr(
 					sprintf(
+						// phpcs:ignore WordPress.WP.I18n.MissingTranslatorsComment, WordPress.WP.I18n.MissingArgDomain
 						_n(
 							'%s comment awaiting moderation',
 							'%s comments awaiting moderation',

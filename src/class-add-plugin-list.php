@@ -121,13 +121,15 @@ class Add_Plugin_List {
 	 */
 	public function add_plugins_column( $columns ) {
 
-		// If not set, then no changes on output.
-		if ( ! array_key_exists( 'plugin_status', $_GET ) ) {
-			$_GET['plugin_status'] = '';
+		$status = '';
+		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( isset( $_GET['plugin_status'] ) ) {
+			//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$status = esc_attr( wp_unslash( sanitize_key( $_GET['plugin_status'] ) ) );
 		}
 
 		// Not useful on different selections.
-		if ( ! in_array( esc_attr( $_GET['plugin_status'] ), self::$excluded_plugin_status, true ) ) {
+		if ( ! in_array( $status, self::$excluded_plugin_status, true ) ) {
 			// Translators: Active in is the head of the table column on plugin list.
 			$columns['active_blogs'] = _x( 'Usage', 'column name', 'multisite-enhancements' );
 		}
@@ -145,7 +147,7 @@ class Add_Plugin_List {
 	 * @param  String $plugin_file Path to the plugin file.
 	 * @param  array  $plugin_data An array of plugin data.
 	 *
-	 * @return void
+	 * @return null
 	 */
 	public function manage_plugins_custom_column( $column_name, $plugin_file, $plugin_data ) {
 		if ( 'active_blogs' !== $column_name ) {
@@ -160,14 +162,14 @@ class Add_Plugin_List {
 		if ( $active_on_network ) {
 			// We don't need to check any further for network active plugins.
 			// Translators: The plugin is network wide active, the string is for each plugin possible.
-			$output .= __( '<span style="white-space:nowrap">Network Activated</span>', 'multisite-enhancements' );
+			$output .= '<span style="white-space:nowrap">' . __( 'Network Activated', 'multisite-enhancements' ) . '</span>';
 			// List Blogs, there is activated.
 		} else {
 			// Is this plugin active on any blogs in this network.
 			$active_on_blogs = $this->is_plugin_active_on_blogs( $plugin_file );
 			if ( ! $active_on_blogs ) {
 				// Translators: The plugin is not activated, the string is for each plugin possible.
-				$output .= __( '<span style="white-space:nowrap">Not Activated</span>', 'multisite-enhancements' );
+				$output .= '<span style="white-space:nowrap">' . __( 'Not Activated', 'multisite-enhancements' ) . '</span>';
 			} else {
 				$active_count   = count( $active_on_blogs );
 				$output        .= '<p>';
@@ -206,6 +208,7 @@ class Add_Plugin_List {
 					}
 					$output .= '<li' . $class . ' title="Blog ID: ' . $key . $hint . '">';
 					$output .= '<span class="non-breaking"><a href="' . get_admin_url( $key ) . 'plugins.php">'
+					//phpcs:ignore Universal.Operators.DisallowShortTernary.Found
 					. ( trim( $value['name'] ) ?: $value['path'] ) . '</a>' . $hint . '</span></li>';
 				}
 				$output .= '</ul>';
@@ -260,12 +263,12 @@ class Add_Plugin_List {
 	 */
 	public function get_blogs_plugins() {
 
-		// See if the data is present in the variable first.
 		if ( $this->blogs_plugins ) {
 			return $this->blogs_plugins;
+		}
 
-			// If not, see if we can load data from the transient.
-		} elseif ( false === ( $this->blogs_plugins = get_site_transient( self::$site_transient_blogs_plugins ) ) ) {
+		$this->blogs_plugins = get_site_transient( self::$site_transient_blogs_plugins );
+		if ( false === $this->blogs_plugins ) {
 
 			// Cannot load data from transient, so load from DB and set transient.
 			$this->blogs_plugins = array();

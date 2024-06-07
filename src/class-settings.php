@@ -131,6 +131,7 @@ class Settings {
 			return;
 		}
 
+		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( isset( $_GET['updated'] ) ) {
 			?>
 			<div id="message" class="updated notice is-dismissible">
@@ -231,7 +232,11 @@ class Settings {
 		// check the referer to make sure the data comes from our options page.
 		check_admin_referer( 'wpme_options-options' );
 
-		$options = $_POST['wpme_options'];
+		if ( ! isset( $_POST['wpme_options'] ) && ! is_array( $_POST['wpme_options'] ) ) {
+			return;
+		}
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$options = wp_unslash( $_POST['wpme_options'] );
 
 		foreach ( array_keys( self::$default_options ) as $key ) {
 			$options[ $key ] = (int) isset( $options[ $key ] );
@@ -239,7 +244,7 @@ class Settings {
 
 		update_site_option( self::OPTION_NAME, $options );
 
-		wp_redirect(
+		wp_safe_redirect(
 			add_query_arg(
 				array(
 					'page'    => 'wpme_config',

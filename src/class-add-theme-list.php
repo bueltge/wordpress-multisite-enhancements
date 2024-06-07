@@ -103,7 +103,7 @@ class Add_Theme_List {
 			'Multisite Enhancements: Theme usage information is not cached while WP_DEBUG is true.',
 			'multisite-enhancements'
 		);
-		printf( '<div class="%1$s"><p>%2$s</p></div>', $class, esc_attr( $message ) );
+		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_attr( $message ) );
 	}
 
 	/**
@@ -166,7 +166,7 @@ class Add_Theme_List {
 
 		if ( ! $active_on_blogs ) {
 			// Translators: The theme is not activated, the string is for each plugin possible.
-			$output .= __( '<span class="non-breaking">Not Activated</span>', 'multisite-enhancements' );
+			$output .= '<span class="non-breaking">' . __( 'Not Activated', 'multisite-enhancements' ) . '</span>';
 			$output .= $child_context;
 			$output .= $parent_context;
 		} else {
@@ -207,15 +207,18 @@ class Add_Theme_List {
 				$hint  = '';
 				if ( $this->is_archived( $key ) ) {
 					$class = ' class="site-archived"';
-					$hint  = ', ' . esc_attr__( 'Archived' );
+					//phpcs:ignore WordPress.WP.I18n.MissingArgDomain
+					$hint = ', ' . esc_attr__( 'Archived' );
 				}
 				if ( $this->is_deleted( $key ) ) {
 					$class = ' class="site-deleted"';
+					//phpcs:ignore WordPress.WP.I18n.MissingArgDomain
 					$hint .= ', ' . esc_attr__( 'Deleted' );
 				}
 
 				$output .= '<li' . $class . ' title="Blog ID: ' . $key . $hint . '">';
 				$output .= '<span class="non-breaking"><a href="' . get_admin_url( $key ) . 'themes.php">'
+				    //phpcs:ignore Universal.Operators.DisallowShortTernary.Found
 					. ( trim( $value['name'] ) ?: $value['path'] ) . '</a>' . $hint . '</span>';
 				$output .= '</li>';
 			}
@@ -265,12 +268,12 @@ class Add_Theme_List {
 	 */
 	public function get_blogs_themes() {
 
-		// See if the data is present in the variable first.
 		if ( $this->blogs_themes ) {
 			return $this->blogs_themes;
+		}
 
-			// If not, see if we can load data from the transient.
-		} elseif ( false === ( $this->blogs_themes = get_site_transient( self::$site_transient_blogs_themes ) ) ) {
+		$this->blogs_themes = get_site_transient( self::$site_transient_blogs_themes );
+		if ( false === $this->blogs_themes ) {
 
 			// Cannot load data from transient, so load from DB and set transient.
 			$this->blogs_themes = array();

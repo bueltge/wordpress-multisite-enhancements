@@ -77,7 +77,7 @@ class Core {
 				$limit = '';
 			}
 
-			// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery
+			// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 			$blogs = $wpdb->get_results(
 				$wpdb->prepare(
 					"
