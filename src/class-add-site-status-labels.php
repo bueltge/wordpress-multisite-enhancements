@@ -17,20 +17,7 @@ class Multisite_Add_Site_Status_labels {
 	/**
 	 * Initialize the class.
 	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			// phpcs:disable
-			$GLOBALS[ $class ] = new $class();
-		}
-	}
-
-	/**
-	 * Init function to register all used hooks.
-	 *
-	 * @since  2015-07-14
-	 */
-	public function __construct() {
+	public function init() {
 		if ( ! current_user_can( 'manage_network' ) ) {
 			return;
 		}

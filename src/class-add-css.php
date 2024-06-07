@@ -22,23 +22,12 @@
  */
 class Add_Css {
 
-	/**
-	 * Init function to register all used hooks.
-	 */
-	public function __construct() {
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_style' ) );
-	}
 
 	/**
 	 * Initialize the class.
 	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			// phpcs:disable
-			$GLOBALS[ $class ] = new $class();
-			// phpcs:enable
-		}
+	public function init() {
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_style' ) );
 	}
 
 	/**

@@ -17,21 +17,7 @@ class Multisite_Add_Blog_Id {
 	/**
 	 * Init the class.
 	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			// phpcs:disable
-			$GLOBALS[ $class ] = new $class();
-			// phpcs:enable
-		}
-	}
-
-	/**
-	 * Init function to register all used hooks.
-	 *
-	 * @since   0.0.1
-	 */
-	public function __construct() {
+	public function init() {
 		if ( ! is_network_admin() ) {
 			return;
 		}
@@ -47,6 +33,7 @@ class Multisite_Add_Blog_Id {
 		add_action( 'admin_print_styles-sites.php', array( $this, 'add_style' ) );
 		add_action( 'admin_print_styles-users.php', array( $this, 'add_style' ) );
 	}
+
 
 	/**
 	 * Echo the site id of each site.

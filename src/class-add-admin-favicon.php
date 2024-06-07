@@ -47,15 +47,11 @@ class Multisite_Add_Admin_Favicon {
 	 */
 	protected static $remove_wp_admin_bar = true;
 
+
 	/**
-	 * Init function to register all used hooks.
-	 *
-	 * Use the filter hook to add hooks, there will add the markup
-	 *     Hook: multisite_enhancements_favicon
-	 *
-	 * @since   0.0.2
+	 * Initialize the class.
 	 */
-	public function __construct() {
+	public function init() {
 
 		/**
 		 * Hooks for add favicon markup.
@@ -73,18 +69,6 @@ class Multisite_Add_Admin_Favicon {
 
 		// Remove admin bar item with "W" logo.
 		add_action( 'admin_bar_menu', array( $this, 'change_admin_bar_menu' ), 25 );
-	}
-
-	/**
-	 * Initialize the class.
-	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			// phpcs:disable
-			$GLOBALS[ $class ] = new $class();
-			// phpcs:enable
-		}
 	}
 
 	/**

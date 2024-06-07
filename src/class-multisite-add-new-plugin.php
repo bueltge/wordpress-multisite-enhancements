@@ -15,20 +15,7 @@ class Multisite_Add_New_Plugin {
 	/**
 	 * Init the class.
 	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			$GLOBALS[ $class ] = new $class();
-		}
-	}
-
-	/**
-	 * Init function to register all used hooks.
-	 *
-	 * @since   0.0.1
-	 */
-	public function __construct() {
-
+	public function init() {
 		// Only on each blog, not network admin.
 		if ( is_network_admin() ) {
 			return;

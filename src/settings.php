@@ -39,27 +39,17 @@ class Multisite_Enhancements_Settings {
 		'delete-settings'     => 1,
 	);
 
+
 	/**
-	 * Init function to register all used hooks.
+	 * Initialize the class.
 	 */
-	public function __construct() {
+	public function init() {
 		// Register settings.
 		add_action( 'admin_init', array( $this, 'settings_init' ) );
 		// Add menu item in the network Settings menu.
 		add_action( 'network_admin_menu', array( $this, 'add_settings_menu' ) );
 		// Register our custom URL to save the options.
 		add_action( 'network_admin_edit_wpme_update_settings', array( $this, 'update_settings' ) );
-	}
-
-	/**
-	 * Initialize the class.
-	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			// phpcs:disable
-			$GLOBALS[ $class ] = new $class();
-		}
 	}
 
 	/**
@@ -214,8 +204,8 @@ class Multisite_Enhancements_Settings {
 			<p>
 				<label>
 					<input type="checkbox" id="<?php echo esc_attr( $key ); ?>"
-						   name="wpme_options[<?php echo esc_attr( $key ); ?>]" <?php checked( $options[ $key ], 1 ); ?>
-						   value="1">
+							name="wpme_options[<?php echo esc_attr( $key ); ?>]" <?php checked( $options[ $key ], 1 ); ?>
+							value="1">
 					<?php echo esc_html( $description ); ?>
 				</label>
 			</p>
@@ -269,5 +259,4 @@ class Multisite_Enhancements_Settings {
 		);
 		exit;
 	}
-
 } // end class

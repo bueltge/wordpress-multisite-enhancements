@@ -14,14 +14,6 @@ namespace Bueltge\Admin_Bar_Tweaks;
  */
 class Multisite_Admin_Bar_Tweaks {
 
-
-	/**
-	 * Init function to register all used hooks.
-	 *
-	 * @since   0.0.1
-	 */
-	public function __construct() {     }
-
 	/**
 	 * Initialize this class.
 	 */

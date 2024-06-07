@@ -16,12 +16,6 @@ class Multisite_Core {
 	 * Init the class.
 	 */
 	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			// phpcs:disable
-			$GLOBALS[ $class ] = new $class();
-			// phpcs:enable
-		}
 	}
 
 	/**

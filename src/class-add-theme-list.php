@@ -62,11 +62,9 @@ class Multisite_Add_Theme_List {
 	private $blogs_themes;
 
 	/**
-	 * Init function to register all used hooks.
-	 *
-	 * @since   0.0.2
+	 * Initialize the class.
 	 */
-	public function __construct() {
+	public function init() {
 
 		// Delete transient on themes page.
 		add_action( 'load-themes.php', array( $this, 'development_helper' ) );
@@ -90,17 +88,6 @@ class Multisite_Add_Theme_List {
 		add_action( 'manage_themes_custom_column', array( $this, 'manage_themes_custom_column' ), 10, 3 );
 
 		add_action( 'update_site_option_allowedthemes', array( $this, 'clear_themes_site_transient' ), 10, 1 );
-	}
-
-	/**
-	 * Initialize the class.
-	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			// phpcs:disable
-			$GLOBALS[ $class ] = new $class();
-		}
 	}
 
 	/**
@@ -136,13 +123,12 @@ class Multisite_Add_Theme_List {
 	 * Get data for each row on each theme.
 	 * Print the string about the usage.
 	 *
-	 * @param String $column_name Name of the column.
-	 * @param String $theme_key Path to the theme file.
+	 * @param String          $column_name Name of the column.
+	 * @param String          $theme_key Path to the theme file.
 	 * @param array|\WP_Theme $theme_data An array of theme data.
 	 *
 	 * @return null
 	 * @since   0.0.2
-	 *
 	 */
 	public function manage_themes_custom_column( $column_name, $theme_key, \WP_Theme $theme_data ) {
 		if ( 'active_blogs' !== $column_name ) {
@@ -187,7 +173,7 @@ class Multisite_Add_Theme_List {
 
 			$is_list_hidden = false;
 			// Hide the list of sites if the class isn"t loaded or there's less or equal to 4 sites.
-			if ( class_exists( 'Add_Css', false ) && $active_count > 4 ) {
+			if ( class_exists( Add_Css::class, false ) && $active_count > 4 ) {
 				$output .= sprintf(
 					// Translators: The placeholder will be replaced by the count and the toggle link of sites there use that themes.
 					_n(
@@ -216,7 +202,7 @@ class Multisite_Add_Theme_List {
 
 				// Check the site for archived and deleted.
 				$class = '';
-				$hint = '';
+				$hint  = '';
 				if ( $this->is_archived( $key ) ) {
 					$class = ' class="site-archived"';
 					$hint  = ', ' . esc_attr__( 'Archived' );

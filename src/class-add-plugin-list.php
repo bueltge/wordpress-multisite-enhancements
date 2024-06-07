@@ -67,11 +67,9 @@ class Multisite_Add_Plugin_List {
 	private $blogs_plugins;
 
 	/**
-	 * Init function to register all used hooks.
-	 *
-	 * @since   0.0.1
+	 * Initialize the class.
 	 */
-	public function __construct() {
+	public function init() {
 		add_action( 'load-plugins.php', array( $this, 'development_helper' ) );
 
 		// Fires after a plugin has been activated; but not on silently activated, like update.
@@ -92,18 +90,6 @@ class Multisite_Add_Plugin_List {
 
 		add_filter( 'manage_plugins-network_columns', array( $this, 'add_plugins_column' ), 10, 1 );
 		add_action( 'manage_plugins_custom_column', array( $this, 'manage_plugins_custom_column' ), 10, 3 );
-	}
-
-	/**
-	 * Initialize the class.
-	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			// phpcs:disable
-			$GLOBALS[ $class ] = new $class();
-			// phpcs:enable
-		}
 	}
 
 	/**
@@ -185,7 +171,7 @@ class Multisite_Add_Plugin_List {
 				$output        .= '<p>';
 				$is_list_hidden = false;
 				// Hide the list of sites if the class isn"t loaded or there's less or equal to 4 sites.
-				if ( $active_count > 4 && class_exists( 'Add_Css', false ) ) {
+				if ( $active_count > 4 && class_exists( Add_Css::class, false ) ) {
 					$output .= sprintf(
 						// Translators: The placeholder will be replaced by the count and the toggle link of sites there use that plugin.
 						_n( 'Active on %2$s %1$d site %3$s', 'Active on %2$s %1$d sites %3$s', $active_count, 'multisite-enhancements' ),

@@ -44,25 +44,7 @@ class Multisite_Change_Footer_Text {
 	/**
 	 * Initialize the class.
 	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			// phpcs:disable
-			$GLOBALS[ $class ] = new $class();
-			// phpcs:enable
-		}
-	}
-
-	/**
-	 * Init function to register all used hooks.
-	 *
-	 * Use the filter hook to change capability to view the new text on admin footer
-	 *     Hook: multisite_enhancements_admin_footer_text_capability
-	 *
-	 * @since   0.0.2
-	 */
-	public function __construct() {
-
+	public function init() {
 		/**
 		 * Use this filter to change capability to view the new text on admin footer.
 		 *

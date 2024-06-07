@@ -32,14 +32,6 @@ class Multisite_Add_Ssh_Identifier {
 	}
 
 	/**
-	 * Constructor.
-	 *
-	 * Multisite_Add_Ssh_Identifier constructor.
-	 */
-	public function __construct() {
-	}
-
-	/**
 	 * Determines if SSL is used.
 	 *
 	 * @param  integer $blog_id Id of the blog.
