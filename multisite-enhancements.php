@@ -102,6 +102,12 @@ class Multisite_Enhancements {
 			'change-footer'       => array( 'init' => array( 'Multisite_Change_Footer_Text', 'init' ) ),
 			'filtering-themes'    => array( 'admin_init' => array( 'Filtering_Themes', 'init' ) ),
 			'add-new-plugin'      => array( 'init' => array( 'Multisite_Add_New_Plugin', 'init' ) ),
+			'add-user-last-login' => array(
+				'init' => function () {
+					$multisite_add_user_last_login = new Bueltge\User_Last_Login\Add_User_Last_Login();
+					$multisite_add_user_last_login->init();
+				},
+			),
 		);
 
 		foreach ( $modules as $id => $hooks ) {
