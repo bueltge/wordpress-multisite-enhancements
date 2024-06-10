@@ -18,7 +18,7 @@ class Admin_Bar_Tweaks {
 	 * Initialize this class.
 	 */
 	public function init() {
-		add_action( 'init', array( $this, 'enhance_network_blog_admin_bar' ) );
+		add_action( 'admin_bar_menu', array( $this, 'enhance_network_blog_admin_bar' ), 500 );
 	}
 
 	/**
@@ -26,13 +26,12 @@ class Admin_Bar_Tweaks {
 	 *
 	 * Add new 'Manage Comment' Item with count of comments, there wait for moderate
 	 *
+	 * @param \WP_Admin_Bar $wp_admin_bar The admin bar object.
+	 *
 	 * @since   0.0.1
 	 */
-	public function enhance_network_blog_admin_bar() {
-		/**
-		 * The Toolbar API class.
-		 */
-		global $wp_admin_bar;
+	public function enhance_network_blog_admin_bar( \WP_Admin_Bar $wp_admin_bar ) {
+
 		if ( ! isset( $wp_admin_bar->user->blogs ) || ! Settings::is_feature_enabled( 'add-manage-comments' ) ) {
 			return;
 		}
