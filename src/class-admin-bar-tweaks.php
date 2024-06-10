@@ -39,20 +39,19 @@ class Admin_Bar_Tweaks {
 		foreach ( (array) $wp_admin_bar->user->blogs as $blog ) {
 			switch_to_blog( $blog->userblog_id );
 
-			$menu_id = 'blog-' . $blog->userblog_id;
+			$menu_id = 'blog-' . $blog->userblog_id . '-c';
 
 			if ( current_user_can( 'edit_posts' ) ) {
-				$wp_admin_bar->remove_node( $menu_id . '-c' );
+				$comment_node = $wp_admin_bar->get_node( $menu_id );
 
 				$awaiting_mod = wp_count_comments();
 				$awaiting_mod = $awaiting_mod->moderated;
 
 				// phpcs:ignore WordPress.WP.I18n.MissingArgDomain
-				$title = esc_html__( 'Manage Comments' )
-						. '<span class="ab-label awaiting-mod pending-count count-'
+				$comment_node->title .= '<span class="ab-label awaiting-mod pending-count count-'
 						. (int) $awaiting_mod . '" style="margin-left:.2em">' . number_format_i18n( $awaiting_mod ) . '</span>';
 
-				$awaiting_title = esc_attr(
+				$comment_node->meta['title'] = esc_attr(
 					sprintf(
 						// phpcs:ignore WordPress.WP.I18n.MissingTranslatorsComment, WordPress.WP.I18n.MissingArgDomain
 						_n(
@@ -64,15 +63,7 @@ class Admin_Bar_Tweaks {
 					)
 				);
 
-				$wp_admin_bar->add_menu(
-					array(
-						'parent' => $menu_id,
-						'id'     => $menu_id . '-comments',
-						'title'  => $title,
-						'href'   => admin_url( 'edit-comments.php' ),
-						'meta'   => array( 'title' => $awaiting_title ),
-					)
-				);
+				$wp_admin_bar->add_node( (array) $comment_node );
 			}
 
 			restore_current_blog();
