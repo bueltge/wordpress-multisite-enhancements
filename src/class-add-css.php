@@ -13,7 +13,7 @@
  * @package multisite-enhancements
  */
 
-add_action( 'init', array( 'Add_Css', 'init' ) );
+namespace Multisite_Enhancements;
 
 /**
  * On the network plugin and theme pages, add css to present the active column
@@ -24,23 +24,12 @@ add_action( 'init', array( 'Add_Css', 'init' ) );
  */
 class Add_Css {
 
-	/**
-	 * Init function to register all used hooks.
-	 */
-	public function __construct() {
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_style' ) );
-	}
 
 	/**
 	 * Initialize the class.
 	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			// phpcs:disable
-			$GLOBALS[ $class ] = new $class();
-			// phpcs:enable
-		}
+	public function init() {
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_style' ) );
 	}
 
 	/**
@@ -62,5 +51,4 @@ class Add_Css {
 		);
 		wp_enqueue_style( 'admin_column_css' );
 	}
-
 } // end class

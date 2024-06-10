@@ -17,15 +17,15 @@
  *
  * @since   2013-07-23
  * @version 2016-10-28
- * @package WordPress
+ * @package multisite-enhancements
  */
 
-add_action( 'init', array( 'Multisite_Change_Footer_Text', 'init' ) );
+namespace Multisite_Enhancements;
 
 /**
- * Class Multisite_Change_Footer_Text
+ * Class Change_Footer_Text
  */
-class Multisite_Change_Footer_Text {
+class Change_Footer_Text {
 
 	/**
 	 * Define the capability to view the new admin footer text.
@@ -33,38 +33,12 @@ class Multisite_Change_Footer_Text {
 	 * @since  0.0.2
 	 * @var    String
 	 */
-	protected static $capability = 'manage_options';
-
-	/**
-	 * Filter to reset admin footer message.
-	 *
-	 * @since  0.0.2
-	 * @var    Boolean
-	 */
-	protected static $reset_footer_text = true;
+	const CAPABILITY = 'manage_options';
 
 	/**
 	 * Initialize the class.
 	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			// phpcs:disable
-			$GLOBALS[ $class ] = new $class();
-			// phpcs:enable
-		}
-	}
-
-	/**
-	 * Init function to register all used hooks.
-	 *
-	 * Use the filter hook to change capability to view the new text on admin footer
-	 *     Hook: multisite_enhancements_admin_footer_text_capability
-	 *
-	 * @since   0.0.2
-	 */
-	public function __construct() {
-
+	public function init() {
 		/**
 		 * Use this filter to change capability to view the new text on admin footer.
 		 *
@@ -72,7 +46,7 @@ class Multisite_Change_Footer_Text {
 		 */
 		$capability = apply_filters(
 			'multisite_enhancements_admin_footer_text_capability',
-			self::$capability
+			self::CAPABILITY
 		);
 
 		// Get default content for non admins.
@@ -103,7 +77,7 @@ class Multisite_Change_Footer_Text {
 		 */
 		if ( apply_filters(
 			'multisite_enhancements_reset_admin_footer_text',
-			self::$reset_footer_text
+			true
 		)
 		) {
 			$footer_text = '';
@@ -148,5 +122,4 @@ class Multisite_Change_Footer_Text {
 		 */
 		return apply_filters( 'multisite_enhancements_admin_footer_text', $footer_text );
 	}
-
 } // end class

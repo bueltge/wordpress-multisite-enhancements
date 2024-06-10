@@ -22,14 +22,14 @@
  * @package multisite-enhancements
  */
 
-add_action( 'init', array( 'Multisite_Add_Admin_Favicon', 'init' ) );
+namespace Multisite_Enhancements;
 
 /**
  * Add Favicon from theme folder to the admin area to easier identify the blog.
  *
- * Class Multisite_Add_Admin_Favicon
+ * Class Add_Admin_Favicon
  */
-class Multisite_Add_Admin_Favicon {
+class Add_Admin_Favicon {
 
 	/**
 	 * Define Hooks for add the favicon markup.
@@ -37,34 +37,22 @@ class Multisite_Add_Admin_Favicon {
 	 * @since 0.0.2
 	 * @var   array
 	 */
-	protected static $favicon_hooks = array(
+	const FAVICON_HOOKS = array(
 		'admin_head',
 		'wp_head',
 	);
-	/**
-	 * Filter to remove "W" logo incl. sublinks from admin bar.
-	 *
-	 * @since 0.0.2
-	 * @var   Boolean
-	 */
-	protected static $remove_wp_admin_bar = true;
 
 	/**
-	 * Init function to register all used hooks.
-	 *
-	 * Use the filter hook to add hooks, there will add the markup
-	 *     Hook: multisite_enhancements_favicon
-	 *
-	 * @since   0.0.2
+	 * Initialize the class.
 	 */
-	public function __construct() {
+	public function init() {
 
 		/**
 		 * Hooks for add favicon markup.
 		 *
-		 * @type array
+		 * @type array of filters
 		 */
-		$hooks = (array) apply_filters( 'multisite_enhancements_favicon', self::$favicon_hooks );
+		$hooks = (array) apply_filters( 'multisite_enhancements_favicon', self::FAVICON_HOOKS );
 
 		foreach ( $hooks as $hook ) {
 			add_action( esc_attr( $hook ), array( $this, 'set_favicon' ) );
@@ -78,18 +66,6 @@ class Multisite_Add_Admin_Favicon {
 	}
 
 	/**
-	 * Initialize the class.
-	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			// phpcs:disable
-			$GLOBALS[ $class ] = new $class();
-			// phpcs:enable
-		}
-	}
-
-	/**
 	 * Create markup, if favicon is exist in active theme folder.
 	 *
 	 * Use the filter hook to change style
@@ -98,7 +74,7 @@ class Multisite_Add_Admin_Favicon {
 	 * @since   0.0.2
 	 */
 	public function set_favicon() {
-		if ( ! Multisite_Enhancements_Settings::is_feature_enabled( 'add-favicon' ) ) {
+		if ( ! Settings::is_feature_enabled( 'add-favicon' ) ) {
 			return;
 		}
 
@@ -181,7 +157,7 @@ class Multisite_Add_Admin_Favicon {
 
 		// Only usable if the feature is enabled, the user is logged in and use the admin bar.
 		if ( ! is_user_logged_in() || ! is_admin_bar_showing() ||
-			 ! Multisite_Enhancements_Settings::is_feature_enabled( 'add-favicon' ) ) {
+			! Settings::is_feature_enabled( 'add-favicon' ) ) {
 			return;
 		}
 		$user_id    = get_current_user_id();
@@ -212,7 +188,7 @@ class Multisite_Add_Admin_Favicon {
 			if ( 0 !== $site_icon_id ) {
 				switch_to_blog( $blog_id );
 				$url_data = wp_get_attachment_image_src( $site_icon_id, array( 32, 32 ) );
-				if ( $url_data !== false && ! is_null( $url_data[0] ) ) {
+				if ( false !== $url_data && ! is_null( $url_data[0] ) ) {
 					$custom_icon = esc_url( $url_data[0] );
 				}
 				restore_current_blog();
@@ -258,7 +234,7 @@ class Multisite_Add_Admin_Favicon {
 	 * Use the filter hook to change the default to remove the "W" logo and his sublinks
 	 *     Hook: multisite_enhancements_remove_wp_admin_bar
 	 *
-	 * @param WP_Admin_Bar $admin_bar WP_Admin_Bar instance, passed by reference.
+	 * @param \WP_Admin_Bar $admin_bar WP_Admin_Bar instance, passed by reference.
 	 *
 	 * @since   0.0.2
 	 */
@@ -269,14 +245,13 @@ class Multisite_Add_Admin_Favicon {
 		 *
 		 * @type bool
 		 */
-		if ( Multisite_Enhancements_Settings::is_feature_enabled( 'remove-logo' ) &&
+		if ( Settings::is_feature_enabled( 'remove-logo' ) &&
 			apply_filters(
 				'multisite_enhancements_remove_wp_admin_bar',
-				self::$remove_wp_admin_bar
+				true
 			)
 		) {
 			$admin_bar->remove_node( 'wp-logo' );
 		}
 	}
-
 } // end class

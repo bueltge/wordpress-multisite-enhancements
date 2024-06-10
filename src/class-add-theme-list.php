@@ -7,14 +7,14 @@
  * @package multisite-enhancement
  */
 
-add_action( 'init', array( 'Multisite_Add_Theme_List', 'init' ) );
+namespace Multisite_Enhancements;
 
 /**
  * On the network theme page, show which blog have the theme active.
  *
- * Class Multisite_Add_Theme_List
+ * Class Add_Theme_List
  */
-class Multisite_Add_Theme_List {
+class Add_Theme_List {
 
 	/**
 	 * String for the transient string, there save the blog themes.
@@ -22,13 +22,13 @@ class Multisite_Add_Theme_List {
 	 * @since  2015-02-21
 	 * @var    string
 	 */
-	protected static $site_transient_blogs_themes = 'blogs_themes';
+	const SITE_TRANSIENT_BLOGS_THEMES = 'blogs_themes';
 	/**
 	 * Define the allowed html tags for wp_kses.
 	 *
 	 * @var array
 	 */
-	protected static $wp_kses_allowed_html = array(
+	const WP_KSES_ALLOWED_HTML = array(
 		'br'   => array(),
 		'span' => array(
 			'class' => array(),
@@ -64,11 +64,9 @@ class Multisite_Add_Theme_List {
 	private $blogs_themes;
 
 	/**
-	 * Init function to register all used hooks.
-	 *
-	 * @since   0.0.2
+	 * Initialize the class.
 	 */
-	public function __construct() {
+	public function init() {
 
 		// Delete transient on themes page.
 		add_action( 'load-themes.php', array( $this, 'development_helper' ) );
@@ -95,17 +93,6 @@ class Multisite_Add_Theme_List {
 	}
 
 	/**
-	 * Initialize the class.
-	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			// phpcs:disable
-			$GLOBALS[ $class ] = new $class();
-		}
-	}
-
-	/**
 	 * Print Network Admin Notices to inform, that the transient are deleted.
 	 *
 	 * @since 2016-10-23
@@ -116,7 +103,7 @@ class Multisite_Add_Theme_List {
 			'Multisite Enhancements: Theme usage information is not cached while WP_DEBUG is true.',
 			'multisite-enhancements'
 		);
-		printf( '<div class="%1$s"><p>%2$s</p></div>', $class, esc_attr( $message ) );
+		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_attr( $message ) );
 	}
 
 	/**
@@ -138,13 +125,12 @@ class Multisite_Add_Theme_List {
 	 * Get data for each row on each theme.
 	 * Print the string about the usage.
 	 *
-	 * @param String $column_name Name of the column.
-	 * @param String $theme_key Path to the theme file.
+	 * @param String          $column_name Name of the column.
+	 * @param String          $theme_key Path to the theme file.
 	 * @param array|\WP_Theme $theme_data An array of theme data.
 	 *
 	 * @return null
 	 * @since   0.0.2
-	 *
 	 */
 	public function manage_themes_custom_column( $column_name, $theme_key, \WP_Theme $theme_data ) {
 		if ( 'active_blogs' !== $column_name ) {
@@ -180,7 +166,7 @@ class Multisite_Add_Theme_List {
 
 		if ( ! $active_on_blogs ) {
 			// Translators: The theme is not activated, the string is for each plugin possible.
-			$output .= __( '<span class="non-breaking">Not Activated</span>', 'multisite-enhancements' );
+			$output .= '<span class="non-breaking">' . __( 'Not Activated', 'multisite-enhancements' ) . '</span>';
 			$output .= $child_context;
 			$output .= $parent_context;
 		} else {
@@ -189,7 +175,7 @@ class Multisite_Add_Theme_List {
 
 			$is_list_hidden = false;
 			// Hide the list of sites if the class isn"t loaded or there's less or equal to 4 sites.
-			if ( class_exists( 'Add_Css', false ) && $active_count > 4 ) {
+			if ( class_exists( Add_Css::class, false ) && $active_count > 4 ) {
 				$output .= sprintf(
 					// Translators: The placeholder will be replaced by the count and the toggle link of sites there use that themes.
 					_n(
@@ -218,18 +204,21 @@ class Multisite_Add_Theme_List {
 
 				// Check the site for archived and deleted.
 				$class = '';
-				$hint = '';
+				$hint  = '';
 				if ( $this->is_archived( $key ) ) {
 					$class = ' class="site-archived"';
-					$hint  = ', ' . esc_attr__( 'Archived' );
+					//phpcs:ignore WordPress.WP.I18n.MissingArgDomain
+					$hint = ', ' . esc_attr__( 'Archived' );
 				}
 				if ( $this->is_deleted( $key ) ) {
 					$class = ' class="site-deleted"';
+					//phpcs:ignore WordPress.WP.I18n.MissingArgDomain
 					$hint .= ', ' . esc_attr__( 'Deleted' );
 				}
 
 				$output .= '<li' . $class . ' title="Blog ID: ' . $key . $hint . '">';
 				$output .= '<span class="non-breaking"><a href="' . get_admin_url( $key ) . 'themes.php">'
+				    //phpcs:ignore Universal.Operators.DisallowShortTernary.Found
 					. ( trim( $value['name'] ) ?: $value['path'] ) . '</a>' . $hint . '</span>';
 				$output .= '</li>';
 			}
@@ -239,7 +228,7 @@ class Multisite_Add_Theme_List {
 			$output .= $parent_context;
 		}
 
-		echo wp_kses( $output, self::$wp_kses_allowed_html );
+		echo wp_kses( $output, self::WP_KSES_ALLOWED_HTML );
 	}
 
 	/**
@@ -279,17 +268,21 @@ class Multisite_Add_Theme_List {
 	 */
 	public function get_blogs_themes() {
 
-		// See if the data is present in the variable first.
 		if ( $this->blogs_themes ) {
 			return $this->blogs_themes;
+		}
 
-			// If not, see if we can load data from the transient.
-		} elseif ( false === ( $this->blogs_themes = get_site_transient( self::$site_transient_blogs_themes ) ) ) {
+		$this->blogs_themes = get_site_transient( self::SITE_TRANSIENT_BLOGS_THEMES );
+		if ( false === $this->blogs_themes ) {
 
 			// Cannot load data from transient, so load from DB and set transient.
 			$this->blogs_themes = array();
 
-			$blogs = (array) Multisite_Core::get_blog_list( 0, $this->sites_limit );
+			$blogs = (array) get_sites(
+				array(
+					'number' => $this->sites_limit,
+				)
+			);
 
 			/**
 			 * Data to each site of the network, blogs.
@@ -320,7 +313,7 @@ class Multisite_Add_Theme_List {
 			}
 
 			if ( ! $this->development_helper() ) {
-				set_site_transient( self::$site_transient_blogs_themes, $this->blogs_themes );
+				set_site_transient( self::SITE_TRANSIENT_BLOGS_THEMES, $this->blogs_themes );
 			}
 		}
 
@@ -351,17 +344,17 @@ class Multisite_Add_Theme_List {
 	 * @since 2015-02-21
 	 */
 	public function clear_themes_site_transient() {
-		delete_site_transient( self::$site_transient_blogs_themes );
+		delete_site_transient( self::SITE_TRANSIENT_BLOGS_THEMES );
 	}
 
 	/**
 	 * Check, the current theme have a parent value and is a child theme.
 	 *
-	 * @param array|WP_Theme $theme_data An array of theme data.
+	 * @param \WP_Theme $theme_data An array of theme data.
 	 *
 	 * @return bool
 	 */
-	public function is_child( WP_Theme $theme_data ) {
+	public function is_child( \WP_Theme $theme_data ) {
 		return (bool) $theme_data->parent();
 	}
 

@@ -3,10 +3,10 @@
  * Add simple javascript to filter the theme list on network and single site theme page of WordPress back end.
  *
  * @since   2016-10-05
- * @package WordPress
+ * @package multisite-enhancements
  */
 
-add_action( 'admin_init', array( 'Filtering_Themes', 'init' ) );
+namespace Multisite_Enhancements;
 
 /**
  * Class Filtering_Themes
@@ -16,19 +16,10 @@ class Filtering_Themes {
 	/**
 	 * Init the class.
 	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			$GLOBALS[ $class ] = new $class();
-		}
-	}
-
-	/**
-	 * Filtering_Plugins constructor.
-	 */
-	public function __construct() {
+	public function init() {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_script' ) );
 	}
+
 
 	/**
 	 * Enqueue scripts.

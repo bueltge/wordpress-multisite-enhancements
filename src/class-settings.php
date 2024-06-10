@@ -6,12 +6,12 @@
  * @package multisite-enhancements
  */
 
-add_action( 'init', array( 'Multisite_Enhancements_Settings', 'init' ) );
+namespace Multisite_Enhancements;
 
 /**
- * Class Multisite_Enhancements_Settings
+ * Class Settings
  */
-class Multisite_Enhancements_Settings {
+class Settings {
 
 	/**
 	 * Database option name
@@ -24,7 +24,7 @@ class Multisite_Enhancements_Settings {
 	 *
 	 * @var int[]
 	 */
-	protected static $default_options = array(
+	const DEFAULT_OPTIONS = array(
 		'remove-logo'         => 1,
 		'add-favicon'         => 1,
 		'add-blog-id'         => 1,
@@ -35,15 +35,17 @@ class Multisite_Enhancements_Settings {
 		'add-ssl-identifier'  => 1,
 		'add-manage-comments' => 1,
 		'add-new-plugin'      => 1,
+		'add-user-last-login' => 1,
 		'filtering-themes'    => 1,
 		'change-footer'       => 1,
 		'delete-settings'     => 1,
 	);
 
+
 	/**
-	 * Init function to register all used hooks.
+	 * Initialize the class.
 	 */
-	public function __construct() {
+	public function init() {
 		// Register settings.
 		add_action( 'admin_init', array( $this, 'settings_init' ) );
 		// Add menu item in the network Settings menu.
@@ -53,20 +55,9 @@ class Multisite_Enhancements_Settings {
 	}
 
 	/**
-	 * Initialize the class.
-	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			// phpcs:disable
-			$GLOBALS[ $class ] = new $class();
-		}
-	}
-
-	/**
 	 * Check if a feature is enabled
 	 *
-	 * @param string $key Key of desired setting to check
+	 * @param string $key Key of desired setting to check.
 	 *
 	 * @return boolean
 	 */
@@ -82,29 +73,25 @@ class Multisite_Enhancements_Settings {
 			return;
 		}
 
-		// register database option
 		register_setting(
-			'wpme_options',        // group name, used in settings_fields() call
-			self::OPTION_NAME   // database option name
+			'wpme_options',
+			self::OPTION_NAME
 		);
 
-		// register configuration page section
 		add_settings_section(
-			'wpme_general',        // unique ID
-			esc_html__( 'General configuration', 'multisite-enhancements' ),    // section title
-			array( $this, 'settings_section_callback' ),                // callback to render the section's HTML
-			'wpme_config'        // config page slug - used in do_settings_sections() call
+			'wpme_general',
+			esc_html__( 'General configuration', 'multisite-enhancements' ),
+			array( $this, 'settings_section_callback' ),
+			'wpme_config'
 		);
-
-		// register form field groups
 
 		add_settings_field(
-			'enable_features',     // unique ID
-			esc_html__( 'Plugin features', 'multisite-enhancements' ),    // field label
+			'enable_features',
+			esc_html__( 'Plugin features', 'multisite-enhancements' ),
 			array( $this, 'settings_fields_callback' ),
-			'wpme_config',        // config page slug
-			'wpme_general',        // section ID where the field will be shown
-			array(                // arguments passed to the callback function ('label_for' and 'class' go here, when needed)
+			'wpme_config',
+			'wpme_general',
+			array(
 				'group' => 'features',
 			)
 		);
@@ -144,7 +131,7 @@ class Multisite_Enhancements_Settings {
 			return;
 		}
 
-		// check if coming from the update function
+		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( isset( $_GET['updated'] ) ) {
 			?>
 			<div id="message" class="updated notice is-dismissible">
@@ -152,17 +139,13 @@ class Multisite_Enhancements_Settings {
 			<?php
 		}
 
-		// render the header and form - notice the form 'action' which points to our custom URL
 		?>
 		<div class="wrap">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 			<form action="edit.php?action=wpme_update_settings" method="post">
 				<?php
-				// output security fields for our registered setting
 				settings_fields( 'wpme_options' );
-				// output setting sections and their fields
 				do_settings_sections( 'wpme_config' );
-				// output save settings button
 				submit_button( __( 'Save settings', 'multisite-enhancements' ) );
 				?>
 			</form>
@@ -173,7 +156,7 @@ class Multisite_Enhancements_Settings {
 	/**
 	 * Configuration sections callback
 	 *
-	 * @param array $args array with following keys: title, id, callback - defined by add_settings_section()
+	 * @param array $args array with following keys: title, id, callback - defined by add_settings_section().
 	 */
 	public function settings_section_callback( $args ) {
 		if ( 'wpme_general' === $args['id'] ) {
@@ -184,7 +167,7 @@ class Multisite_Enhancements_Settings {
 	/**
 	 * Configuration fields callback
 	 *
-	 * @param array $args arguments defined by add_settings_field()
+	 * @param array $args arguments defined by add_settings_field().
 	 */
 	public function settings_fields_callback( $args ) {
 		$settings = array(
@@ -199,6 +182,7 @@ class Multisite_Enhancements_Settings {
 				'add-ssl-identifier'  => esc_html__( 'Add an icon to identify the SSL protocol on each site in the network Sites page', 'multisite-enhancements' ),
 				'add-manage-comments' => esc_html__( 'Add new "Manage Comments" item with count of comments waiting for moderation in "My Sites" menu', 'multisite-enhancements' ),
 				'add-new-plugin'      => esc_html__( 'Enables an "Add New" link under the Plugins menu of each blog, for network admins', 'multisite-enhancements' ),
+				'add-user-last-login' => esc_html__( 'Recorde last logins and add displaying of last login to admin user list', 'multisite-enhancements' ),
 				'filtering-themes'    => esc_html__( 'Add simple javascript to filter the theme list on network and single site theme page of WordPress backend', 'multisite-enhancements' ),
 				'change-footer'       => esc_html__( 'Enhance the admin footer text with RAM, SQL queries and PHP version information', 'multisite-enhancements' ),
 			),
@@ -214,8 +198,8 @@ class Multisite_Enhancements_Settings {
 			<p>
 				<label>
 					<input type="checkbox" id="<?php echo esc_attr( $key ); ?>"
-						   name="wpme_options[<?php echo esc_attr( $key ); ?>]" <?php checked( $options[ $key ], 1 ); ?>
-						   value="1">
+							name="wpme_options[<?php echo esc_attr( $key ); ?>]" <?php checked( $options[ $key ], 1 ); ?>
+							value="1">
 					<?php echo esc_html( $description ); ?>
 				</label>
 			</p>
@@ -226,13 +210,13 @@ class Multisite_Enhancements_Settings {
 	/**
 	 * Load settings from database and merge them with default values
 	 *
-	 * @param string [ $key] Key of an specific setting desired (optional).
+	 * @param string $key Key of an specific setting desired (optional).
 	 *
 	 * @return string|array Value of setting selected by $key or full array of settings.
 	 */
 	public static function get_settings( $key = null ) {
 		$options = get_site_option( self::OPTION_NAME );
-		$options = wp_parse_args( $options, self::$default_options );
+		$options = wp_parse_args( $options, self::DEFAULT_OPTIONS );
 
 		if ( isset( $key ) ) {
 			return $options[ $key ];
@@ -248,17 +232,19 @@ class Multisite_Enhancements_Settings {
 		// check the referer to make sure the data comes from our options page.
 		check_admin_referer( 'wpme_options-options' );
 
-		$options = $_POST['wpme_options'];
+		if ( ! isset( $_POST['wpme_options'] ) && ! is_array( $_POST['wpme_options'] ) ) {
+			return;
+		}
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$options = wp_unslash( $_POST['wpme_options'] );
 
-		foreach ( array_keys( self::$default_options ) as $key ) {
+		foreach ( array_keys( self::DEFAULT_OPTIONS ) as $key ) {
 			$options[ $key ] = (int) isset( $options[ $key ] );
 		}
 
-		// update option on database
 		update_site_option( self::OPTION_NAME, $options );
 
-		// redirect back to our options page
-		wp_redirect(
+		wp_safe_redirect(
 			add_query_arg(
 				array(
 					'page'    => 'wpme_config',
@@ -269,5 +255,4 @@ class Multisite_Enhancements_Settings {
 		);
 		exit;
 	}
-
 } // end class

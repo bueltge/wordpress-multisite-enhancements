@@ -8,32 +8,18 @@
  * @package multisite-enhancements
  */
 
-add_action( 'init', array( 'Multisite_Add_Blog_Id', 'init' ) );
+namespace Multisite_Enhancements;
 
 /**
  * View Blog and User ID in WordPress Multisite.
- * Class Multisite_Add_Blog_Id
+ * Class Add_Blog_Id
  */
-class Multisite_Add_Blog_Id {
+class Add_Blog_Id {
 
 	/**
 	 * Init the class.
 	 */
-	public static function init() {
-		$class = __CLASS__;
-		if ( empty( $GLOBALS[ $class ] ) ) {
-			// phpcs:disable
-			$GLOBALS[ $class ] = new $class();
-			// phpcs:enable
-		}
-	}
-
-	/**
-	 * Init function to register all used hooks.
-	 *
-	 * @since   0.0.1
-	 */
-	public function __construct() {
+	public function init() {
 		if ( ! is_network_admin() ) {
 			return;
 		}
@@ -49,6 +35,7 @@ class Multisite_Add_Blog_Id {
 		add_action( 'admin_print_styles-sites.php', array( $this, 'add_style' ) );
 		add_action( 'admin_print_styles-users.php', array( $this, 'add_style' ) );
 	}
+
 
 	/**
 	 * Echo the site id of each site.
@@ -102,5 +89,4 @@ class Multisite_Add_Blog_Id {
 	public function add_style() {
 		echo '<style>#object_id { width:7%; }</style>';
 	}
-
 } // end class

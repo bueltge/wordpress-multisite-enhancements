@@ -7,22 +7,12 @@
  * @package multisite-enhancements
  */
 
-namespace Bueltge\Multisite_Add_Ssh_Identifier;
-
-add_action( 'admin_init', __NAMESPACE__ . '\\bootstrap' );
+namespace Multisite_Enhancements;
 
 /**
- * Create the instance of this class.
+ * Class Add_Ssh_Identifier
  */
-function bootstrap() {
-	$multisite_add_ssh_identifier = new Multisite_Add_Ssh_Identifier();
-	$multisite_add_ssh_identifier->init();
-}
-
-/**
- * Class Multisite_Add_Ssh_Identifier
- */
-class Multisite_Add_Ssh_Identifier {
+class Add_Ssh_Identifier {
 
 	/**
 	 * Set column name to identifier the column.
@@ -40,13 +30,6 @@ class Multisite_Add_Ssh_Identifier {
 
 		add_action( 'admin_print_styles-sites.php', array( $this, 'add_style' ) );
 	}
-
-	/**
-	 * Constructor.
-	 *
-	 * Multisite_Add_Ssh_Identifier constructor.
-	 */
-	public function __construct() {}
 
 	/**
 	 * Determines if SSL is used.
