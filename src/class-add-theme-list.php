@@ -22,13 +22,13 @@ class Add_Theme_List {
 	 * @since  2015-02-21
 	 * @var    string
 	 */
-	protected static $site_transient_blogs_themes = 'blogs_themes';
+	const SITE_TRANSIENT_BLOGS_THEMES = 'blogs_themes';
 	/**
 	 * Define the allowed html tags for wp_kses.
 	 *
 	 * @var array
 	 */
-	protected static $wp_kses_allowed_html = array(
+	const WP_KSES_ALLOWED_HTML = array(
 		'br'   => array(),
 		'span' => array(
 			'class' => array(),
@@ -228,7 +228,7 @@ class Add_Theme_List {
 			$output .= $parent_context;
 		}
 
-		echo wp_kses( $output, self::$wp_kses_allowed_html );
+		echo wp_kses( $output, self::WP_KSES_ALLOWED_HTML );
 	}
 
 	/**
@@ -272,13 +272,17 @@ class Add_Theme_List {
 			return $this->blogs_themes;
 		}
 
-		$this->blogs_themes = get_site_transient( self::$site_transient_blogs_themes );
+		$this->blogs_themes = get_site_transient( self::SITE_TRANSIENT_BLOGS_THEMES );
 		if ( false === $this->blogs_themes ) {
 
 			// Cannot load data from transient, so load from DB and set transient.
 			$this->blogs_themes = array();
 
-			$blogs = (array) Core::get_blog_list( 0, $this->sites_limit );
+			$blogs = (array) get_sites(
+				array(
+					'number' => $this->sites_limit,
+				)
+			);
 
 			/**
 			 * Data to each site of the network, blogs.
@@ -309,7 +313,7 @@ class Add_Theme_List {
 			}
 
 			if ( ! $this->development_helper() ) {
-				set_site_transient( self::$site_transient_blogs_themes, $this->blogs_themes );
+				set_site_transient( self::SITE_TRANSIENT_BLOGS_THEMES, $this->blogs_themes );
 			}
 		}
 
@@ -340,7 +344,7 @@ class Add_Theme_List {
 	 * @since 2015-02-21
 	 */
 	public function clear_themes_site_transient() {
-		delete_site_transient( self::$site_transient_blogs_themes );
+		delete_site_transient( self::SITE_TRANSIENT_BLOGS_THEMES );
 	}
 
 	/**

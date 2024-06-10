@@ -53,8 +53,6 @@ class MultisiteEnhancementsTest extends TestCase {
 
 		$settings_object = \Multisite_Enhancements::get_object( \Multisite_Enhancements\Settings::class );
 		self::assertNotFalse( has_action( 'init', [ $settings_object, 'init' ] ) );
-		$core_object = \Multisite_Enhancements::get_object( \Multisite_Enhancements\Core::class );
-		self::assertNotFalse( has_action( 'init', [ $core_object, 'init' ] ) );
 
 		$object = \Multisite_Enhancements::get_object( \Multisite_Enhancements\Add_Admin_Favicon::class );
 		self::assertNotFalse( has_action( 'init', [ $object, 'init' ] ) );

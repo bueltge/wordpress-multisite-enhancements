@@ -65,7 +65,6 @@ class Multisite_Enhancements {
 		require_once __DIR__ . '/vendor/autoload.php';
 
 		add_action( 'init', array( self::set_object( new Multisite_Enhancements\Settings() ), 'init' ) );
-		add_action( 'init', array( self::set_object( new Multisite_Enhancements\Core() ), 'init' ) );
 
 		$modules = array(
 			'add-favicon'         => array( 'init' => array( Multisite_Enhancements\Add_Admin_Favicon::class, 'init' ) ),

@@ -6,11 +6,9 @@ All notable changes to this project will be documented in this file. This projec
 * Enhance the footer information to make more clear about the memory values. [#71](https://github.com/bueltge/wordpress-multisite-enhancements/issues/71)
 * Fix php note for favicon functionality. [#65](https://github.com/bueltge/wordpress-multisite-enhancements/issues/65)
 * Change dashicons from lock/unlock to yes/no to optimize the visual difference of the icon to spot http usage easier. Probs @Zodiac1978 [#76](https://github.com/bueltge/wordpress-multisite-enhancements/pull/70)
-
-## [1.7.0](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.6.0...1.6.1) - 2024-06-
-* Added functionalty to see when a user last time logs in
-* Update min PHP Version to 7.2
-* Added Namespace, Autoloading, and many more PHP improvements
+* Added functionality to see when a user last time logs in
+* Update minimum PHP Version to 7.2
+* Added Namespace, Autoloading, and many more PHP improvements and cleanups
 
 ## [1.6.1](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.6.0...1.6.1) - 2021-01-20
 * Fix path for css/js files.

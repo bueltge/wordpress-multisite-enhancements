@@ -37,18 +37,10 @@ class Add_Admin_Favicon {
 	 * @since 0.0.2
 	 * @var   array
 	 */
-	protected static $favicon_hooks = array(
+	const FAVICON_HOOKS = array(
 		'admin_head',
 		'wp_head',
 	);
-	/**
-	 * Filter to remove "W" logo incl. sublinks from admin bar.
-	 *
-	 * @since 0.0.2
-	 * @var   Boolean
-	 */
-	protected static $remove_wp_admin_bar = true;
-
 
 	/**
 	 * Initialize the class.
@@ -58,9 +50,9 @@ class Add_Admin_Favicon {
 		/**
 		 * Hooks for add favicon markup.
 		 *
-		 * @type array
+		 * @type array of filters
 		 */
-		$hooks = (array) apply_filters( 'multisite_enhancements_favicon', self::$favicon_hooks );
+		$hooks = (array) apply_filters( 'multisite_enhancements_favicon', self::FAVICON_HOOKS );
 
 		foreach ( $hooks as $hook ) {
 			add_action( esc_attr( $hook ), array( $this, 'set_favicon' ) );
@@ -256,7 +248,7 @@ class Add_Admin_Favicon {
 		if ( Settings::is_feature_enabled( 'remove-logo' ) &&
 			apply_filters(
 				'multisite_enhancements_remove_wp_admin_bar',
-				self::$remove_wp_admin_bar
+				true
 			)
 		) {
 			$admin_bar->remove_node( 'wp-logo' );

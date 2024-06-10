@@ -33,7 +33,7 @@ class Admin_Bar_Tweaks {
 		 * The Toolbar API class.
 		 */
 		global $wp_admin_bar;
-		if ( ! isset( $wp_admin_bar->user->blogs ) || ! Multisite_Enhancements_Settings::is_feature_enabled( 'add-manage-comments' ) ) {
+		if ( ! isset( $wp_admin_bar->user->blogs ) || ! Settings::is_feature_enabled( 'add-manage-comments' ) ) {
 			return;
 		}
 

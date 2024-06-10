@@ -20,20 +20,20 @@ class Add_Plugin_List {
 	 * @since  01/03/2014
 	 * @var    array
 	 */
-	protected static $excluded_plugin_status = array( 'dropins', 'mustuse' );
+	const EXCLUDED_PLUGIN_STATUS = array( 'dropins', 'mustuse' );
 	/**
 	 * String for the transient string, there save the blog plugins.
 	 *
 	 * @since  2015-02-21
 	 * @var    string
 	 */
-	protected static $site_transient_blogs_plugins = 'blogs_plugins';
+	const SITE_TRANSIENT_BLOGS_PLUGINS = 'blogs_plugins';
 	/**
 	 * Define the allowed html tags for wp_kses.
 	 *
 	 * @var array
 	 */
-	protected static $wp_kses_allowed_html = array(
+	const WP_KSES_ALLOWED_HTML = array(
 		'br'   => array(),
 		'span' => array(
 			'class' => array(),
@@ -129,7 +129,7 @@ class Add_Plugin_List {
 		}
 
 		// Not useful on different selections.
-		if ( ! in_array( $status, self::$excluded_plugin_status, true ) ) {
+		if ( ! in_array( $status, self::EXCLUDED_PLUGIN_STATUS, true ) ) {
 			// Translators: Active in is the head of the table column on plugin list.
 			$columns['active_blogs'] = _x( 'Usage', 'column name', 'multisite-enhancements' );
 		}
@@ -146,12 +146,10 @@ class Add_Plugin_List {
 	 * @param  String $column_name Name of the column.
 	 * @param  String $plugin_file Path to the plugin file.
 	 * @param  array  $plugin_data An array of plugin data.
-	 *
-	 * @return null
 	 */
 	public function manage_plugins_custom_column( $column_name, $plugin_file, $plugin_data ) {
 		if ( 'active_blogs' !== $column_name ) {
-			return null;
+			return;
 		}
 		// Is this plugin network activated.
 		if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
@@ -223,7 +221,7 @@ class Add_Plugin_List {
 			. esc_attr__( 'Network Only', 'multisite-enhancements' )
 			. '</span></span>';
 		}
-		echo wp_kses( $output, self::$wp_kses_allowed_html );
+		echo wp_kses( $output, self::WP_KSES_ALLOWED_HTML );
 	}
 
 	/**
@@ -267,13 +265,17 @@ class Add_Plugin_List {
 			return $this->blogs_plugins;
 		}
 
-		$this->blogs_plugins = get_site_transient( self::$site_transient_blogs_plugins );
+		$this->blogs_plugins = get_site_transient( self::SITE_TRANSIENT_BLOGS_PLUGINS );
 		if ( false === $this->blogs_plugins ) {
 
 			// Cannot load data from transient, so load from DB and set transient.
 			$this->blogs_plugins = array();
 
-			$blogs = (array) Core::get_blog_list( 0, $this->sites_limit );
+			$blogs = (array) get_sites(
+				array(
+					'number' => $this->sites_limit,
+				)
+			);
 
 			/**
 			 * Data to each site of the network, blogs.
@@ -305,7 +307,7 @@ class Add_Plugin_List {
 			}
 
 			if ( ! $this->development_helper() ) {
-				set_site_transient( self::$site_transient_blogs_plugins, $this->blogs_plugins );
+				set_site_transient( self::SITE_TRANSIENT_BLOGS_PLUGINS, $this->blogs_plugins );
 			}
 		}
 
@@ -336,7 +338,7 @@ class Add_Plugin_List {
 	 * @since  2015-02-25
 	 */
 	public function clear_plugins_site_transient() {
-		delete_site_transient( self::$site_transient_blogs_plugins );
+		delete_site_transient( self::SITE_TRANSIENT_BLOGS_PLUGINS );
 	}
 
 	/**

@@ -33,15 +33,7 @@ class Change_Footer_Text {
 	 * @since  0.0.2
 	 * @var    String
 	 */
-	protected static $capability = 'manage_options';
-
-	/**
-	 * Filter to reset admin footer message.
-	 *
-	 * @since  0.0.2
-	 * @var    Boolean
-	 */
-	protected static $reset_footer_text = true;
+	const CAPABILITY = 'manage_options';
 
 	/**
 	 * Initialize the class.
@@ -54,7 +46,7 @@ class Change_Footer_Text {
 		 */
 		$capability = apply_filters(
 			'multisite_enhancements_admin_footer_text_capability',
-			self::$capability
+			self::CAPABILITY
 		);
 
 		// Get default content for non admins.
@@ -85,7 +77,7 @@ class Change_Footer_Text {
 		 */
 		if ( apply_filters(
 			'multisite_enhancements_reset_admin_footer_text',
-			self::$reset_footer_text
+			true
 		)
 		) {
 			$footer_text = '';
