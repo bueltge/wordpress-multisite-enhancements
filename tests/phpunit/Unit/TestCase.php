@@ -14,6 +14,16 @@ class TestCase extends \PHPUnit\Framework\TestCase {
 	use MockeryPHPUnitIntegration;
 
 	/**
+	 * Set up for tests
+	 *
+	 * @return void
+	 */
+	protected function setUp(): void {
+		parent::setUp();
+		Monkey\setUp();
+	}
+
+	/**
 	 * Tears down the environment.
 	 *
 	 * @return void

@@ -24,7 +24,7 @@ class Settings {
 	 *
 	 * @var int[]
 	 */
-	protected static $default_options = array(
+	const DEFAULT_OPTIONS = array(
 		'remove-logo'         => 1,
 		'add-favicon'         => 1,
 		'add-blog-id'         => 1,
@@ -216,7 +216,7 @@ class Settings {
 	 */
 	public static function get_settings( $key = null ) {
 		$options = get_site_option( self::OPTION_NAME );
-		$options = wp_parse_args( $options, self::$default_options );
+		$options = wp_parse_args( $options, self::DEFAULT_OPTIONS );
 
 		if ( isset( $key ) ) {
 			return $options[ $key ];
@@ -238,7 +238,7 @@ class Settings {
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$options = wp_unslash( $_POST['wpme_options'] );
 
-		foreach ( array_keys( self::$default_options ) as $key ) {
+		foreach ( array_keys( self::DEFAULT_OPTIONS ) as $key ) {
 			$options[ $key ] = (int) isset( $options[ $key ] );
 		}
 
