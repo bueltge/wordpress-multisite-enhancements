@@ -1,9 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.6.1...HEAD), only in master branch
+## [Unreleased](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.7.0...HEAD), only in master branch
+* 
+
+## [1.6.1](https://github.com/bueltge/wordpress-multisite-enhancements/compare/1.6.1...1.7.0) - 2024-06-10
 * Fixing fatal error triggered by a missing slash, [#70](https://github.com/bueltge/wordpress-multisite-enhancements/pull/70). Probs @brasofilo
-* Enhance the footer information to make more clear about the memory values. [#71](https://github.com/bueltge/wordpress-multisite-enhancements/issues/71)
+* Enhance the footer information to make the memory values clearer. [#71](https://github.com/bueltge/wordpress-multisite-enhancements/issues/71)
 * Fix php note for favicon functionality. [#65](https://github.com/bueltge/wordpress-multisite-enhancements/issues/65)
 * Change dashicons from lock/unlock to yes/no to optimize the visual difference of the icon to spot http usage easier. Probs @Zodiac1978 [#76](https://github.com/bueltge/wordpress-multisite-enhancements/pull/70)
 * Added functionality to see when a user last time logs in
