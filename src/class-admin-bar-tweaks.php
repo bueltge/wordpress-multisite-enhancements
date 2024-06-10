@@ -43,6 +43,9 @@ class Admin_Bar_Tweaks {
 
 			if ( current_user_can( 'edit_posts' ) ) {
 				$comment_node = $wp_admin_bar->get_node( $menu_id );
+				if ( ! $comment_node ) {
+					continue;
+				}
 
 				$awaiting_mod = wp_count_comments();
 				$awaiting_mod = $awaiting_mod->moderated;
