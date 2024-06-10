@@ -16,36 +16,37 @@ When you work quite a bit with WordPress Multisites, sometimes you need more inf
 * Adds Blog and User ID in network view [more](http://wpengineer.com/2188/view-blog-id-in-wordpress-multisite/)
 * Enables an 'Add New' link under the Plugins menu for Network admins
 * Adds several useful items to the multisite 'Network Admin' admin bar
-* On the network plugins page, shows which site has this plugin active
-* On the network theme page, shows which blog has the theme active and is a Child theme
-* Change Admin footer text for Administrators to view currently used RAM, SQL, RAM version fast
-* Adds Favicon from theme folder to the admin area to easily identify the blog, use the `favicon.ico` file in the theme folder of the active theme in each blog
-* Adds Favicon to each blog on the Admin Bar Item 'My Sites'. If you a like a custom path for each favicon, please see the [documentation](https://github.com/bueltge/WordPress-Multisite-Enhancements/wiki/Filter-Hook-for-Favicon-File-Path) for this feature.
-* Removes also the 'W' logo and his sub-links in admin bar
+* On the network plugins page, show which site has this plugin active
+* On the network theme page, show which blog has the theme active and which is a Child theme
+* Change Admin footer text for Administrators to view currently used RAM, SQL, RAM versions fast
+* Adds Favicon from the theme folder to the admin area to easily identify the blog. Use the `favicon.ico` file in the theme folder of the active theme in each blog
+* Adds Favicon to each blog on the Admin Bar Item 'My Sites'. If you like a custom path for each favicon, please see the [documentation](https://github.com/bueltge/WordPress-Multisite-Enhancements/wiki/Filter-Hook-for-Favicon-File-Path) for this feature.
+* Removes also the 'W' logo and his sub-links in the admin bar
 * Adds the status to each site in the admin bar to identify fastly if the site has a `noindex` status and to see the external url.
-* Handy ssl identifier to each site in network site view page.
+* Handy SSL identifier for each site on the network site view page.
+* See the last login of users.
 * Add functions to be used in your install
    * The function `get_blog_list()` is currently deprecated in the WP Core, but currently usable. The plugin checks this and gets an alternative in [`inc/autoload/core.php`](./inc/autoload/core.php)
-   * If you will develop with the alternative to this function from my source, then use the method `get_blog_list()` in class `Multisite_Core`. My source also use caching with the Transient API. More about the function in  [`inc/autoload/class-core.php`](./inc/autoload/class-core.php).
+   * If you will develop the alternative to this function from my source, then use the method `get_blog_list()` in class `Multisite_Core`. My source also uses caching with the Transient API. More about the function in  [`inc/autoload/class-core.php`](./inc/autoload/class-core.php).
    * If you use WordPress version 3.7 and higher, then check the function `wp_get_sites()`, the new alternative function inside the core to get all sides inside the network. The function accepts a array with arguments, see the [description](http://wpseek.com/wp_get_sites/).
    * But if you use WordPress 4.6 and higher then that new alternative ;) - `get_sites()` - is the current function to get all sites in the network. The helper method of this plugin `Multisite_Core::get_blog_list()` or the function `get_blog_list()` have all checks included.
 
-* Filter theme list to find your target fast. Works on single theme page and also network theme page.
+* Filter the theme list to find your target quickly. This works on a single theme page and also on a network theme page.
 
 = Crafted by Inpsyde =
 The team at [Inpsyde](http://inpsyde.com/) is engineering the web and WordPress since 2006.
 
 = Donation? =
-You want to donate - we prefer a [positive review](https://wordpress.org/support/view/plugin-reviews/multisite-enhancements?rate=5#postform), nothing more.
+If you want to donate - we prefer a [positive review](https://wordpress.org/support/view/plugin-reviews/multisite-enhancements?rate=5#postform), nothing more.
 
 == Installation ==
 
 = Requirements =
 * WordPress Multisite 3.0+
-* PHP 5.6*, newer PHP versions will work faster. (It should work also under PHP 5.3, but untested.)
+* PHP 7.2*, newer PHP versions will work faster.
 
 = Installation =
-* Use the installer via back-end of your install or ...
+* Use the installer via the backend of your install or ...
 
 1. Unpack the download-package
 2. Upload the files to the `/wp-content/plugins/` directory
@@ -69,13 +70,13 @@ You want to donate - we prefer a [positive review](https://wordpress.org/support
 
 = Hints, knowledge =
 See also for helpful hints on the [wiki page](https://github.com/bueltge/wordpress-multisite-enhancements/wiki).
-Especially the follow topics are interest:
+Especially the following topics are interest:
 
 * [Filter Hook for Favicon File Path - Define your custom Favicon path](https://github.com/bueltge/WordPress-Multisite-Enhancements/wiki/Filter-Hook-for-Favicon-File-Path)
 * [Large Network Problem](https://github.com/bueltge/wordpress-multisite-enhancements/wiki/Large-Network-Problem)
 
-= Bugs, technical hints or contribute =
-Please give me feedback, contribute and file technical bugs on this
+= Bugs, technical hints or contributions =
+Please give me feedback, contribute, and file technical bugs on this
 [GitHub Repo](https://github.com/bueltge/WordPress-Multisite-Enhancements/issues), use Issues.
 
 = License =
@@ -89,15 +90,24 @@ And I really don't want to know how many hours of my life this plugin has alread
 = Contact & Feedback =
 The plugin is designed and developed by me [Frank Bültge](http://bueltge.de), [G+ Page](https://plus.google.com/+FrankBültge/about?rel=author)
 
-Please let me know if you like the plugin or you hate it or whatever ...
-Please fork it, add an issue for ideas and bugs on the [Github Repository](https://github.com/bueltge/WordPress-Multisite-Enhancements).
+Please let me know if you like the plugin or hate it.
+Please fork it, and add an issue for ideas and bugs on the [Github Repository](https://github.com/bueltge/WordPress-Multisite-Enhancements).
 
 = Disclaimer =
-I'm German and my English might be gruesome here and there.
-So please be patient with me and let me know of typos or grammatical parts. Thanks
+I'm German, and my English might be gruesome here and there.
+So please be patient with me and let me know if there are typos or grammatical parts. Thanks
 
 == Changelog ==
-= 1.6.1 =
+= 1.7.0 (2024-06-10) =
+* Fixing fatal error triggered by a missing slash, [#70](https://github.com/bueltge/wordpress-multisite-enhancements/pull/70). Probs @brasofilo
+* Enhance the footer information to make the memory values clearer. [#71](https://github.com/bueltge/wordpress-multisite-enhancements/issues/71)
+* Fix php note for favicon functionality. [#65](https://github.com/bueltge/wordpress-multisite-enhancements/issues/65)
+* Change dashicons from lock/unlock to yes/no to optimize the visual difference of the icon to spot http usage easier. Probs @Zodiac1978 [#76](https://github.com/bueltge/wordpress-multisite-enhancements/pull/70)
+* Added functionality to see when a user last time logs in
+* Update minimum PHP Version to 7.2
+* Added Namespace, Autoloading, and many more PHP improvements and cleanups
+
+= 1.6.1 (2021-01-20) =
 * Fix path for css/js files.
 
 = 1.6.0 (2021-01-17) =
