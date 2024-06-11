@@ -191,6 +191,7 @@ module.exports = function( grunt ) {
 				},
 				files: [
 					{ src: [ 'multisite-enhancements.php' ], dest: '/multisite-enhancements/', filter: 'isFile' },
+					{ src: [ 'uninstall.php' ], dest: '/multisite-enhancements/', filter: 'isFile' },
 					{ src: [ 'readme.txt' ], dest: '/multisite-enhancements/', filter: 'isFile' },
 					{ src: [ 'LICENSE' ], dest: '/multisite-enhancements/', filter: 'isFile' },
 					{ src: [ 'src/**' ], dest: '/multisite-enhancements/' },
