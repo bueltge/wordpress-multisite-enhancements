@@ -27,3 +27,7 @@ vendor
 
 # PHP Unit
 .phpunit.result.cache
+
+#other files
+languages/multisite-enhancements.pot
+multisite-enhancements.zip
