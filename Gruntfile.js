@@ -14,6 +14,10 @@ module.exports = function( grunt ) {
 			scripts: {
 				src: 'assets/js/',
 				dest: 'assets/js/'
+			},
+			resources: {
+				src: 'resources/',
+				dest: 'resources/'
 			}
 		},
 
@@ -27,17 +31,11 @@ module.exports = function( grunt ) {
 			options: {
 				optimizationLevel: 7
 			},
-			assets: {
+			resources: {
 				expand: true,
-				cwd: '<%= config.w-org-assets.src %>',
-				src: [ '*.{gif,jpeg,jpg,png}' ],
-				dest: '<%= config.w-org-assets.dest %>'
-			},
-			images: {
-				expand: true,
-				cwd: '<%= config.images.src %>',
+				cwd: '<%= config.resources.src %>',
 				src: [ '**/*.{gif,jpeg,jpg,png}' ],
-				dest: '<%= config.images.dest %>'
+				dest: '<%= config.resources.dest %>'
 			}
 		},
 
@@ -127,19 +125,8 @@ module.exports = function( grunt ) {
 				options: {
 					include: [
 						'multisite-enhancements.php',
-						'src/class-add-admin-favicon.php',
-						'src/class-add-blog-id.php',
-						'src/class-add-css.php',
-						'src/class-add-plugin-list.php',
-						'scr/class-add-site-status-labels.php',
-						'src/class-add-ssl-identifier.php',
-						'src/class-add-theme-list.php',
-						'src/class-admin-bar-tweaks.php',
-						'src/class-change-footer-text.php',
-						'src/class-filtering-themes.php',
-						'src/class-multisite-add-new-plugin.php',
-						'src/settings.php'
-
+						'uninstall.php',
+						'src/.*'
 					],
 					type: 'wp-plugin'
 				}
@@ -154,9 +141,9 @@ module.exports = function( grunt ) {
 			},
 
 			assets: {
-				files: [ '<%= config.w-org-assets.src %>*.{gif,jpeg,jpg,png}' ],
+				files: [ '<%= config.resources.src %>*.{gif,jpeg,jpg,png}' ],
 				tasks: [
-					'newer:imagemin:w-org-assets'
+					'newer:imagemin:resources'
 				]
 			},
 
@@ -173,13 +160,6 @@ module.exports = function( grunt ) {
 					'jscs:grunt',
 					'jshint:grunt',
 					'lineending:grunt'
-				]
-			},
-
-			images: {
-				files: [ '<%= config.images.src %>**/*.{gif,jpeg,jpg,png}' ],
-				tasks: [
-					'newer:imagemin:images'
 				]
 			},
 
@@ -202,7 +182,39 @@ module.exports = function( grunt ) {
 					'jsvalidate:dest'
 				]
 			}
+		},
 
+		compress: {
+			zip: {
+				options: {
+					archive: 'multisite-enhancements.zip'
+				},
+				files: [
+					{ src: [ 'multisite-enhancements.php' ], dest: '/multisite-enhancements/', filter: 'isFile' },
+					{ src: [ 'readme.txt' ], dest: '/multisite-enhancements/', filter: 'isFile' },
+					{ src: [ 'LICENSE' ], dest: '/multisite-enhancements/', filter: 'isFile' },
+					{ src: [ 'src/**' ], dest: '/multisite-enhancements/' },
+					{ src: [ 'assets/**' ], dest: '/multisite-enhancements/' },
+					{ src: [ 'vendor/**' ], dest: '/multisite-enhancements/' }
+				]
+			}
+		},
+
+		run: {
+			composer_no_dev: {
+				cmd: 'composer',
+				args: [
+					'install',
+					'--prefer-dist',
+					'--no-dev'
+				]
+			},
+			composer_with_dev: {
+				cmd: 'composer',
+				args: [
+					'install'
+				]
+			}
 		}
 	};
 
@@ -261,7 +273,6 @@ module.exports = function( grunt ) {
 		'assets',
 		'configs',
 		'grunt',
-		'images',
 		'json',
 		'scripts'
 	] );
@@ -275,6 +286,13 @@ module.exports = function( grunt ) {
 
 	grunt.registerTask( 'grunt-wp-i18n', [
 		'makepot'
+	] );
+
+	grunt.registerTask( 'package', [
+		'precommit',
+		'run:composer_no_dev',
+		'compress:zip',
+		'run:composer_with_dev'
 	] );
 
 	// Delegation task for grunt-newer to check files different from the individual task's files.

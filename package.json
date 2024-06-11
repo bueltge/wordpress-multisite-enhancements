@@ -16,6 +16,8 @@
   },
   "devDependencies": {
     "grunt": ">=1.6.1",
+    "grunt-cli": "^1.4.3",
+    "grunt-contrib-compress": "^2.0.0",
     "grunt-contrib-concat": "~0.5.1",
     "grunt-contrib-imagemin": "^4.0.0",
     "grunt-contrib-jshint": "^3.0.0",
@@ -26,6 +28,7 @@
     "grunt-jsvalidate": "~0.2.2",
     "grunt-lineending": "~1.0.0",
     "grunt-newer": "~1.1.1",
+    "grunt-run": "^0.8.1",
     "grunt-wp-i18n": "^1.0.3",
     "jshint-stylish": "~2.1.0",
     "load-grunt-tasks": "~3.3.0",
