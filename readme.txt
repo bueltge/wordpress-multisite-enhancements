@@ -2,9 +2,9 @@
 Contributors: Bueltge, inpsyde, danielhuesken
 Tags: multisite, administration, admin bar, network,
 Requires at least: 4.6
-Tested up to: 6.5.4
+Tested up to: 6.6
 Requires PHP: 7.2
-Stable tag: 1.7.0
+Stable tag: 1.7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -98,6 +98,9 @@ I'm German, and my English might be gruesome here and there.
 So please be patient with me and let me know if there are typos or grammatical parts. Thanks
 
 == Changelog ==
+= 1.7.1 (2024-07-18) =
+* Fixing corrupt blog loop, [#81](https://github.com/bueltge/wordpress-multisite-enhancements/issues/81)
+
 = 1.7.0 (2024-06-10) =
 * Fixing fatal error triggered by a missing slash, [#70](https://github.com/bueltge/wordpress-multisite-enhancements/pull/70). Probs @brasofilo
 * Enhance the footer information to make the memory values clearer. [#71](https://github.com/bueltge/wordpress-multisite-enhancements/issues/71)
