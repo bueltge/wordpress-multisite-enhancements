@@ -1,7 +1,7 @@
 name: multisite-enhancements
 type: php
 docroot: .ddev/wordpress
-php_version: "7.2"
+php_version: "8.2"
 nodejs_version: "18"
 webserver_type: apache-fpm
 router_http_port: "80"
