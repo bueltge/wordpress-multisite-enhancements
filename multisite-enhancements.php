@@ -8,7 +8,7 @@
  * Author URI:   https://bueltge.de
  * License:      GPLv2+
  * License URI:  LICENSE
- * Requires PHP: 7.2
+ * Requires PHP: 8.2
  * Text Domain:  multisite-enhancements
  * Domain Path:  /languages
  * Network:      true
