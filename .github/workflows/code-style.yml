@@ -1,4 +1,4 @@
-name: PHP Composer CI
+name: CI
 
 on:
   push:
@@ -6,47 +6,86 @@ on:
   pull_request:
     branches: [ master ]
 
+permissions:
+  contents: read
+
 jobs:
-  build:
-
+  # Automatically fixes code style errors that can be resolved and commits them
+  # Only for pull requests from your own repo (not for forks, not on master)
+  autofix:
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.head_ref }}
 
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer
+
+      - name: Install dependencies
+        run: composer install -q -n -a --no-progress --prefer-dist
+
+      - name: Run PHPCBF
+        # Exit-Code 1/2 bedeutet "es wurde etwas gefixt", daher || true
+        run: ./vendor/bin/phpcbf || true
+
+      - name: Commit fixes
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "style: apply phpcbf fixes"
+          
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental == true }}
     strategy:
       matrix:
-        php-versions: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
-
+        php-versions:
+          - '8.2'
+          - '8.3'
+          - '8.4'
+          - '8.5'
+        include:
+          - php-versions: '8.6'
+            experimental: true
+            
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - uses: actions/checkout@v2
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v7
 
-    - name: Setup PHP
+    - name: Setup PHP Version ${{ matrix.php-versions }}
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php-versions }}
+        tools: composer
 
     - name: Check syntax error in sources
-      run: find ./inc/ -type f -name '*.php' -print0 | xargs -0 -L 1 -P 4 -- php -l
+      run: find ./src/ ./tests/ -type f -name '*.php' -print0 | xargs -0 -L 1 -P 4 -- php -l
 
-    - name: Clear cache of Composer
-      run: composer clear-cache
+    # Validate has include update
+    - name: Validate Composer.json and composer.lock
+      run: composer validate --strict
 
-    - name: Update Composer.json and composer.lock
-      run: composer update
+    - name: Get Composer cache directory
+      id: composer-cache
+      run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
 
     - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v2
+      uses: actions/cache@v6
       with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: composer-${{ runner.os }}-${{ matrix.php-versions }}-${{ hashFiles('composer.lock') }}
+        restore-keys: composer-${{ runner.os }}-${{ matrix.php-versions }}-
 
     - name: Install dependencies
-      if: steps.composer-cache.outputs.cache-hit != 'true'
       run: composer install -q -n -a --no-progress --prefer-dist
 
-    - name: Run phpCS Scripts from composer.json
-      run: composer cs
-
-    - name: Run Unit Test from composer.json
+    - name: Run QA Scripts from composer.json
       run: composer pu
