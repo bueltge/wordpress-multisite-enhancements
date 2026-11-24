@@ -1,0 +1,39 @@
+name: Update composer.lock
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-lock:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          # Niedrigste unterstützte Version, damit die Lock-Datei überall passt
+          php-version: '8.2'
+          tools: composer
+
+      - name: Update lock file
+        run: composer update phpunit/phpunit --with-dependencies --no-interaction --no-progress --prefer-dist
+
+      - name: Validate
+        run: composer validate --strict
+
+      # Requires "Allow GitHub Actions to create and approve pull requests"
+      # in the repository settings (Actions > General).
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          add-paths: composer.lock
+          branch: build/update-composer-lock
+          delete-branch: true
+          commit-message: "build: update composer.lock"
+          title: "build: update composer.lock"
+          body: "Automated update of `composer.lock` via the *Update composer.lock* workflow (PHP 8.2 platform)."
